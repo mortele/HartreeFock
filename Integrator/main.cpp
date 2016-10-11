@@ -13,11 +13,11 @@ const int    n         = (int) 5e7;
 const double rmax      = 3.0;
 const double eps       = pow(10,-12);
 const double factor    = (2*M_PI) * (2*M_PI) * rmax * rmax;
-//const double reference = 1.253314137; // 1111
+const double reference = 1.253314137; // 1111
 //const double reference = 0.939985603; // 1212
 //const double reference = 0.3133285343; // 1221
 //const double reference = 0.744155269; // 1616
-const double reference = 0.3035370176; // 2346
+//const double reference = 0.3035370176; // 2346
 
 
 double L(double x, int n, int m) {
@@ -32,52 +32,55 @@ double factorial(int n) {
     return fac;
 }
 
-complex<double> psi(double r, double theta, int n, int m) {
-    complex<double> i(0,1);
+double psi(double r, double theta, int n, int m) {
     double x = r*r;
     double oneOverSquareRoot = 1/sqrt(M_PI*factorial(n+fabs(m)));
     double rPowerM = (m==0) ? 1 : ((m==1)||(m==-1) ? r : x);
-    complex<double> phase = exp(i*((double)m*theta));
-    return L(x, n, m) * oneOverSquareRoot * exp(-x/2.0) * rPowerM * phase;
+    return L(x, n, m) * oneOverSquareRoot * exp(-x/2.0) * rPowerM;
 }
 
 // (n=0, m=0)
-complex<double> psi1(double r, double theta) {
+double psi1(double r, double theta) {
     return psi(r, theta, 0, 0);
 }
 
 // (n=0, m=-1)
-complex<double> psi2(double r, double theta) {
+double psi2(double r, double theta) {
     return psi(r, theta, 0, -1);
 }
 
 // (n=0, m=+1)
-complex<double> psi3(double r, double theta) {
+double psi3(double r, double theta) {
    return psi(r, theta, 0, +1);
 }
 
 // (n=0, m=-2)
-complex<double> psi4(double r, double theta) {
+double psi4(double r, double theta) {
     return psi(r, theta, 0, -2);
 }
 
 // (n=1, m=0)
-complex<double> psi5(double r, double theta) {
+double psi5(double r, double theta) {
     return psi(r, theta, 1, 0);
 }
 
 // (n=0, m=+2)
-complex<double> psi6(double r, double theta) {
+double psi6(double r, double theta) {
     return psi(r, theta, 0, +2);
 }
 
-complex<double> integrand(double r1,
+double integrand(double r1,
                  double theta1,
                  double r2,
                  double theta2) {
 
+    int m1 = 0;
+    int m2 = 0;
+    int m3 = 0;
+    int m4 = 0;
     double r12 = sqrt(r1*r1 + r2*r2 - 2*r1*r2*cos(theta2-theta1));
-    return (r12 < eps) ? 0 : conj(psi2(r1, theta1) * psi3(r2, theta2)) * psi4(r1, theta1) * psi6(r2, theta2) * r1 * r2 / r12;
+    double phase = cos((m3-m1)*theta1)*cos((m4-m2)*theta2) - sin((m3-m1)*theta1)*sin((m4-m2)*theta2);
+    return (r12 < eps) ? 0 : phase * psi1(r1, theta1) * psi1(r2, theta2) * psi1(r1, theta1) * psi1(r2, theta2) * r1 * r2 / r12;
 }
 
 int main() {
@@ -86,9 +89,9 @@ int main() {
     start = clock();
 
     // Integration loop.
-    complex<double> sum  = 0;
-    complex<double> sum2 = 0;
-    complex<double> term = 0;
+    double sum  = 0;
+    double sum2 = 0;
+    double term = 0;
     for(int i = 0; i < n; i++) {
         double r1     = ran1(&idum)*rmax;
         double r2     = ran1(&idum)*rmax;
@@ -105,14 +108,13 @@ int main() {
     finish = clock();
     cout << endl << " * Importance sampled Monte Carlo " << endl;
     cout << "----------------------------------------------------------" << endl;
-    cout << "Value of numerical approx. I' = " << real(sum) << endl;
-    cout << "Imaginary contamination of I' = " << imag(sum) << endl;
+    cout << "Value of numerical approx. I' = " << (sum) << endl;
     cout << "Exact value of integral I     = " << reference << endl;
     cout << "Time usage                    = " << (finish-start)/1000000.0;
     cout << " [seconds]" << endl;
-    cout << "Variance                      = " << (real(sum2) - real(sum)*real(sum))/n << endl;
-    cout << "Standard deviation            = " << sqrt((real(sum2) - real(sum)*real(sum))/n) << endl;
-    cout << "Relative error                = " << fabs(reference-real(sum))/reference << endl;
+    cout << "Variance                      = " << ((sum2) - (sum)*(sum))/n << endl;
+    cout << "Standard deviation            = " << sqrt(((sum2) - (sum)*(sum))/n) << endl;
+    cout << "Relative error                = " << fabs(reference-(sum))/reference << endl;
     cout << "Number of points, n           = " << "10^" << log10(n) << endl << endl;
     return 0;
 }
