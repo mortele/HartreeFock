@@ -15,6 +15,7 @@ const double eps       = pow(10,-12);
 const double factor    = (2*M_PI) * (2*M_PI) * rmax * rmax;
 //const double reference = 1.253314137; // 1111
 //const double reference = 0.939985603; // 1212
+//const double reference = 0.3133285343; // 1221
 //const double reference = 0.744155269; // 1616
 const double reference = 0.3035370176; // 2346
 
@@ -76,7 +77,7 @@ complex<double> integrand(double r1,
                  double theta2) {
 
     double r12 = sqrt(r1*r1 + r2*r2 - 2*r1*r2*cos(theta2-theta1));
-    return (r12 < eps) ? 0 : psi2(r1, theta1) * psi3(r2, theta2) * psi4(r1, theta1) * psi6(r2, theta2) * r1 * r2 / r12;
+    return (r12 < eps) ? 0 : conj(psi2(r1, theta1) * psi3(r2, theta2)) * psi4(r1, theta1) * psi6(r2, theta2) * r1 * r2 / r12;
 }
 
 int main() {
@@ -104,13 +105,14 @@ int main() {
     finish = clock();
     cout << endl << " * Importance sampled Monte Carlo " << endl;
     cout << "----------------------------------------------------------" << endl;
-    cout << "Value of numerical approx. I' = " << sum << endl;
+    cout << "Value of numerical approx. I' = " << real(sum) << endl;
+    cout << "Imaginary contamination of I' = " << imag(sum) << endl;
     cout << "Exact value of integral I     = " << reference << endl;
     cout << "Time usage                    = " << (finish-start)/1000000.0;
     cout << " [seconds]" << endl;
-    //cout << "Variance                      = " << (sum2 - sum*sum)/n << endl;
-    //cout << "Standard deviation            = " << sqrt((sum2 - sum*sum)/n) << endl;
-    //cout << "Relative error                = " << fabs(reference-sum)/reference << endl;
+    cout << "Variance                      = " << (real(sum2) - real(sum)*real(sum))/n << endl;
+    cout << "Standard deviation            = " << sqrt((real(sum2) - real(sum)*real(sum))/n) << endl;
+    cout << "Relative error                = " << fabs(reference-real(sum))/reference << endl;
     cout << "Number of points, n           = " << "10^" << log10(n) << endl << endl;
     return 0;
 }
