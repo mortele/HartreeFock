@@ -8,7 +8,13 @@ QMAKE_CXXFLAGS_RELEASE += -O3
 
 
 SOURCES += main.cpp \
-    ran1.cpp
+    ran1.cpp \
+    Orbitals/orbital.cpp \
+    Orbitals/harmonicoscillator2d.cpp \
+    montecarlointegrator.cpp
 
 HEADERS += \
-    ran1.h
+    ran1.h \
+    Orbitals/orbital.h \
+    Orbitals/harmonicoscillator2d.h \
+    montecarlointegrator.h

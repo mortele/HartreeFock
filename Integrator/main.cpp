@@ -4,15 +4,18 @@
 #include <cmath>
 #include <time.h>
 #include <cstdlib>
-#include <complex>
+#include "Orbitals/orbital.h"
+#include "Orbitals/harmonicoscillator2d.h"
+#include "montecarlointegrator.h"
 #include "ran1.h"
 
 using namespace std;
 long         idum      = -time(0);
-const int    n         = (int) 5e7;
+const int    n         = (int) 1e7;
 const double rmax      = 3.0;
 const double eps       = pow(10,-12);
-const double factor    = (2*M_PI) * (2*M_PI) * rmax * rmax;
+const double factorOne = (2*M_PI) * rmax;
+const double factorTwo = factorOne*factorOne;
 const double reference = 1.253314137; // 1111
 //const double reference = 0.939985603; // 1212
 //const double reference = 0.3133285343; // 1221
@@ -35,45 +38,32 @@ double factorial(int n) {
 double psi(double r, double theta, int n, int m) {
     double x = r*r;
     double oneOverSquareRoot = 1/sqrt(M_PI*factorial(n+fabs(m)));
-    double rPowerM = (m==0) ? 1 : ((m==1)||(m==-1) ? r : x);
+    double rPowerM = (m==0) ? 1 : ((m==1)||(m==-1) ? r : r);
     return L(x, n, m) * oneOverSquareRoot * exp(-x/2.0) * rPowerM;
 }
 
-// (n=0, m=0)
 double psi1(double r, double theta) {
     return psi(r, theta, 0, 0);
 }
-
-// (n=0, m=-1)
 double psi2(double r, double theta) {
     return psi(r, theta, 0, -1);
 }
-
-// (n=0, m=+1)
 double psi3(double r, double theta) {
    return psi(r, theta, 0, +1);
 }
-
-// (n=0, m=-2)
 double psi4(double r, double theta) {
     return psi(r, theta, 0, -2);
 }
 
-// (n=1, m=0)
-double psi5(double r, double theta) {
-    return psi(r, theta, 1, 0);
+double integrandOne(double r1,
+                    double theta1) {
+    return psi1(r1, theta1) * psi1(r1, theta1) * r1;
 }
 
-// (n=0, m=+2)
-double psi6(double r, double theta) {
-    return psi(r, theta, 0, +2);
-}
-
-double integrand(double r1,
+double integrandTwo(double r1,
                  double theta1,
                  double r2,
                  double theta2) {
-
     int m1 = 0;
     int m2 = 0;
     int m3 = 0;
@@ -83,7 +73,29 @@ double integrand(double r1,
     return (r12 < eps) ? 0 : phase * psi1(r1, theta1) * psi1(r2, theta2) * psi1(r1, theta1) * psi1(r2, theta2) * r1 * r2 / r12;
 }
 
+void hei(int* input) {
+    cout << input[0] << ", " << input[1] << endl;
+}
+
+int* generateQuantumNumberArray(int n1, int m1, int n2, int m2) {
+    int* allQuantumNumbers = new int[4];
+    allQuantumNumbers[0] = n1;
+    allQuantumNumbers[1] = m1;
+    allQuantumNumbers[2] = n2;
+    allQuantumNumbers[3] = m2;
+    return allQuantumNumbers;
+}
+
 int main() {
+
+    int* allQuantumNumbers = generateQuantumNumberArray(0,0,0,1);
+
+    MonteCarloIntegrator* MCInt = new MonteCarloIntegrator();
+    MCInt->setOrbital(new HarmonicOscillator2D());
+    cout << "Integral: " << MCInt->integrateOne(allQuantumNumbers) << endl;
+    cout << "stdDev:   " << MCInt->getStandardDeviation() << endl;
+
+
     // Timing of the code.
     clock_t start, finish;
     start = clock();
@@ -94,15 +106,16 @@ int main() {
     double term = 0;
     for(int i = 0; i < n; i++) {
         double r1     = ran1(&idum)*rmax;
-        double r2     = ran1(&idum)*rmax;
+        //double r2     = ran1(&idum)*rmax;
         double theta1 = ran1(&idum)*2*M_PI;
-        double theta2 = ran1(&idum)*2*M_PI;
-        term  = integrand(r1, theta1, r2, theta2);
+        //double theta2 = ran1(&idum)*2*M_PI;
+        //term  = integrandTwo(r1, theta1, r2, theta2) * factorTwo;
+        term  = integrandOne(r1, theta1) * factorOne;
         sum  += term;
         sum2 += term*term;
     }
-    sum  *= factor          / n;
-    sum2 *= factor * factor / n;
+    sum  /= ((double) n);
+    sum2 /= ((double) n*n);
 
     // Terminal output.
     finish = clock();
