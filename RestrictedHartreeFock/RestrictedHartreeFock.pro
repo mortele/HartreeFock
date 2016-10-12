@@ -9,8 +9,10 @@ QMAKE_CXXFLAGS_RELEASE += -O3
 LIBS += -llapack -lblas -larmadillo
 
 SOURCES += main.cpp \
-    restrictedhartreefock.cpp
+    restrictedhartreefock.cpp \
+    examples.cpp
 
 HEADERS += \
-    restrictedhartreefock.h
+    restrictedhartreefock.h \
+    examples.h
 

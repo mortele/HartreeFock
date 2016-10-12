@@ -6,6 +6,8 @@ class RestrictedHartreeFock
 public:
     RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbitals);
     void computeSolutionBySCF();
+    void setAnalyticOneBodyElements(arma::vec oneBodyElements);
+    void setAnalyticOneBodyElements(arma::mat oneBodyElements);
 private:
     int m_nrOfSpatialOrbitals;
     int m_nrOfSpinOrbitals;
@@ -17,6 +19,7 @@ private:
     arma::mat m_U;
     arma::mat m_FockMatrix;
     arma::vec m_eps;
+    arma::mat m_oneBodyElements;
 
     //vector oneBodyElements
     //vector something twoBodyElements
