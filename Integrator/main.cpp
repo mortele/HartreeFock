@@ -49,7 +49,7 @@ double psi2(double r, double theta) {
     return psi(r, theta, 0, -1);
 }
 double psi3(double r, double theta) {
-   return psi(r, theta, 0, +1);
+    return psi(r, theta, 0, +1);
 }
 double psi4(double r, double theta) {
     return psi(r, theta, 0, -2);
@@ -61,9 +61,9 @@ double integrandOne(double r1,
 }
 
 double integrandTwo(double r1,
-                 double theta1,
-                 double r2,
-                 double theta2) {
+                    double theta1,
+                    double r2,
+                    double theta2) {
     int m1 = 0;
     int m2 = 0;
     int m3 = 0;
@@ -77,22 +77,73 @@ void hei(int* input) {
     cout << input[0] << ", " << input[1] << endl;
 }
 
-int* generateQuantumNumberArray(int n1, int m1, int n2, int m2) {
+int* mapToOrbitals(int p) {
+    int* quantumNumbers = new int[2];
+    switch (p) {
+        case 1:
+            quantumNumbers[0] = 0;
+            quantumNumbers[1] = 0;
+            break;
+        case 2:
+            quantumNumbers[0] = 0;
+            quantumNumbers[1] = -1;
+            break;
+        case 3:
+            quantumNumbers[0] = 0;
+            quantumNumbers[1] = 1;
+            break;
+        case 4:
+            quantumNumbers[0] = 0;
+            quantumNumbers[1] = -2;
+            break;
+        case 5:
+            quantumNumbers[0] = 1;
+            quantumNumbers[1] = 0;
+            break;
+        case 6:
+            quantumNumbers[0] = 0;
+            quantumNumbers[1] = 2;
+            break;
+        default:
+            cout << "Invalid orbital <" << p << ">." << endl;
+            break;
+    }
+    return quantumNumbers;
+}
+
+int* generateQuantumNumbersOne(int* indices) {
     int* allQuantumNumbers = new int[4];
-    allQuantumNumbers[0] = n1;
-    allQuantumNumbers[1] = m1;
-    allQuantumNumbers[2] = n2;
-    allQuantumNumbers[3] = m2;
+    for (int i=0; i<2; i++) {
+        int* quantumNumbers = mapToOrbitals(indices[i]);
+        allQuantumNumbers[2*i+0] = quantumNumbers[0];
+        allQuantumNumbers[2*i+1] = quantumNumbers[1];
+    }
+    return allQuantumNumbers;
+}
+
+int* generateQuantumNumbersTwo(int* indices) {
+    int* allQuantumNumbers = new int[8];
+    for (int i=0; i<4; i++) {
+        int* quantumNumbers = mapToOrbitals(indices[i]);
+        allQuantumNumbers[2*i+0] = quantumNumbers[0];
+        allQuantumNumbers[2*i+1] = quantumNumbers[1];
+    }
     return allQuantumNumbers;
 }
 
 int main() {
 
-    int* allQuantumNumbers = generateQuantumNumberArray(0,0,0,1);
+    //int indices [] = {1,1};
+    //int* allQuantumNumbers = generateAllQuantumNumbersOne(indices);
+
+    int indices [] = {1,1,1,1};
+    int* allQuantumNumbers = generateQuantumNumbersTwo(indices);
+
 
     MonteCarloIntegrator* MCInt = new MonteCarloIntegrator();
     MCInt->setOrbital(new HarmonicOscillator2D());
-    cout << "Integral: " << MCInt->integrateOne(allQuantumNumbers) << endl;
+    //cout << "Integral: " << MCInt->integrateOne(allQuantumNumbers) << endl;
+    cout << "Integral: " << MCInt->integrateTwo(allQuantumNumbers) << endl;
     cout << "stdDev:   " << MCInt->getStandardDeviation() << endl;
 
 
@@ -106,11 +157,11 @@ int main() {
     double term = 0;
     for(int i = 0; i < n; i++) {
         double r1     = ran1(&idum)*rmax;
-        //double r2     = ran1(&idum)*rmax;
+        double r2     = ran1(&idum)*rmax;
         double theta1 = ran1(&idum)*2*M_PI;
-        //double theta2 = ran1(&idum)*2*M_PI;
-        //term  = integrandTwo(r1, theta1, r2, theta2) * factorTwo;
-        term  = integrandOne(r1, theta1) * factorOne;
+        double theta2 = ran1(&idum)*2*M_PI;
+        term  = integrandTwo(r1, theta1, r2, theta2) * factorTwo;
+        //term  = integrandOne(r1, theta1) * factorOne;
         sum  += term;
         sum2 += term*term;
     }

@@ -14,5 +14,6 @@ public:
     HarmonicOscillator2D() : Orbital(2,2) {}
     double computeWavefunction (double* coordinates, int* quantumNumbers);
     double integrandOne(double* allCoordinates, int* allQuantumNumbers);
+    double integrandTwo(double *allCoordinates, int *allQuantumNumbers);
     double* getCoordinateScales();
 };

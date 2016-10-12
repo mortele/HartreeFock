@@ -26,15 +26,39 @@ double HarmonicOscillator2D::integrandOne(double* allCoordinates,
 
     double r                    = allCoordinates[0];
     double theta                = allCoordinates[1];
-    //int    n1                   = allQuantumNumbers[0];
     int    m1                   = allQuantumNumbers[1];
-    //int    n2                   = allQuantumNumbers[2];
     int    m2                   = allQuantumNumbers[3];
     double integrationMeasure   = r;
 
-    double phase        = std::cos(theta * (m1-m2));
-    double waveFunction = computeWavefunction(allCoordinates, allQuantumNumbers);
-    double integrand    =  integrationMeasure * waveFunction * waveFunction * phase;
+    double phase         = std::cos(theta * (m1 - m2));
+    double waveFunction1 = computeWavefunction(allCoordinates, allQuantumNumbers);
+    double waveFunction2 = computeWavefunction(allCoordinates, allQuantumNumbers+2);
+    double integrand     = integrationMeasure * waveFunction1 * waveFunction2 * phase;
+    return integrand;
+}
+
+double HarmonicOscillator2D::integrandTwo(double* allCoordinates,
+                                          int*    allQuantumNumbers) {
+    double r1                   = allCoordinates[0];
+    double theta1               = allCoordinates[1];
+    double r2                   = allCoordinates[2];
+    double theta2               = allCoordinates[3];
+    int    m1                   = allQuantumNumbers[1];
+    int    m2                   = allQuantumNumbers[3];
+    int    m3                   = allQuantumNumbers[5];
+    int    m4                   = allQuantumNumbers[7];
+    double integrationMeasure   = r1 * r2;
+
+    double r12           = sqrt(r1*r1 + r2*r2 - 2*r1*r2*cos(theta2-theta1));
+    double oneOverR12    = r12 < 1e-12 ? 0 : 1./r12;
+    double phase         = cos((m3-m1)*theta1)*cos((m4-m2)*theta2) -
+                           sin((m3-m1)*theta1)*sin((m4-m2)*theta2);
+    double waveFunction1 = computeWavefunction(allCoordinates,   allQuantumNumbers);
+    double waveFunction2 = computeWavefunction(allCoordinates,   allQuantumNumbers+2);
+    double waveFunction3 = computeWavefunction(allCoordinates+2, allQuantumNumbers+4);
+    double waveFunction4 = computeWavefunction(allCoordinates+2, allQuantumNumbers+6);
+    double integrand     =  integrationMeasure * oneOverR12 * phase *
+                            waveFunction1 * waveFunction2 * waveFunction3 * waveFunction4;
     return integrand;
 }
 
