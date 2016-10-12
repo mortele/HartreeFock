@@ -35,7 +35,6 @@ void MonteCarloIntegrator::setSeed(long seed) {
 double MonteCarloIntegrator::integrateTwo(int* allQuantumNumbers,
                                           int  integrationPoints) {
     int     totalNumberOfCoordinates    = 2 * m_dimensions;
-    int     totalNumberOfQuantumNumbers = 2 * m_numberOfQuantumNumbers;
     double  allCoordinates[totalNumberOfCoordinates];
 
     m_integral = 0;
@@ -61,7 +60,6 @@ double MonteCarloIntegrator::integrateTwo(int* allQuantumNumbers,
 double MonteCarloIntegrator::integrateOne(int* allQuantumNumbers,
                                           int  integrationPoints) {
     int     totalNumberOfCoordinates    = m_dimensions;
-    int     totalNumberOfQuantumNumbers = m_numberOfQuantumNumbers;
     double  allCoordinates[totalNumberOfCoordinates];
 
     m_integral = 0;

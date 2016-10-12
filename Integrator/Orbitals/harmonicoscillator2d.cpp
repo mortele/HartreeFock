@@ -8,7 +8,6 @@ using std::endl;
 double HarmonicOscillator2D::computeWavefunction(double* coordinates,
                                                  int*    quantumNumbers) {
     double  r       = coordinates[0];
-    //double  theta   = coordinates[1];
     int     n       = quantumNumbers[0];
     int     m       = quantumNumbers[1];
     int     mAbs    = m < 0 ? -m : m;
@@ -53,9 +52,9 @@ double HarmonicOscillator2D::integrandTwo(double* allCoordinates,
     double oneOverR12    = r12 < 1e-12 ? 0 : 1./r12;
     double phase         = cos((m3-m1)*theta1)*cos((m4-m2)*theta2) -
                            sin((m3-m1)*theta1)*sin((m4-m2)*theta2);
-    double waveFunction1 = computeWavefunction(allCoordinates,   allQuantumNumbers);
-    double waveFunction2 = computeWavefunction(allCoordinates,   allQuantumNumbers+2);
-    double waveFunction3 = computeWavefunction(allCoordinates+2, allQuantumNumbers+4);
+    double waveFunction1 = computeWavefunction(allCoordinates,   allQuantumNumbers  );
+    double waveFunction2 = computeWavefunction(allCoordinates+2, allQuantumNumbers+2);
+    double waveFunction3 = computeWavefunction(allCoordinates,   allQuantumNumbers+4);
     double waveFunction4 = computeWavefunction(allCoordinates+2, allQuantumNumbers+6);
     double integrand     =  integrationMeasure * oneOverR12 * phase *
                             waveFunction1 * waveFunction2 * waveFunction3 * waveFunction4;

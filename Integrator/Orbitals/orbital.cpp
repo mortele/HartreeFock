@@ -11,12 +11,10 @@ int* Orbital::mapQuantumNumbers(int singleQuantumNumber) {
     return quantumNumbers;
 }
 
-double Orbital::integrandOne(double* allCoordinates,
-                             int*    allQuantumNumbers) {
+double Orbital::integrandOne(double*, int*) {
     return 1.;
 }
 
-double Orbital::integrandTwo(double* allCoordinates,
-                             int*    allQuantumNumbers) {
+double Orbital::integrandTwo(double*, int*) {
     return 1.;
 }
