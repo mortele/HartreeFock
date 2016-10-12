@@ -16,11 +16,22 @@ RestrictedHartreeFock::RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbi
     std::cout << m_nrOfSpatialOrbitals << std::endl;
     std::cout << m_nrOfOccupiedOrbitals << std::endl;
 
-    m_U             = arma::eye(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals); //Intitial guess U0 = Identity matrix
-    m_DensityMatrix = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
-    m_FockMatrix    = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
-    m_eps           = arma::zeros<arma::vec>(m_nrOfSpatialOrbitals);
+    m_U               = arma::eye(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals); //Intitial guess U0 = Identity matrix
+    m_DensityMatrix   = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
+    m_FockMatrix      = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
+    m_oneBodyElements = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
+    m_eps             = arma::zeros<arma::vec>(m_nrOfSpatialOrbitals);
 
+}
+
+void RestrictedHartreeFock::setAnalyticOneBodyElements(arma::vec oneBodyElements) {
+    for(int i = 0; i < m_nrOfSpatialOrbitals; i++) {
+        m_oneBodyElements(i,i) = oneBodyElements(i);
+    }
+}
+
+void RestrictedHartreeFock::setAnalyticOneBodyElements(arma::mat oneBodyElements) {
+    m_oneBodyElements = oneBodyElements;
 }
 
 void RestrictedHartreeFock::computeSolutionBySCF() {
@@ -40,13 +51,11 @@ void RestrictedHartreeFock::diagonalizeFockMatrix() {
     /* Note that eig_sym returns eigenvalues in ascending order
      * Should also then have eigenvectors in corresponing columns?
      */
-
     arma::eig_sym(m_eps, m_U, m_FockMatrix);
 }
 
 double RestrictedHartreeFock::getOneBodyMatrixElement(int p, int q) {
-    //<p|h|q>
-    return 1.0;
+    return m_oneBodyElements(p,q);
 }
 
 double RestrictedHartreeFock::getTwoBodyMatrixElement(int p, int q, int r, int s) {
