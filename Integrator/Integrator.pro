@@ -11,10 +11,12 @@ SOURCES += main.cpp \
     ran1.cpp \
     Orbitals/orbital.cpp \
     Orbitals/harmonicoscillator2d.cpp \
-    montecarlointegrator.cpp
+    montecarlointegrator.cpp \
+    integraltable.cpp
 
 HEADERS += \
     ran1.h \
     Orbitals/orbital.h \
     Orbitals/harmonicoscillator2d.h \
-    montecarlointegrator.h
+    montecarlointegrator.h \
+    integraltable.h

@@ -8,55 +8,36 @@
 #include "Orbitals/harmonicoscillator2d.h"
 #include "montecarlointegrator.h"
 #include "ran1.h"
+#include "integraltable.h"
 
 using std::cout;
 using std::endl;
 
-double referenceEnergy(int* p) {
-    //const double reference = 1.253314137; // 1111
-    //const double reference = 0.939985603; // 1212
-    //const double reference = 0.3133285343; // 1221
-    //const double reference = 0.744155269; // 1616
-    //const double reference = 0.3035370176; // 2346
-    if (p[0]==1 && p[1]==1 && p[2]==1 && p[3]==1) {
-        return 1.253314137;
-    } else if (p[0]==1 && p[1]==2 && p[2]==1 && p[3]==2) {
-        return 0.939985603;
-    } else if (p[0]==1 && p[1]==2 && p[2]==2 && p[3]==1) {
-        return 0.3133285343;
-    } else if (p[0]==1 && p[1]==6 && p[2]==1 && p[3]==6) {
-        return 0.744155269;
-    } else if (p[0]==2 && p[1]==3 && p[2]==4 && p[3]==6) {
-        return 0.3035370176;
-    } else {
-        return NAN;
-    }
-}
 
 int* mapToOrbitals(int p) {
     int* quantumNumbers = new int[2];
     switch (p) {
-        case 1:
+        case 0:
             quantumNumbers[0] = 0;
             quantumNumbers[1] = 0;
             break;
-        case 2:
+        case 1:
             quantumNumbers[0] = 0;
             quantumNumbers[1] = -1;
             break;
-        case 3:
+        case 2:
             quantumNumbers[0] = 0;
             quantumNumbers[1] = 1;
             break;
-        case 4:
+        case 3:
             quantumNumbers[0] = 0;
             quantumNumbers[1] = -2;
             break;
-        case 5:
+        case 4:
             quantumNumbers[0] = 1;
             quantumNumbers[1] = 0;
             break;
-        case 6:
+        case 5:
             quantumNumbers[0] = 0;
             quantumNumbers[1] = 2;
             break;
@@ -88,21 +69,32 @@ int* generateQuantumNumbersTwo(int* indices) {
 }
 
 int main() {
-    //int indices [] = {1,1,nan,nan};
-    //int* allQuantumNumbers = generateAllQuantumNumbersOne(indices);
 
-    int indices [] = {2,3,4,6};
-    int* allQuantumNumbers = generateQuantumNumbersTwo(indices);
+    IntegralTable table;
+    table.inputIntegral(0,0,0,0,  1.253314137);
+    table.inputIntegral(0,1,0,1,  0.939985603);
+    table.inputIntegral(0,1,0,1,  0.3133285343);
+    table.inputIntegral(0,5,0,5,  0.744155269);
+    table.inputIntegral(1,2,3,5,  0.3035370176);
+    //table.printAllIntegrals();
+
+    //int q [] = {0,0,nan,nan};
+    //int* allQuantumNumbers = generateAllQuantumNumbersOne(q);
+
+    int q [] = {1,2,3,5};
+    int* allQuantumNumbers = generateQuantumNumbersTwo(q);
 
     MonteCarloIntegrator* MCInt = new MonteCarloIntegrator();
     MCInt->setOrbital(new HarmonicOscillator2D());
     // double I = MCInt->integrateOne(allQuantumNumbers);
-    double I = MCInt->integrateTwo(allQuantumNumbers, 4e7);
+    double I    = MCInt->integrateTwo(allQuantumNumbers, 1e7);
+    double ref  = table.getIntegral(q[0], q[1], q[2], q[3]);
 
     cout << "Integral:  " << I << endl;
-    cout << "Reference: " << referenceEnergy(indices) << endl;
-    cout << "|ref-I|:   " << std::fabs(referenceEnergy(indices)-I) << endl;
+    cout << "Reference: " << ((ref==0) ? NAN : ref) << endl;
+    cout << "|ref-I|:   " << ((ref==0) ? NAN : std::fabs(ref-I)) << endl;
     cout << "stdDev:    " << MCInt->getStandardDeviation() << endl;
 
     return 0;
 }
+
