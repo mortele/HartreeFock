@@ -25,7 +25,7 @@ void IntegralTable::printAllIntegrals() {
 
 void IntegralTable::printTableToFile(std::string fileName) {
     std::ofstream outFile;
-    outFile.open("../IntegralTables/" + fileName, std::ios::out);
+    outFile.open(fileName, std::ios::out);
     for (auto pair = m_hashMap.begin(); pair != m_hashMap.end(); pair++) {
         outFile << pair->first.i << " " << pair->first.j << " "
                 << pair->first.k << " " << pair->first.l << " "
@@ -35,14 +35,18 @@ void IntegralTable::printTableToFile(std::string fileName) {
     outFile.close();
 }
 
-void IntegralTable::readTableFromFile(std::string fileName) {
+bool IntegralTable::readTableFromFile(std::string fileName) {
     std::ifstream inFile;
-    inFile.open("../IntegralTables/" + fileName);
-
+    inFile.open(fileName);
+    if (inFile.good() == false) {
+        cout << "Unable to open table file: " << fileName << endl;
+        return false;
+    }
     int     i, j, k, l;
     double  integral;
     while (inFile >> i >> j >> k >> l >> integral) {
         inputIntegral(i, j, k, l, integral);
     }
     inFile.close();
+    return true;
 }

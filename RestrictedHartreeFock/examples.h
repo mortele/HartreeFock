@@ -1,9 +1,7 @@
 #pragma once
 #include <armadillo>
 
-class Examples
-{
+class Examples {
 public:
-    Examples();
     static int twoDimensionalQuantumDot();
 };

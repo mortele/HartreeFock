@@ -1,13 +1,11 @@
 #include "examples.h"
-#include "armadillo"
+#include <armadillo>
 #include <restrictedhartreefock.h>
 
-Examples::Examples()
-{
-}
+using std::cout;
+using std::endl;
 
 int Examples::twoDimensionalQuantumDot() {
-
     int nrOfParticles = 2;
     int nrOfSpinOrbitals = 12;
 
@@ -17,8 +15,11 @@ int Examples::twoDimensionalQuantumDot() {
     oneBodyElements(3) = 3.0; oneBodyElements(4) = 3.0; oneBodyElements(5) = 3.0;
 
     RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
-    rhf->computeSolutionBySCF();
-
+    rhf->setAnalyticOneBodyElements(oneBodyElements);
+    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/coulomb.dat");
+    cout << tableLoaded << endl;
+    if (tableLoaded) {
+        rhf->computeSolutionBySCF();
+    }
     return 0;
-
 }

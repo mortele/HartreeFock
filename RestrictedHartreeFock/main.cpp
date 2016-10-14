@@ -4,9 +4,7 @@
 
 using namespace std;
 
-int main()
-{
-
+int main() {
     Examples::twoDimensionalQuantumDot();
     return 0;
 }

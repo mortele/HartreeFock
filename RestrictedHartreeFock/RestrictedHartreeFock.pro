@@ -6,13 +6,16 @@ CONFIG -= qt
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
-LIBS += -llapack -lblas -larmadillo
+INCLUDEPATH += /usr/local/include
+LIBS += -L/usr/local/lib -llapack -lblas -larmadillo
 
 SOURCES += main.cpp \
     restrictedhartreefock.cpp \
-    examples.cpp
+    examples.cpp \
+    ../Integrator/integraltable.cpp
 
 HEADERS += \
     restrictedhartreefock.h \
-    examples.h
+    examples.h \
+    ../Integrator/integraltable.h
 

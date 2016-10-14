@@ -1,13 +1,16 @@
 #pragma once
 #include <armadillo>
+#include <string>
+#include "../Integrator/integraltable.h"
 
-class RestrictedHartreeFock
-{
+class RestrictedHartreeFock {
 public:
     RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbitals);
     void computeSolutionBySCF();
     void setAnalyticOneBodyElements(arma::vec oneBodyElements);
     void setAnalyticOneBodyElements(arma::mat oneBodyElements);
+    bool setIntegralTable(std::string fileName);
+
 private:
     int m_nrOfSpatialOrbitals;
     int m_nrOfSpinOrbitals;
@@ -20,6 +23,8 @@ private:
     arma::mat m_FockMatrix;
     arma::vec m_eps;
     arma::mat m_oneBodyElements;
+
+    IntegralTable* m_integralTable;
 
     //vector oneBodyElements
     //vector something twoBodyElements
@@ -35,6 +40,5 @@ private:
 
     //Unit test functions?
     bool isFockMatrixHermitian();
-
 };
 

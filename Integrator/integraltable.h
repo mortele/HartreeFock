@@ -36,5 +36,5 @@ public:
     void   inputIntegral(int i, int j, int k, int l, double integral);
     void   printAllIntegrals();
     void   printTableToFile(std::string fileName);
-    void   readTableFromFile(std::string fileName);
+    bool   readTableFromFile(std::string fileName);
 };
