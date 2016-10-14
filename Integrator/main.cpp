@@ -13,7 +13,6 @@
 using std::cout;
 using std::endl;
 
-
 int* mapToOrbitals(int p) {
     int* quantumNumbers = new int[2];
     switch (p) {
@@ -69,32 +68,29 @@ int* generateQuantumNumbersTwo(int* indices) {
 }
 
 int main() {
+    int                  numberOfBasisFunctions     = 6;
+    int                  numberOfIntegrationPoints  = (int) 5e7;
+    std::string          tableFileName              = "HO_2d_6.dat";
+    IntegralTable        table;
+    MonteCarloIntegrator MCInt;
+    MCInt.setOrbital(new HarmonicOscillator2D());
 
-    IntegralTable table;
-    table.inputIntegral(0,0,0,0,  1.253314137);
-    table.inputIntegral(0,1,0,1,  0.939985603);
-    table.inputIntegral(0,1,0,1,  0.3133285343);
-    table.inputIntegral(0,5,0,5,  0.744155269);
-    table.inputIntegral(1,2,3,5,  0.3035370176);
-    //table.printAllIntegrals();
-
-    //int q [] = {0,0,nan,nan};
-    //int* allQuantumNumbers = generateAllQuantumNumbersOne(q);
-
-    int q [] = {1,2,3,5};
-    int* allQuantumNumbers = generateQuantumNumbersTwo(q);
-
-    MonteCarloIntegrator* MCInt = new MonteCarloIntegrator();
-    MCInt->setOrbital(new HarmonicOscillator2D());
-    // double I = MCInt->integrateOne(allQuantumNumbers);
-    double I    = MCInt->integrateTwo(allQuantumNumbers, 1e7);
-    double ref  = table.getIntegral(q[0], q[1], q[2], q[3]);
-
-    cout << "Integral:  " << I << endl;
-    cout << "Reference: " << ((ref==0) ? NAN : ref) << endl;
-    cout << "|ref-I|:   " << ((ref==0) ? NAN : std::fabs(ref-I)) << endl;
-    cout << "stdDev:    " << MCInt->getStandardDeviation() << endl;
+    for (int p=0; p<numberOfBasisFunctions; p++) {
+        for (int q=0; q<numberOfBasisFunctions; q++) {
+            for (int r=0; r<numberOfBasisFunctions; r++) {
+                for (int s=0; s<numberOfBasisFunctions; s++) {
+                    int quantumNumbers [] = {p,q,r,s};
+                    int* allQuantumNumbers = generateQuantumNumbersTwo(quantumNumbers);
+                    double I = MCInt.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
+                    table.inputIntegral(p,q,r,s,I);
+                    cout << "(p,q,r,s): " << p << ", " << q << ", " << r << ", " << s
+                         << ": " << I << endl;
+                }
+                table.printTableToFile(tableFileName);
+                cout << "Table dumped to file: " << tableFileName << endl;
+            }
+        }
+    }
 
     return 0;
 }
-

@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include <unordered_map>
 #include <string>
 #include <functional>
+#include <fstream>
 
 
 class IntegralTable {
@@ -33,4 +35,6 @@ public:
     double getIntegral  (int i, int j, int k, int l);
     void   inputIntegral(int i, int j, int k, int l, double integral);
     void   printAllIntegrals();
+    void   printTableToFile(std::string fileName);
+    void   readTableFromFile(std::string fileName);
 };
