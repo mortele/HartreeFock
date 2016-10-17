@@ -2,6 +2,7 @@
 #include <restrictedhartreefock.h>
 #include <examples.h>
 
+
 using namespace std;
 
 int main() {

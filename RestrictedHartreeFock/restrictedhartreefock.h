@@ -22,6 +22,7 @@ private:
     arma::mat m_U;
     arma::mat m_FockMatrix;
     arma::vec m_eps;
+    arma::vec m_eps_old;
     arma::mat m_oneBodyElements;
 
     IntegralTable* m_integralTable;
@@ -30,7 +31,7 @@ private:
     //vector something twoBodyElements
 
     double getOneBodyMatrixElement(int p, int q);
-    double getTwoBodyMatrixElement(int p, int q, int r, int s);
+    double QRPS_AntiSym(int q, int r, int p, int s);
 
     double computeHartreeFockEnergy();
 

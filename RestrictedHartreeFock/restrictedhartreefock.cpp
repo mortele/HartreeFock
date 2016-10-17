@@ -2,6 +2,8 @@
 #include <armadillo>
 #include <cassert>
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -23,6 +25,7 @@ RestrictedHartreeFock::RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbi
     m_FockMatrix      = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
     m_oneBodyElements = arma::zeros<arma::mat>(m_nrOfSpatialOrbitals,m_nrOfSpatialOrbitals);
     m_eps             = arma::zeros<arma::vec>(m_nrOfSpatialOrbitals);
+    m_eps_old         = arma::zeros<arma::vec>(m_nrOfSpatialOrbitals);
 
     m_integralTable = new IntegralTable();
 }
@@ -42,13 +45,36 @@ bool RestrictedHartreeFock::setIntegralTable(std::string fileName) {
 }
 
 void RestrictedHartreeFock::computeSolutionBySCF() {
-    //double convergencePrecision = 1e-8;
+
+    double convergencePrecision = 1e-16;
+
     computeDensityMatrix();
     computeFockMatrix();
     diagonalizeFockMatrix();
+    m_eps_old = m_eps;
+
+    cout << m_eps_old << endl;
+
     double energy = computeHartreeFockEnergy();
-    cout << m_DensityMatrix << std::endl;
     cout << energy << endl;
+
+    int MAX_ITERS = 30;
+
+    for(int k = 0; k < MAX_ITERS; k++) {
+        computeDensityMatrix();
+        computeFockMatrix();
+        diagonalizeFockMatrix(); //computes m_eps and m_u
+        energy = computeHartreeFockEnergy();
+        cout << std::setprecision(16) << energy << endl;
+        if(arma::abs(m_eps-m_eps_old).max() < convergencePrecision) {
+            m_eps_old = m_eps;
+            break;
+        }
+
+        m_eps_old = m_eps;
+
+    }
+
 }
 
 
@@ -64,9 +90,8 @@ double RestrictedHartreeFock::getOneBodyMatrixElement(int p, int q) {
     return m_oneBodyElements(p,q);
 }
 
-double RestrictedHartreeFock::getTwoBodyMatrixElement(int p, int q, int r, int s) {
-    //<pq|w|rs>
-    return m_integralTable->getIntegral(p,q,r,s);
+double RestrictedHartreeFock::QRPS_AntiSym(int q, int r, int p, int s) {
+    return m_integralTable->getIntegral(q,r,p,s) - 0.5*m_integralTable->getIntegral(q,r,s,p);
 }
 
 void RestrictedHartreeFock::computeDensityMatrix() {
@@ -89,15 +114,16 @@ void RestrictedHartreeFock::computeFockMatrix() {
 
             m_FockMatrix(q,p) = 0;
 
-            if(q == p) {
-                m_FockMatrix(q,p) = getOneBodyMatrixElement(p,p);
-            }
+            m_FockMatrix(q,p) = getOneBodyMatrixElement(q,p);
+
+            double tmp = 0.0;
 
             for(int r = 0; r < m_nrOfSpatialOrbitals; r++) {
                 for(int s = 0; s < m_nrOfSpatialOrbitals; s++) {
-                    m_FockMatrix(q,p) += m_DensityMatrix(s,r)*getTwoBodyMatrixElement(q,r,p,s);
+                    tmp += m_DensityMatrix(s,r)*QRPS_AntiSym(q,r,p,s);
                 }
             }
+            m_FockMatrix(q,p) += tmp;
         }
     }
 }
@@ -120,7 +146,7 @@ double RestrictedHartreeFock::computeHartreeFockEnergy() {
 
                 for(int s = 0; s < m_nrOfSpatialOrbitals; s++) {
                     for(int r = 0; r < m_nrOfSpatialOrbitals; r++) {
-                        tmp += m_DensityMatrix(s,r)*getTwoBodyMatrixElement(q,r,p,s);
+                        tmp += m_DensityMatrix(s,r)*QRPS_AntiSym(q,r,p,s);
                     }
                 }
 

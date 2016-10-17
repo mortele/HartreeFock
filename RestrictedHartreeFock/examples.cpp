@@ -16,10 +16,13 @@ int Examples::twoDimensionalQuantumDot() {
 
     RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
     rhf->setAnalyticOneBodyElements(oneBodyElements);
-    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/coulomb.dat");
-    cout << tableLoaded << endl;
+    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/HO_2d_6_nonzero.dat");
+    //cout << tableLoaded << endl;
+
     if (tableLoaded) {
         rhf->computeSolutionBySCF();
     }
+
     return 0;
+
 }
