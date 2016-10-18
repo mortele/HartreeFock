@@ -9,6 +9,7 @@ using std::cout;
 using std::endl;
 
 RestrictedHartreeFock::RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbitals) {
+
     assert(nrOfParticles > 0);
     assert(nrOfParticles % 2 == 0);
 
@@ -28,6 +29,7 @@ RestrictedHartreeFock::RestrictedHartreeFock(int nrOfParticles, int nrOfSpinOrbi
     m_eps_old         = arma::zeros<arma::vec>(m_nrOfSpatialOrbitals);
 
     m_integralTable = new IntegralTable();
+
 }
 
 void RestrictedHartreeFock::setAnalyticOneBodyElements(arma::vec oneBodyElements) {
@@ -44,36 +46,68 @@ bool RestrictedHartreeFock::setIntegralTable(std::string fileName) {
     return m_integralTable->readTableFromFile(fileName);
 }
 
-void RestrictedHartreeFock::computeSolutionBySCF() {
+void RestrictedHartreeFock::setOverLapMatrix(arma::mat overLap) {
+    m_overlap = true;
+    m_S = overLap;
+}
 
-    double convergencePrecision = 1e-16;
+void RestrictedHartreeFock::computeSolutionBySCF() {
 
     computeDensityMatrix();
     computeFockMatrix();
     diagonalizeFockMatrix();
     m_eps_old = m_eps;
-
-    cout << m_eps_old << endl;
+    m_nr_OfIters += 1;
 
     double energy = computeHartreeFockEnergy();
-    cout << energy << endl;
 
-    int MAX_ITERS = 30;
+    for(int k = 1; k < m_MAX_ITERS; k++) {
 
-    for(int k = 0; k < MAX_ITERS; k++) {
         computeDensityMatrix();
         computeFockMatrix();
         diagonalizeFockMatrix(); //computes m_eps and m_u
+        m_nr_OfIters += 1;
+
         energy = computeHartreeFockEnergy();
-        cout << std::setprecision(16) << energy << endl;
-        if(arma::abs(m_eps-m_eps_old).max() < convergencePrecision) {
+        //cout << std::setprecision(16) << energy << endl;
+
+        if(arma::abs(m_eps-m_eps_old).max() < m_convergencePrecision) {
             m_eps_old = m_eps;
+            m_reachedSelfConsistency = true;
             break;
         }
 
         m_eps_old = m_eps;
 
     }
+
+    m_HartreeFockEnergy = energy;
+    this->printInfo();
+
+}
+
+void RestrictedHartreeFock::printInfo() {
+
+    cout << endl;
+    cout << "  -- System info -- " << endl;
+    cout << "Number of particles: " << m_nrOfParticles << endl;
+    cout << "Number of spatial orbitals: " << m_nrOfSpatialOrbitals << endl;
+    cout << endl;
+    cout << "  -- SCF-iteration conditions -- " << endl;
+    cout << "Convergence precision : 10^" << std::log10(m_convergencePrecision) << endl;
+    cout << "Maximum SCF-iterations: " << m_MAX_ITERS << endl;
+    cout << endl;
+    cout << "  -- Results -- " << endl;
+    if(m_reachedSelfConsistency) {
+        cout << "Self Consistency Reached: True"  << endl;
+        cout << "Number of SCF-iterations before convergence: " << m_nr_OfIters << endl;
+        cout << "E_rhf: " << std::setprecision(-std::log10(m_convergencePrecision)) << m_HartreeFockEnergy << endl;
+    } else {
+        cout << "Self Consistency Reached: False" << endl;
+        cout << "SCF did not converge to the given precision" << endl;
+        cout << "E_rhf: " << std::setprecision(-std::log10(m_convergencePrecision)) << m_HartreeFockEnergy << endl;
+    }
+    cout << endl;
 
 }
 
@@ -83,7 +117,13 @@ void RestrictedHartreeFock::diagonalizeFockMatrix() {
     /* Note that eig_sym returns eigenvalues in ascending order
      * Should also then have eigenvectors in corresponing columns?
      */
+
+    if(m_overlap) {
+        m_U = m_S*m_U;
+    }
+
     arma::eig_sym(m_eps, m_U, m_FockMatrix);
+
 }
 
 double RestrictedHartreeFock::getOneBodyMatrixElement(int p, int q) {
@@ -154,6 +194,7 @@ double RestrictedHartreeFock::computeHartreeFockEnergy() {
             }
         }
     }
+
     m_HartreeFockEnergy = ERHF;
     return ERHF;
 }
