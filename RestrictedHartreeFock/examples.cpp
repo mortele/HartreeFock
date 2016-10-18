@@ -7,7 +7,7 @@ using std::endl;
 
 int Examples::twoDimensionalQuantumDot() {
 
-    int nrOfParticles = 12;
+    int nrOfParticles = 20;
     int nrOfSpinOrbitals = 20;
 
     arma::vec oneBodyElements = arma::zeros<arma::vec>(nrOfSpinOrbitals/2);
@@ -31,7 +31,7 @@ int Examples::twoDimensionalQuantumDot() {
 
     RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
     rhf->setAnalyticOneBodyElements(oneBodyElements);
-    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/HO_2d_10_nonzero.dat");
+    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/test2.dat");
 
     //cout << tableLoaded << endl;
 
