@@ -1,6 +1,6 @@
 #pragma once
-#include "Orbitals/orbital.h"
-#include "Orbitals/hydrogen3d.h"
+#include "orbital.h"
+#include "hydrogen3d.h"
 #include <cmath>
 
 class HarmonicOscillator2D : public Orbital {

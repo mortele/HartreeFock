@@ -31,10 +31,11 @@ private:
 
 public:
     IntegralTable();
-    double getIntegral  (int i, int j, int k, int l);
-    void   inputIntegral(int i, int j, int k, int l, double integral);
+    double getIntegral   (int i, int j, int k, int l);
+    void   inputIntegral (int i, int j, int k, int l, double integral);
+    bool   removeIntegral(int i, int j, int k, int l);
     void   printAllIntegrals();
-    void   printTableToFile(std::string fileName);
+    bool   printTableToFile(std::string fileName);
     bool   readTableFromFile(std::string fileName);
     void   createTwoBodyTable(std::string           fileName,
                               int                   type,

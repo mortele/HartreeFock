@@ -4,6 +4,7 @@
 #include <cmath>
 #include <time.h>
 #include <cstdlib>
+#include <string>
 #include "Orbitals/orbital.h"
 #include "Orbitals/harmonicoscillator2d.h"
 #include "Orbitals/hydrogen3d.h"
@@ -18,12 +19,10 @@ int main() {
     IntegralTable table;
     MonteCarloIntegrator integrator;
     integrator.setOrbital(new HarmonicOscillator2D());
-    integrator.setOrbital(new Hydrogen3D());
+    std::string fileName = "../Integrator/IntegralTables/test2.dat";
+    table.createTwoBodyTable(fileName, 0, 10, (int) 1e7, integrator);
 
-
-    cout << Orbital::associatedLaguerrePolynomial(1,2,1) << endl;
-    return 1;
-    //table.createTwoBodyTable("../IntegralTables/test2.dat", 0, 10, integrator);
+    return 0;
 
     for (int i=0; i<5; i++) {
         int qm [] = {i,i};

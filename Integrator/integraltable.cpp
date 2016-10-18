@@ -20,6 +20,11 @@ void IntegralTable::inputIntegral(int i, int j, int k, int l, double integral) {
     m_hashMap.insert(make_pair(Key{i,j,k,l}, integral));
 }
 
+bool IntegralTable::removeIntegral(int i, int j, int k, int l) {
+    cout << "Erasing integral (" << i << "," << j << "," << k << "," << l << "): "
+         << m_hashMap.erase(Key{i,j,k,l}) << endl;
+}
+
 void IntegralTable::printAllIntegrals() {
     for ( auto ii = m_hashMap.begin() ; ii != m_hashMap.end() ; ii++ ) {
         cout << ii->first.i << " " << ii->first.j << " " << ii->first.k << " "
@@ -27,9 +32,13 @@ void IntegralTable::printAllIntegrals() {
     }
 }
 
-void IntegralTable::printTableToFile(std::string fileName) {
+bool IntegralTable::printTableToFile(std::string fileName) {
     std::ofstream outFile;
     outFile.open(fileName, std::ios::out);
+    if (outFile.good() == false) {
+        cout << "Unable to open table output file: " << fileName << endl;
+        return false;
+    }
     for (auto pair = m_hashMap.begin(); pair != m_hashMap.end(); pair++) {
         outFile << pair->first.i << " " << pair->first.j << " "
                 << pair->first.k << " " << pair->first.l << " "
@@ -37,6 +46,7 @@ void IntegralTable::printTableToFile(std::string fileName) {
                 << pair->second  << endl;
     }
     outFile.close();
+    return true;
 }
 
 bool IntegralTable::readTableFromFile(std::string fileName) {
@@ -65,15 +75,18 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
     std::string          tableFileName              = fileName;
     IntegralTable        table;
 
-    //table.readTableFromFile("../Integrator/IntegralTables/coulomb2.dat");
-    table.readTableFromFile("../IntegralTables/coulomb2.dat");
+    table.readTableFromFile("../Integrator/IntegralTables/HO_2d_10_nonzero.dat");
+    //table.readTableFromFile("../IntegralTables/coulomb2.dat");
     clock_t startTime = clock();
 
     for (int p=0; p<numberOfBasisFunctions; p++) {
     for (int q=0; q<numberOfBasisFunctions; q++) {
     for (int r=0; r<numberOfBasisFunctions; r++) {
     for (int s=0; s<numberOfBasisFunctions; s++) {
-        if (p>5 || q>5 || r>5 || s>5) {
+        if (p==8 || p==9 ||
+            q==8 || q==9 ||
+            r==8 || r==9 ||
+            s==8 || s==9) {
         int quantumNumbers [] = {p,q,r,s};
         int* allQuantumNumbers = Orbital::generateQuantumNumbers(quantumNumbers, 2, type);
         int m1 = allQuantumNumbers[1];
@@ -86,6 +99,7 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
             clock_t integralFinish = clock();
             double integralTime = (integralFinish-integralStart) / ((double) CLOCKS_PER_SEC);
             double elapsedTime  = (integralFinish-startTime)     / ((double) CLOCKS_PER_SEC);
+            table.removeIntegral(p,q,r,s);
             table.inputIntegral(p,q,r,s,I);
             cout << "(p,q,r,s): " << p << ", " << q << ", " << r << ", " << s
                  << ": " << I << "  integral time: " << integralTime

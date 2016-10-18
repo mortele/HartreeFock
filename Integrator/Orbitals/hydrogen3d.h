@@ -1,5 +1,5 @@
 #pragma once
-#include "Orbitals/orbital.h"
+#include "orbital.h"
 #include <cmath>
 
 class Hydrogen3D : public Orbital {

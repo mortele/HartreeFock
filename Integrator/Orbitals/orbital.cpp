@@ -47,11 +47,11 @@ int* Orbital::mapToOrbitals(int p, int type) {
                 break;
             case 7:
                 quantumNumbers[0] = 1;
-                quantumNumbers[1] = -2;
+                quantumNumbers[1] = -1;
                 break;
             case 8:
                quantumNumbers[0] = 1;
-               quantumNumbers[1] = 2;
+               quantumNumbers[1] = 1;
                 break;
             case 9:
                 quantumNumbers[0] = 0;
