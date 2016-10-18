@@ -1,0 +1,924 @@
+(p,q,r,s): 0, 0, 3, 8: 0.0848905  integral time: 6.28936  elapsed time: 6.28937
+(p,q,r,s): 0, 0, 5, 7: 0.0849023  integral time: 6.28949  elapsed time: 12.5789
+(p,q,r,s): 0, 0, 6, 9: 0.0485445  integral time: 8.29279  elapsed time: 20.8717
+(p,q,r,s): 0, 0, 7, 5: 0.0857902  integral time: 6.34576  elapsed time: 27.2175
+(p,q,r,s): 0, 0, 7, 8: 0.0861505  integral time: 6.38945  elapsed time: 33.607
+(p,q,r,s): 0, 0, 8, 3: 0.0832361  integral time: 6.33712  elapsed time: 39.9441
+(p,q,r,s): 0, 0, 8, 7: 0.0852697  integral time: 6.3846  elapsed time: 46.3287
+(p,q,r,s): 0, 0, 9, 6: 0.0486049  integral time: 8.29253  elapsed time: 54.6213
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 1, 2, 7: 0.169131  integral time: 6.21254  elapsed time: 60.8339
+(p,q,r,s): 0, 1, 5, 6: 0.118172  integral time: 7.20924  elapsed time: 68.0432
+(p,q,r,s): 0, 1, 6, 5: 0.0848859  integral time: 7.23062  elapsed time: 75.2738
+(p,q,r,s): 0, 1, 6, 8: 0.0366332  integral time: 7.25343  elapsed time: 82.5273
+(p,q,r,s): 0, 1, 7, 2: 0.121232  integral time: 6.18584  elapsed time: 88.7132
+(p,q,r,s): 0, 1, 8, 6: 0.0614934  integral time: 7.20474  elapsed time: 95.9179
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 2, 1, 8: 0.167721  integral time: 6.21737  elapsed time: 102.135
+(p,q,r,s): 0, 2, 3, 9: 0.11797  integral time: 7.20651  elapsed time: 109.342
+(p,q,r,s): 0, 2, 7, 9: 0.0604756  integral time: 7.21539  elapsed time: 116.557
+(p,q,r,s): 0, 2, 8, 1: 0.117594  integral time: 6.18917  elapsed time: 122.747
+(p,q,r,s): 0, 2, 9, 3: 0.0848152  integral time: 7.232  elapsed time: 129.979
+(p,q,r,s): 0, 2, 9, 7: 0.0366526  integral time: 7.29198  elapsed time: 137.271
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 3, 0, 7: 0.220602  integral time: 4.48367  elapsed time: 141.754
+(p,q,r,s): 0, 3, 2, 6: 0.220434  integral time: 7.05732  elapsed time: 148.812
+(p,q,r,s): 0, 3, 4, 7: 0.0462074  integral time: 4.5606  elapsed time: 153.372
+(p,q,r,s): 0, 3, 6, 2: 0.0836336  integral time: 7.22424  elapsed time: 160.597
+(p,q,r,s): 0, 3, 7, 0: 0.0849578  integral time: 6.17725  elapsed time: 166.774
+(p,q,r,s): 0, 3, 7, 4: -0.0206512  integral time: 6.22842  elapsed time: 173.002
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 4, 3, 8: 0.0127947  integral time: 6.20467  elapsed time: 179.207
+(p,q,r,s): 0, 4, 5, 7: 0.0134927  integral time: 6.22126  elapsed time: 185.428
+(p,q,r,s): 0, 4, 6, 9: -0.0632571  integral time: 8.22632  elapsed time: 193.655
+(p,q,r,s): 0, 4, 7, 5: -0.0209929  integral time: 6.19526  elapsed time: 199.85
+(p,q,r,s): 0, 4, 7, 8: -0.00327904  integral time: 6.27361  elapsed time: 206.124
+(p,q,r,s): 0, 4, 8, 3: -0.0207749  integral time: 6.20293  elapsed time: 212.326
+(p,q,r,s): 0, 4, 8, 7: -0.0036157  integral time: 6.27151  elapsed time: 218.598
+(p,q,r,s): 0, 4, 9, 6: -0.0612135  integral time: 8.22982  elapsed time: 226.828
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 5, 0, 8: 0.221253  integral time: 4.48322  elapsed time: 231.311
+(p,q,r,s): 0, 5, 1, 9: 0.221175  integral time: 7.06125  elapsed time: 238.372
+(p,q,r,s): 0, 5, 4, 8: 0.0471606  integral time: 4.55091  elapsed time: 242.923
+(p,q,r,s): 0, 5, 8, 0: 0.084291  integral time: 6.17606  elapsed time: 249.099
+(p,q,r,s): 0, 5, 8, 4: -0.0212438  integral time: 6.23172  elapsed time: 255.331
+(p,q,r,s): 0, 5, 9, 1: 0.0841234  integral time: 7.21893  elapsed time: 262.55
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 6, 0, 6: 0.617771  integral time: 6.40665  elapsed time: 268.957
+(p,q,r,s): 0, 6, 1, 3: 0.22049  integral time: 7.07536  elapsed time: 276.032
+(p,q,r,s): 0, 6, 1, 7: 0.0361764  integral time: 7.09851  elapsed time: 283.131
+(p,q,r,s): 0, 6, 3, 1: 0.117548  integral time: 7.23668  elapsed time: 290.368
+(p,q,r,s): 0, 6, 4, 6: -0.035454  integral time: 6.4396  elapsed time: 296.807
+(p,q,r,s): 0, 6, 6, 0: 0.0493062  integral time: 8.27792  elapsed time: 305.085
+(p,q,r,s): 0, 6, 6, 4: -0.0607353  integral time: 8.40328  elapsed time: 313.488
+(p,q,r,s): 0, 6, 7, 1: 0.0613037  integral time: 7.20324  elapsed time: 320.692
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 7, 0, 3: 0.220343  integral time: 4.47234  elapsed time: 325.164
+(p,q,r,s): 0, 7, 0, 7: 0.652949  integral time: 4.49784  elapsed time: 329.662
+(p,q,r,s): 0, 7, 1, 1: 0.170409  integral time: 6.06319  elapsed time: 335.725
+(p,q,r,s): 0, 7, 2, 6: 0.0360484  integral time: 7.07606  elapsed time: 342.801
+(p,q,r,s): 0, 7, 3, 0: 0.0843517  integral time: 6.17634  elapsed time: 348.978
+(p,q,r,s): 0, 7, 3, 4: 0.0131197  integral time: 6.19072  elapsed time: 355.168
+(p,q,r,s): 0, 7, 4, 3: 0.0468039  integral time: 4.50826  elapsed time: 359.677
+(p,q,r,s): 0, 7, 4, 7: 0.0306491  integral time: 4.53083  elapsed time: 364.208
+(p,q,r,s): 0, 7, 6, 2: 0.0359119  integral time: 7.21939  elapsed time: 371.427
+(p,q,r,s): 0, 7, 7, 0: 0.0862588  integral time: 6.40212  elapsed time: 377.829
+(p,q,r,s): 0, 7, 7, 4: -0.00354266  integral time: 6.37048  elapsed time: 384.2
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 8, 0, 5: 0.220604  integral time: 4.47228  elapsed time: 388.672
+(p,q,r,s): 0, 8, 0, 8: 0.653121  integral time: 4.49346  elapsed time: 393.166
+(p,q,r,s): 0, 8, 1, 9: 0.0362967  integral time: 7.0784  elapsed time: 400.244
+(p,q,r,s): 0, 8, 2, 2: 0.164967  integral time: 6.04809  elapsed time: 406.292
+(p,q,r,s): 0, 8, 4, 5: 0.0453772  integral time: 4.50867  elapsed time: 410.801
+(p,q,r,s): 0, 8, 4, 8: 0.0306772  integral time: 4.53111  elapsed time: 415.332
+(p,q,r,s): 0, 8, 5, 0: 0.084808  integral time: 6.19397  elapsed time: 421.526
+(p,q,r,s): 0, 8, 5, 4: 0.0141786  integral time: 6.19411  elapsed time: 427.72
+(p,q,r,s): 0, 8, 8, 0: 0.0862633  integral time: 6.5214  elapsed time: 434.241
+(p,q,r,s): 0, 8, 8, 4: -0.00256955  integral time: 6.38545  elapsed time: 440.627
+(p,q,r,s): 0, 8, 9, 1: 0.0368252  integral time: 7.2305  elapsed time: 447.857
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 0, 9, 0, 9: 0.61631  integral time: 6.40797  elapsed time: 454.266
+(p,q,r,s): 0, 9, 2, 5: 0.222978  integral time: 7.06432  elapsed time: 461.33
+(p,q,r,s): 0, 9, 2, 8: 0.0367462  integral time: 7.09172  elapsed time: 468.422
+(p,q,r,s): 0, 9, 4, 9: -0.0362146  integral time: 6.44178  elapsed time: 474.863
+(p,q,r,s): 0, 9, 5, 2: 0.118978  integral time: 7.19674  elapsed time: 482.06
+(p,q,r,s): 0, 9, 8, 2: 0.0612247  integral time: 7.20802  elapsed time: 489.268
+(p,q,r,s): 0, 9, 9, 0: 0.0490288  integral time: 8.28007  elapsed time: 497.548
+(p,q,r,s): 0, 9, 9, 4: -0.0609506  integral time: 8.37404  elapsed time: 505.922
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 0, 2, 7: 0.121931  integral time: 6.21905  elapsed time: 512.142
+(p,q,r,s): 1, 0, 5, 6: 0.0842816  integral time: 7.20893  elapsed time: 519.351
+(p,q,r,s): 1, 0, 6, 5: 0.11838  integral time: 7.16483  elapsed time: 526.515
+(p,q,r,s): 1, 0, 6, 8: 0.0604624  integral time: 7.19147  elapsed time: 533.707
+(p,q,r,s): 1, 0, 7, 2: 0.168606  integral time: 6.02804  elapsed time: 539.735
+(p,q,r,s): 1, 0, 8, 6: 0.0375607  integral time: 7.19493  elapsed time: 546.93
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 1, 0, 7: 0.167882  integral time: 6.18004  elapsed time: 553.11
+(p,q,r,s): 1, 1, 2, 6: 0.168004  integral time: 7.18197  elapsed time: 560.292
+(p,q,r,s): 1, 1, 4, 7: -0.0176741  integral time: 6.28826  elapsed time: 566.58
+(p,q,r,s): 1, 1, 6, 2: 0.167657  integral time: 7.18103  elapsed time: 573.761
+(p,q,r,s): 1, 1, 7, 0: 0.168471  integral time: 6.18895  elapsed time: 579.95
+(p,q,r,s): 1, 1, 7, 4: -0.0168447  integral time: 6.25482  elapsed time: 586.205
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 2, 3, 8: 0.129753  integral time: 6.16053  elapsed time: 592.366
+(p,q,r,s): 1, 2, 5, 7: 0.0638745  integral time: 6.31135  elapsed time: 598.677
+(p,q,r,s): 1, 2, 6, 9: 0.14517  integral time: 8.27347  elapsed time: 606.951
+(p,q,r,s): 1, 2, 7, 5: 0.133126  integral time: 6.22137  elapsed time: 613.172
+(p,q,r,s): 1, 2, 7, 8: 0.119273  integral time: 6.29076  elapsed time: 619.463
+(p,q,r,s): 1, 2, 8, 3: 0.062909  integral time: 6.3705  elapsed time: 625.833
+(p,q,r,s): 1, 2, 8, 7: 0.0698628  integral time: 6.47124  elapsed time: 632.305
+(p,q,r,s): 1, 2, 9, 6: 0.0842778  integral time: 8.33447  elapsed time: 640.639
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 3, 0, 6: 0.220621  integral time: 7.04759  elapsed time: 647.687
+(p,q,r,s): 1, 3, 1, 7: 0.174572  integral time: 4.53196  elapsed time: 652.219
+(p,q,r,s): 1, 3, 4, 6: -0.172021  integral time: 7.10072  elapsed time: 659.319
+(p,q,r,s): 1, 3, 6, 0: 0.118037  integral time: 7.18448  elapsed time: 666.504
+(p,q,r,s): 1, 3, 6, 4: -0.162633  integral time: 7.25442  elapsed time: 673.758
+(p,q,r,s): 1, 3, 7, 1: 0.129447  integral time: 6.06479  elapsed time: 679.823
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 4, 2, 7: 0.0184544  integral time: 6.20113  elapsed time: 686.025
+(p,q,r,s): 1, 4, 5, 6: -0.106914  integral time: 7.25259  elapsed time: 693.277
+(p,q,r,s): 1, 4, 6, 5: -0.129269  integral time: 7.2134  elapsed time: 700.491
+(p,q,r,s): 1, 4, 6, 8: 0.0244813  integral time: 7.38942  elapsed time: 707.88
+(p,q,r,s): 1, 4, 7, 2: -0.0183722  integral time: 6.0652  elapsed time: 713.945
+(p,q,r,s): 1, 4, 8, 6: -0.00239735  integral time: 7.23621  elapsed time: 721.182
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 5, 1, 8: 0.176661  integral time: 4.53342  elapsed time: 725.715
+(p,q,r,s): 1, 5, 3, 9: 0.279501  integral time: 7.09307  elapsed time: 732.808
+(p,q,r,s): 1, 5, 7, 9: 0.0760814  integral time: 7.08115  elapsed time: 739.889
+(p,q,r,s): 1, 5, 8, 1: 0.0650815  integral time: 6.20793  elapsed time: 746.097
+(p,q,r,s): 1, 5, 9, 3: 0.104842  integral time: 7.24657  elapsed time: 753.344
+(p,q,r,s): 1, 5, 9, 7: 0.0135609  integral time: 7.274  elapsed time: 760.618
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 6, 1, 6: 0.654693  integral time: 6.43677  elapsed time: 767.055
+(p,q,r,s): 1, 6, 3, 3: 0.277651  integral time: 7.10277  elapsed time: 774.158
+(p,q,r,s): 1, 6, 3, 7: 0.00378115  integral time: 7.12786  elapsed time: 781.285
+(p,q,r,s): 1, 6, 6, 1: 0.145463  integral time: 8.27962  elapsed time: 789.565
+(p,q,r,s): 1, 6, 7, 3: 0.0767734  integral time: 7.10084  elapsed time: 796.666
+(p,q,r,s): 1, 6, 7, 7: 0.0651656  integral time: 7.15561  elapsed time: 803.822
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 7, 0, 6: 0.0376827  integral time: 7.0578  elapsed time: 810.88
+(p,q,r,s): 1, 7, 1, 3: 0.174029  integral time: 4.49246  elapsed time: 815.372
+(p,q,r,s): 1, 7, 1, 7: 0.623794  integral time: 4.51917  elapsed time: 819.891
+(p,q,r,s): 1, 7, 3, 1: 0.131916  integral time: 6.17021  elapsed time: 826.061
+(p,q,r,s): 1, 7, 4, 6: 0.0310806  integral time: 7.09861  elapsed time: 833.16
+(p,q,r,s): 1, 7, 6, 0: 0.0607725  integral time: 7.18201  elapsed time: 840.342
+(p,q,r,s): 1, 7, 6, 4: 0.0260802  integral time: 7.20699  elapsed time: 847.549
+(p,q,r,s): 1, 7, 7, 1: 0.119362  integral time: 6.25842  elapsed time: 853.808
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 8, 0, 2: 0.168431  integral time: 6.02568  elapsed time: 859.833
+(p,q,r,s): 1, 8, 1, 5: 0.174535  integral time: 4.49261  elapsed time: 864.326
+(p,q,r,s): 1, 8, 1, 8: 0.62296  integral time: 4.52464  elapsed time: 868.851
+(p,q,r,s): 1, 8, 2, 0: 0.119886  integral time: 6.2408  elapsed time: 875.092
+(p,q,r,s): 1, 8, 2, 4: 0.0174641  integral time: 6.1994  elapsed time: 881.291
+(p,q,r,s): 1, 8, 3, 9: 0.00413884  integral time: 7.10455  elapsed time: 888.396
+(p,q,r,s): 1, 8, 4, 2: -0.0182878  integral time: 6.15478  elapsed time: 894.55
+(p,q,r,s): 1, 8, 5, 1: 0.0626854  integral time: 6.31147  elapsed time: 900.862
+(p,q,r,s): 1, 8, 7, 9: 0.065071  integral time: 7.25947  elapsed time: 908.121
+(p,q,r,s): 1, 8, 8, 1: 0.0702209  integral time: 6.41184  elapsed time: 914.533
+(p,q,r,s): 1, 8, 9, 3: 0.0152678  integral time: 7.25305  elapsed time: 921.786
+(p,q,r,s): 1, 8, 9, 7: 0.0583423  integral time: 7.27733  elapsed time: 929.064
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 1, 9, 0, 5: 0.218642  integral time: 7.04918  elapsed time: 936.113
+(p,q,r,s): 1, 9, 0, 8: 0.0373444  integral time: 7.07645  elapsed time: 943.189
+(p,q,r,s): 1, 9, 1, 9: 0.653128  integral time: 6.43254  elapsed time: 949.622
+(p,q,r,s): 1, 9, 2, 2: 0.167293  integral time: 7.17651  elapsed time: 956.799
+(p,q,r,s): 1, 9, 4, 5: -0.173669  integral time: 7.08364  elapsed time: 963.882
+(p,q,r,s): 1, 9, 4, 8: 0.0308434  integral time: 7.13293  elapsed time: 971.015
+(p,q,r,s): 1, 9, 5, 0: 0.0848651  integral time: 7.2181  elapsed time: 978.233
+(p,q,r,s): 1, 9, 5, 4: -0.107264  integral time: 7.24557  elapsed time: 985.479
+(p,q,r,s): 1, 9, 8, 0: 0.0366149  integral time: 7.22868  elapsed time: 992.708
+(p,q,r,s): 1, 9, 8, 4: -0.00398926  integral time: 7.28668  elapsed time: 999.994
+(p,q,r,s): 1, 9, 9, 1: 0.0848043  integral time: 8.32016  elapsed time: 1008.31
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 0, 1, 8: 0.119797  integral time: 6.22749  elapsed time: 1014.54
+(p,q,r,s): 2, 0, 3, 9: 0.0853837  integral time: 7.20315  elapsed time: 1021.75
+(p,q,r,s): 2, 0, 7, 9: 0.037759  integral time: 7.18971  elapsed time: 1028.94
+(p,q,r,s): 2, 0, 8, 1: 0.167884  integral time: 6.0225  elapsed time: 1034.96
+(p,q,r,s): 2, 0, 9, 3: 0.123132  integral time: 7.16752  elapsed time: 1042.13
+(p,q,r,s): 2, 0, 9, 7: 0.0608141  integral time: 7.19391  elapsed time: 1049.32
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 1, 3, 8: 0.063407  integral time: 6.30359  elapsed time: 1055.62
+(p,q,r,s): 2, 1, 5, 7: 0.13027  integral time: 6.15454  elapsed time: 1061.78
+(p,q,r,s): 2, 1, 6, 9: 0.0853642  integral time: 8.3105  elapsed time: 1070.09
+(p,q,r,s): 2, 1, 7, 5: 0.0636207  integral time: 6.36965  elapsed time: 1076.46
+(p,q,r,s): 2, 1, 7, 8: 0.0707159  integral time: 6.45793  elapsed time: 1082.92
+(p,q,r,s): 2, 1, 8, 3: 0.131504  integral time: 6.22128  elapsed time: 1089.14
+(p,q,r,s): 2, 1, 8, 7: 0.120708  integral time: 6.31598  elapsed time: 1095.45
+(p,q,r,s): 2, 1, 9, 6: 0.146513  integral time: 8.30018  elapsed time: 1103.75
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 2, 0, 8: 0.167961  integral time: 6.14412  elapsed time: 1109.9
+(p,q,r,s): 2, 2, 1, 9: 0.167808  integral time: 7.17541  elapsed time: 1117.07
+(p,q,r,s): 2, 2, 4, 8: -0.018783  integral time: 6.29417  elapsed time: 1123.37
+(p,q,r,s): 2, 2, 8, 0: 0.166967  integral time: 6.18993  elapsed time: 1129.56
+(p,q,r,s): 2, 2, 8, 4: -0.0175333  integral time: 6.28631  elapsed time: 1135.84
+(p,q,r,s): 2, 2, 9, 1: 0.168422  integral time: 7.19173  elapsed time: 1143.03
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 3, 2, 7: 0.174866  integral time: 4.54768  elapsed time: 1147.58
+(p,q,r,s): 2, 3, 5, 6: 0.280023  integral time: 7.094  elapsed time: 1154.68
+(p,q,r,s): 2, 3, 6, 5: 0.10327  integral time: 7.2528  elapsed time: 1161.93
+(p,q,r,s): 2, 3, 6, 8: 0.0149809  integral time: 7.2729  elapsed time: 1169.2
+(p,q,r,s): 2, 3, 7, 2: 0.064635  integral time: 6.20779  elapsed time: 1175.41
+(p,q,r,s): 2, 3, 8, 6: 0.0764799  integral time: 7.09176  elapsed time: 1182.5
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 4, 1, 8: 0.0184208  integral time: 6.20286  elapsed time: 1188.71
+(p,q,r,s): 2, 4, 3, 9: -0.103878  integral time: 7.2514  elapsed time: 1195.96
+(p,q,r,s): 2, 4, 7, 9: -0.00305458  integral time: 7.26617  elapsed time: 1203.22
+(p,q,r,s): 2, 4, 8, 1: -0.0190475  integral time: 6.05901  elapsed time: 1209.28
+(p,q,r,s): 2, 4, 9, 3: -0.132708  integral time: 7.21443  elapsed time: 1216.5
+(p,q,r,s): 2, 4, 9, 7: 0.024649  integral time: 7.24006  elapsed time: 1223.74
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 5, 0, 9: 0.220195  integral time: 7.04799  elapsed time: 1230.78
+(p,q,r,s): 2, 5, 2, 8: 0.174561  integral time: 4.53415  elapsed time: 1235.32
+(p,q,r,s): 2, 5, 4, 9: -0.174294  integral time: 7.09433  elapsed time: 1242.41
+(p,q,r,s): 2, 5, 8, 2: 0.135428  integral time: 6.06548  elapsed time: 1248.48
+(p,q,r,s): 2, 5, 9, 0: 0.120658  integral time: 7.19155  elapsed time: 1255.67
+(p,q,r,s): 2, 5, 9, 4: -0.130921  integral time: 7.22642  elapsed time: 1262.9
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 6, 0, 3: 0.221009  integral time: 7.04505  elapsed time: 1269.94
+(p,q,r,s): 2, 6, 0, 7: 0.035902  integral time: 7.07108  elapsed time: 1277.01
+(p,q,r,s): 2, 6, 1, 1: 0.167938  integral time: 7.16789  elapsed time: 1284.18
+(p,q,r,s): 2, 6, 2, 6: 0.653285  integral time: 6.43346  elapsed time: 1290.61
+(p,q,r,s): 2, 6, 3, 0: 0.0842686  integral time: 7.21382  elapsed time: 1297.83
+(p,q,r,s): 2, 6, 3, 4: -0.106115  integral time: 7.2424  elapsed time: 1305.07
+(p,q,r,s): 2, 6, 4, 3: -0.172787  integral time: 7.08091  elapsed time: 1312.15
+(p,q,r,s): 2, 6, 4, 7: 0.030415  integral time: 7.14031  elapsed time: 1319.29
+(p,q,r,s): 2, 6, 6, 2: 0.084936  integral time: 8.32073  elapsed time: 1327.61
+(p,q,r,s): 2, 6, 7, 0: 0.0372589  integral time: 7.22469  elapsed time: 1334.84
+(p,q,r,s): 2, 6, 7, 4: -0.00320389  integral time: 7.29395  elapsed time: 1342.13
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 7, 0, 1: 0.167436  integral time: 6.02548  elapsed time: 1348.16
+(p,q,r,s): 2, 7, 1, 0: 0.117766  integral time: 6.22827  elapsed time: 1354.39
+(p,q,r,s): 2, 7, 1, 4: 0.0175226  integral time: 6.17946  elapsed time: 1360.56
+(p,q,r,s): 2, 7, 2, 3: 0.172523  integral time: 4.49046  elapsed time: 1365.06
+(p,q,r,s): 2, 7, 2, 7: 0.621609  integral time: 4.51623  elapsed time: 1369.57
+(p,q,r,s): 2, 7, 3, 2: 0.0631214  integral time: 6.32904  elapsed time: 1375.9
+(p,q,r,s): 2, 7, 4, 1: -0.0186502  integral time: 6.15951  elapsed time: 1382.06
+(p,q,r,s): 2, 7, 5, 6: 0.00323129  integral time: 7.10202  elapsed time: 1389.16
+(p,q,r,s): 2, 7, 6, 5: 0.0147681  integral time: 7.25593  elapsed time: 1396.42
+(p,q,r,s): 2, 7, 6, 8: 0.058144  integral time: 7.28083  elapsed time: 1403.7
+(p,q,r,s): 2, 7, 7, 2: 0.0709688  integral time: 6.42296  elapsed time: 1410.12
+(p,q,r,s): 2, 7, 8, 6: 0.0649891  integral time: 7.26643  elapsed time: 1417.39
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 8, 0, 9: 0.0360693  integral time: 7.05714  elapsed time: 1424.45
+(p,q,r,s): 2, 8, 2, 5: 0.174174  integral time: 4.49228  elapsed time: 1428.94
+(p,q,r,s): 2, 8, 2, 8: 0.619873  integral time: 4.51927  elapsed time: 1433.46
+(p,q,r,s): 2, 8, 4, 9: 0.0317509  integral time: 7.0984  elapsed time: 1440.56
+(p,q,r,s): 2, 8, 5, 2: 0.130255  integral time: 6.16578  elapsed time: 1446.72
+(p,q,r,s): 2, 8, 8, 2: 0.116917  integral time: 6.28066  elapsed time: 1453
+(p,q,r,s): 2, 8, 9, 0: 0.0603238  integral time: 7.19656  elapsed time: 1460.2
+(p,q,r,s): 2, 8, 9, 4: 0.0250508  integral time: 7.22205  elapsed time: 1467.42
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 2, 9, 2, 9: 0.65435  integral time: 6.43276  elapsed time: 1473.85
+(p,q,r,s): 2, 9, 5, 5: 0.277604  integral time: 7.09725  elapsed time: 1480.95
+(p,q,r,s): 2, 9, 5, 8: 0.00557493  integral time: 7.12238  elapsed time: 1488.07
+(p,q,r,s): 2, 9, 8, 5: 0.076958  integral time: 7.1099  elapsed time: 1495.18
+(p,q,r,s): 2, 9, 8, 8: 0.0665196  integral time: 7.15654  elapsed time: 1502.34
+(p,q,r,s): 2, 9, 9, 2: 0.144597  integral time: 8.28794  elapsed time: 1510.63
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 0, 0, 7: 0.0846626  integral time: 6.31224  elapsed time: 1516.94
+(p,q,r,s): 3, 0, 2, 6: 0.0840914  integral time: 7.20437  elapsed time: 1524.14
+(p,q,r,s): 3, 0, 4, 7: -0.0210989  integral time: 6.36255  elapsed time: 1530.51
+(p,q,r,s): 3, 0, 6, 2: 0.220371  integral time: 7.068  elapsed time: 1537.58
+(p,q,r,s): 3, 0, 7, 0: 0.218524  integral time: 4.46568  elapsed time: 1542.04
+(p,q,r,s): 3, 0, 7, 4: 0.0477327  integral time: 4.48591  elapsed time: 1546.53
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 1, 0, 6: 0.116004  integral time: 7.18626  elapsed time: 1553.71
+(p,q,r,s): 3, 1, 1, 7: 0.130905  integral time: 6.25185  elapsed time: 1559.97
+(p,q,r,s): 3, 1, 4, 6: -0.132991  integral time: 7.22979  elapsed time: 1567.2
+(p,q,r,s): 3, 1, 6, 0: 0.220236  integral time: 7.0754  elapsed time: 1574.27
+(p,q,r,s): 3, 1, 6, 4: -0.172153  integral time: 7.10314  elapsed time: 1581.37
+(p,q,r,s): 3, 1, 7, 1: 0.174316  integral time: 4.55393  elapsed time: 1585.93
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 2, 2, 7: 0.0640076  integral time: 6.40072  elapsed time: 1592.33
+(p,q,r,s): 3, 2, 5, 6: 0.10419  integral time: 7.26473  elapsed time: 1599.59
+(p,q,r,s): 3, 2, 6, 5: 0.277744  integral time: 7.11403  elapsed time: 1606.71
+(p,q,r,s): 3, 2, 6, 8: 0.0757559  integral time: 7.13843  elapsed time: 1613.85
+(p,q,r,s): 3, 2, 7, 2: 0.171787  integral time: 4.5504  elapsed time: 1618.4
+(p,q,r,s): 3, 2, 8, 6: 0.0151264  integral time: 7.26496  elapsed time: 1625.66
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 3, 1, 6: 0.277289  integral time: 7.08875  elapsed time: 1632.75
+(p,q,r,s): 3, 3, 3, 7: 0.100961  integral time: 4.56386  elapsed time: 1637.31
+(p,q,r,s): 3, 3, 6, 1: 0.280283  integral time: 7.09275  elapsed time: 1644.41
+(p,q,r,s): 3, 3, 7, 3: 0.10406  integral time: 4.53447  elapsed time: 1648.94
+(p,q,r,s): 3, 3, 7, 7: 0.108026  integral time: 4.7103  elapsed time: 1653.65
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 4, 0, 7: 0.0128809  integral time: 6.19929  elapsed time: 1659.85
+(p,q,r,s): 3, 4, 2, 6: -0.107347  integral time: 7.23461  elapsed time: 1667.09
+(p,q,r,s): 3, 4, 4, 7: -0.0303133  integral time: 6.38148  elapsed time: 1673.47
+(p,q,r,s): 3, 4, 6, 2: -0.175147  integral time: 7.10158  elapsed time: 1680.57
+(p,q,r,s): 3, 4, 7, 0: 0.0470706  integral time: 4.54312  elapsed time: 1685.11
+(p,q,r,s): 3, 4, 7, 4: 0.0792732  integral time: 4.56248  elapsed time: 1689.67
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 5, 3, 8: 0.103226  integral time: 4.56644  elapsed time: 1694.24
+(p,q,r,s): 3, 5, 5, 7: 0.0186887  integral time: 6.37674  elapsed time: 1700.62
+(p,q,r,s): 3, 5, 6, 9: 0.289344  integral time: 8.21167  elapsed time: 1708.83
+(p,q,r,s): 3, 5, 7, 5: 0.10326  integral time: 4.5643  elapsed time: 1713.39
+(p,q,r,s): 3, 5, 7, 8: 0.106524  integral time: 4.70895  elapsed time: 1718.1
+(p,q,r,s): 3, 5, 8, 3: 0.0178828  integral time: 6.37221  elapsed time: 1724.48
+(p,q,r,s): 3, 5, 8, 7: 0.0520018  integral time: 6.46398  elapsed time: 1730.94
+(p,q,r,s): 3, 5, 9, 6: 0.0950089  integral time: 8.38117  elapsed time: 1739.32
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 6, 3, 6: 0.655877  integral time: 6.48328  elapsed time: 1745.8
+(p,q,r,s): 3, 6, 6, 3: 0.288094  integral time: 8.21416  elapsed time: 1754.02
+(p,q,r,s): 3, 6, 6, 7: -0.041613  integral time: 8.30019  elapsed time: 1762.32
+(p,q,r,s): 3, 6, 7, 6: 0.0427204  integral time: 6.52199  elapsed time: 1768.84
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 7, 1, 6: 0.00431556  integral time: 7.09957  elapsed time: 1775.94
+(p,q,r,s): 3, 7, 3, 3: 0.106415  integral time: 4.5535  elapsed time: 1780.49
+(p,q,r,s): 3, 7, 3, 7: 0.578671  integral time: 4.58367  elapsed time: 1785.08
+(p,q,r,s): 3, 7, 6, 1: 0.0749888  integral time: 7.09744  elapsed time: 1792.17
+(p,q,r,s): 3, 7, 7, 3: 0.105983  integral time: 4.73865  elapsed time: 1796.91
+(p,q,r,s): 3, 7, 7, 7: 0.0558518  integral time: 4.58265  elapsed time: 1801.5
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 8, 0, 0: 0.0848892  integral time: 6.16319  elapsed time: 1807.66
+(p,q,r,s): 3, 8, 0, 4: 0.0124706  integral time: 6.18333  elapsed time: 1813.84
+(p,q,r,s): 3, 8, 1, 2: 0.130814  integral time: 6.19496  elapsed time: 1820.04
+(p,q,r,s): 3, 8, 2, 1: 0.0611456  integral time: 6.35071  elapsed time: 1826.39
+(p,q,r,s): 3, 8, 3, 5: 0.103782  integral time: 4.55368  elapsed time: 1830.94
+(p,q,r,s): 3, 8, 3, 8: 0.579681  integral time: 4.58355  elapsed time: 1835.53
+(p,q,r,s): 3, 8, 4, 0: -0.0216607  integral time: 6.27748  elapsed time: 1841.8
+(p,q,r,s): 3, 8, 4, 4: -0.0308115  integral time: 6.34053  elapsed time: 1848.14
+(p,q,r,s): 3, 8, 5, 3: 0.0182954  integral time: 6.34075  elapsed time: 1854.48
+(p,q,r,s): 3, 8, 5, 7: 0.072841  integral time: 6.29262  elapsed time: 1860.78
+(p,q,r,s): 3, 8, 6, 9: -0.0417732  integral time: 8.11515  elapsed time: 1868.89
+(p,q,r,s): 3, 8, 7, 5: 0.107371  integral time: 4.7354  elapsed time: 1873.63
+(p,q,r,s): 3, 8, 7, 8: 0.0567661  integral time: 4.58267  elapsed time: 1878.21
+(p,q,r,s): 3, 8, 8, 3: 0.0497393  integral time: 6.44683  elapsed time: 1884.66
+(p,q,r,s): 3, 8, 8, 7: -0.00426269  integral time: 6.34748  elapsed time: 1891
+(p,q,r,s): 3, 8, 9, 6: -0.0130823  integral time: 8.27414  elapsed time: 1899.28
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 3, 9, 0, 2: 0.117992  integral time: 7.18184  elapsed time: 1906.46
+(p,q,r,s): 3, 9, 1, 5: 0.278819  integral time: 7.14622  elapsed time: 1913.61
+(p,q,r,s): 3, 9, 1, 8: 0.00301016  integral time: 7.12089  elapsed time: 1920.73
+(p,q,r,s): 3, 9, 2, 0: 0.084712  integral time: 7.21413  elapsed time: 1927.94
+(p,q,r,s): 3, 9, 2, 4: -0.10592  integral time: 7.24362  elapsed time: 1935.19
+(p,q,r,s): 3, 9, 3, 9: 0.657596  integral time: 6.48723  elapsed time: 1941.67
+(p,q,r,s): 3, 9, 4, 2: -0.131727  integral time: 7.21965  elapsed time: 1948.89
+(p,q,r,s): 3, 9, 5, 1: 0.106176  integral time: 7.26146  elapsed time: 1956.15
+(p,q,r,s): 3, 9, 7, 9: 0.0424634  integral time: 6.52696  elapsed time: 1962.68
+(p,q,r,s): 3, 9, 8, 1: 0.0145356  integral time: 7.26753  elapsed time: 1969.95
+(p,q,r,s): 3, 9, 9, 3: 0.0961723  integral time: 8.36769  elapsed time: 1978.32
+(p,q,r,s): 3, 9, 9, 7: -0.013623  integral time: 8.45477  elapsed time: 1986.77
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 0, 3, 8: -0.0208196  integral time: 6.29051  elapsed time: 1993.06
+(p,q,r,s): 4, 0, 5, 7: -0.0213617  integral time: 6.28864  elapsed time: 1999.35
+(p,q,r,s): 4, 0, 6, 9: -0.0607259  integral time: 8.27379  elapsed time: 2007.62
+(p,q,r,s): 4, 0, 7, 5: 0.0129606  integral time: 6.19648  elapsed time: 2013.82
+(p,q,r,s): 4, 0, 7, 8: -0.00384309  integral time: 6.22396  elapsed time: 2020.05
+(p,q,r,s): 4, 0, 8, 3: 0.0126606  integral time: 6.20868  elapsed time: 2026.25
+(p,q,r,s): 4, 0, 8, 7: -0.00302217  integral time: 6.23587  elapsed time: 2032.49
+(p,q,r,s): 4, 0, 9, 6: -0.0629051  integral time: 8.27657  elapsed time: 2040.77
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 1, 2, 7: -0.0164934  integral time: 6.41378  elapsed time: 2047.18
+(p,q,r,s): 4, 1, 5, 6: -0.131217  integral time: 7.28957  elapsed time: 2054.47
+(p,q,r,s): 4, 1, 6, 5: -0.105487  integral time: 7.31125  elapsed time: 2061.78
+(p,q,r,s): 4, 1, 6, 8: -0.00384315  integral time: 7.2939  elapsed time: 2069.08
+(p,q,r,s): 4, 1, 7, 2: 0.0169446  integral time: 6.24363  elapsed time: 2075.32
+(p,q,r,s): 4, 1, 8, 6: 0.0254206  integral time: 7.24339  elapsed time: 2082.56
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 2, 1, 8: -0.0176286  integral time: 6.39543  elapsed time: 2088.96
+(p,q,r,s): 4, 2, 3, 9: -0.131912  integral time: 7.28944  elapsed time: 2096.25
+(p,q,r,s): 4, 2, 7, 9: 0.0245511  integral time: 7.23964  elapsed time: 2103.49
+(p,q,r,s): 4, 2, 8, 1: 0.0192041  integral time: 6.25246  elapsed time: 2109.74
+(p,q,r,s): 4, 2, 9, 3: -0.107985  integral time: 7.31127  elapsed time: 2117.05
+(p,q,r,s): 4, 2, 9, 7: -0.00369614  integral time: 7.29666  elapsed time: 2124.35
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 3, 0, 7: 0.0468609  integral time: 4.56621  elapsed time: 2128.91
+(p,q,r,s): 4, 3, 2, 6: -0.173351  integral time: 7.12986  elapsed time: 2136.04
+(p,q,r,s): 4, 3, 4, 7: 0.0794399  integral time: 4.58644  elapsed time: 2140.63
+(p,q,r,s): 4, 3, 6, 2: -0.106554  integral time: 7.30166  elapsed time: 2147.93
+(p,q,r,s): 4, 3, 7, 0: 0.0126879  integral time: 6.21554  elapsed time: 2154.15
+(p,q,r,s): 4, 3, 7, 4: -0.0304476  integral time: 6.24399  elapsed time: 2160.39
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 4, 3, 8: -0.0309115  integral time: 6.50343  elapsed time: 2166.9
+(p,q,r,s): 4, 4, 5, 7: -0.0310888  integral time: 6.3819  elapsed time: 2173.28
+(p,q,r,s): 4, 4, 6, 9: 0.118524  integral time: 8.47686  elapsed time: 2181.75
+(p,q,r,s): 4, 4, 7, 5: -0.0313521  integral time: 6.35361  elapsed time: 2188.11
+(p,q,r,s): 4, 4, 7, 8: 0.0508222  integral time: 6.38472  elapsed time: 2194.49
+(p,q,r,s): 4, 4, 8, 3: -0.0310033  integral time: 6.36958  elapsed time: 2200.86
+(p,q,r,s): 4, 4, 8, 7: 0.0503796  integral time: 6.38388  elapsed time: 2207.25
+(p,q,r,s): 4, 4, 9, 6: 0.119985  integral time: 8.50464  elapsed time: 2215.75
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 5, 0, 8: 0.0463586  integral time: 4.60767  elapsed time: 2220.36
+(p,q,r,s): 4, 5, 1, 9: -0.173359  integral time: 7.14278  elapsed time: 2227.5
+(p,q,r,s): 4, 5, 4, 8: 0.0809709  integral time: 4.59898  elapsed time: 2232.1
+(p,q,r,s): 4, 5, 8, 0: 0.0129991  integral time: 6.20996  elapsed time: 2238.31
+(p,q,r,s): 4, 5, 8, 4: -0.0308697  integral time: 6.22904  elapsed time: 2244.54
+(p,q,r,s): 4, 5, 9, 1: -0.104112  integral time: 7.30276  elapsed time: 2251.84
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 6, 0, 6: -0.0369788  integral time: 6.49424  elapsed time: 2258.34
+(p,q,r,s): 4, 6, 1, 3: -0.171898  integral time: 7.1433  elapsed time: 2265.48
+(p,q,r,s): 4, 6, 1, 7: 0.0312079  integral time: 7.14951  elapsed time: 2272.63
+(p,q,r,s): 4, 6, 3, 1: -0.130953  integral time: 7.28316  elapsed time: 2279.91
+(p,q,r,s): 4, 6, 4, 6: 0.622603  integral time: 6.49353  elapsed time: 2286.41
+(p,q,r,s): 4, 6, 6, 0: -0.0621729  integral time: 8.36847  elapsed time: 2294.77
+(p,q,r,s): 4, 6, 6, 4: 0.120144  integral time: 8.43256  elapsed time: 2303.21
+(p,q,r,s): 4, 6, 7, 1: 0.0252865  integral time: 7.24486  elapsed time: 2310.45
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 7, 0, 3: 0.0467913  integral time: 4.50771  elapsed time: 2314.96
+(p,q,r,s): 4, 7, 0, 7: 0.0319776  integral time: 4.53467  elapsed time: 2319.49
+(p,q,r,s): 4, 7, 1, 1: -0.0171996  integral time: 6.19447  elapsed time: 2325.69
+(p,q,r,s): 4, 7, 2, 6: 0.0325901  integral time: 7.14852  elapsed time: 2332.84
+(p,q,r,s): 4, 7, 3, 0: -0.0211742  integral time: 6.33217  elapsed time: 2339.17
+(p,q,r,s): 4, 7, 3, 4: -0.031251  integral time: 6.32141  elapsed time: 2345.49
+(p,q,r,s): 4, 7, 4, 3: 0.0800265  integral time: 4.54118  elapsed time: 2350.03
+(p,q,r,s): 4, 7, 4, 7: 0.565873  integral time: 4.56668  elapsed time: 2354.6
+(p,q,r,s): 4, 7, 6, 2: -0.00421644  integral time: 7.30261  elapsed time: 2361.9
+(p,q,r,s): 4, 7, 7, 0: -0.00301699  integral time: 6.39889  elapsed time: 2368.3
+(p,q,r,s): 4, 7, 7, 4: 0.0497515  integral time: 6.37981  elapsed time: 2374.68
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 8, 0, 5: 0.0463165  integral time: 4.51283  elapsed time: 2379.19
+(p,q,r,s): 4, 8, 0, 8: 0.0320282  integral time: 4.53808  elapsed time: 2383.73
+(p,q,r,s): 4, 8, 1, 9: 0.0306462  integral time: 7.15324  elapsed time: 2390.89
+(p,q,r,s): 4, 8, 2, 2: -0.0178649  integral time: 6.24171  elapsed time: 2397.13
+(p,q,r,s): 4, 8, 4, 5: 0.0805117  integral time: 4.54215  elapsed time: 2401.67
+(p,q,r,s): 4, 8, 4, 8: 0.567515  integral time: 4.56843  elapsed time: 2406.24
+(p,q,r,s): 4, 8, 5, 0: -0.0210454  integral time: 6.3771  elapsed time: 2412.61
+(p,q,r,s): 4, 8, 5, 4: -0.03109  integral time: 6.37978  elapsed time: 2418.99
+(p,q,r,s): 4, 8, 8, 0: -0.00272616  integral time: 6.38745  elapsed time: 2425.38
+(p,q,r,s): 4, 8, 8, 4: 0.050714  integral time: 6.36926  elapsed time: 2431.75
+(p,q,r,s): 4, 8, 9, 1: -0.0026337  integral time: 7.29003  elapsed time: 2439.04
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 4, 9, 0, 9: -0.036555  integral time: 6.44913  elapsed time: 2445.49
+(p,q,r,s): 4, 9, 2, 5: -0.175413  integral time: 7.13091  elapsed time: 2452.62
+(p,q,r,s): 4, 9, 2, 8: 0.0314144  integral time: 7.12927  elapsed time: 2459.75
+(p,q,r,s): 4, 9, 4, 9: 0.619815  integral time: 6.47921  elapsed time: 2466.23
+(p,q,r,s): 4, 9, 5, 2: -0.131118  integral time: 7.27979  elapsed time: 2473.51
+(p,q,r,s): 4, 9, 8, 2: 0.0260177  integral time: 7.24787  elapsed time: 2480.76
+(p,q,r,s): 4, 9, 9, 0: -0.061373  integral time: 8.36778  elapsed time: 2489.13
+(p,q,r,s): 4, 9, 9, 4: 0.120945  integral time: 8.44573  elapsed time: 2497.57
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 0, 0, 8: 0.0836172  integral time: 6.31958  elapsed time: 2503.89
+(p,q,r,s): 5, 0, 1, 9: 0.0848437  integral time: 7.20742  elapsed time: 2511.1
+(p,q,r,s): 5, 0, 4, 8: -0.0211287  integral time: 6.3116  elapsed time: 2517.41
+(p,q,r,s): 5, 0, 8, 0: 0.219545  integral time: 4.46195  elapsed time: 2521.87
+(p,q,r,s): 5, 0, 8, 4: 0.0457719  integral time: 4.48338  elapsed time: 2526.36
+(p,q,r,s): 5, 0, 9, 1: 0.219076  integral time: 7.05685  elapsed time: 2533.41
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 1, 1, 8: 0.0644499  integral time: 6.40009  elapsed time: 2539.81
+(p,q,r,s): 5, 1, 3, 9: 0.104701  integral time: 7.26133  elapsed time: 2547.07
+(p,q,r,s): 5, 1, 7, 9: 0.014981  integral time: 7.25989  elapsed time: 2554.33
+(p,q,r,s): 5, 1, 8, 1: 0.173301  integral time: 4.55224  elapsed time: 2558.89
+(p,q,r,s): 5, 1, 9, 3: 0.278267  integral time: 7.10706  elapsed time: 2565.99
+(p,q,r,s): 5, 1, 9, 7: 0.076672  integral time: 7.13557  elapsed time: 2573.13
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 2, 0, 9: 0.158505  integral time: 7.18452  elapsed time: 2580.31
+(p,q,r,s): 5, 2, 2, 8: 0.130702  integral time: 6.2564  elapsed time: 2586.57
+(p,q,r,s): 5, 2, 4, 9: -0.129706  integral time: 7.22433  elapsed time: 2593.79
+(p,q,r,s): 5, 2, 8, 2: 0.174914  integral time: 4.54514  elapsed time: 2598.34
+(p,q,r,s): 5, 2, 9, 0: 0.220927  integral time: 7.07698  elapsed time: 2605.42
+(p,q,r,s): 5, 2, 9, 4: -0.173058  integral time: 7.1098  elapsed time: 2612.53
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 3, 3, 8: 0.0189625  integral time: 6.37266  elapsed time: 2618.9
+(p,q,r,s): 5, 3, 5, 7: 0.10394  integral time: 4.56579  elapsed time: 2623.47
+(p,q,r,s): 5, 3, 6, 9: 0.0980766  integral time: 8.37403  elapsed time: 2631.84
+(p,q,r,s): 5, 3, 7, 5: 0.0191878  integral time: 6.37751  elapsed time: 2638.22
+(p,q,r,s): 5, 3, 7, 8: 0.0506891  integral time: 6.47344  elapsed time: 2644.69
+(p,q,r,s): 5, 3, 8, 3: 0.103688  integral time: 4.53541  elapsed time: 2649.23
+(p,q,r,s): 5, 3, 8, 7: 0.106437  integral time: 4.70814  elapsed time: 2653.93
+(p,q,r,s): 5, 3, 9, 6: 0.286906  integral time: 8.21949  elapsed time: 2662.15
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 4, 0, 8: 0.012913  integral time: 6.2027  elapsed time: 2668.36
+(p,q,r,s): 5, 4, 1, 9: -0.104873  integral time: 7.29192  elapsed time: 2675.65
+(p,q,r,s): 5, 4, 4, 8: -0.0317113  integral time: 6.39198  elapsed time: 2682.04
+(p,q,r,s): 5, 4, 8, 0: 0.0469341  integral time: 4.53869  elapsed time: 2686.58
+(p,q,r,s): 5, 4, 8, 4: 0.0800264  integral time: 4.55266  elapsed time: 2691.13
+(p,q,r,s): 5, 4, 9, 1: -0.172562  integral time: 7.10531  elapsed time: 2698.24
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 5, 2, 9: 0.277924  integral time: 7.09175  elapsed time: 2705.33
+(p,q,r,s): 5, 5, 5, 8: 0.102709  integral time: 4.56371  elapsed time: 2709.89
+(p,q,r,s): 5, 5, 8, 5: 0.102761  integral time: 4.53929  elapsed time: 2714.43
+(p,q,r,s): 5, 5, 8, 8: 0.106469  integral time: 4.71198  elapsed time: 2719.14
+(p,q,r,s): 5, 5, 9, 2: 0.280234  integral time: 7.09613  elapsed time: 2726.24
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 6, 0, 1: 0.119454  integral time: 7.1804  elapsed time: 2733.42
+(p,q,r,s): 5, 6, 1, 0: 0.0861935  integral time: 7.20973  elapsed time: 2740.63
+(p,q,r,s): 5, 6, 1, 4: -0.109092  integral time: 7.24263  elapsed time: 2747.87
+(p,q,r,s): 5, 6, 2, 3: 0.28027  integral time: 7.09503  elapsed time: 2754.97
+(p,q,r,s): 5, 6, 2, 7: 0.00260136  integral time: 7.12347  elapsed time: 2762.09
+(p,q,r,s): 5, 6, 3, 2: 0.10468  integral time: 7.25933  elapsed time: 2769.35
+(p,q,r,s): 5, 6, 4, 1: -0.131007  integral time: 7.21863  elapsed time: 2776.57
+(p,q,r,s): 5, 6, 5, 6: 0.660097  integral time: 6.4848  elapsed time: 2783.05
+(p,q,r,s): 5, 6, 6, 5: 0.0970252  integral time: 8.3728  elapsed time: 2791.43
+(p,q,r,s): 5, 6, 6, 8: -0.0126908  integral time: 8.46024  elapsed time: 2799.89
+(p,q,r,s): 5, 6, 7, 2: 0.015378  integral time: 7.27013  elapsed time: 2807.16
+(p,q,r,s): 5, 6, 8, 6: 0.04154  integral time: 6.52518  elapsed time: 2813.68
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 7, 0, 0: 0.0848141  integral time: 6.16241  elapsed time: 2819.85
+(p,q,r,s): 5, 7, 0, 4: 0.0138959  integral time: 6.18208  elapsed time: 2826.03
+(p,q,r,s): 5, 7, 1, 2: 0.0632693  integral time: 6.30873  elapsed time: 2832.34
+(p,q,r,s): 5, 7, 2, 1: 0.132769  integral time: 6.15519  elapsed time: 2838.49
+(p,q,r,s): 5, 7, 3, 5: 0.0171184  integral time: 6.33651  elapsed time: 2844.83
+(p,q,r,s): 5, 7, 3, 8: 0.0763147  integral time: 6.29208  elapsed time: 2851.12
+(p,q,r,s): 5, 7, 4, 0: -0.0212892  integral time: 6.2778  elapsed time: 2857.4
+(p,q,r,s): 5, 7, 4, 4: -0.0312236  integral time: 6.34491  elapsed time: 2863.74
+(p,q,r,s): 5, 7, 5, 3: 0.102159  integral time: 4.55276  elapsed time: 2868.3
+(p,q,r,s): 5, 7, 5, 7: 0.579627  integral time: 4.5713  elapsed time: 2872.87
+(p,q,r,s): 5, 7, 6, 9: -0.0152841  integral time: 8.27228  elapsed time: 2881.14
+(p,q,r,s): 5, 7, 7, 5: 0.0500906  integral time: 6.44219  elapsed time: 2887.58
+(p,q,r,s): 5, 7, 7, 8: -0.00354705  integral time: 6.34481  elapsed time: 2893.93
+(p,q,r,s): 5, 7, 8, 3: 0.108739  integral time: 4.74184  elapsed time: 2898.67
+(p,q,r,s): 5, 7, 8, 7: 0.0578393  integral time: 4.57886  elapsed time: 2903.25
+(p,q,r,s): 5, 7, 9, 6: -0.039916  integral time: 8.13195  elapsed time: 2911.38
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 8, 2, 9: 0.00515171  integral time: 7.12713  elapsed time: 2918.51
+(p,q,r,s): 5, 8, 5, 5: 0.104397  integral time: 4.56309  elapsed time: 2923.07
+(p,q,r,s): 5, 8, 5, 8: 0.580112  integral time: 4.57947  elapsed time: 2927.65
+(p,q,r,s): 5, 8, 8, 5: 0.106836  integral time: 4.74076  elapsed time: 2932.39
+(p,q,r,s): 5, 8, 8, 8: 0.0567315  integral time: 4.58467  elapsed time: 2936.98
+(p,q,r,s): 5, 8, 9, 2: 0.0761349  integral time: 7.14196  elapsed time: 2944.12
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 5, 9, 5, 9: 0.655036  integral time: 6.52574  elapsed time: 2950.64
+(p,q,r,s): 5, 9, 8, 9: 0.0423334  integral time: 6.53289  elapsed time: 2957.18
+(p,q,r,s): 5, 9, 9, 5: 0.287537  integral time: 8.26809  elapsed time: 2965.44
+(p,q,r,s): 5, 9, 9, 8: -0.0422018  integral time: 8.31874  elapsed time: 2973.76
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 0, 0, 6: 0.0491995  integral time: 8.31637  elapsed time: 2982.08
+(p,q,r,s): 6, 0, 1, 3: 0.120049  integral time: 7.18778  elapsed time: 2989.27
+(p,q,r,s): 6, 0, 1, 7: 0.0602189  integral time: 7.21268  elapsed time: 2996.48
+(p,q,r,s): 6, 0, 3, 1: 0.217871  integral time: 7.06662  elapsed time: 3003.55
+(p,q,r,s): 6, 0, 4, 6: -0.0620313  integral time: 8.21568  elapsed time: 3011.76
+(p,q,r,s): 6, 0, 6, 0: 0.616672  integral time: 6.41545  elapsed time: 3018.18
+(p,q,r,s): 6, 0, 6, 4: -0.0382038  integral time: 6.43955  elapsed time: 3024.62
+(p,q,r,s): 6, 0, 7, 1: 0.036529  integral time: 7.09406  elapsed time: 3031.71
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 1, 1, 6: 0.143221  integral time: 8.33532  elapsed time: 3040.05
+(p,q,r,s): 6, 1, 3, 3: 0.279969  integral time: 7.16766  elapsed time: 3047.22
+(p,q,r,s): 6, 1, 3, 7: 0.0776583  integral time: 7.1419  elapsed time: 3054.36
+(p,q,r,s): 6, 1, 6, 1: 0.654179  integral time: 6.50756  elapsed time: 3060.87
+(p,q,r,s): 6, 1, 7, 3: 0.00501158  integral time: 7.13752  elapsed time: 3068
+(p,q,r,s): 6, 1, 7, 7: 0.0657819  integral time: 7.19933  elapsed time: 3075.2
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 2, 0, 3: 0.0865385  integral time: 7.27976  elapsed time: 3082.48
+(p,q,r,s): 6, 2, 0, 7: 0.0366208  integral time: 7.25572  elapsed time: 3089.74
+(p,q,r,s): 6, 2, 1, 1: 0.167036  integral time: 7.19671  elapsed time: 3096.93
+(p,q,r,s): 6, 2, 2, 6: 0.0871896  integral time: 8.34697  elapsed time: 3105.28
+(p,q,r,s): 6, 2, 3, 0: 0.222524  integral time: 7.08524  elapsed time: 3112.37
+(p,q,r,s): 6, 2, 3, 4: -0.175649  integral time: 7.10407  elapsed time: 3119.47
+(p,q,r,s): 6, 2, 4, 3: -0.105099  integral time: 7.25559  elapsed time: 3126.73
+(p,q,r,s): 6, 2, 4, 7: -0.00226551  integral time: 7.30308  elapsed time: 3134.03
+(p,q,r,s): 6, 2, 6, 2: 0.651534  integral time: 6.46864  elapsed time: 3140.5
+(p,q,r,s): 6, 2, 7, 0: 0.0367294  integral time: 7.10309  elapsed time: 3147.6
+(p,q,r,s): 6, 2, 7, 4: 0.0314425  integral time: 7.18804  elapsed time: 3154.79
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 3, 3, 6: 0.286394  integral time: 8.23763  elapsed time: 3163.03
+(p,q,r,s): 6, 3, 6, 3: 0.657302  integral time: 6.49414  elapsed time: 3169.52
+(p,q,r,s): 6, 3, 6, 7: 0.0428918  integral time: 6.52042  elapsed time: 3176.04
+(p,q,r,s): 6, 3, 7, 6: -0.0426734  integral time: 8.25979  elapsed time: 3184.3
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 4, 0, 6: -0.0605261  integral time: 8.23214  elapsed time: 3192.53
+(p,q,r,s): 6, 4, 1, 3: -0.131515  integral time: 7.21973  elapsed time: 3199.75
+(p,q,r,s): 6, 4, 1, 7: 0.0253322  integral time: 7.24092  elapsed time: 3207
+(p,q,r,s): 6, 4, 3, 1: -0.172108  integral time: 7.10755  elapsed time: 3214.1
+(p,q,r,s): 6, 4, 4, 6: 0.119231  integral time: 8.5258  elapsed time: 3222.63
+(p,q,r,s): 6, 4, 6, 0: -0.0360698  integral time: 6.44345  elapsed time: 3229.07
+(p,q,r,s): 6, 4, 6, 4: 0.624488  integral time: 6.46827  elapsed time: 3235.54
+(p,q,r,s): 6, 4, 7, 1: 0.0310295  integral time: 7.10815  elapsed time: 3242.65
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 5, 0, 1: 0.0836068  integral time: 7.21668  elapsed time: 3249.87
+(p,q,r,s): 6, 5, 1, 0: 0.1188  integral time: 7.19322  elapsed time: 3257.06
+(p,q,r,s): 6, 5, 1, 4: -0.130889  integral time: 7.21669  elapsed time: 3264.28
+(p,q,r,s): 6, 5, 2, 3: 0.105191  integral time: 7.25721  elapsed time: 3271.53
+(p,q,r,s): 6, 5, 2, 7: 0.0150491  integral time: 7.28191  elapsed time: 3278.81
+(p,q,r,s): 6, 5, 3, 2: 0.277964  integral time: 7.11892  elapsed time: 3285.93
+(p,q,r,s): 6, 5, 4, 1: -0.104084  integral time: 7.25156  elapsed time: 3293.19
+(p,q,r,s): 6, 5, 5, 6: 0.0935596  integral time: 8.38503  elapsed time: 3301.57
+(p,q,r,s): 6, 5, 6, 5: 0.656371  integral time: 6.48987  elapsed time: 3308.06
+(p,q,r,s): 6, 5, 6, 8: 0.0402447  integral time: 6.51702  elapsed time: 3314.58
+(p,q,r,s): 6, 5, 7, 2: 0.00231673  integral time: 7.11286  elapsed time: 3321.69
+(p,q,r,s): 6, 5, 8, 6: -0.0154929  integral time: 8.38823  elapsed time: 3330.08
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 6, 6, 6: 0.638398  integral time: 8.40482  elapsed time: 3338.48
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 7, 3, 6: -0.0393046  integral time: 8.13943  elapsed time: 3346.62
+(p,q,r,s): 6, 7, 6, 3: 0.0413041  integral time: 6.51861  elapsed time: 3353.14
+(p,q,r,s): 6, 7, 6, 7: 0.545403  integral time: 6.54533  elapsed time: 3359.69
+(p,q,r,s): 6, 7, 7, 6: 0.0864021  integral time: 8.34994  elapsed time: 3368.04
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 8, 0, 1: 0.0372683  integral time: 7.28337  elapsed time: 3375.32
+(p,q,r,s): 6, 8, 1, 0: 0.0619281  integral time: 7.19973  elapsed time: 3382.52
+(p,q,r,s): 6, 8, 1, 4: 0.0268695  integral time: 7.22541  elapsed time: 3389.75
+(p,q,r,s): 6, 8, 2, 3: 0.0145461  integral time: 7.27175  elapsed time: 3397.02
+(p,q,r,s): 6, 8, 2, 7: 0.058935  integral time: 7.29791  elapsed time: 3404.32
+(p,q,r,s): 6, 8, 3, 2: 0.0762699  integral time: 7.1131  elapsed time: 3411.43
+(p,q,r,s): 6, 8, 4, 1: -0.00325957  integral time: 7.27063  elapsed time: 3418.7
+(p,q,r,s): 6, 8, 5, 6: -0.0152083  integral time: 8.3153  elapsed time: 3427.01
+(p,q,r,s): 6, 8, 6, 5: 0.0396986  integral time: 6.51682  elapsed time: 3433.53
+(p,q,r,s): 6, 8, 6, 8: 0.547376  integral time: 6.69614  elapsed time: 3440.23
+(p,q,r,s): 6, 8, 7, 2: 0.0659328  integral time: 7.23786  elapsed time: 3447.47
+(p,q,r,s): 6, 8, 8, 6: 0.0458672  integral time: 8.51354  elapsed time: 3455.98
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 6, 9, 0, 0: 0.0484401  integral time: 8.28647  elapsed time: 3464.27
+(p,q,r,s): 6, 9, 0, 4: -0.0617643  integral time: 8.33929  elapsed time: 3472.61
+(p,q,r,s): 6, 9, 1, 2: 0.143549  integral time: 8.33008  elapsed time: 3480.94
+(p,q,r,s): 6, 9, 2, 1: 0.0847762  integral time: 8.36574  elapsed time: 3489.3
+(p,q,r,s): 6, 9, 3, 5: 0.28676  integral time: 8.23321  elapsed time: 3497.53
+(p,q,r,s): 6, 9, 3, 8: -0.0407606  integral time: 8.23438  elapsed time: 3505.77
+(p,q,r,s): 6, 9, 4, 0: -0.0602412  integral time: 8.40577  elapsed time: 3514.17
+(p,q,r,s): 6, 9, 4, 4: 0.120902  integral time: 8.47407  elapsed time: 3522.65
+(p,q,r,s): 6, 9, 5, 3: 0.0975341  integral time: 8.37197  elapsed time: 3531.02
+(p,q,r,s): 6, 9, 5, 7: -0.0149788  integral time: 8.39645  elapsed time: 3539.42
+(p,q,r,s): 6, 9, 6, 9: 0.633831  integral time: 8.41672  elapsed time: 3547.83
+(p,q,r,s): 6, 9, 7, 5: -0.0408797  integral time: 8.2734  elapsed time: 3556.11
+(p,q,r,s): 6, 9, 7, 8: 0.0858306  integral time: 8.33163  elapsed time: 3564.44
+(p,q,r,s): 6, 9, 8, 3: -0.0132626  integral time: 8.43619  elapsed time: 3572.88
+(p,q,r,s): 6, 9, 8, 7: 0.0468038  integral time: 8.49582  elapsed time: 3581.37
+(p,q,r,s): 6, 9, 9, 6: 0.0883383  integral time: 10.1534  elapsed time: 3591.53
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 0, 0, 3: 0.0844044  integral time: 6.36415  elapsed time: 3597.89
+(p,q,r,s): 7, 0, 0, 7: 0.0856891  integral time: 6.31148  elapsed time: 3604.2
+(p,q,r,s): 7, 0, 1, 1: 0.166676  integral time: 6.08626  elapsed time: 3610.29
+(p,q,r,s): 7, 0, 2, 6: 0.0360845  integral time: 7.27863  elapsed time: 3617.57
+(p,q,r,s): 7, 0, 3, 0: 0.217988  integral time: 4.49283  elapsed time: 3622.06
+(p,q,r,s): 7, 0, 3, 4: 0.0458698  integral time: 4.51205  elapsed time: 3626.57
+(p,q,r,s): 7, 0, 4, 3: 0.0125664  integral time: 6.20815  elapsed time: 3632.78
+(p,q,r,s): 7, 0, 4, 7: -0.00325534  integral time: 6.23182  elapsed time: 3639.01
+(p,q,r,s): 7, 0, 6, 2: 0.0364382  integral time: 7.12278  elapsed time: 3646.13
+(p,q,r,s): 7, 0, 7, 0: 0.65346  integral time: 4.49966  elapsed time: 3650.63
+(p,q,r,s): 7, 0, 7, 4: 0.0315126  integral time: 4.52157  elapsed time: 3655.16
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 1, 0, 6: 0.0607221  integral time: 7.26233  elapsed time: 3662.42
+(p,q,r,s): 7, 1, 1, 3: 0.133735  integral time: 6.25881  elapsed time: 3668.68
+(p,q,r,s): 7, 1, 1, 7: 0.11934  integral time: 6.33824  elapsed time: 3675.01
+(p,q,r,s): 7, 1, 3, 1: 0.17372  integral time: 4.58259  elapsed time: 3679.6
+(p,q,r,s): 7, 1, 4, 6: 0.0263493  integral time: 7.2579  elapsed time: 3686.86
+(p,q,r,s): 7, 1, 6, 0: 0.0370741  integral time: 7.14249  elapsed time: 3694
+(p,q,r,s): 7, 1, 6, 4: 0.0306852  integral time: 7.13526  elapsed time: 3701.13
+(p,q,r,s): 7, 1, 7, 1: 0.624656  integral time: 4.55347  elapsed time: 3705.69
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 2, 0, 1: 0.119386  integral time: 6.23258  elapsed time: 3711.92
+(p,q,r,s): 7, 2, 1, 0: 0.165861  integral time: 6.22698  elapsed time: 3718.15
+(p,q,r,s): 7, 2, 1, 4: -0.0166011  integral time: 6.32279  elapsed time: 3724.47
+(p,q,r,s): 7, 2, 2, 3: 0.0619701  integral time: 6.4179  elapsed time: 3730.89
+(p,q,r,s): 7, 2, 2, 7: 0.0707067  integral time: 6.47699  elapsed time: 3737.36
+(p,q,r,s): 7, 2, 3, 2: 0.173028  integral time: 4.57947  elapsed time: 3741.94
+(p,q,r,s): 7, 2, 4, 1: 0.0181021  integral time: 6.26379  elapsed time: 3748.21
+(p,q,r,s): 7, 2, 5, 6: 0.0164553  integral time: 7.33371  elapsed time: 3755.54
+(p,q,r,s): 7, 2, 6, 5: 0.00551067  integral time: 7.17901  elapsed time: 3762.72
+(p,q,r,s): 7, 2, 6, 8: 0.0651152  integral time: 7.18027  elapsed time: 3769.9
+(p,q,r,s): 7, 2, 7, 2: 0.624849  integral time: 4.55295  elapsed time: 3774.45
+(p,q,r,s): 7, 2, 8, 6: 0.0593084  integral time: 7.30076  elapsed time: 3781.75
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 3, 1, 6: 0.0753747  integral time: 7.14914  elapsed time: 3788.9
+(p,q,r,s): 7, 3, 3, 3: 0.102128  integral time: 4.5718  elapsed time: 3793.48
+(p,q,r,s): 7, 3, 3, 7: 0.10703  integral time: 4.85041  elapsed time: 3798.33
+(p,q,r,s): 7, 3, 6, 1: 0.00335887  integral time: 7.17189  elapsed time: 3805.5
+(p,q,r,s): 7, 3, 7, 3: 0.579429  integral time: 4.57411  elapsed time: 3810.07
+(p,q,r,s): 7, 3, 7, 7: 0.0561899  integral time: 4.60173  elapsed time: 3814.67
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 4, 0, 3: -0.021256  integral time: 6.24389  elapsed time: 3820.92
+(p,q,r,s): 7, 4, 0, 7: -0.00214242  integral time: 6.23491  elapsed time: 3827.15
+(p,q,r,s): 7, 4, 1, 1: -0.0184905  integral time: 6.18504  elapsed time: 3833.34
+(p,q,r,s): 7, 4, 2, 6: -0.00320697  integral time: 7.29659  elapsed time: 3840.64
+(p,q,r,s): 7, 4, 3, 0: 0.046272  integral time: 4.56016  elapsed time: 3845.2
+(p,q,r,s): 7, 4, 3, 4: 0.0787214  integral time: 4.58089  elapsed time: 3849.78
+(p,q,r,s): 7, 4, 4, 3: -0.0316038  integral time: 6.39361  elapsed time: 3856.17
+(p,q,r,s): 7, 4, 4, 7: 0.0498573  integral time: 6.38433  elapsed time: 3862.55
+(p,q,r,s): 7, 4, 6, 2: 0.0312716  integral time: 7.15114  elapsed time: 3869.71
+(p,q,r,s): 7, 4, 7, 0: 0.0314068  integral time: 4.54258  elapsed time: 3874.25
+(p,q,r,s): 7, 4, 7, 4: 0.566429  integral time: 4.5624  elapsed time: 3878.81
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 5, 0, 0: 0.08504  integral time: 6.22236  elapsed time: 3885.03
+(p,q,r,s): 7, 5, 0, 4: -0.0210232  integral time: 6.20975  elapsed time: 3891.24
+(p,q,r,s): 7, 5, 1, 2: 0.13157  integral time: 6.13959  elapsed time: 3897.38
+(p,q,r,s): 7, 5, 2, 1: 0.0631528  integral time: 6.2933  elapsed time: 3903.68
+(p,q,r,s): 7, 5, 3, 5: 0.104676  integral time: 4.57686  elapsed time: 3908.25
+(p,q,r,s): 7, 5, 3, 8: 0.106663  integral time: 4.8596  elapsed time: 3913.11
+(p,q,r,s): 7, 5, 4, 0: 0.0124165  integral time: 6.21783  elapsed time: 3919.33
+(p,q,r,s): 7, 5, 4, 4: -0.030404  integral time: 6.23795  elapsed time: 3925.57
+(p,q,r,s): 7, 5, 5, 3: 0.017961  integral time: 6.34022  elapsed time: 3931.91
+(p,q,r,s): 7, 5, 5, 7: 0.0512078  integral time: 6.63078  elapsed time: 3938.54
+(p,q,r,s): 7, 5, 6, 9: -0.0412798  integral time: 8.29658  elapsed time: 3946.84
+(p,q,r,s): 7, 5, 7, 5: 0.578007  integral time: 4.57831  elapsed time: 3951.41
+(p,q,r,s): 7, 5, 7, 8: 0.0567345  integral time: 4.60719  elapsed time: 3956.02
+(p,q,r,s): 7, 5, 8, 3: 0.0711522  integral time: 6.30816  elapsed time: 3962.33
+(p,q,r,s): 7, 5, 8, 7: -0.00453463  integral time: 6.39677  elapsed time: 3968.73
+(p,q,r,s): 7, 5, 9, 6: -0.0146466  integral time: 8.41948  elapsed time: 3977.15
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 6, 3, 6: 0.0418911  integral time: 6.56177  elapsed time: 3983.71
+(p,q,r,s): 7, 6, 6, 3: -0.0409149  integral time: 8.28257  elapsed time: 3991.99
+(p,q,r,s): 7, 6, 6, 7: 0.0865817  integral time: 8.35705  elapsed time: 4000.35
+(p,q,r,s): 7, 6, 7, 6: 0.545623  integral time: 6.55525  elapsed time: 4006.9
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 7, 1, 6: 0.0657144  integral time: 7.27906  elapsed time: 4014.18
+(p,q,r,s): 7, 7, 3, 3: 0.106366  integral time: 4.71123  elapsed time: 4018.89
+(p,q,r,s): 7, 7, 3, 7: 0.0569956  integral time: 4.60184  elapsed time: 4023.5
+(p,q,r,s): 7, 7, 6, 1: 0.0670575  integral time: 7.29372  elapsed time: 4030.79
+(p,q,r,s): 7, 7, 7, 3: 0.0571629  integral time: 4.58437  elapsed time: 4035.37
+(p,q,r,s): 7, 7, 7, 7: 0.551538  integral time: 4.61356  elapsed time: 4039.99
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 8, 0, 0: 0.0853675  integral time: 6.47183  elapsed time: 4046.46
+(p,q,r,s): 7, 8, 0, 4: -0.00217629  integral time: 6.40814  elapsed time: 4052.87
+(p,q,r,s): 7, 8, 1, 2: 0.119664  integral time: 6.35611  elapsed time: 4059.22
+(p,q,r,s): 7, 8, 2, 1: 0.0709591  integral time: 6.51021  elapsed time: 4065.73
+(p,q,r,s): 7, 8, 3, 5: 0.106742  integral time: 4.70984  elapsed time: 4070.44
+(p,q,r,s): 7, 8, 3, 8: 0.0559773  integral time: 4.61013  elapsed time: 4075.05
+(p,q,r,s): 7, 8, 4, 0: -0.00329442  integral time: 6.3635  elapsed time: 4081.42
+(p,q,r,s): 7, 8, 4, 4: 0.0500787  integral time: 6.38099  elapsed time: 4087.8
+(p,q,r,s): 7, 8, 5, 3: 0.0493769  integral time: 6.47566  elapsed time: 4094.27
+(p,q,r,s): 7, 8, 5, 7: -0.00316324  integral time: 6.41554  elapsed time: 4100.69
+(p,q,r,s): 7, 8, 6, 9: 0.0859339  integral time: 8.43653  elapsed time: 4109.13
+(p,q,r,s): 7, 8, 7, 5: 0.0556204  integral time: 4.58981  elapsed time: 4113.72
+(p,q,r,s): 7, 8, 7, 8: 0.55025  integral time: 4.61707  elapsed time: 4118.33
+(p,q,r,s): 7, 8, 8, 3: -0.00346957  integral time: 6.40526  elapsed time: 4124.74
+(p,q,r,s): 7, 8, 8, 7: 0.0880435  integral time: 6.3576  elapsed time: 4131.1
+(p,q,r,s): 7, 8, 9, 6: 0.045215  integral time: 8.60001  elapsed time: 4139.7
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 7, 9, 0, 2: 0.0616325  integral time: 7.25372  elapsed time: 4146.95
+(p,q,r,s): 7, 9, 1, 5: 0.0761163  integral time: 7.14979  elapsed time: 4154.1
+(p,q,r,s): 7, 9, 1, 8: 0.0663333  integral time: 7.14956  elapsed time: 4161.25
+(p,q,r,s): 7, 9, 2, 0: 0.0365639  integral time: 7.27144  elapsed time: 4168.52
+(p,q,r,s): 7, 9, 2, 4: -0.00301829  integral time: 7.26538  elapsed time: 4175.79
+(p,q,r,s): 7, 9, 3, 9: 0.0424189  integral time: 6.55345  elapsed time: 4182.34
+(p,q,r,s): 7, 9, 4, 2: 0.0254753  integral time: 7.25463  elapsed time: 4189.6
+(p,q,r,s): 7, 9, 5, 1: 0.0150582  integral time: 7.32203  elapsed time: 4196.92
+(p,q,r,s): 7, 9, 7, 9: 0.546288  integral time: 6.55478  elapsed time: 4203.47
+(p,q,r,s): 7, 9, 8, 1: 0.0587058  integral time: 7.30023  elapsed time: 4210.77
+(p,q,r,s): 7, 9, 9, 3: -0.0146066  integral time: 8.44361  elapsed time: 4219.22
+(p,q,r,s): 7, 9, 9, 7: 0.0449465  integral time: 8.51267  elapsed time: 4227.73
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 0, 0, 5: 0.083096  integral time: 6.32585  elapsed time: 4234.06
+(p,q,r,s): 8, 0, 0, 8: 0.0850135  integral time: 6.31149  elapsed time: 4240.37
+(p,q,r,s): 8, 0, 1, 9: 0.0355465  integral time: 7.27322  elapsed time: 4247.64
+(p,q,r,s): 8, 0, 2, 2: 0.16948  integral time: 6.09524  elapsed time: 4253.74
+(p,q,r,s): 8, 0, 4, 5: 0.0131918  integral time: 6.21282  elapsed time: 4259.95
+(p,q,r,s): 8, 0, 4, 8: -0.00298022  integral time: 6.23948  elapsed time: 4266.19
+(p,q,r,s): 8, 0, 5, 0: 0.221569  integral time: 4.49336  elapsed time: 4270.68
+(p,q,r,s): 8, 0, 5, 4: 0.0465029  integral time: 4.50521  elapsed time: 4275.19
+(p,q,r,s): 8, 0, 8, 0: 0.653466  integral time: 4.50439  elapsed time: 4279.69
+(p,q,r,s): 8, 0, 8, 4: 0.031504  integral time: 4.52972  elapsed time: 4284.22
+(p,q,r,s): 8, 0, 9, 1: 0.0372593  integral time: 7.12063  elapsed time: 4291.34
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 1, 0, 2: 0.11903  integral time: 6.23114  elapsed time: 4297.57
+(p,q,r,s): 8, 1, 1, 5: 0.0638331  integral time: 6.38369  elapsed time: 4303.96
+(p,q,r,s): 8, 1, 1, 8: 0.0698394  integral time: 6.47258  elapsed time: 4310.43
+(p,q,r,s): 8, 1, 2, 0: 0.166486  integral time: 6.20387  elapsed time: 4316.63
+(p,q,r,s): 8, 1, 2, 4: -0.017178  integral time: 6.29671  elapsed time: 4322.93
+(p,q,r,s): 8, 1, 3, 9: 0.0174479  integral time: 7.35484  elapsed time: 4330.28
+(p,q,r,s): 8, 1, 4, 2: 0.0169417  integral time: 6.25088  elapsed time: 4336.54
+(p,q,r,s): 8, 1, 5, 1: 0.17147  integral time: 4.5781  elapsed time: 4341.11
+(p,q,r,s): 8, 1, 7, 9: 0.0587201  integral time: 7.29361  elapsed time: 4348.41
+(p,q,r,s): 8, 1, 8, 1: 0.621058  integral time: 4.55183  elapsed time: 4352.96
+(p,q,r,s): 8, 1, 9, 3: 0.00453265  integral time: 7.1688  elapsed time: 4360.13
+(p,q,r,s): 8, 1, 9, 7: 0.0649958  integral time: 7.16581  elapsed time: 4367.29
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 2, 0, 9: 0.0608949  integral time: 7.25869  elapsed time: 4374.55
+(p,q,r,s): 8, 2, 2, 5: 0.131478  integral time: 6.22653  elapsed time: 4380.78
+(p,q,r,s): 8, 2, 2, 8: 0.119216  integral time: 6.3267  elapsed time: 4387.11
+(p,q,r,s): 8, 2, 4, 9: 0.0253602  integral time: 7.25823  elapsed time: 4394.36
+(p,q,r,s): 8, 2, 5, 2: 0.171924  integral time: 4.6803  elapsed time: 4399.04
+(p,q,r,s): 8, 2, 8, 2: 0.622528  integral time: 4.55159  elapsed time: 4403.6
+(p,q,r,s): 8, 2, 9, 0: 0.0363117  integral time: 7.13478  elapsed time: 4410.73
+(p,q,r,s): 8, 2, 9, 4: 0.0301077  integral time: 7.13267  elapsed time: 4417.86
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 3, 0, 0: 0.086022  integral time: 6.2227  elapsed time: 4424.09
+(p,q,r,s): 8, 3, 0, 4: -0.0209177  integral time: 6.20585  elapsed time: 4430.29
+(p,q,r,s): 8, 3, 1, 2: 0.0628716  integral time: 6.27857  elapsed time: 4436.57
+(p,q,r,s): 8, 3, 2, 1: 0.131366  integral time: 6.12312  elapsed time: 4442.69
+(p,q,r,s): 8, 3, 3, 5: 0.0187759  integral time: 6.33128  elapsed time: 4449.03
+(p,q,r,s): 8, 3, 3, 8: 0.0514496  integral time: 6.63717  elapsed time: 4455.66
+(p,q,r,s): 8, 3, 4, 0: 0.0126487  integral time: 6.21718  elapsed time: 4461.88
+(p,q,r,s): 8, 3, 4, 4: -0.0312657  integral time: 6.24808  elapsed time: 4468.13
+(p,q,r,s): 8, 3, 5, 3: 0.10291  integral time: 4.57503  elapsed time: 4472.7
+(p,q,r,s): 8, 3, 5, 7: 0.107483  integral time: 4.8205  elapsed time: 4477.52
+(p,q,r,s): 8, 3, 6, 9: -0.0122227  integral time: 8.41091  elapsed time: 4485.93
+(p,q,r,s): 8, 3, 7, 5: 0.0704744  integral time: 6.29189  elapsed time: 4492.23
+(p,q,r,s): 8, 3, 7, 8: -0.00283747  integral time: 6.38669  elapsed time: 4498.61
+(p,q,r,s): 8, 3, 8, 3: 0.579998  integral time: 4.58242  elapsed time: 4503.2
+(p,q,r,s): 8, 3, 8, 7: 0.0572198  integral time: 4.65029  elapsed time: 4507.85
+(p,q,r,s): 8, 3, 9, 6: -0.041262  integral time: 8.24227  elapsed time: 4516.09
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 4, 0, 5: -0.0203186  integral time: 6.23984  elapsed time: 4522.33
+(p,q,r,s): 8, 4, 0, 8: -0.00320464  integral time: 6.23405  elapsed time: 4528.56
+(p,q,r,s): 8, 4, 1, 9: -0.00298096  integral time: 7.3007  elapsed time: 4535.86
+(p,q,r,s): 8, 4, 2, 2: -0.0177852  integral time: 6.12733  elapsed time: 4541.99
+(p,q,r,s): 8, 4, 4, 5: -0.0302136  integral time: 6.40161  elapsed time: 4548.39
+(p,q,r,s): 8, 4, 4, 8: 0.0500821  integral time: 6.35265  elapsed time: 4554.75
+(p,q,r,s): 8, 4, 5, 0: 0.0459373  integral time: 4.57139  elapsed time: 4559.32
+(p,q,r,s): 8, 4, 5, 4: 0.0804125  integral time: 4.58596  elapsed time: 4563.9
+(p,q,r,s): 8, 4, 8, 0: 0.0313155  integral time: 4.5379  elapsed time: 4568.44
+(p,q,r,s): 8, 4, 8, 4: 0.567152  integral time: 4.5561  elapsed time: 4573
+(p,q,r,s): 8, 4, 9, 1: 0.0321706  integral time: 7.1511  elapsed time: 4580.15
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 5, 2, 9: 0.0770794  integral time: 7.16551  elapsed time: 4587.31
+(p,q,r,s): 8, 5, 5, 5: 0.102408  integral time: 4.57207  elapsed time: 4591.89
+(p,q,r,s): 8, 5, 5, 8: 0.106373  integral time: 4.82429  elapsed time: 4596.71
+(p,q,r,s): 8, 5, 8, 5: 0.579006  integral time: 4.58238  elapsed time: 4601.29
+(p,q,r,s): 8, 5, 8, 8: 0.0566974  integral time: 4.60007  elapsed time: 4605.89
+(p,q,r,s): 8, 5, 9, 2: 0.00350847  integral time: 7.18078  elapsed time: 4613.07
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 6, 0, 1: 0.0619337  integral time: 7.24083  elapsed time: 4620.31
+(p,q,r,s): 8, 6, 1, 0: 0.0361372  integral time: 7.26965  elapsed time: 4627.58
+(p,q,r,s): 8, 6, 1, 4: -0.00233623  integral time: 7.32066  elapsed time: 4634.91
+(p,q,r,s): 8, 6, 2, 3: 0.077547  integral time: 7.14968  elapsed time: 4642.05
+(p,q,r,s): 8, 6, 2, 7: 0.0646556  integral time: 7.14385  elapsed time: 4649.2
+(p,q,r,s): 8, 6, 3, 2: 0.015513  integral time: 7.31131  elapsed time: 4656.51
+(p,q,r,s): 8, 6, 4, 1: 0.0255121  integral time: 7.23223  elapsed time: 4663.74
+(p,q,r,s): 8, 6, 5, 6: 0.0430588  integral time: 6.54066  elapsed time: 4670.28
+(p,q,r,s): 8, 6, 6, 5: -0.015995  integral time: 8.42591  elapsed time: 4678.71
+(p,q,r,s): 8, 6, 6, 8: 0.0462243  integral time: 8.4989  elapsed time: 4687.21
+(p,q,r,s): 8, 6, 7, 2: 0.0602111  integral time: 7.28123  elapsed time: 4694.49
+(p,q,r,s): 8, 6, 8, 6: 0.547516  integral time: 6.54913  elapsed time: 4701.04
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 7, 0, 0: 0.086316  integral time: 6.47833  elapsed time: 4707.52
+(p,q,r,s): 8, 7, 0, 4: -0.00270258  integral time: 6.41406  elapsed time: 4713.93
+(p,q,r,s): 8, 7, 1, 2: 0.0690382  integral time: 6.51794  elapsed time: 4720.45
+(p,q,r,s): 8, 7, 2, 1: 0.118401  integral time: 6.3663  elapsed time: 4726.82
+(p,q,r,s): 8, 7, 3, 5: 0.0510657  integral time: 6.45429  elapsed time: 4733.27
+(p,q,r,s): 8, 7, 3, 8: -0.00278151  integral time: 6.39558  elapsed time: 4739.67
+(p,q,r,s): 8, 7, 4, 0: -0.00349366  integral time: 6.32645  elapsed time: 4745.99
+(p,q,r,s): 8, 7, 4, 4: 0.0503989  integral time: 6.33934  elapsed time: 4752.33
+(p,q,r,s): 8, 7, 5, 3: 0.107046  integral time: 4.71209  elapsed time: 4757.04
+(p,q,r,s): 8, 7, 5, 7: 0.0571638  integral time: 4.6189  elapsed time: 4761.66
+(p,q,r,s): 8, 7, 6, 9: 0.0471339  integral time: 8.58061  elapsed time: 4770.24
+(p,q,r,s): 8, 7, 7, 5: -0.00403733  integral time: 6.3848  elapsed time: 4776.63
+(p,q,r,s): 8, 7, 7, 8: 0.0878608  integral time: 6.33272  elapsed time: 4782.96
+(p,q,r,s): 8, 7, 8, 3: 0.0579235  integral time: 4.58631  elapsed time: 4787.55
+(p,q,r,s): 8, 7, 8, 7: 0.55345  integral time: 4.61351  elapsed time: 4792.16
+(p,q,r,s): 8, 7, 9, 6: 0.084727  integral time: 8.40557  elapsed time: 4800.57
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 8, 2, 9: 0.0657034  integral time: 7.28833  elapsed time: 4807.85
+(p,q,r,s): 8, 8, 5, 5: 0.106981  integral time: 4.71283  elapsed time: 4812.57
+(p,q,r,s): 8, 8, 5, 8: 0.0566676  integral time: 4.59812  elapsed time: 4817.17
+(p,q,r,s): 8, 8, 8, 5: 0.054311  integral time: 4.59026  elapsed time: 4821.76
+(p,q,r,s): 8, 8, 8, 8: 0.551496  integral time: 4.61911  elapsed time: 4826.38
+(p,q,r,s): 8, 8, 9, 2: 0.0655824  integral time: 7.29089  elapsed time: 4833.67
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 8, 9, 5, 9: 0.0420977  integral time: 6.55429  elapsed time: 4840.22
+(p,q,r,s): 8, 9, 8, 9: 0.546179  integral time: 6.54976  elapsed time: 4846.77
+(p,q,r,s): 8, 9, 9, 5: -0.0412192  integral time: 8.26298  elapsed time: 4855.03
+(p,q,r,s): 8, 9, 9, 8: 0.0873659  integral time: 8.33965  elapsed time: 4863.37
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 0, 0, 9: 0.0478329  integral time: 8.27942  elapsed time: 4871.65
+(p,q,r,s): 9, 0, 2, 5: 0.119105  integral time: 7.17678  elapsed time: 4878.83
+(p,q,r,s): 9, 0, 2, 8: 0.0607812  integral time: 7.20219  elapsed time: 4886.03
+(p,q,r,s): 9, 0, 4, 9: -0.0608043  integral time: 8.20743  elapsed time: 4894.24
+(p,q,r,s): 9, 0, 5, 2: 0.221134  integral time: 7.05345  elapsed time: 4901.29
+(p,q,r,s): 9, 0, 8, 2: 0.0369543  integral time: 7.07164  elapsed time: 4908.36
+(p,q,r,s): 9, 0, 9, 0: 0.615173  integral time: 6.40618  elapsed time: 4914.77
+(p,q,r,s): 9, 0, 9, 4: -0.0358263  integral time: 6.43328  elapsed time: 4921.2
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 1, 0, 5: 0.0845434  integral time: 7.21762  elapsed time: 4928.42
+(p,q,r,s): 9, 1, 0, 8: 0.0371578  integral time: 7.23988  elapsed time: 4935.66
+(p,q,r,s): 9, 1, 1, 9: 0.0855902  integral time: 8.3401  elapsed time: 4944
+(p,q,r,s): 9, 1, 2, 2: 0.168067  integral time: 7.19036  elapsed time: 4951.19
+(p,q,r,s): 9, 1, 4, 5: -0.106514  integral time: 7.24872  elapsed time: 4958.44
+(p,q,r,s): 9, 1, 4, 8: -0.00300091  integral time: 7.30316  elapsed time: 4965.74
+(p,q,r,s): 9, 1, 5, 0: 0.221041  integral time: 7.08189  elapsed time: 4972.83
+(p,q,r,s): 9, 1, 5, 4: -0.172949  integral time: 7.11168  elapsed time: 4979.94
+(p,q,r,s): 9, 1, 8, 0: 0.0364694  integral time: 7.08793  elapsed time: 4987.03
+(p,q,r,s): 9, 1, 8, 4: 0.0319873  integral time: 7.13992  elapsed time: 4994.17
+(p,q,r,s): 9, 1, 9, 1: 0.654999  integral time: 6.45268  elapsed time: 5000.62
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 2, 2, 9: 0.145061  integral time: 8.31056  elapsed time: 5008.93
+(p,q,r,s): 9, 2, 5, 5: 0.276883  integral time: 7.11448  elapsed time: 5016.04
+(p,q,r,s): 9, 2, 5, 8: 0.0759725  integral time: 7.13784  elapsed time: 5023.18
+(p,q,r,s): 9, 2, 8, 5: 0.00335028  integral time: 7.11833  elapsed time: 5030.3
+(p,q,r,s): 9, 2, 8, 8: 0.0657515  integral time: 7.17229  elapsed time: 5037.47
+(p,q,r,s): 9, 2, 9, 2: 0.654542  integral time: 6.46569  elapsed time: 5043.94
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 3, 0, 2: 0.0845822  integral time: 7.20415  elapsed time: 5051.14
+(p,q,r,s): 9, 3, 1, 5: 0.103885  integral time: 7.23854  elapsed time: 5058.38
+(p,q,r,s): 9, 3, 1, 8: 0.0146631  integral time: 7.39975  elapsed time: 5065.78
+(p,q,r,s): 9, 3, 2, 0: 0.118759  integral time: 7.17389  elapsed time: 5072.95
+(p,q,r,s): 9, 3, 2, 4: -0.132627  integral time: 7.20202  elapsed time: 5080.16
+(p,q,r,s): 9, 3, 3, 9: 0.0980953  integral time: 8.35379  elapsed time: 5088.51
+(p,q,r,s): 9, 3, 4, 2: -0.109927  integral time: 7.23294  elapsed time: 5095.74
+(p,q,r,s): 9, 3, 5, 1: 0.279727  integral time: 7.10701  elapsed time: 5102.85
+(p,q,r,s): 9, 3, 7, 9: -0.0143009  integral time: 8.38196  elapsed time: 5111.23
+(p,q,r,s): 9, 3, 8, 1: 0.00471905  integral time: 7.1055  elapsed time: 5118.34
+(p,q,r,s): 9, 3, 9, 3: 0.65349  integral time: 6.48085  elapsed time: 5124.82
+(p,q,r,s): 9, 3, 9, 7: 0.0390042  integral time: 6.50408  elapsed time: 5131.32
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 4, 0, 9: -0.0616995  integral time: 8.24314  elapsed time: 5139.57
+(p,q,r,s): 9, 4, 2, 5: -0.131489  integral time: 7.20995  elapsed time: 5146.78
+(p,q,r,s): 9, 4, 2, 8: 0.02459  integral time: 7.23834  elapsed time: 5154.02
+(p,q,r,s): 9, 4, 4, 9: 0.118779  integral time: 8.44661  elapsed time: 5162.46
+(p,q,r,s): 9, 4, 5, 2: -0.174585  integral time: 7.09645  elapsed time: 5169.56
+(p,q,r,s): 9, 4, 8, 2: 0.0312999  integral time: 7.10957  elapsed time: 5176.67
+(p,q,r,s): 9, 4, 9, 0: -0.0362652  integral time: 6.43246  elapsed time: 5183.1
+(p,q,r,s): 9, 4, 9, 4: 0.62307  integral time: 6.4568  elapsed time: 5189.56
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 5, 5, 9: 0.285592  integral time: 8.20569  elapsed time: 5197.76
+(p,q,r,s): 9, 5, 8, 9: -0.0411845  integral time: 8.22935  elapsed time: 5205.99
+(p,q,r,s): 9, 5, 9, 5: 0.654981  integral time: 6.48194  elapsed time: 5212.47
+(p,q,r,s): 9, 5, 9, 8: 0.0425253  integral time: 6.51182  elapsed time: 5218.99
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 6, 0, 0: 0.0491438  integral time: 8.27874  elapsed time: 5227.27
+(p,q,r,s): 9, 6, 0, 4: -0.0607436  integral time: 8.30251  elapsed time: 5235.57
+(p,q,r,s): 9, 6, 1, 2: 0.0862815  integral time: 8.34304  elapsed time: 5243.91
+(p,q,r,s): 9, 6, 2, 1: 0.143293  integral time: 8.31517  elapsed time: 5252.23
+(p,q,r,s): 9, 6, 3, 5: 0.0946495  integral time: 8.36092  elapsed time: 5260.59
+(p,q,r,s): 9, 6, 3, 8: -0.0148474  integral time: 8.39188  elapsed time: 5268.98
+(p,q,r,s): 9, 6, 4, 0: -0.0610718  integral time: 8.39246  elapsed time: 5277.37
+(p,q,r,s): 9, 6, 4, 4: 0.119495  integral time: 8.46692  elapsed time: 5285.84
+(p,q,r,s): 9, 6, 5, 3: 0.287241  integral time: 8.20797  elapsed time: 5294.05
+(p,q,r,s): 9, 6, 5, 7: -0.0403479  integral time: 8.22938  elapsed time: 5302.28
+(p,q,r,s): 9, 6, 6, 9: 0.0859514  integral time: 10.1382  elapsed time: 5312.41
+(p,q,r,s): 9, 6, 7, 5: -0.0138693  integral time: 8.4205  elapsed time: 5320.84
+(p,q,r,s): 9, 6, 7, 8: 0.0453139  integral time: 8.48114  elapsed time: 5329.32
+(p,q,r,s): 9, 6, 8, 3: -0.0416669  integral time: 8.25446  elapsed time: 5337.57
+(p,q,r,s): 9, 6, 8, 7: 0.0858786  integral time: 8.32046  elapsed time: 5345.89
+(p,q,r,s): 9, 6, 9, 6: 0.631335  integral time: 8.39784  elapsed time: 5354.29
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 7, 0, 2: 0.0354853  integral time: 7.22236  elapsed time: 5361.51
+(p,q,r,s): 9, 7, 1, 5: 0.0153494  integral time: 7.25991  elapsed time: 5368.77
+(p,q,r,s): 9, 7, 1, 8: 0.057713  integral time: 7.28736  elapsed time: 5376.06
+(p,q,r,s): 9, 7, 2, 0: 0.0616101  integral time: 7.19386  elapsed time: 5383.25
+(p,q,r,s): 9, 7, 2, 4: 0.0259312  integral time: 7.21536  elapsed time: 5390.47
+(p,q,r,s): 9, 7, 3, 9: -0.0137568  integral time: 8.29006  elapsed time: 5398.76
+(p,q,r,s): 9, 7, 4, 2: -0.00202657  integral time: 7.25362  elapsed time: 5406.01
+(p,q,r,s): 9, 7, 5, 1: 0.0775078  integral time: 7.12601  elapsed time: 5413.14
+(p,q,r,s): 9, 7, 7, 9: 0.0448936  integral time: 8.50383  elapsed time: 5421.64
+(p,q,r,s): 9, 7, 8, 1: 0.0655341  integral time: 7.22656  elapsed time: 5428.87
+(p,q,r,s): 9, 7, 9, 3: 0.0399501  integral time: 6.50969  elapsed time: 5435.38
+(p,q,r,s): 9, 7, 9, 7: 0.545746  integral time: 6.53141  elapsed time: 5441.91
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 8, 5, 9: -0.0412929  integral time: 8.1339  elapsed time: 5450.04
+(p,q,r,s): 9, 8, 8, 9: 0.0861118  integral time: 8.34185  elapsed time: 5458.39
+(p,q,r,s): 9, 8, 9, 5: 0.042939  integral time: 6.50967  elapsed time: 5464.9
+(p,q,r,s): 9, 8, 9, 8: 0.546837  integral time: 6.53869  elapsed time: 5471.43
+Table dumped to file: ../IntegralTables/test.dat
+(p,q,r,s): 9, 9, 9, 9: 0.635214  integral time: 8.39704  elapsed time: 5479.83
+Table dumped to file: ../IntegralTables/test.dat
