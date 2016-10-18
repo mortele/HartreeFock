@@ -26,8 +26,6 @@ protected:
     };
 
 private:
-    int m_n                 = 0;
-    int m_totalNonZero      = 0;
     std::unordered_map<Key,double,KeyHash> m_hashMap;
 
 public:
@@ -37,4 +35,8 @@ public:
     void   printAllIntegrals();
     void   printTableToFile(std::string fileName);
     bool   readTableFromFile(std::string fileName);
+    void   createTwoBodyTable(std::string   fileName,
+                              int           type,
+                              int           numberOfBasisFunctions,
+                              int           numberOfIntegrationPoints=(int)1e7);
 };

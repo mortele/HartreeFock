@@ -1,4 +1,8 @@
 #include "integraltable.h"
+#include "montecarlointegrator.h"
+#include "Orbitals/orbital.h"
+#include "Orbitals/hydrogen3d.h"
+#include "Orbitals/harmonicoscillator2d.h"
 
 using std::cout;
 using std::endl;
@@ -49,4 +53,42 @@ bool IntegralTable::readTableFromFile(std::string fileName) {
     }
     inFile.close();
     return true;
+}
+
+void IntegralTable::createTwoBodyTable(std::string  fileName,
+                                       int          type,
+                                       int          numberOfBasisFunctions,
+                                       int          numberOfIntegrationPoints) {
+
+    std::string          tableFileName              = fileName;
+    IntegralTable        table;
+    MonteCarloIntegrator MCInt;
+    MCInt.setOrbital(new HarmonicOscillator2D());
+    clock_t startTime = clock();
+
+    for (int p=0; p<numberOfBasisFunctions; p++) {
+    for (int q=0; q<numberOfBasisFunctions; q++) {
+    for (int r=0; r<numberOfBasisFunctions; r++) {
+    for (int s=0; s<numberOfBasisFunctions; s++) {
+        int quantumNumbers [] = {p,q,r,s};
+        int* allQuantumNumbers = Orbital::generateQuantumNumbers(quantumNumbers, 2, type);
+        /*int m1 = allQuantumNumbers[1];
+        int m2 = allQuantumNumbers[3];
+        int m3 = allQuantumNumbers[5];
+        int m4 = allQuantumNumbers[7];
+        if ((m1+m2)==(m3+m4)) {*/
+            clock_t integralStart = clock();
+            double I = MCInt.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
+            clock_t integralFinish = clock();
+            double integralTime = (integralFinish-integralStart) / ((double) CLOCKS_PER_SEC);
+            double elapsedTime  = (integralFinish-startTime)     / ((double) CLOCKS_PER_SEC);
+            table.inputIntegral(p,q,r,s,I);
+            cout << "(p,q,r,s): " << p << ", " << q << ", " << r << ", " << s
+                 << ": " << I << "  integral time: " << integralTime
+                 << "  elapsed time: " << elapsedTime << endl;
+            //}
+        }}
+        table.printTableToFile(tableFileName);
+        cout << "Table dumped to file: " << tableFileName << endl;
+    }}
 }

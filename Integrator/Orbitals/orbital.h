@@ -12,10 +12,13 @@ public:
                                 int*    allQuantumNumbers);
     virtual double integrandTwo(double* allCoordinates,
                                 int*    allQuantumNumbers);
+    static int* mapToOrbitals(int p, int type);
+    static int* generateQuantumNumbers(int* indices, int oneBodyOrTwoBody, int type);
 
 protected:
     int     m_dimensions              = 0;
     int     m_numberOfQuantumNumbers  = 0;
 
-    virtual int*   mapQuantumNumbers(int singleQuantumNumber);
+    static int factorial(int n);
+    static double associatedLaguerrePolynomial(double x, int n, int m);
 };

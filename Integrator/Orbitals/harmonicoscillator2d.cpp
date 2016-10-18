@@ -13,10 +13,10 @@ double HarmonicOscillator2D::computeWavefunction(double* coordinates,
     int     mAbs    = m < 0 ? -m : m;
 
     double x                 = r * r;
-    double L                 = associatedLaguerrePolynomial(x, n, m);
+    double L                 = Orbital::associatedLaguerrePolynomial(x, n, mAbs);
     double rPowerM           = std::pow(r, mAbs);
     double exponential       = std::exp(-0.5*x);
-    double oneOverSquareRoot = 1. / std::sqrt(M_PI * factorial(n + mAbs));
+    double oneOverSquareRoot = 1. / std::sqrt(M_PI * Orbital::factorial(n + mAbs));
     return L * rPowerM * exponential * oneOverSquareRoot;
 }
 
@@ -56,8 +56,8 @@ double HarmonicOscillator2D::integrandTwo(double* allCoordinates,
     double waveFunction2 = computeWavefunction(allCoordinates+2, allQuantumNumbers+2);
     double waveFunction3 = computeWavefunction(allCoordinates,   allQuantumNumbers+4);
     double waveFunction4 = computeWavefunction(allCoordinates+2, allQuantumNumbers+6);
-    double integrand     =  integrationMeasure * oneOverR12 * phase *
-                            waveFunction1 * waveFunction2 * waveFunction3 * waveFunction4;
+    double integrand     = integrationMeasure * oneOverR12 * phase *
+                           waveFunction1 * waveFunction2 * waveFunction3 * waveFunction4;
     return integrand;
 }
 
@@ -66,18 +66,4 @@ double* HarmonicOscillator2D::getCoordinateScales() {
     scales[0] = m_rMax;
     scales[1] = m_thetaMax;
     return scales;
-}
-
-double HarmonicOscillator2D::associatedLaguerrePolynomial(double x,
-                                                          int    n,
-                                                          int    m) {
-    return (n==0) ? 1 : (1 - x + std::fabs(m));
-}
-
-int HarmonicOscillator2D::factorial(int n) {
-    int factorial = 1;
-    for (int i=1; i<n+1; i++) {
-        factorial *= i;
-    }
-    return factorial;
 }
