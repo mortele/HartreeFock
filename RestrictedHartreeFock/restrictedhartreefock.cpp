@@ -77,7 +77,9 @@ void RestrictedHartreeFock::computeSolutionBySCF() {
             break;
         }
 
-        m_eps_old = m_eps;
+        if (k != m_MAX_ITERS-1) {
+            m_eps_old = m_eps;
+        }
 
     }
 
@@ -105,12 +107,16 @@ void RestrictedHartreeFock::printInfo() {
     } else {
         cout << "Self Consistency Reached: False" << endl;
         cout << "SCF did not converge to the given precision" << endl;
+        cout << "|eps-stuff|: " << arma::abs(m_eps-m_eps_old).max() << endl;
         cout << "E_rhf: " << std::setprecision(-std::log10(m_convergencePrecision)) << m_HartreeFockEnergy << endl;
     }
 
     cout << endl;
-
-    //cout << m_U << endl;
+    /*
+    for(int i = 0; i < m_nrOfOccupiedOrbitals; i++) {
+        cout << m_U.col(i) << endl;
+    }
+    */
 
 }
 
