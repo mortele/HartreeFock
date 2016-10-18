@@ -20,5 +20,7 @@ protected:
     int     m_numberOfQuantumNumbers  = 0;
 
     static int factorial(int n);
+
+public:
     static double associatedLaguerrePolynomial(double x, int n, int m);
 };

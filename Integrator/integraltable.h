@@ -6,6 +6,7 @@
 #include <string>
 #include <functional>
 #include <fstream>
+#include "montecarlointegrator.h"
 
 
 class IntegralTable {
@@ -35,8 +36,9 @@ public:
     void   printAllIntegrals();
     void   printTableToFile(std::string fileName);
     bool   readTableFromFile(std::string fileName);
-    void   createTwoBodyTable(std::string   fileName,
-                              int           type,
-                              int           numberOfBasisFunctions,
-                              int           numberOfIntegrationPoints=(int)1e7);
+    void   createTwoBodyTable(std::string           fileName,
+                              int                   type,
+                              int                   numberOfBasisFunctions,
+                              int                   numberOfIntegrationPoints,
+                              MonteCarloIntegrator  integrator);
 };
