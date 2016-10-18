@@ -5,7 +5,7 @@
 
 class HarmonicOscillator2D : public Orbital {
 protected:
-    double m_rMax     = 3.0;
+    double m_rMax     = 5.0;
     double m_thetaMax = 2*M_PI;
 
 public:
