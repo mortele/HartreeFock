@@ -9,6 +9,7 @@ protected:
     double m_phiMax     = 2*M_PI;
 
     double solidHarmonics(int l, int m, double r, double theta, double phi);
+    double normalizationFuckyou(int n, int l, int m);
 
 public:
     Hydrogen3D() : Orbital(3,3) {}

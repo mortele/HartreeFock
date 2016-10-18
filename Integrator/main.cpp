@@ -19,16 +19,15 @@ int main() {
     IntegralTable table;
     MonteCarloIntegrator integrator;
     integrator.setOrbital(new HarmonicOscillator2D());
-    std::string fileName = "../Integrator/IntegralTables/test2.dat";
-    table.createTwoBodyTable(fileName, 0, 10, (int) 1e7, integrator);
-
-    return 0;
+    integrator.setOrbital(new Hydrogen3D());
+    //std::string fileName = "../Integrator/IntegralTables/test2.dat";
+    //table.createTwoBodyTable(fileName, 0, 10, (int) 1e7, integrator);
 
     for (int i=0; i<5; i++) {
         int qm [] = {i,i};
         int* allQm = Orbital::generateQuantumNumbers(qm, 1, 1);
         double I = integrator.integrateOne(allQm, (int) 5e7);
-        cout << "i:" << i << ", I=" << I << endl;
+        cout << "i:" << i << ", I=" << std::setprecision(10) <<  I << endl;
     }
 
     return 0;

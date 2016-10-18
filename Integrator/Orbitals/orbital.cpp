@@ -130,12 +130,11 @@ int* Orbital::generateQuantumNumbers(int* indices,
     }
 
     int iMax = oneBodyOrTwoBody==1 ? 2 : 4;
-
     for (int i=0; i<iMax; i++) {
-        int* quantumNumbers = Orbital::mapToOrbitals(indices[i], 0);
+        int* quantumNumbers = Orbital::mapToOrbitals(indices[i], type);
 
         for (int j=0; j<numberOfQuantumNumbers; j++) {
-            allQuantumNumbers[2*i+j] = quantumNumbers[j];
+            allQuantumNumbers[i*numberOfQuantumNumbers+j] = quantumNumbers[j];
         }
     }
     return allQuantumNumbers;
@@ -158,9 +157,8 @@ double Orbital::associatedLaguerrePolynomial(   double x,
     } else if(n == 1) {
         return 1 - x + std::fabs(m);
     } else {
-        return ((2*n+1 + std::fabs(m) - x)*associatedLaguerrePolynomial(x,n,m) - (n+std::fabs(m))*associatedLaguerrePolynomial(x,n-1,m))/(n+1);
+        return ((2*(n-1)+1 + std::fabs(m) - x)*associatedLaguerrePolynomial(x,n-1,m) - ((n-1)+std::fabs(m))*associatedLaguerrePolynomial(x,n-2,m))/((double)n);
     }
-
     //return (n==0) ? 1 : (1 - x + std::fabs(m));
 }
 
