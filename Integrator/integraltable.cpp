@@ -59,14 +59,14 @@ bool IntegralTable::readTableFromFile(std::string fileName) {
 void IntegralTable::createTwoBodyTable(std::string  fileName,
                                        int          type,
                                        int          numberOfBasisFunctions,
-                                       int          numberOfIntegrationPoints) {
+                                       int          numberOfIntegrationPoints,
+                                       MonteCarloIntegrator integrator) {
 
     std::string          tableFileName              = fileName;
     IntegralTable        table;
 
-    table.readTableFromFile("../Integrator/IntegralTables/coulomb2.dat");
-    MonteCarloIntegrator MCInt;
-    MCInt.setOrbital(new HarmonicOscillator2D());
+    //table.readTableFromFile("../Integrator/IntegralTables/coulomb2.dat");
+    table.readTableFromFile("../IntegralTables/coulomb2.dat");
     clock_t startTime = clock();
 
     for (int p=0; p<numberOfBasisFunctions; p++) {
@@ -82,7 +82,7 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
         int m4 = allQuantumNumbers[7];
         if ((m1+m2)==(m3+m4)) {
             clock_t integralStart = clock();
-            double I = MCInt.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
+            double I = integrator.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
             clock_t integralFinish = clock();
             double integralTime = (integralFinish-integralStart) / ((double) CLOCKS_PER_SEC);
             double elapsedTime  = (integralFinish-startTime)     / ((double) CLOCKS_PER_SEC);

@@ -16,8 +16,21 @@ using std::endl;
 
 int main() {
     IntegralTable table;
-    table.createTwoBodyTable("../IntegralTables/test.dat", 0, 10); // HarmOsci_2D
-  //table.createTwoBodyTable("../IntegralTables/test.dat", 1, basisSize); // Hydrogen_3D
+    MonteCarloIntegrator integrator;
+    integrator.setOrbital(new HarmonicOscillator2D());
+    integrator.setOrbital(new Hydrogen3D());
+
+
+    cout << Orbital::associatedLaguerrePolynomial(1,2,1) << endl;
+    return 1;
+    //table.createTwoBodyTable("../IntegralTables/test2.dat", 0, 10, integrator);
+
+    for (int i=0; i<5; i++) {
+        int qm [] = {i,i};
+        int* allQm = Orbital::generateQuantumNumbers(qm, 1, 1);
+        double I = integrator.integrateOne(allQm, (int) 5e7);
+        cout << "i:" << i << ", I=" << I << endl;
+    }
 
     return 0;
 }
