@@ -1,7 +1,6 @@
 #include "hydrogen3d.h"
 #include <cmath>
 
-using Orbital::factorial;
 using std::sqrt;
 using std::exp;
 

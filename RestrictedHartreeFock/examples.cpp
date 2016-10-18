@@ -6,7 +6,8 @@ using std::cout;
 using std::endl;
 
 int Examples::twoDimensionalQuantumDot() {
-    int nrOfParticles = 2;
+
+    int nrOfParticles = 6;
     int nrOfSpinOrbitals = 12;
 
     arma::vec oneBodyElements = arma::zeros<arma::vec>(nrOfSpinOrbitals/2);

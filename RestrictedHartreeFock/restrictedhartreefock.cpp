@@ -107,7 +107,10 @@ void RestrictedHartreeFock::printInfo() {
         cout << "SCF did not converge to the given precision" << endl;
         cout << "E_rhf: " << std::setprecision(-std::log10(m_convergencePrecision)) << m_HartreeFockEnergy << endl;
     }
+
     cout << endl;
+
+    //cout << m_U << endl;
 
 }
 

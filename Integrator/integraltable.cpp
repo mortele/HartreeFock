@@ -52,6 +52,7 @@ bool IntegralTable::readTableFromFile(std::string fileName) {
         inputIntegral(i, j, k, l, integral);
     }
     inFile.close();
+    cout << "Loaded file from: " << fileName << endl;
     return true;
 }
 
@@ -62,6 +63,8 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
 
     std::string          tableFileName              = fileName;
     IntegralTable        table;
+
+    table.readTableFromFile("../Integrator/IntegralTables/coulomb2.dat");
     MonteCarloIntegrator MCInt;
     MCInt.setOrbital(new HarmonicOscillator2D());
     clock_t startTime = clock();
@@ -70,13 +73,14 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
     for (int q=0; q<numberOfBasisFunctions; q++) {
     for (int r=0; r<numberOfBasisFunctions; r++) {
     for (int s=0; s<numberOfBasisFunctions; s++) {
+        if (p>5 || q>5 || r>5 || s>5) {
         int quantumNumbers [] = {p,q,r,s};
         int* allQuantumNumbers = Orbital::generateQuantumNumbers(quantumNumbers, 2, type);
-        /*int m1 = allQuantumNumbers[1];
+        int m1 = allQuantumNumbers[1];
         int m2 = allQuantumNumbers[3];
         int m3 = allQuantumNumbers[5];
         int m4 = allQuantumNumbers[7];
-        if ((m1+m2)==(m3+m4)) {*/
+        if ((m1+m2)==(m3+m4)) {
             clock_t integralStart = clock();
             double I = MCInt.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
             clock_t integralFinish = clock();
@@ -86,8 +90,8 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
             cout << "(p,q,r,s): " << p << ", " << q << ", " << r << ", " << s
                  << ": " << I << "  integral time: " << integralTime
                  << "  elapsed time: " << elapsedTime << endl;
-            //}
-        }}
+            }
+        }}}
         table.printTableToFile(tableFileName);
         cout << "Table dumped to file: " << tableFileName << endl;
     }}

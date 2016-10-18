@@ -16,8 +16,8 @@ using std::endl;
 
 int main() {
     IntegralTable table;
-  //table.createTwoBodyTable("../IntegralTables/test.dat", 0, 3); // HarmOsci_2D
-    table.createTwoBodyTable("../IntegralTables/test.dat", 1, 3); // Hydrogen_3D
+    table.createTwoBodyTable("../IntegralTables/test.dat", 0, 10); // HarmOsci_2D
+  //table.createTwoBodyTable("../IntegralTables/test.dat", 1, basisSize); // Hydrogen_3D
 
     return 0;
 }

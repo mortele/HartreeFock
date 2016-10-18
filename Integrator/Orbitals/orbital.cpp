@@ -41,6 +41,22 @@ int* Orbital::mapToOrbitals(int p, int type) {
                 quantumNumbers[0] = 0;
                 quantumNumbers[1] = 2;
                 break;
+            case 6:
+                quantumNumbers[0] = 0;
+                quantumNumbers[1] = -3;
+                break;
+            case 7:
+                quantumNumbers[0] = 1;
+                quantumNumbers[1] = -2;
+                break;
+            case 8:
+               quantumNumbers[0] = 1;
+               quantumNumbers[1] = 2;
+                break;
+            case 9:
+                quantumNumbers[0] = 0;
+                quantumNumbers[1] = 3;
+                break;
             default:
                 cout << "Invalid orbital <" << p << ">." << endl;
                 break;
@@ -136,7 +152,16 @@ int Orbital::factorial(int n) {
 double Orbital::associatedLaguerrePolynomial(   double x,
                                                 int    n,
                                                 int    m) {
-    return (n==0) ? 1 : (1 - x + std::fabs(m));
+
+    if(n == 0) {
+        return 1.0;
+    } else if(n == 1) {
+        return 1 - x + std::fabs(m);
+    } else {
+        return ((2*n+1 + std::fabs(m) - x)*associatedLaguerrePolynomial(x,n,m) - (n+std::fabs(m))*associatedLaguerrePolynomial(x,n-1,m))/(n+1);
+    }
+
+    //return (n==0) ? 1 : (1 - x + std::fabs(m));
 }
 
 double Orbital::integrandOne(double*, int*) {
