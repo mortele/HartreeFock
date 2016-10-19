@@ -91,6 +91,51 @@ int* Orbital::mapToOrbitals(int p, int type) {
                 quantumNumbers[1] = 1;
                 quantumNumbers[2] = 1;
                 break;
+            case 5:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 0;
+                quantumNumbers[2] = 0;
+                break;
+            case 6:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 1;
+                quantumNumbers[2] = -1;
+                break;
+            case 7:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 1;
+                quantumNumbers[2] = 0;
+                break;
+            case 8:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 1;
+                quantumNumbers[2] = 1;
+                break;
+            case 9:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 2;
+                quantumNumbers[2] = -2;
+                break;
+            case 10:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 2;
+                quantumNumbers[2] = -1;
+                break;
+            case 11:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 2;
+                quantumNumbers[2] = 0;
+                break;
+            case 12:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 2;
+                quantumNumbers[2] = 1;
+                break;
+            case 13:
+                quantumNumbers[0] = 3;
+                quantumNumbers[1] = 2;
+                quantumNumbers[2] = 2;
+                break;
             default:
                 cout << "Invalid orbital <" << p << ">." << endl;
                 break;
@@ -168,5 +213,8 @@ double Orbital::integrandOne(double*, int*) {
 
 double Orbital::integrandTwo(double*, int*) {
     return 1.;
+}
+
+void Orbital::updateCoordinateScales(int* allQuantumNumbers, int numberOfQuantumNumbers) {
 }
 

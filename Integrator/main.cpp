@@ -16,19 +16,23 @@ using std::cout;
 using std::endl;
 
 int main() {
-    IntegralTable table;
-    MonteCarloIntegrator integrator;
-    integrator.setOrbital(new HarmonicOscillator2D());
-    integrator.setOrbital(new Hydrogen3D());
-    //std::string fileName = "../Integrator/IntegralTables/test2.dat";
-    //table.createTwoBodyTable(fileName, 0, 10, (int) 1e7, integrator);
 
-    for (int i=0; i<5; i++) {
+    IntegralTable           table;
+    MonteCarloIntegrator    integrator;
+    std::string             fileName    = "../IntegralTables/Hydrogen_3d_6.dat";
+    integrator.setOrbital(new Hydrogen3D());
+    table.createTwoBodyTable(fileName, 1, 6, (int) 1e7, integrator);
+
+    /*
+    for (int i=9; i<10; i++) {
         int qm [] = {i,i};
         int* allQm = Orbital::generateQuantumNumbers(qm, 1, 1);
-        double I = integrator.integrateOne(allQm, (int) 5e7);
-        cout << "i:" << i << ", I=" << std::setprecision(10) <<  I << endl;
-    }
+        integrator.updateCoordinateScales(allQm, 6);
+        double I = integrator.integrateOne(allQm, (int) 1e8);
+        cout << "i:" << i << ", I=" << std::setprecision(10) <<  I
+             << ",  std.dev: " << integrator.getStandardDeviation()
+             << "     norm:    " << 1/std::sqrt(I) << endl;
+    }*/
 
     return 0;
 }

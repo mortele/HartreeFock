@@ -57,6 +57,11 @@ double MonteCarloIntegrator::integrateTwo(int* allQuantumNumbers,
     return m_integral;
 }
 
+void MonteCarloIntegrator::updateCoordinateScales(int* allQuantumNumbers,
+                                                  int numberOfQuantumNumbers) {
+    m_orbital->updateCoordinateScales(allQuantumNumbers, numberOfQuantumNumbers);
+}
+
 double MonteCarloIntegrator::integrateOne(int* allQuantumNumbers,
                                           int  integrationPoints) {
     int     totalNumberOfCoordinates    = m_dimensions;

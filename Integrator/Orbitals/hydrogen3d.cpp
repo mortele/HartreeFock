@@ -59,17 +59,37 @@ double Hydrogen3D::solidHarmonics(int    l,
     }
 }
 
-double Hydrogen3D::normalizationFuckyou(int n, int l, int m) {
+double Hydrogen3D::normalization(int n, int l, int m) {
     if (n==1 && l==0 && m==0) {
-        return 0.5649962508;
+        return 0.5641718413;
     } else if (n==2 && l==0 && m==0) {
-        return 0.1688239718;
+        return 0.09972601571;
     } else if (n==2 && l==1 && m==-1) {
-        return 0.1333304270;
+        return 0.09976101671;
     } else if (n==2 && l==1 && m==0) {
-        return 0.1333554923;
+        return 0.09972977957;
     } else if (n==2 && l==1 && m==1) {
-        return 0.1333431517;
+        return 0.09972259164;
+    } else if (n==3 && l==0 && m==0) {
+        return 0.03619545492;
+    } else if (n==3 && l==1 && m==-1) {
+        return 0.009675197503;
+    } else if (n==3 && l==1 && m==0) {
+        return 0.009670842141;
+    } else if (n==3 && l==1 && m==1) {
+        return 0.009672302328;
+    } else if (n==3 && l==2 && m==-2) {
+        return 0.005687606665;
+    } else if (n==3 && l==2 && m==-1) {
+        return 0.00568748345;
+    } else if (n==3 && l==2 && m==0) {
+        return 0.005687948022;
+    } else if (n==3 && l==2 && m==1) {
+        return 0.005687113449;
+    } else if (n==3 && l==2 && m==2) {
+        return 0.005687235524;
+    } else {
+        return 1;
     }
 }
 
@@ -83,19 +103,13 @@ double Hydrogen3D::computeWavefunction(double*  coordinates,
     const int l = quantumNumbers[1];
     const int m = quantumNumbers[2];
 
-    const double n1 = 2./n;
-    const double n2 = factorial(n-l-1);
-    const double n3 = 2*n;
-    const double n4 = factorial(n+l);
-    const double normalization  = normalizationFuckyou(n,l,m);//sqrt(n1*n1*n1 * n2 / (n3*n4*n4*n4));
-    const double power          = pow((2./n), l);
+    const double norm           = normalization(n,l,m);
     const double exponential    = exp(-r/((double) n));
     const double solid          = solidHarmonics(l,m,r,theta,phi);
     const double laguerre       = Orbital::associatedLaguerrePolynomial(2*r/((double) n),
                                                                         n-l-1,
                                                                         2*l-1);
-    //cout << normalization << "," << exponential << "," << solid << "," << laguerre << endl;
-    return normalization * exponential * solid * laguerre;
+    return norm * exponential * solid * laguerre;
 }
 
 double Hydrogen3D::integrandOne(double* allCoordinates, int* allQuantumNumbers) {
@@ -109,6 +123,24 @@ double Hydrogen3D::integrandOne(double* allCoordinates, int* allQuantumNumbers) 
     return integrand;
 }
 
+double Hydrogen3D::integrandTwo(double* allCoordinates, int* allQuantumNumbers) {
+    const double r1                   = allCoordinates[0];
+    const double theta1               = allCoordinates[1];
+    const double r2                   = allCoordinates[3];
+    const double theta2               = allCoordinates[4];
+    const double integrationMeasure   = r1*r1*sin(theta1) * r2*r2*sin(theta2);
+    const double r12                  = sqrt(r1*r1 + r2*r2 - 2*r1*r2*cos(theta2-theta1));
+    const double oneOverR12           = r12 < 1e-12 ? 0 : 1./r12;
+
+    const double waveFunction1 = computeWavefunction(allCoordinates,   allQuantumNumbers);
+    const double waveFunction2 = computeWavefunction(allCoordinates+3, allQuantumNumbers+3);
+    const double waveFunction3 = computeWavefunction(allCoordinates,   allQuantumNumbers+6);
+    const double waveFunction4 = computeWavefunction(allCoordinates+3, allQuantumNumbers+9);
+    const double integrand     = integrationMeasure * waveFunction1 * waveFunction2 *
+                                 oneOverR12         * waveFunction3 * waveFunction4;
+    return integrand;
+}
+
 double*Hydrogen3D::getCoordinateScales() {
     double* scales = new double[3];
     scales[0] = m_rMax;
@@ -116,3 +148,33 @@ double*Hydrogen3D::getCoordinateScales() {
     scales[2] = m_phiMax;
     return scales;
 }
+
+void Hydrogen3D::updateCoordinateScales(int* allQuantumNumbers,
+                                        int  numberOfQuantumNumbers) {
+    int nMax = 0;
+    int lMax = 0;
+    for (int i=0; i<numberOfQuantumNumbers; i+=3) {
+        if (allQuantumNumbers[i] >= nMax) {
+            nMax = allQuantumNumbers[i];
+            if (allQuantumNumbers[i+1] > lMax) {
+                lMax = allQuantumNumbers[i+1];
+            }
+        }
+    }
+    if (nMax==1) {
+        m_rMax = 12;
+    } else if (nMax==2) {
+        m_rMax = 16;
+    } else if (nMax==3) {
+        m_rMax = 35;
+    } else {
+        m_rMax = 12;
+    }
+}
+
+
+
+
+
+
+

@@ -23,6 +23,8 @@ public:
                              int  integrationPoints=(int)1e7);
     double integrateTwo     (int* allQuantumNumbers,
                              int  integrationPoints=(int)1e7);
+    void   updateCoordinateScales(int* allQuantumNumbers,
+                                  int  numberOfQuantumNumbers);
 
     double getVariance()          { return m_variance; }
     double getStandardDeviation() { return m_standardDeviation; }

@@ -75,7 +75,7 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
     std::string          tableFileName              = fileName;
     IntegralTable        table;
 
-    table.readTableFromFile("../Integrator/IntegralTables/HO_2d_10_nonzero.dat");
+    //table.readTableFromFile("../Integrator/IntegralTables/HO_2d_10_nonzero.dat");
     //table.readTableFromFile("../IntegralTables/coulomb2.dat");
     clock_t startTime = clock();
 
@@ -83,30 +83,30 @@ void IntegralTable::createTwoBodyTable(std::string  fileName,
     for (int q=0; q<numberOfBasisFunctions; q++) {
     for (int r=0; r<numberOfBasisFunctions; r++) {
     for (int s=0; s<numberOfBasisFunctions; s++) {
-        if (p==8 || p==9 ||
-            q==8 || q==9 ||
-            r==8 || r==9 ||
-            s==8 || s==9) {
         int quantumNumbers [] = {p,q,r,s};
         int* allQuantumNumbers = Orbital::generateQuantumNumbers(quantumNumbers, 2, type);
-        int m1 = allQuantumNumbers[1];
+
+        /*int m1 = allQuantumNumbers[1];
         int m2 = allQuantumNumbers[3];
         int m3 = allQuantumNumbers[5];
         int m4 = allQuantumNumbers[7];
-        if ((m1+m2)==(m3+m4)) {
+        if ((m1+m2)==(m3+m4)) {*/
+
             clock_t integralStart = clock();
             double I = integrator.integrateTwo(allQuantumNumbers, numberOfIntegrationPoints);
             clock_t integralFinish = clock();
             double integralTime = (integralFinish-integralStart) / ((double) CLOCKS_PER_SEC);
             double elapsedTime  = (integralFinish-startTime)     / ((double) CLOCKS_PER_SEC);
-            table.removeIntegral(p,q,r,s);
+            //table.removeIntegral(p,q,r,s);
             table.inputIntegral(p,q,r,s,I);
             cout << "(p,q,r,s): " << p << ", " << q << ", " << r << ", " << s
-                 << ": " << I << "  integral time: " << integralTime
-                 << "  elapsed time: " << elapsedTime << endl;
-            }
-        }}}
+                 << ": "                << I
+                 << "  std.dev.: "      << integrator.getStandardDeviation()
+                 << "  integral time: " << integralTime
+                 << "  elapsed time: "  << elapsedTime << endl;
+
+        }
         table.printTableToFile(tableFileName);
         cout << "Table dumped to file: " << tableFileName << endl;
-    }}
+    }}}
 }

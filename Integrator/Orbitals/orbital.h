@@ -12,6 +12,7 @@ public:
                                 int*    allQuantumNumbers);
     virtual double integrandTwo(double* allCoordinates,
                                 int*    allQuantumNumbers);
+    virtual void updateCoordinateScales(int* allQuantumNumbers, int numberOfQuantumNumbers);
     static int* mapToOrbitals(int p, int type);
     static int* generateQuantumNumbers(int* indices, int oneBodyOrTwoBody, int type);
 
