@@ -1,6 +1,7 @@
 #include "contractedgaussian.h"
 
-
+using arma::vec;
+using std::vector;
 
 ContractedGaussian::ContractedGaussian(vec nucleusPosition) :
         m_numberOfPrimitives(0),

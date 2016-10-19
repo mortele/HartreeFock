@@ -11,8 +11,14 @@ LIBS += -L/usr/local/lib -larmadillo -llapack -lblas
 
 SOURCES += main.cpp \
     gaussianprimitive.cpp \
-    contractedgaussian.cpp
+    contractedgaussian.cpp \
+    gaussianintegrator.cpp \
+    overlapintegrator.cpp \
+    hermitegaussian.cpp
 
 HEADERS += \
     gaussianprimitive.h \
-    contractedgaussian.h
+    contractedgaussian.h \
+    gaussianintegrator.h \
+    overlapintegrator.h \
+    hermitegaussian.h
