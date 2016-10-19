@@ -10,7 +10,9 @@ public:
     void setAnalyticOneBodyElements(arma::vec oneBodyElements);
     void setAnalyticOneBodyElements(arma::mat oneBodyElements);
     void setOverLapMatrix(arma::mat overLap);
+    void setMaximumIterations(int maximum);
     bool setIntegralTable(std::string fileName);
+
 
 private:
 

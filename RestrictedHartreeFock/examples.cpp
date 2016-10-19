@@ -42,3 +42,31 @@ int Examples::twoDimensionalQuantumDot() {
     return 0;
 
 }
+
+int Examples::HydrogenAtom() {
+
+    int nrOfParticles = 2;
+    int nrOfSpinOrbitals = 12;
+
+    arma::vec oneBodyElements = arma::zeros<arma::vec>(nrOfSpinOrbitals/2);
+
+    double Z = nrOfParticles;
+    for (int i=0; i<nrOfSpinOrbitals/2; i++) {
+        if (i==0) {
+            oneBodyElements(i) = -Z*Z/(2* 1*1);
+        } else if (i>=1 && i<=4) {
+            oneBodyElements(i) = -Z*Z/(2* 2*2);
+        } else if (i>=5 && i<=13) {
+            oneBodyElements(i) = -Z*Z/(2* 3*3);
+        }
+    }
+
+    RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
+    rhf->setMaximumIterations(100);
+    rhf->setAnalyticOneBodyElements(oneBodyElements);
+    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/Hydrogen_3d_6.dat");
+    if (tableLoaded) {
+        rhf->computeSolutionBySCF();
+    }
+    return 0;
+}

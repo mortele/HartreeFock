@@ -6,7 +6,8 @@
 using namespace std;
 
 int main() {
-    Examples::twoDimensionalQuantumDot();
+    //Examples::twoDimensionalQuantumDot();
+    Examples::HydrogenAtom();
     return 0;
 }
 

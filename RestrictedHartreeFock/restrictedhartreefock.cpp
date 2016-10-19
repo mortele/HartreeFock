@@ -51,6 +51,10 @@ void RestrictedHartreeFock::setOverLapMatrix(arma::mat overLap) {
     m_S = overLap;
 }
 
+void RestrictedHartreeFock::setMaximumIterations(int maximum) {
+    m_MAX_ITERS = maximum;
+}
+
 void RestrictedHartreeFock::computeSolutionBySCF() {
 
     computeDensityMatrix();
