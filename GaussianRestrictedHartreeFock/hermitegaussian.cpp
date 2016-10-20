@@ -48,6 +48,16 @@ void HermiteGaussian::set(GaussianPrimitive& primitive1,
     computeCoefficients();
 }
 
+double HermiteGaussian::getCoefficientDimension(int i, int j, int dimension) {
+    if (dimension == 0) {
+        return getCoefficientX(i,j);
+    } else if (dimension == 1) {
+        return getCoefficientY(i,j);
+    } else if (dimension == 2) {
+        return getCoefficientZ(i,j);
+    }
+}
+
 bool HermiteGaussian::isCoefficientNonZero(int t, int i, int j) {
     if (t < 0 || t > i+j || i < 0 || j < 0) {
         return false;

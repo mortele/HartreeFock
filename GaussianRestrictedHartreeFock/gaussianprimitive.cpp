@@ -93,7 +93,7 @@ int GaussianPrimitive::getExponentDimension(int dimension) const {
     if (dimension==0) {
         return xExponent();
     } else if (dimension==1) {
-        return zExponent();
+        return yExponent();
     } else if (dimension==2) {
         return zExponent();
     }
