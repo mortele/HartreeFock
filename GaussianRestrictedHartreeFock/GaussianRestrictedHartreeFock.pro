@@ -15,7 +15,9 @@ SOURCES += main.cpp \
     gaussianintegrator.cpp \
     overlapintegrator.cpp \
     hermitegaussian.cpp \
-    kineticintegrator.cpp
+    kineticintegrator.cpp \
+    coulombnucleusintegrator.cpp \
+    hermitegaussianintegral.cpp
 
 HEADERS += \
     gaussianprimitive.h \
@@ -23,4 +25,6 @@ HEADERS += \
     gaussianintegrator.h \
     overlapintegrator.h \
     hermitegaussian.h \
-    kineticintegrator.h
+    kineticintegrator.h \
+    coulombnucleusintegrator.h \
+    hermitegaussianintegral.h
