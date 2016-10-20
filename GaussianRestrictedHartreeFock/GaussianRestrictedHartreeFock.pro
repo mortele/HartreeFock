@@ -14,11 +14,13 @@ SOURCES += main.cpp \
     contractedgaussian.cpp \
     gaussianintegrator.cpp \
     overlapintegrator.cpp \
-    hermitegaussian.cpp
+    hermitegaussian.cpp \
+    kineticintegrator.cpp
 
 HEADERS += \
     gaussianprimitive.h \
     contractedgaussian.h \
     gaussianintegrator.h \
     overlapintegrator.h \
-    hermitegaussian.h
+    hermitegaussian.h \
+    kineticintegrator.h

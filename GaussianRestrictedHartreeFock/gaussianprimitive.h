@@ -22,7 +22,12 @@ public:
     void setCoefficient(double coefficient);
     double evaluate(arma::vec& r);
     static GaussianPrimitive product(GaussianPrimitive& primitive1, GaussianPrimitive& primitive2);
+    void adjustExponentX(int increment);
+    void adjustExponentY(int increment);
+    void adjustExponentZ(int increment);
+    void adjustExponentDimension(int increment, int dimension);
 
+    int         getExponentDimension(int dimension) const;
     double      exponent()                  const { return m_exponent;  }
     int         xExponent()                 const { return m_xExponent; }
     int         yExponent()                 const { return m_yExponent; }

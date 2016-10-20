@@ -1,6 +1,7 @@
 #include <iostream>
 #include "gaussianprimitive.h"
 #include "overlapintegrator.h"
+#include "kineticintegrator.h"
 #include "hermitegaussian.h"
 
 using std::cout;
@@ -24,8 +25,8 @@ int main(int, char**) {
     GaussianPrimitive primitive1 = GaussianPrimitive(x1,y1,z1, 1,   A);
     GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 3.1, B);
 
-    OverlapIntegrator integrator;
-
+    //OverlapIntegrator integrator;
+    KineticIntegrator integrator;
     cout << integrator.computeIntegral(primitive1, primitive2) << endl;
 
 
