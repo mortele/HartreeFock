@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     hermitegaussian.cpp \
     kineticintegrator.cpp \
     coulombnucleusintegrator.cpp \
-    hermitegaussianintegral.cpp
+    hermitegaussianintegral.cpp \
+    boysfunction.cpp
 
 HEADERS += \
     gaussianprimitive.h \
@@ -27,4 +28,5 @@ HEADERS += \
     hermitegaussian.h \
     kineticintegrator.h \
     coulombnucleusintegrator.h \
-    hermitegaussianintegral.h
+    hermitegaussianintegral.h \
+    boysfunction.h

@@ -12,8 +12,8 @@ private:
 
 public:
     HermiteGaussianIntegral();
-    setupCoefficients(GaussianPrimitive& primitive1,
-                      GaussianPrimitive& primitive2,
-                      arma::vec          nucleusPosition);
+    void setupCoefficients(GaussianPrimitive& primitive1,
+                           GaussianPrimitive& primitive2,
+                           arma::vec          nucleusPosition);
 };
 

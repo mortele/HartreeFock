@@ -2,6 +2,7 @@
 
 using arma::cube;
 using arma::zeros;
+using arma::vec;
 
 HermiteGaussianIntegral::HermiteGaussianIntegral() :
         m_t(0),
@@ -11,9 +12,9 @@ HermiteGaussianIntegral::HermiteGaussianIntegral() :
         m_coefficients(zeros<cube>(5,5,5)) {
 }
 
-HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
-                                           GaussianPrimitive& primitive2,
-                                           arma::vec nucleusPosition) {
+void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
+                                                GaussianPrimitive& primitive2,
+                                                vec nucleusPosition) {
     m_nucleusPosition = nucleusPosition;
     double  alpha   = primitive1.exponent();
     double  beta    = primitive2.exponent();

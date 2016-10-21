@@ -1,13 +1,17 @@
 #include <iostream>
+#include <iomanip>
 #include "gaussianprimitive.h"
 #include "overlapintegrator.h"
 #include "kineticintegrator.h"
 #include "hermitegaussian.h"
+#include "boysfunction.h"
 
 using std::cout;
 using std::endl;
+using std::setprecision;
 using arma::vec;
 using arma::zeros;
+
 
 int main(int, char**) {
 
@@ -27,7 +31,10 @@ int main(int, char**) {
 
     //OverlapIntegrator integrator;
     KineticIntegrator integrator;
-    cout << integrator.computeIntegral(primitive1, primitive2) << endl;
+    //cout << integrator.computeIntegral(primitive1, primitive2) << endl;
+
+    BoysFunction boys;
+    cout << setprecision(15) << boys.directIntegration(1.0,0) << endl;
 
 
 
