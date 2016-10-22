@@ -1,7 +1,7 @@
 #pragma once
 #include <armadillo>
 #include <iostream>
-#include "hermitegaussian.h"
+#include "Factorizations/hermitegaussian.h"
 
 
 class CoulombNucleusIntegrator {

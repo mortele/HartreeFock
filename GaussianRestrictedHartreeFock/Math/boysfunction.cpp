@@ -1,4 +1,4 @@
-#include "boysfunction.h"
+#include "Math/boysfunction.h"
 #include <cmath>
 
 double BoysFunction::directIntegration(double x, double n) {

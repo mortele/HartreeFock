@@ -1,4 +1,4 @@
-#include "gaussianprimitive.h"
+#include "Orbitals/gaussianprimitive.h"
 #include <cmath>
 
 using std::pow;

@@ -1,6 +1,6 @@
 #pragma once
 #include <armadillo>
-#include "gaussianprimitive.h"
+#include "Orbitals/gaussianprimitive.h"
 
 class HermiteGaussianIntegral {
 private:

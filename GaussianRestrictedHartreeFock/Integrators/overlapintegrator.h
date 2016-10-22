@@ -1,6 +1,6 @@
 #pragma once
-#include "gaussianprimitive.h"
-#include "hermitegaussian.h"
+#include "Orbitals/gaussianprimitive.h"
+#include "Factorizations/hermitegaussian.h"
 
 class OverlapIntegrator {
 private:

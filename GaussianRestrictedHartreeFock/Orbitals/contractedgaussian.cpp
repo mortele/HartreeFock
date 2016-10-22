@@ -1,4 +1,4 @@
-#include "contractedgaussian.h"
+#include "Orbitals/contractedgaussian.h"
 
 using arma::vec;
 using std::vector;

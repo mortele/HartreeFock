@@ -1,10 +1,10 @@
 #include <iostream>
 #include <iomanip>
-#include "gaussianprimitive.h"
-#include "overlapintegrator.h"
-#include "kineticintegrator.h"
-#include "hermitegaussian.h"
-#include "boysfunction.h"
+#include "Orbitals/gaussianprimitive.h"
+#include "Integrators/overlapintegrator.h"
+#include "Integrators/kineticintegrator.h"
+#include "Factorizations/hermitegaussian.h"
+#include "Math/boysfunction.h"
 
 using std::cout;
 using std::endl;

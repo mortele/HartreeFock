@@ -1,6 +1,6 @@
-#include "kineticintegrator.h"
-#include "overlapintegrator.h"
-#include "gaussianprimitive.h"
+#include "Integrators/kineticintegrator.h"
+#include "Integrators/overlapintegrator.h"
+#include "Orbitals/gaussianprimitive.h"
 
 using arma::zeros;
 using arma::mat;

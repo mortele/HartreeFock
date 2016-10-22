@@ -1,4 +1,4 @@
-#include "hermitegaussianintegral.h"
+#include "Factorizations/hermitegaussianintegral.h"
 
 using arma::cube;
 using arma::zeros;

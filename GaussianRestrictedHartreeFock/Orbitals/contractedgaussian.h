@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <armadillo>
-#include "gaussianprimitive.h"
+#include "Orbitals/gaussianprimitive.h"
 
 class ContractedGaussian {
 private:

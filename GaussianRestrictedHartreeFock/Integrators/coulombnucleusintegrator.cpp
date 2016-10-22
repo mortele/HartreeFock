@@ -1,4 +1,4 @@
-#include "coulombnucleusintegrator.h"
+#include "Integrators/coulombnucleusintegrator.h"
 
 using arma::vec;
 using arma::zeros;

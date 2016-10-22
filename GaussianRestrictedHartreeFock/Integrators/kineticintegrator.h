@@ -1,7 +1,7 @@
 #pragma once
 #include <armadillo>
-#include "overlapintegrator.h"
-#include "gaussianprimitive.h"
+#include "Integrators/overlapintegrator.h"
+#include "Orbitals/gaussianprimitive.h"
 
 
 class KineticIntegrator {

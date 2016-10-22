@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <contractedgaussian.h>
+#include "Orbitals/contractedgaussian.h"
 
 
 class GaussianIntegrator {

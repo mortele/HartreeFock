@@ -10,23 +10,23 @@ INCLUDEPATH += /usr/local/include
 LIBS += -L/usr/local/lib -larmadillo -llapack -lblas
 
 SOURCES += main.cpp \
-    gaussianprimitive.cpp \
-    contractedgaussian.cpp \
-    gaussianintegrator.cpp \
-    overlapintegrator.cpp \
-    hermitegaussian.cpp \
-    kineticintegrator.cpp \
-    coulombnucleusintegrator.cpp \
-    hermitegaussianintegral.cpp \
-    boysfunction.cpp
+    Factorizations/hermitegaussian.cpp \
+    Factorizations/hermitegaussianintegral.cpp \
+    Integrators/coulombnucleusintegrator.cpp \
+    Integrators/gaussianintegrator.cpp \
+    Integrators/kineticintegrator.cpp \
+    Integrators/overlapintegrator.cpp \
+    Math/boysfunction.cpp \
+    Orbitals/contractedgaussian.cpp \
+    Orbitals/gaussianprimitive.cpp
 
 HEADERS += \
-    gaussianprimitive.h \
-    contractedgaussian.h \
-    gaussianintegrator.h \
-    overlapintegrator.h \
-    hermitegaussian.h \
-    kineticintegrator.h \
-    coulombnucleusintegrator.h \
-    hermitegaussianintegral.h \
-    boysfunction.h
+    Factorizations/hermitegaussian.h \
+    Factorizations/hermitegaussianintegral.h \
+    Integrators/coulombnucleusintegrator.h \
+    Integrators/gaussianintegrator.h \
+    Integrators/kineticintegrator.h \
+    Integrators/overlapintegrator.h \
+    Math/boysfunction.h \
+    Orbitals/contractedgaussian.h \
+    Orbitals/gaussianprimitive.h
