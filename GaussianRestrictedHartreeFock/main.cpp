@@ -22,7 +22,7 @@ int main(int, char**) {
     vec B       = {0,0,1};
     vec nucleus = {0,1,0};
 
-    int x1 = 0;
+    int x1 = 1;
     int y1 = 1;
     int z1 = 6;
 

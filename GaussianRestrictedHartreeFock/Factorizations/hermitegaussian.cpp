@@ -1,6 +1,7 @@
 #include "Factorizations/hermitegaussian.h"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 
 using std::max;
@@ -62,8 +63,9 @@ double HermiteGaussian::getCoefficientDimension(int i, int j, int k, int dimensi
     return m_coefficients[dimension](i,j,k);
 }
 
-bool HermiteGaussian::isCoefficientNonZero(int t, int i, int j) {
-    if (t < 0 || t > i+j || i < 0 || j < 0) {
+bool HermiteGaussian::isCoefficientNonZero(int i, int j, int t) {
+    if (t < 0 || t > (i+j) || i < 0 || j < 0) {
+        cout << "test:false -- " << t << "," << i << "," << j << endl;
         return false;
     } else {
         return true;

@@ -46,9 +46,8 @@ double CoulombNucleusIntegrator::computeIntegral(GaussianPrimitive& primitive1,
                 double Eproduct = 1;
                 Eproduct *= m_hermiteGaussian.getCoefficientDimension(x1,x2,t,0);
                 Eproduct *= m_hermiteGaussian.getCoefficientDimension(y1,y2,u,1);
-                Eproduct *= m_hermiteGaussian.getCoefficientDimension(z1,z2,u,2);
+                Eproduct *= m_hermiteGaussian.getCoefficientDimension(z1,z2,v,2);
                 integral += Eproduct * m_hermiteGaussianIntegral.getCoefficient(0,t,u,v);
-                cout << "tuv=" << t << "," << u << "," << v << ": " << Eproduct << endl;
             }
         }
     }
