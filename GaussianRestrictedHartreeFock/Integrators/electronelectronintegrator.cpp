@@ -72,12 +72,12 @@ double ElectronElectronIntegrator::computeIntegral(GaussianPrimitive& primitive1
 
     double integral = 0;
 
-    for (int t = 1; t < tuvLimits[0]; t++) {
-        for (int u = 1; u < tuvLimits[1]; u++) {
-            for (int v = 1; v < tuvLimits[2]; v++) {
-                for (int t_ = 1; t_ < tuvLimits[3]; t_++) {
-                    for (int u_ = 1; u_ < tuvLimits[4]; u_++) {
-                        for (int v_ = 1; v_ < tuvLimits[5]; v_++) {
+    for (int t = 0; t < tuvLimits[0]; ++t) {
+        for (int u = 0; u < tuvLimits[1]; ++u) {
+            for (int v = 0; v < tuvLimits[2]; ++v) {
+                for (int t_ = 0; t_ < tuvLimits[3]; ++t_) {
+                    for (int u_ = 0; u_ < tuvLimits[4]; ++u_) {
+                        for (int v_ = 0; v_ < tuvLimits[5]; ++v_) {
                             double Eproduct = 1;
                             Eproduct *= m_hermiteGaussian12.getCoefficientDimension(x1,x2,t,0);
                             Eproduct *= m_hermiteGaussian12.getCoefficientDimension(y1,y2,u,1);

@@ -19,27 +19,26 @@ using arma::zeros;
 
 int main(int, char**) {
 
-    vec A       = {1,0,0};
+    vec A       = {0,0,0};
     vec B       = {0,0,1};
     vec C       = {1,0,1};
-    vec D       = {0,1,1};
-    vec nucleus = {0,1,0};
+    vec D       = {0,0,1};
 
     int x1 = 2;
     int y1 = 1;
-    int z1 = 3;
+    int z1 = 6;
 
     int x2 = 2;
     int y2 = 3;
     int z2 = 3;
 
     int x3 = 2;
-    int y3 = 0;
+    int y3 = 2;
     int z3 = 0;
 
     int x4 = 1;
-    int y4 = 1;
-    int z4 = 2;
+    int y4 = 0;
+    int z4 = 3;
 
     GaussianPrimitive primitive1 = GaussianPrimitive(x1,y1,z1, 2.0, A);
     GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 1.0, B);
@@ -50,7 +49,7 @@ int main(int, char**) {
     //KineticIntegrator integrator;
     //ElectronNucleusIntegrator integrator;
     ElectronElectronIntegrator integrator;
-    cout << setprecision(10) << integrator.computeIntegral(primitive1,
+    cout << setprecision(15) << integrator.computeIntegral(primitive1,
                                                            primitive2,
                                                            primitive3,
                                                            primitive4) << endl;
