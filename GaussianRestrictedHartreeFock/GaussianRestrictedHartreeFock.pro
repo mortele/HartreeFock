@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     Integrators/overlapintegrator.cpp \
     Math/boysfunction.cpp \
     Orbitals/contractedgaussian.cpp \
-    Orbitals/gaussianprimitive.cpp
+    Orbitals/gaussianprimitive.cpp \
+    Integrators/electronelectronintegrator.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -29,4 +30,5 @@ HEADERS += \
     Integrators/overlapintegrator.h \
     Math/boysfunction.h \
     Orbitals/contractedgaussian.h \
-    Orbitals/gaussianprimitive.h
+    Orbitals/gaussianprimitive.h \
+    Integrators/electronelectronintegrator.h

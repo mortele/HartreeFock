@@ -24,6 +24,8 @@ public:
     void setupCoefficients(GaussianPrimitive& primitive1,
                            GaussianPrimitive& primitive2,
                            arma::vec          nucleusPosition);
+    void setupCoefficients(int t, int u, int v, double p,
+                           arma::vec PC);
     double getCoefficient(int n, int t, int u, int v);
 };
 

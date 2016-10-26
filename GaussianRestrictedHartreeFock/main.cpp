@@ -5,6 +5,7 @@
 #include "Integrators/overlapintegrator.h"
 #include "Integrators/kineticintegrator.h"
 #include "Integrators/electronnucleusintegrator.h"
+#include "Integrators/electronelectronintegrator.h"
 #include "Factorizations/hermitegaussian.h"
 #include "Math/boysfunction.h"
 
@@ -20,28 +21,39 @@ int main(int, char**) {
 
     vec A       = {1,0,0};
     vec B       = {0,0,1};
-    vec nucleus = {0,1,2};
+    vec C       = {1,0,1};
+    vec D       = {0,1,1};
+    vec nucleus = {0,1,0};
 
-    int x1 = 7;
+    int x1 = 2;
     int y1 = 1;
     int z1 = 3;
 
     int x2 = 2;
-    int y2 = 5;
+    int y2 = 3;
     int z2 = 3;
 
+    int x3 = 2;
+    int y3 = 0;
+    int z3 = 0;
+
+    int x4 = 1;
+    int y4 = 1;
+    int z4 = 2;
+
     GaussianPrimitive primitive1 = GaussianPrimitive(x1,y1,z1, 2.0, A);
-    GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 13.0, B);
+    GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 1.0, B);
+    GaussianPrimitive primitive3 = GaussianPrimitive(x3,y3,z3, 3.0, C);
+    GaussianPrimitive primitive4 = GaussianPrimitive(x4,y4,z4, 0.1, D);
 
     //OverlapIntegrator integrator;
     //KineticIntegrator integrator;
-    ElectronNucleusIntegrator integrator;
-    cout << setprecision(10) << integrator.computeIntegral(primitive1, primitive2, nucleus) << endl;
-
-
-
-
-
+    //ElectronNucleusIntegrator integrator;
+    ElectronElectronIntegrator integrator;
+    cout << setprecision(10) << integrator.computeIntegral(primitive1,
+                                                           primitive2,
+                                                           primitive3,
+                                                           primitive4) << endl;
 
 
 

@@ -18,15 +18,6 @@ HermiteGaussianIntegral::HermiteGaussianIntegral() :
         m_boysFunction(BoysFunction()){
 }
 
-int HermiteGaussianIntegral::computeMaximumExponents(GaussianPrimitive& primitive1,
-                                                     GaussianPrimitive& primitive2){
-    int max = 0;
-    for (int dimension=0; dimension<3; dimension++) {
-        max = std::max(primitive1.getExponentDimension(dimension), max);
-        max = std::max(primitive2.getExponentDimension(dimension), max);
-    }
-    return max;
-}
 
 double HermiteGaussianIntegral::getCoefficient(int n, int t, int u, int v) {
     if (t >= 0 && u >= 0 && v >= 0) {
@@ -40,17 +31,9 @@ double HermiteGaussianIntegral::getCoefficient(int n, int t, int u, int v) {
 void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
                                                 GaussianPrimitive& primitive2,
                                                 vec nucleusPosition) {
-    m_t     = primitive1.xExponent() + primitive2.xExponent();
-    m_u     = primitive1.yExponent() + primitive2.yExponent();
-    m_v     = primitive1.zExponent() + primitive2.zExponent();
-    m_tuv   = m_t + m_u + m_v;
-
-    m_maxExponents  = computeMaximumExponents(primitive1, primitive2);
-    int maxIndex    = m_tuv+2;
-    m_coefficients.set_size(maxIndex);
-    for (int i=0; i<maxIndex; i++) {
-        m_coefficients(i) = zeros<cube>(maxIndex+1, maxIndex+1, maxIndex+1);
-    }
+    int t = primitive1.xExponent() + primitive2.xExponent();
+    int u = primitive1.yExponent() + primitive2.yExponent();
+    int v = primitive1.zExponent() + primitive2.zExponent();
 
     m_nucleusPosition   = nucleusPosition;
     double  alpha       = primitive1.exponent();
@@ -58,8 +41,25 @@ void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
     double  p           = alpha + beta;
     vec     P           = (alpha * primitive1.nucleusPosition() +
                            beta  * primitive2.nucleusPosition()) / p;
-    vec     m_PC        = P - nucleusPosition;
+    vec     PC          = P - nucleusPosition;
+    setupCoefficients(t,u,v,p,PC);
+}
 
+void HermiteGaussianIntegral::setupCoefficients(int         t,
+                                                int         u,
+                                                int         v,
+                                                double      p,
+                                                arma::vec   PC) {
+    m_PC         = PC;
+    m_t          = t;
+    m_u          = u;
+    m_v          = v;
+    m_tuv        = m_t + m_u + m_v;
+    int maxIndex = m_tuv + 2;
+    m_coefficients.set_size(maxIndex);
+    for (int i=0; i<maxIndex; i++) {
+        m_coefficients(i) = zeros<cube>(maxIndex+1, maxIndex+1, maxIndex+1);
+    }
 
     double x = p * arma::dot(m_PC, m_PC);
     m_coefficients(0)(0,0,0) = m_boysFunction.computeAndApplyDownwardRecurrence(x, m_tuv+1);
