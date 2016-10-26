@@ -18,7 +18,11 @@ void CoulombNucleusIntegrator::setNucleusPosition(arma::vec nucleusPosition) {
 
 double CoulombNucleusIntegrator::computeIntegral(GaussianPrimitive& primitive1,
                                                  GaussianPrimitive& primitive2) {
-    m_hermiteGaussianIntegral.setupCoefficients(primitive1, primitive2, m_nucleusPosition);
+
+    m_hermiteGaussianIntegral.setupCoefficients(primitive1,
+                                                primitive2,
+                                                m_nucleusPosition);
+
 }
 
 double CoulombNucleusIntegrator::computeIntegral(GaussianPrimitive& primitive1,

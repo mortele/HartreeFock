@@ -20,15 +20,15 @@ int main(int, char**) {
 
     vec A       = {1,0,0};
     vec B       = {0,0,1};
-    vec nucleus = {0,0,0};
+    vec nucleus = {0,1,0};
 
     int x1 = 0;
     int y1 = 1;
-    int z1 = 0;
+    int z1 = 6;
 
     int x2 = 2;
     int y2 = 1;
-    int z2 = 0;
+    int z2 = 2;
 
     GaussianPrimitive primitive1 = GaussianPrimitive(x1,y1,z1, 2.0, A);
     GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 13.0, B);
@@ -36,7 +36,7 @@ int main(int, char**) {
     //OverlapIntegrator integrator;
     //KineticIntegrator integrator;
     CoulombNucleusIntegrator integrator;
-    cout << integrator.computeIntegral(primitive1, primitive2, nucleus) << endl;
+    integrator.computeIntegral(primitive1, primitive2, nucleus);
 
 
 
