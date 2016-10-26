@@ -5,14 +5,14 @@
 #include "Factorizations/hermitegaussianintegral.h"
 
 
-class CoulombNucleusIntegrator {
+class ElectronNucleusIntegrator {
 private:
     arma::vec               m_nucleusPosition;
     HermiteGaussian         m_hermiteGaussian;
     HermiteGaussianIntegral m_hermiteGaussianIntegral;
 
 public:
-    CoulombNucleusIntegrator();
+    ElectronNucleusIntegrator();
     void setNucleusPosition(arma::vec nucleusPosition);
     double computeIntegral(GaussianPrimitive& primitive1,
                            GaussianPrimitive& primitive2);

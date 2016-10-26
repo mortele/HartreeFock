@@ -39,13 +39,14 @@ void HermiteGaussian::setupCoefficients(GaussianPrimitive& primitive1,
 
     m_coefficients[0] = zeros<cube>(m_xMaximumAngularMomentum+1,
                                     m_xMaximumAngularMomentum+1,
-                                    2 * m_xMaximumAngularMomentum + 2);
+                                    m_xExponent1+m_xExponent2+1);
     m_coefficients[1] = zeros<cube>(m_yMaximumAngularMomentum+1,
                                     m_yMaximumAngularMomentum+1,
-                                    2 * m_yMaximumAngularMomentum + 2);
+                                    m_yExponent1+m_yExponent2+1);
     m_coefficients[2] = zeros<cube>(m_zMaximumAngularMomentum+1,
                                     m_zMaximumAngularMomentum+1,
-                                    2 * m_zMaximumAngularMomentum + 2);
+                                    m_zExponent1+m_zExponent2+1);
+
     computeCoefficients();
 }
 

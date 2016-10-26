@@ -12,7 +12,7 @@ LIBS += -L/usr/local/lib -larmadillo -llapack -lblas
 SOURCES += main.cpp \
     Factorizations/hermitegaussian.cpp \
     Factorizations/hermitegaussianintegral.cpp \
-    Integrators/coulombnucleusintegrator.cpp \
+    Integrators/electronnucleusintegrator.cpp \
     Integrators/gaussianintegrator.cpp \
     Integrators/kineticintegrator.cpp \
     Integrators/overlapintegrator.cpp \
@@ -23,7 +23,7 @@ SOURCES += main.cpp \
 HEADERS += \
     Factorizations/hermitegaussian.h \
     Factorizations/hermitegaussianintegral.h \
-    Integrators/coulombnucleusintegrator.h \
+    Integrators/electronnucleusintegrator.h \
     Integrators/gaussianintegrator.h \
     Integrators/kineticintegrator.h \
     Integrators/overlapintegrator.h \
