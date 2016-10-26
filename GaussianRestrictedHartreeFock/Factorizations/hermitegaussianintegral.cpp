@@ -42,7 +42,8 @@ void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
                                                 vec nucleusPosition) {
 
     m_maxExponents  = computeMaximumExponents(primitive1, primitive2);
-    int maxIndex    = 2*m_maxExponents+1;
+    // TODO: 3*MAX EXPONETS is too large, find a more reasonable bound !
+    int maxIndex    = 4*m_maxExponents+1;
     m_coefficients.set_size(maxIndex);
     for (int i=0; i<maxIndex; i++) {
         m_coefficients(i) = zeros<cube>(maxIndex+1, maxIndex+1, maxIndex+1);

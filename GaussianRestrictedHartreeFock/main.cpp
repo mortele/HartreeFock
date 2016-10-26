@@ -20,11 +20,11 @@ int main(int, char**) {
 
     vec A       = {1,0,0};
     vec B       = {0,0,1};
-    vec nucleus = {0,1,0};
+    vec nucleus = {0,1,2};
 
-    int x1 = 1;
+    int x1 = 2;
     int y1 = 1;
-    int z1 = 6;
+    int z1 = 3;
 
     int x2 = 2;
     int y2 = 1;

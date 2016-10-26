@@ -65,7 +65,6 @@ double HermiteGaussian::getCoefficientDimension(int i, int j, int k, int dimensi
 
 bool HermiteGaussian::isCoefficientNonZero(int i, int j, int t) {
     if (t < 0 || t > (i+j) || i < 0 || j < 0) {
-        cout << "test:false -- " << t << "," << i << "," << j << endl;
         return false;
     } else {
         return true;
