@@ -150,7 +150,6 @@ void HermiteGaussian::computeCoefficients() {
                 }
             }
         }
-
     }
 }
 

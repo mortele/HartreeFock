@@ -1,9 +1,11 @@
 #pragma once
+#include <armadillo>
+
 
 class BoysFunction {
 private:
-    int m_taylorExpansionTerms      = 6;
-    int m_numberOfIntegrationPoints = 1e5;
+    int         m_numberOfIntegrationPoints = 1e5;
+    arma::vec   m_recurrenceValues;
 
     double integrand(double x, double t, double n);
     double directIntegration(double x, double n);
@@ -13,7 +15,8 @@ private:
     double analyticalCompleteGammaFunction(double x, double n);
 
 public:
-    BoysFunction();
     double compute(double x, double n);
+    double computeAndApplyDownwardRecurrence(double x, double n);
+    double operator[](int n) { return m_recurrenceValues(n); }
 };
 

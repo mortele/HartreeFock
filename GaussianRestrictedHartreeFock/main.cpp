@@ -1,10 +1,10 @@
 #include <iostream>
 #include <iomanip>
 #include <time.h>
-#include <boost/math/special_functions/gamma.hpp>
 #include "Orbitals/gaussianprimitive.h"
 #include "Integrators/overlapintegrator.h"
 #include "Integrators/kineticintegrator.h"
+#include "Integrators/coulombnucleusintegrator.h"
 #include "Factorizations/hermitegaussian.h"
 #include "Math/boysfunction.h"
 
@@ -16,21 +16,11 @@ using arma::vec;
 using arma::zeros;
 
 
-double boysAnalyticalIncomplete(double x, double m) {
-    double mPlusOneHalf = m+0.5;
-    return 1.0/(2*pow(x,mPlusOneHalf)) * boost::math::tgamma_lower(mPlusOneHalf,x);
-}
-
-double boysAnalyticalComplete(double x, double m) {
-    double mPlusOneHalf = m+0.5;
-    return 1.0/(2*pow(x,mPlusOneHalf)) * (boost::math::tgamma(mPlusOneHalf) -
-                                          boost::math::tgamma(mPlusOneHalf,x));
-}
-
 int main(int, char**) {
 
-    vec A = {1,0,0};
-    vec B = {0,0,1};
+    vec A       = {1,0,0};
+    vec B       = {0,0,1};
+    vec nucleus = {0,0,0};
 
     int x1 = 0;
     int y1 = 1;
@@ -44,8 +34,9 @@ int main(int, char**) {
     GaussianPrimitive primitive2 = GaussianPrimitive(x2,y2,z2, 13.0, B);
 
     //OverlapIntegrator integrator;
-    KineticIntegrator integrator;
-    //cout << integrator.computeIntegral(primitive1, primitive2) << endl;
+    //KineticIntegrator integrator;
+    CoulombNucleusIntegrator integrator;
+    cout << integrator.computeIntegral(primitive1, primitive2, nucleus) << endl;
 
 
 
