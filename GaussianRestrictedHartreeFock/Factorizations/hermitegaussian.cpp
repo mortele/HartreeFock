@@ -14,7 +14,7 @@ using arma::vec;
 HermiteGaussian::HermiteGaussian() {
 }
 
-void HermiteGaussian::set(GaussianPrimitive& primitive1,
+void HermiteGaussian::setupCoefficients(GaussianPrimitive& primitive1,
                           GaussianPrimitive& primitive2) {
 
     m_nucleusPosition1  = primitive1.nucleusPosition();
@@ -56,6 +56,10 @@ double HermiteGaussian::getCoefficientDimension(int i, int j, int dimension) {
     } else if (dimension == 2) {
         return getCoefficientZ(i,j);
     }
+}
+
+double HermiteGaussian::getCoefficientDimension(int i, int j, int k, int dimension) {
+    return m_coefficients[dimension](i,j,k);
 }
 
 bool HermiteGaussian::isCoefficientNonZero(int t, int i, int j) {

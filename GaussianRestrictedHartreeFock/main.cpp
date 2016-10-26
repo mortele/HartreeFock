@@ -36,7 +36,7 @@ int main(int, char**) {
     //OverlapIntegrator integrator;
     //KineticIntegrator integrator;
     CoulombNucleusIntegrator integrator;
-    integrator.computeIntegral(primitive1, primitive2, nucleus);
+    cout << setprecision(10) << integrator.computeIntegral(primitive1, primitive2, nucleus) << endl;
 
 
 

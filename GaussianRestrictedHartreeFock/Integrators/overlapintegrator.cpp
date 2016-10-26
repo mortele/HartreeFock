@@ -21,7 +21,7 @@ OverlapIntegrator::OverlapIntegrator() :
 double OverlapIntegrator::computeIntegral(GaussianPrimitive& primitive1,
                                           GaussianPrimitive& primitive2) {
 
-    m_hermiteGaussian.set(primitive1, primitive2);
+    m_hermiteGaussian.setupCoefficients(primitive1, primitive2);
     const double exponentSum    = m_hermiteGaussian.getExponentSum();
     m_sqrtPiOverP               = sqrt(M_PI / exponentSum);
     const int    xExponent1     = primitive1.xExponent();

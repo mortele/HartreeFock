@@ -18,12 +18,12 @@ private:
 
     int computeMaximumExponents(GaussianPrimitive& primitive1,
                                 GaussianPrimitive& primitive2);
-    double getCoefficient(int n, int t, int u, int v);
 
 public:
     HermiteGaussianIntegral();
     void setupCoefficients(GaussianPrimitive& primitive1,
                            GaussianPrimitive& primitive2,
                            arma::vec          nucleusPosition);
+    double getCoefficient(int n, int t, int u, int v);
 };
 
