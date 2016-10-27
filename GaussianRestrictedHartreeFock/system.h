@@ -22,4 +22,7 @@ public:
     int getNumberOfBasisFunctions() { return m_numberOfBasisFunctions; }
 
     double overlapIntegral(int i, int j);
+    double kineticIntegral(int i, int j);
+    double electronNucleusIntegral(int i, int j, arma::vec nucleusPosition);
+    double electronElectronIntegral(int i, int j, int k, int l);
 };

@@ -15,17 +15,22 @@ using arma::zeros;
 
 int main(int, char**) {
 
-    vec nucleus1 {0,0,0};
-    vec nucleus2 {0,0,1.4};
+    vec nucleus1 {0, 0, 0};
+    vec nucleus2 {0, 0, 1};
 
-    System singleHydrogenAtom(2);
-    singleHydrogenAtom.addAtom(new Hydrogen(nucleus1));
-    singleHydrogenAtom.addAtom(new Hydrogen(nucleus2));
+    System twoHydrogenAtom(2);
+    twoHydrogenAtom.addAtom(new Hydrogen(nucleus1));
+    twoHydrogenAtom.addAtom(new Hydrogen(nucleus2));
 
-    for (int i=0; i<singleHydrogenAtom.getNumberOfBasisFunctions(); i++) {
-        for (int j=0; j<singleHydrogenAtom.getNumberOfBasisFunctions(); j++) {
+    for (int i=0; i<twoHydrogenAtom.getNumberOfBasisFunctions(); i++) {
+        for (int j=0; j<twoHydrogenAtom.getNumberOfBasisFunctions(); j++) {
+            for (int k=0; k<twoHydrogenAtom.getNumberOfBasisFunctions(); k++) {
+                for (int l=0; l<twoHydrogenAtom.getNumberOfBasisFunctions(); l++) {
 
-            cout << "i,j: " << i << "," << j << "    " << singleHydrogenAtom.overlapIntegral(i,j) << endl;
+                    cout << "i,j,k,l: " << i << "," << j << "," << k << ","  << l << "    "
+                         << twoHydrogenAtom.electronElectronIntegral(i,j,k,l) << endl;
+                }
+            }
         }
     }
 
