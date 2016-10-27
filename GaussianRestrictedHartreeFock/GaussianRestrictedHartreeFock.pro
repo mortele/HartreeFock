@@ -4,7 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 
-
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
@@ -15,7 +14,7 @@ SOURCES += main.cpp \
     Factorizations/hermitegaussian.cpp \
     Factorizations/hermitegaussianintegral.cpp \
     Integrators/electronnucleusintegrator.cpp \
-    Integrators/gaussianintegrator.cpp \
+    Integrators/contractedintegrator.cpp \
     Integrators/kineticintegrator.cpp \
     Integrators/overlapintegrator.cpp \
     Math/boysfunction.cpp \
@@ -23,13 +22,14 @@ SOURCES += main.cpp \
     Orbitals/gaussianprimitive.cpp \
     Integrators/electronelectronintegrator.cpp \
     Atoms/atom.cpp \
-    Atoms/hydrogen.cpp
+    Atoms/hydrogen.cpp \
+    system.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
     Factorizations/hermitegaussianintegral.h \
     Integrators/electronnucleusintegrator.h \
-    Integrators/gaussianintegrator.h \
+    Integrators/contractedintegrator.h \
     Integrators/kineticintegrator.h \
     Integrators/overlapintegrator.h \
     Math/boysfunction.h \
@@ -38,4 +38,5 @@ HEADERS += \
     Integrators/electronelectronintegrator.h \
     Atoms/atom.h \
     Atoms/hydrogen.h \
-    Math/factorial.h
+    Math/factorial.h \
+    system.h

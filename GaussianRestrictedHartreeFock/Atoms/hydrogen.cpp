@@ -19,8 +19,9 @@ Hydrogen::Hydrogen(arma::vec position) :
     ContractedGaussian contracted2(m_position);
     contracted2.addPrimitive(primitive3, primitive3.getCoefficient());
 
-    m_contractedGaussians.push_back(contracted1);
-    m_contractedGaussians.push_back(contracted2);
+    std::cout << "&contracted1: " << &contracted1 << std::endl;
+    m_contractedGaussians.push_back(&contracted1);
+    m_contractedGaussians.push_back(&contracted2);
 }
 
 

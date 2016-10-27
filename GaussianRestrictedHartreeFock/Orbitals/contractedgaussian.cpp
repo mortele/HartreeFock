@@ -3,6 +3,10 @@
 using arma::vec;
 using std::vector;
 
+ContractedGaussian::~ContractedGaussian() {
+    m_primitives.clear();
+}
+
 ContractedGaussian::ContractedGaussian(vec nucleusPosition) :
         m_numberOfPrimitives(0),
         m_nucleusPosition(nucleusPosition) {

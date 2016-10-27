@@ -1,30 +1,27 @@
+//#define ARMA_MAT_PREALLOC 4
+//#define ARMA_EXTRA_DEBUG
+
 #include <iostream>
 #include <iomanip>
-#include <time.h>
-#include "Orbitals/gaussianprimitive.h"
-#include "Integrators/overlapintegrator.h"
-#include "Integrators/kineticintegrator.h"
-#include "Integrators/electronnucleusintegrator.h"
-#include "Integrators/electronelectronintegrator.h"
-#include "Factorizations/hermitegaussian.h"
-#include "Math/boysfunction.h"
+#include "system.h"
 #include "Atoms/hydrogen.h"
 
 using std::cout;
 using std::endl;
 using std::setprecision;
-using std::pow;
 using arma::vec;
 using arma::zeros;
 
+
 int main(int, char**) {
 
-    vec nucleus1 = {0, 0, 0};
-    //vec nucleus2 = {0, 0, 1.4};
+    vec nucleus {1,2,3};
 
-    Hydrogen H1(nucleus1);
-    //Hydrogen H2(nucleus2);
-
+    System singleHydrogenAtom(1);
+    singleHydrogenAtom.addAtom(new Hydrogen(nucleus));
+    cout << singleHydrogenAtom.overlapIntegral(0,0) << endl;
+    cout << singleHydrogenAtom.overlapIntegral(0,1) << endl;
+    cout << singleHydrogenAtom.overlapIntegral(1,0) << endl;
 
 
 
