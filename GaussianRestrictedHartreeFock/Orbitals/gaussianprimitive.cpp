@@ -32,56 +32,7 @@ GaussianPrimitive::GaussianPrimitive(int    i,
                              / ( factorial(2*i) * factorial(2*j) * factorial(2*k) ) );
 }
 
-//GaussianPrimitive::GaussianPrimitive(const GaussianPrimitive& copy) {
-//    cout << "copy constructor primitive" << endl;
-//    m_xExponent                 = copy.m_xExponent;
-//    m_yExponent                 = copy.m_yExponent;
-//    m_zExponent                 = copy.m_zExponent;
-//    m_maximumAngularMomentum    = copy.m_maximumAngularMomentum;
-//    m_exponent                  = copy.m_exponent;
-//    m_constantTerm              = copy.m_constantTerm;
-//    m_coefficient               = copy.m_coefficient;
-//    m_nucleusPosition           = arma::zeros<arma::vec>(3);
-//    for (int i=0; i<3; i++) {
-//        m_nucleusPosition.at(i) = copy.m_nucleusPosition.at(i);
-//    }
-//}
-//
-//GaussianPrimitive::GaussianPrimitive(GaussianPrimitive&& move) {
-//    cout << "move constructor primitive" << endl;
-//    m_xExponent                 = move.m_xExponent;
-//    m_yExponent                 = move.m_yExponent;
-//    m_zExponent                 = move.m_zExponent;
-//    m_maximumAngularMomentum    = move.m_maximumAngularMomentum;
-//    m_exponent                  = move.m_exponent;
-//    m_constantTerm              = move.m_constantTerm;
-//    m_coefficient               = move.m_coefficient;
-//    m_nucleusPosition           = arma::zeros<arma::vec>(3);
-//    for (int i=0; i<3; i++) {
-//        m_nucleusPosition.at(i) = move.m_nucleusPosition.at(i);
-//    }
-//}
-//
-//GaussianPrimitive& GaussianPrimitive::operator=(const GaussianPrimitive& copy) {
-//    GaussianPrimitive tmp(copy);
-//    *this = std::move(tmp);
-//    return *this;
-//}
-//
-//GaussianPrimitive& GaussianPrimitive::operator=(GaussianPrimitive&& move) {
-//    cout << "move assignemtn primitive" << endl;
-//    m_xExponent                 = move.m_xExponent;
-//    m_yExponent                 = move.m_yExponent;
-//    m_zExponent                 = move.m_zExponent;
-//    m_maximumAngularMomentum    = move.m_maximumAngularMomentum;
-//    m_exponent                  = move.m_exponent;
-//    m_constantTerm              = move.m_constantTerm;
-//    m_coefficient               = move.m_coefficient;
-//    m_nucleusPosition           = arma::zeros<arma::vec>(3);
-//    for (int i=0; i<3; i++) {
-//        m_nucleusPosition.at(i) = move.m_nucleusPosition.at(i);
-//    }
-//}
+
 
 void GaussianPrimitive::setCoefficient(double coefficient) {
     m_coefficient = coefficient;

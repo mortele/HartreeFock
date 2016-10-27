@@ -11,9 +11,6 @@ private:
     std::vector<GaussianPrimitive*> m_primitives;
 
 public:
-    //ContractedGaussian() {}
-    //ContractedGaussian(const ContractedGaussian& copy);
-    //ContractedGaussian(ContractedGaussian&& move);
     double evaluate(arma::vec &r);
     void createNewPrimitive(int i, int j, int k, double a, double coefficient=1);
     void addPrimitive(GaussianPrimitive* primitive, double coefficient=1);
