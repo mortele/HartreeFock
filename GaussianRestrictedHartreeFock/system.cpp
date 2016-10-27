@@ -12,9 +12,7 @@ void System::addAtom(Atom* atom) {
 }
 
 double System::overlapIntegral(int i, int j) {
-    ContractedGaussian* contracted1 = m_basis.at(i);
-    ContractedGaussian* contracted2 = m_basis.at(j);
-    return m_integrator.overlapIntegral(contracted1, contracted2);
+    return m_integrator.overlapIntegral(m_basis.at(i), m_basis.at(j));
 }
 
 void System::setupBasis() {
@@ -26,9 +24,10 @@ void System::setupBasis() {
     m_basis.reserve(numberOfBasisFunctions);
     for (int i = 0; i < m_atoms.size(); i++) {
         for (int j = 0; j < m_atoms.at(i)->getContractedGaussians().size(); j++) {
-            ContractedGaussian* contracted = m_atoms.at(i)->getContractedGaussians().at(j);
-            m_basis.push_back(contracted);
+            m_basis.push_back(m_atoms.at(i)->getContractedGaussians().at(j));
         }
     }
     m_numberOfBasisFunctions = m_basis.size();
+    arma::vec x {0,1,2};
+    int i=0; int j=0;
 }

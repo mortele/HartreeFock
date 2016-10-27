@@ -12,17 +12,17 @@ private:
     HermiteGaussian         m_hermiteGaussian34;
     HermiteGaussianIntegral m_hermiteGaussianIntegral;
 
-    void setupHermiteGaussianIntegral(GaussianPrimitive& primitive1,
-                                      GaussianPrimitive& primitive2,
-                                      GaussianPrimitive& primitive3,
-                                      GaussianPrimitive& primitive4);
+    void setupHermiteGaussianIntegral(GaussianPrimitive* primitive1,
+                                      GaussianPrimitive* primitive2,
+                                      GaussianPrimitive* primitive3,
+                                      GaussianPrimitive* primitive4);
 
 public:
     ElectronElectronIntegrator();
-    double computeIntegral(GaussianPrimitive& primitive1,
-                           GaussianPrimitive& primitive2,
-                           GaussianPrimitive& primitive3,
-                           GaussianPrimitive& primitive4);
+    double computeIntegral(GaussianPrimitive* primitive1,
+                           GaussianPrimitive* primitive2,
+                           GaussianPrimitive* primitive3,
+                           GaussianPrimitive* primitive4);
 
 };
 

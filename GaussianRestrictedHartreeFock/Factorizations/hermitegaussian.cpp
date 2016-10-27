@@ -15,17 +15,17 @@ using arma::vec;
 HermiteGaussian::HermiteGaussian() {
 }
 
-void HermiteGaussian::setupCoefficients(GaussianPrimitive& primitive1,
-                          GaussianPrimitive& primitive2) {
+void HermiteGaussian::setupCoefficients(GaussianPrimitive* primitive1,
+                                        GaussianPrimitive* primitive2) {
 
-    m_nucleusPosition1  = primitive1.nucleusPosition();
-    m_nucleusPosition2  = primitive2.nucleusPosition();
-    m_xExponent1        = primitive1.xExponent();
-    m_yExponent1        = primitive1.yExponent();
-    m_zExponent1        = primitive1.zExponent();
-    m_xExponent2        = primitive2.xExponent();
-    m_yExponent2        = primitive2.yExponent();
-    m_zExponent2        = primitive2.zExponent();
+    m_nucleusPosition1  = primitive1->nucleusPosition();
+    m_nucleusPosition2  = primitive2->nucleusPosition();
+    m_xExponent1        = primitive1->xExponent();
+    m_yExponent1        = primitive1->yExponent();
+    m_zExponent1        = primitive1->zExponent();
+    m_xExponent2        = primitive2->xExponent();
+    m_yExponent2        = primitive2->yExponent();
+    m_zExponent2        = primitive2->zExponent();
     m_xMaximumAngularMomentum = max(m_xExponent1, m_xExponent2);
     m_yMaximumAngularMomentum = max(m_yExponent1, m_yExponent2);
     m_zMaximumAngularMomentum = max(m_zExponent1, m_zExponent2);
@@ -33,8 +33,8 @@ void HermiteGaussian::setupCoefficients(GaussianPrimitive& primitive1,
                                             m_yMaximumAngularMomentum),
                                         m_zMaximumAngularMomentum),
                                     1);
-    m_exponent1         = primitive1.exponent();
-    m_exponent2         = primitive2.exponent();
+    m_exponent1         = primitive1->exponent();
+    m_exponent2         = primitive2->exponent();
     m_exponentSum       = m_exponent1 + m_exponent2;
 
     m_coefficients[0] = zeros<cube>(m_xMaximumAngularMomentum+1,

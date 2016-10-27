@@ -16,13 +16,10 @@ private:
     arma::field<arma::cube>     m_coefficients;
     BoysFunction                m_boysFunction;
 
-    int computeMaximumExponents(GaussianPrimitive& primitive1,
-                                GaussianPrimitive& primitive2);
-
 public:
     HermiteGaussianIntegral();
-    void setupCoefficients(GaussianPrimitive& primitive1,
-                           GaussianPrimitive& primitive2,
+    void setupCoefficients(GaussianPrimitive* primitive1,
+                           GaussianPrimitive* primitive2,
                            arma::vec          nucleusPosition);
     void setupCoefficients(int t, int u, int v, double p,
                            arma::vec PC);

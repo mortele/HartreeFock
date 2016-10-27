@@ -13,29 +13,29 @@ KineticIntegrator::KineticIntegrator() :
         m_T                       (zeros<vec>(3)),
         m_adjustedOverlapIntegrals(zeros<mat>(3,2)),
         m_overlapIntegrator       (OverlapIntegrator()),
-        m_primitive1              (GaussianPrimitive(0,0,0,0,zeros<vec>(3))),
-        m_primitive2              (GaussianPrimitive(0,0,0,0,zeros<vec>(3))) {
+        m_primitive1              (nullptr),
+        m_primitive2              (nullptr) {
 }
 
-double KineticIntegrator::computeIntegral(GaussianPrimitive& primitive1,
-                                          GaussianPrimitive& primitive2) {
+double KineticIntegrator::computeIntegral(GaussianPrimitive* primitive1,
+                                          GaussianPrimitive* primitive2) {
     m_primitive1 = primitive1;
     m_primitive2 = primitive2;
-    const int ix = primitive1.xExponent();
-    const int iy = primitive1.yExponent();
-    const int iz = primitive1.zExponent();
+    const int ix = primitive1->xExponent();
+    const int iy = primitive1->yExponent();
+    const int iz = primitive1->zExponent();
 
-    const int jx = primitive2.xExponent();
-    const int jy = primitive2.yExponent();
-    const int jz = primitive2.zExponent();
+    const int jx = primitive2->xExponent();
+    const int jy = primitive2->yExponent();
+    const int jz = primitive2->zExponent();
 
-    primitive2.adjustExponentX(2);
-    primitive2.adjustExponentY(2);
-    primitive2.adjustExponentZ(2);
+    primitive2->adjustExponentX(2);
+    primitive2->adjustExponentY(2);
+    primitive2->adjustExponentZ(2);
     m_overlapIntegrator.computeIntegral(primitive1, primitive2);
-    primitive2.adjustExponentX(-2);
-    primitive2.adjustExponentY(-2);
-    primitive2.adjustExponentZ(-2);
+    primitive2->adjustExponentX(-2);
+    primitive2->adjustExponentY(-2);
+    primitive2->adjustExponentZ(-2);
 
     m_overlapIntegrals(0) = m_overlapIntegrator.getIntegralIndicesDimension(ix,jx,0);
     m_overlapIntegrals(1) = m_overlapIntegrator.getIntegralIndicesDimension(iy,jy,1);
@@ -60,9 +60,9 @@ void KineticIntegrator::computeAdjustedOverlapIntegral(int dimension,
                                                        int adjustment) {
 
     const int j = (adjustment == -2) ? 0 : 1;
-    const int i2 = m_primitive2.getExponentDimension(dimension);
+    const int i2 = m_primitive2->getExponentDimension(dimension);
     if (i2+adjustment >= 0) {
-        const int i = m_primitive1.getExponentDimension(dimension);
+        const int i = m_primitive1->getExponentDimension(dimension);
         m_adjustedOverlapIntegrals(dimension,j) = m_overlapIntegrator.getIntegralIndicesDimension(i,i2+adjustment,dimension);
     } else {
         m_adjustedOverlapIntegrals(dimension,j) = 0;
@@ -70,8 +70,8 @@ void KineticIntegrator::computeAdjustedOverlapIntegral(int dimension,
 }
 
 void KineticIntegrator::computeT(int dimension) {
-    double beta     = m_primitive2.exponent();
-    int    j        = m_primitive2.getExponentDimension(dimension);
+    double beta     = m_primitive2->exponent();
+    int    j        = m_primitive2->getExponentDimension(dimension);
     m_T(dimension)  = 4*beta*beta    * m_adjustedOverlapIntegrals(dimension,1)   -
                       2*beta*(2*j+1) * m_overlapIntegrals(dimension)             +
                       j*(j-1)        * m_adjustedOverlapIntegrals(dimension,0);

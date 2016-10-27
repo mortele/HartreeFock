@@ -15,15 +15,19 @@ using arma::zeros;
 
 int main(int, char**) {
 
-    vec nucleus {1,2,3};
+    vec nucleus1 {0,0,0};
+    vec nucleus2 {0,0,1.4};
 
-    System singleHydrogenAtom(1);
-    singleHydrogenAtom.addAtom(new Hydrogen(nucleus));
-    cout << singleHydrogenAtom.overlapIntegral(0,0) << endl;
-    cout << singleHydrogenAtom.overlapIntegral(0,1) << endl;
-    cout << singleHydrogenAtom.overlapIntegral(1,0) << endl;
+    System singleHydrogenAtom(2);
+    singleHydrogenAtom.addAtom(new Hydrogen(nucleus1));
+    singleHydrogenAtom.addAtom(new Hydrogen(nucleus2));
 
+    for (int i=0; i<singleHydrogenAtom.getNumberOfBasisFunctions(); i++) {
+        for (int j=0; j<singleHydrogenAtom.getNumberOfBasisFunctions(); j++) {
 
+            cout << "i,j: " << i << "," << j << "    " << singleHydrogenAtom.overlapIntegral(i,j) << endl;
+        }
+    }
 
     return 0;
 }

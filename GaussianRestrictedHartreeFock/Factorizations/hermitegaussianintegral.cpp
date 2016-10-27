@@ -28,19 +28,19 @@ double HermiteGaussianIntegral::getCoefficient(int n, int t, int u, int v) {
 }
 
 
-void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive& primitive1,
-                                                GaussianPrimitive& primitive2,
+void HermiteGaussianIntegral::setupCoefficients(GaussianPrimitive* primitive1,
+                                                GaussianPrimitive* primitive2,
                                                 vec nucleusPosition) {
-    int t = primitive1.xExponent() + primitive2.xExponent();
-    int u = primitive1.yExponent() + primitive2.yExponent();
-    int v = primitive1.zExponent() + primitive2.zExponent();
+    int t = primitive1->xExponent() + primitive2->xExponent();
+    int u = primitive1->yExponent() + primitive2->yExponent();
+    int v = primitive1->zExponent() + primitive2->zExponent();
 
     m_nucleusPosition   = nucleusPosition;
-    double  alpha       = primitive1.exponent();
-    double  beta        = primitive2.exponent();
+    double  alpha       = primitive1->exponent();
+    double  beta        = primitive2->exponent();
     double  p           = alpha + beta;
-    vec     P           = (alpha * primitive1.nucleusPosition() +
-                           beta  * primitive2.nucleusPosition()) / p;
+    vec     P           = (alpha * primitive1->nucleusPosition() +
+                           beta  * primitive2->nucleusPosition()) / p;
     vec     PC          = P - nucleusPosition;
     setupCoefficients(t,u,v,p,PC);
 }

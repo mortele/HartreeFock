@@ -5,9 +5,6 @@
 
 
 class Hydrogen : public Atom {
-private:
-
-
 public:
     Hydrogen(arma::vec position);
 };

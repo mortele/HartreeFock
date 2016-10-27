@@ -19,6 +19,11 @@ private:
 
 public:
     GaussianPrimitive(int i, int j, int k, double a, arma::vec nucleusPosition, double coefficient=1.0);
+    //GaussianPrimitive(const GaussianPrimitive& copy);
+    //GaussianPrimitive(GaussianPrimitive&& move);
+    //GaussianPrimitive& operator=(const GaussianPrimitive& copy);
+    //GaussianPrimitive& operator=(GaussianPrimitive&& move);
+
     void setCoefficient(double coefficient);
     double evaluate(arma::vec& r);
     static GaussianPrimitive product(GaussianPrimitive& primitive1, GaussianPrimitive& primitive2);

@@ -13,8 +13,8 @@ private:
 
 public:
     OverlapIntegrator();
-    double computeIntegral(GaussianPrimitive& primitive1,
-                           GaussianPrimitive& primitive2);
+    double computeIntegral(GaussianPrimitive* primitive1,
+                           GaussianPrimitive* primitive2);
     double getIntegralIndicesDimension(int i, int j, int dimension);
     double getIntegralX() { return m_Ex; }
     double getIntegralY() { return m_Ey; }

@@ -14,10 +14,10 @@ private:
 public:
     ElectronNucleusIntegrator();
     void setNucleusPosition(arma::vec nucleusPosition);
-    double computeIntegral(GaussianPrimitive& primitive1,
-                           GaussianPrimitive& primitive2);
-    double computeIntegral(GaussianPrimitive& primitive1,
-                           GaussianPrimitive& primitive2,
+    double computeIntegral(GaussianPrimitive* primitive1,
+                           GaussianPrimitive* primitive2);
+    double computeIntegral(GaussianPrimitive* primitive1,
+                           GaussianPrimitive* primitive2,
                            arma::vec          nucleusPosition);
 };
 
