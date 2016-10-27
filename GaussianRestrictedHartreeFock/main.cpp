@@ -4,7 +4,9 @@
 #include <iostream>
 #include <iomanip>
 #include "system.h"
-#include "Atoms/hydrogen.h"
+#include "Atoms/Hydrogen/hydrogen_321G.h"
+#include "Atoms/Hydrogen/hydrogen_321gplus.h"
+#include "Atoms/Hydrogen/hydrogen_631g.h"
 
 using std::cout;
 using std::endl;
@@ -18,17 +20,18 @@ int main(int, char**) {
     vec nucleus1 {0, 0, 0};
     vec nucleus2 {0, 0, 1};
 
-    System twoHydrogenAtom(2);
-    twoHydrogenAtom.addAtom(new Hydrogen(nucleus1));
-    twoHydrogenAtom.addAtom(new Hydrogen(nucleus2));
+    System system(2);
+    system.addAtom(new Hydrogen_631G(nucleus1));
+    system.addAtom(new Hydrogen_631G(nucleus2));
 
-    for (int i=0; i<twoHydrogenAtom.getNumberOfBasisFunctions(); i++) {
-        for (int j=0; j<twoHydrogenAtom.getNumberOfBasisFunctions(); j++) {
-            for (int k=0; k<twoHydrogenAtom.getNumberOfBasisFunctions(); k++) {
-                for (int l=0; l<twoHydrogenAtom.getNumberOfBasisFunctions(); l++) {
+
+    for (int i=0; i<system.getNumberOfBasisFunctions(); i++) {
+        for (int j=0; j<system.getNumberOfBasisFunctions(); j++) {
+            for (int k=0; k<system.getNumberOfBasisFunctions(); k++) {
+                for (int l=0; l<system.getNumberOfBasisFunctions(); l++) {
 
                     cout << "i,j,k,l: " << i << "," << j << "," << k << ","  << l << "    "
-                         << twoHydrogenAtom.electronElectronIntegral(i,j,k,l) << endl;
+                         << system.electronElectronIntegral(i,j,k,l) << endl;
                 }
             }
         }

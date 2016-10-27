@@ -22,8 +22,10 @@ SOURCES += main.cpp \
     Orbitals/gaussianprimitive.cpp \
     Integrators/electronelectronintegrator.cpp \
     Atoms/atom.cpp \
-    Atoms/hydrogen.cpp \
-    system.cpp
+    system.cpp \
+    Atoms/Hydrogen/hydrogen_321g.cpp \
+    Atoms/Hydrogen/hydrogen_321gplus.cpp \
+    Atoms/Hydrogen/hydrogen_631g.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -37,6 +39,8 @@ HEADERS += \
     Orbitals/gaussianprimitive.h \
     Integrators/electronelectronintegrator.h \
     Atoms/atom.h \
-    Atoms/hydrogen.h \
     Math/factorial.h \
-    system.h
+    system.h \
+    Atoms/Hydrogen/hydrogen_321g.h \
+    Atoms/Hydrogen/hydrogen_321gplus.h \
+    Atoms/Hydrogen/hydrogen_631g.h

@@ -3,8 +3,7 @@
 #include <armadillo>
 #include <vector>
 
-
-class Hydrogen : public Atom {
+class Hydrogen_321G : public Atom {
 public:
-    Hydrogen(arma::vec position);
+    Hydrogen_321G(arma::vec position);
 };
