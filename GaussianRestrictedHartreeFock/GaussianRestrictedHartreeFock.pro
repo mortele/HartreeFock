@@ -3,6 +3,8 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+
+
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
@@ -19,7 +21,9 @@ SOURCES += main.cpp \
     Math/boysfunction.cpp \
     Orbitals/contractedgaussian.cpp \
     Orbitals/gaussianprimitive.cpp \
-    Integrators/electronelectronintegrator.cpp
+    Integrators/electronelectronintegrator.cpp \
+    Atoms/atom.cpp \
+    Atoms/hydrogen.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -31,4 +35,7 @@ HEADERS += \
     Math/boysfunction.h \
     Orbitals/contractedgaussian.h \
     Orbitals/gaussianprimitive.h \
-    Integrators/electronelectronintegrator.h
+    Integrators/electronelectronintegrator.h \
+    Atoms/atom.h \
+    Atoms/hydrogen.h \
+    Math/factorial.h

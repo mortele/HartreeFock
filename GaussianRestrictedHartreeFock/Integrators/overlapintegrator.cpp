@@ -47,7 +47,7 @@ double OverlapIntegrator::getIntegralDimension(int dimension) {
         return getIntegralX();
     } else if (dimension == 1) {
         return getIntegralY();
-    } else if (dimension == 2) {
+    } else { // (dimension == 2) {
         return getIntegralZ();
     }
 }

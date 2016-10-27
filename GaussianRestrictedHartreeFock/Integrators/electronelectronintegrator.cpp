@@ -2,6 +2,8 @@
 #include <cmath>
 
 using std::sqrt;
+using std::cout;
+using std::endl;
 using arma::vec;
 
 ElectronElectronIntegrator::ElectronElectronIntegrator() :
@@ -72,12 +74,13 @@ double ElectronElectronIntegrator::computeIntegral(GaussianPrimitive& primitive1
 
     double integral = 0;
 
-    for (int t = 0; t < tuvLimits[0]; ++t) {
-        for (int u = 0; u < tuvLimits[1]; ++u) {
-            for (int v = 0; v < tuvLimits[2]; ++v) {
-                for (int t_ = 0; t_ < tuvLimits[3]; ++t_) {
-                    for (int u_ = 0; u_ < tuvLimits[4]; ++u_) {
-                        for (int v_ = 0; v_ < tuvLimits[5]; ++v_) {
+    for (int t = 0; t < tuvLimits[0]; t++) {
+        for (int u = 0; u < tuvLimits[1]; u++) {
+            for (int v = 0; v < tuvLimits[2]; v++) {
+                for (int t_ = 0; t_ < tuvLimits[3]; t_++) {
+                    for (int u_ = 0; u_ < tuvLimits[4]; u_++) {
+                        for (int v_ = 0; v_ < tuvLimits[5]; v_++) {
+
                             double Eproduct = 1;
                             Eproduct *= m_hermiteGaussian12.getCoefficientDimension(x1,x2,t,0);
                             Eproduct *= m_hermiteGaussian12.getCoefficientDimension(y1,y2,u,1);
@@ -86,6 +89,7 @@ double ElectronElectronIntegrator::computeIntegral(GaussianPrimitive& primitive1
                             Eproduct *= m_hermiteGaussian34.getCoefficientDimension(x3,x4,t_,0);
                             Eproduct *= m_hermiteGaussian34.getCoefficientDimension(y3,y4,u_,1);
                             Eproduct *= m_hermiteGaussian34.getCoefficientDimension(z3,z4,v_,2);
+
 
                             double R = m_hermiteGaussianIntegral.getCoefficient(0, t+t_, u+u_, v+v_);
                             double sign = ((t_ + u_ + v_) % 2) == 0 ? 1 : -1;

@@ -1,11 +1,12 @@
 #include "Orbitals/gaussianprimitive.h"
+#include "Math/factorial.h"
 #include <cmath>
 
 using std::pow;
 using std::exp;
 using std::max;
+using std::sqrt;
 using arma::vec;
-
 
 
 GaussianPrimitive::GaussianPrimitive(int    i,
@@ -13,15 +14,20 @@ GaussianPrimitive::GaussianPrimitive(int    i,
                                      int    k,
                                      double a,
                                      vec    nucleusPosition,
-                                     double constantTerm) :
+                                     double coefficient) :
         m_xExponent             (i),
         m_yExponent             (j),
         m_zExponent             (k),
         m_maximumAngularMomentum(max(max(i,j),k)),
         m_exponent              (a),
-        m_constantTerm          (constantTerm),
+        m_constantTerm          (1.0),
         m_nucleusPosition       (nucleusPosition),
-        m_coefficient           (1.0) {
+        m_coefficient           (coefficient) {
+
+    m_constantTerm = coefficient
+                     * pow(2*a/M_PI, 3.0/4.0)
+                     * sqrt( pow(8*a, i+j+k) * factorial(i) * factorial(j) * factorial(k)
+                             / ( factorial(2*i) * factorial(2*j) * factorial(2*k) ) );
 }
 
 void GaussianPrimitive::setCoefficient(double coefficient) {
@@ -94,7 +100,7 @@ int GaussianPrimitive::getExponentDimension(int dimension) const {
         return xExponent();
     } else if (dimension==1) {
         return yExponent();
-    } else if (dimension==2) {
+    } else { //(dimension==2) {
         return zExponent();
     }
 }

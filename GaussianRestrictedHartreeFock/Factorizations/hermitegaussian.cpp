@@ -55,7 +55,7 @@ double HermiteGaussian::getCoefficientDimension(int i, int j, int dimension) {
         return getCoefficientX(i,j);
     } else if (dimension == 1) {
         return getCoefficientY(i,j);
-    } else if (dimension == 2) {
+    } else { // (dimension == 2) {
         return getCoefficientZ(i,j);
     }
 }
