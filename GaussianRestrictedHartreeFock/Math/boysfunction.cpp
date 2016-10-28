@@ -42,7 +42,7 @@ double BoysFunction::analyticalIncompleteGammaFunction(double x, double n) {
      *     0
      */
     const double nPlusOneHalf = n+0.5;
-    return 1.0/(2*pow(x,nPlusOneHalf)) * boost::math::tgamma_lower(nPlusOneHalf,x);
+    return (x==0) ? 1.0/(n+1) : 1.0/(2*pow(x,nPlusOneHalf)) * boost::math::tgamma_lower(nPlusOneHalf,x);
 }
 
 
@@ -65,8 +65,8 @@ double BoysFunction::analyticalCompleteGammaFunction(double x, double n) {
      *
      */
     double nPlusOneHalf = n+0.5;
-    return 1.0/(2*pow(x,nPlusOneHalf)) * (boost::math::tgamma(nPlusOneHalf) -
-                                          boost::math::tgamma(nPlusOneHalf,x));
+    return  (x==0) ? 1.0/(n+1) : 1.0/(2*pow(x,nPlusOneHalf)) * (boost::math::tgamma(nPlusOneHalf) -
+                                                                boost::math::tgamma(nPlusOneHalf,x));
 }
 
 
