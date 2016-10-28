@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include "system.h"
+#include "Solvers/restrictedhartreefock.h"
 #include "Atoms/Hydrogen/hydrogen_321G.h"
 #include "Atoms/Hydrogen/hydrogen_321gplus.h"
 #include "Atoms/Hydrogen/hydrogen_631g.h"
@@ -24,18 +25,7 @@ int main(int, char**) {
     system.addAtom(new Hydrogen_631G(nucleus1));
     system.addAtom(new Hydrogen_631G(nucleus2));
 
-
-    for (int i=0; i<system.getNumberOfBasisFunctions(); i++) {
-        for (int j=0; j<system.getNumberOfBasisFunctions(); j++) {
-            for (int k=0; k<system.getNumberOfBasisFunctions(); k++) {
-                for (int l=0; l<system.getNumberOfBasisFunctions(); l++) {
-
-                    cout << "i,j,k,l: " << i << "," << j << "," << k << ","  << l << "    "
-                         << system.electronElectronIntegral(i,j,k,l) << endl;
-                }
-            }
-        }
-    }
+    RestrictedHartreeFock solver(&system);
 
     return 0;
 }
