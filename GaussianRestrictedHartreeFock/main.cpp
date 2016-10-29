@@ -8,24 +8,18 @@
 #include "Atoms/Hydrogen/hydrogen_321G.h"
 #include "Atoms/Hydrogen/hydrogen_321gplus.h"
 #include "Atoms/Hydrogen/hydrogen_631g.h"
+#include "Atoms/Hydrogen/hydrogen_31gss.h"
 
-using std::cout;
-using std::endl;
-using std::setprecision;
 using arma::vec;
-using arma::zeros;
-
 
 int main(int, char**) {
 
     vec nucleus1 {0, 0, 0};
-    vec nucleus2 {0, 0, 1};
-    vec nucleus3 {0, 1, 0};
+    vec nucleus2 {0, 0, 1.4};
 
-    System system(3);
-    system.addAtom(new Hydrogen_321Gplus(nucleus1));
-    system.addAtom(new Hydrogen_321Gplus(nucleus2));
-    system.addAtom(new Hydrogen_321Gplus(nucleus3));
+    System system;
+    system.addAtom(new Hydrogen_31Gss(nucleus1));
+    system.addAtom(new Hydrogen_31Gss(nucleus2));
 
     RestrictedHartreeFock solver(&system);
     solver.solve();

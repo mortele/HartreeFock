@@ -2,12 +2,13 @@
 
 System::System(int numberOfAtoms) {
     m_atoms.reserve(numberOfAtoms);
-    m_numberOfAtoms = numberOfAtoms;
+    m_numberOfAtoms = 0;
     m_integrator = ContractedIntegrator();
 }
 
 void System::addAtom(Atom* atom) {
     m_atoms.push_back(atom);
+    m_numberOfAtoms += 1;
     setupBasis();
 }
 
@@ -44,6 +45,23 @@ double System::oneBodyElements(int i, int j) {
 
 double System::twoBodyElements(int i, int j, int k, int l) {
     return electronElectronIntegral(i,j,k,l);
+}
+
+double System::nucleusNucleusInteractionEnergy() {
+    double nucleusNucleusInteraction = 0;
+    if (m_numberOfAtoms > 1) {
+        for (int i = 0;     i < m_numberOfAtoms; i++)
+        for (int j = i + 1; j < m_numberOfAtoms; j++) {
+            Atom* atom1 = m_atoms.at(i);
+            Atom* atom2 = m_atoms.at(j);
+            arma::vec   r       = atom1->getPosition() - atom2->getPosition();
+            double      rNorm   = arma::norm(r);
+            nucleusNucleusInteraction += atom1->getCharge() *
+                                         atom2->getCharge() *
+                                         1.0 / rNorm;
+        }
+    }
+    return nucleusNucleusInteraction;
 }
 
 void System::setupBasis() {

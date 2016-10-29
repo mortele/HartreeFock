@@ -15,7 +15,7 @@ private:
     void setupBasis();
 
 public:
-    System(int numberOfAtoms);
+    System(int numberOfAtoms=2);
     void addAtom(Atom* atom);
     std::vector<Atom*>& getAtoms() { return m_atoms; }
     std::vector<ContractedGaussian*> getBasis() { return m_basis; }
@@ -28,4 +28,5 @@ public:
 
     double oneBodyElements(int i, int j);
     double twoBodyElements(int i, int j, int k, int l);
+    double nucleusNucleusInteractionEnergy();
 };

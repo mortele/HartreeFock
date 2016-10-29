@@ -13,6 +13,7 @@ private:
     bool        m_reachedSelfConsistency;
     double      m_convergenceCriterion;
     double      m_hartreeFockEnergy;
+    double      m_nucleusNucleusInteractionEnergy;
     double      m_convergenceTest;
     System*     m_system;
     arma::vec   m_epsilon;

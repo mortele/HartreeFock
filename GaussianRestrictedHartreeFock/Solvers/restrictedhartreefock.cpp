@@ -43,6 +43,7 @@ void RestrictedHartreeFock::setup() {
     setupOverlapMatrix();
     setupOneBodyMatrixElements();
     setupTwoBodyMatrixElements();
+    m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
 void RestrictedHartreeFock::computeFockMatrix() {
@@ -86,13 +87,14 @@ void RestrictedHartreeFock::computeHartreeFockEnergy() {
         }
         m_hartreeFockEnergy -= m_U(q,i) * rsSum * m_U(p,i);
     }
+    m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
 }
 
 void RestrictedHartreeFock::printInitialInfo() {
     printf(" ================== Starting SCF iterations ================= \n");
     printf(" => Maximum iterations:    %-10d \n", (int) m_maximumIterations);
     printf(" => Convergence criterion: %-10g \n", m_convergenceCriterion);
-    printf(" => Number of atoms:       %-10d \n", m_system->getAtoms().size());
+    printf(" => Number of atoms:       %-10d \n", (int) m_system->getAtoms().size());
     for (Atom* atom : m_system->getAtoms()) {
         printf("    * %-20s (%5.3f, %5.3f, %5.3f) \n", atom->getInfo().c_str(),
                                                           atom->getPosition()(0),
@@ -100,32 +102,33 @@ void RestrictedHartreeFock::printInitialInfo() {
                                                           atom->getPosition()(2));
     }
     printf(" ============================================================ \n");
-    printf(" %13s %13s %13s \n", "Iteration", "Energy", "Convergence");
+    printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
     printf(" ------------------------------------------------------------ \n");
 }
 
 void RestrictedHartreeFock::printIterationInfo(int iteration) {
     if (iteration != 1 && iteration % 20 == 0) {
         printf(" ------------------------------------------------------------ \n");
-        printf(" %13s %13s %13s \n", "Iteration", "Energy", "Convergence");
+        printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
         printf(" ------------------------------------------------------------ \n");
     }
-    printf(" %13d %13.9g %13.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
+    printf(" %15d %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
 }
 
 void RestrictedHartreeFock::printFinalInfo() {
     printf(" ============================================================ \n");
     if (m_reachedSelfConsistency) {
-        printf(" Self consistency reached.          \n");
-        printf(" => Iterations used:        %-10d   \n",   m_iterationsUsed);
-        printf(" => Final convergence test: %20.16g \n",   m_convergenceTest);
-        printf(" => Final energy:           %20.16g \n\n", m_hartreeFockEnergy);
+        printf("\n Self consistency SUCCESFULLY reached. \n\n");
+        printf(" => Iterations used:        %30d   \n",  m_iterationsUsed);
+        printf(" => Final convergence test: %30.16g \n", m_convergenceTest);
+        printf(" => Final energy:           %30.16g \n", m_hartreeFockEnergy);
     } else {
-        printf(" Self consistency -> NOT <- reached. \n");
-        printf(" => Iterations used:        %-10d    \n",   m_iterationsUsed);
-        printf(" => Final convergence test: %20.16g  \n",   m_convergenceTest);
-        printf(" => Final energy:           %20.16g  \n\n", m_hartreeFockEnergy);
+        printf("\n Self consistency -> NOT <- reached. \n\n");
+        printf(" => Iterations used:        %30d    \n",   m_iterationsUsed);
+        printf(" => Final convergence test: %30.16g  \n",   m_convergenceTest);
+        printf(" => Final energy:           %30.16g  \n", m_hartreeFockEnergy);
     }
+    printf(" ============================================================ \n");
 }
 
 void RestrictedHartreeFock::computeDensityMatrix() {
@@ -197,6 +200,7 @@ double RestrictedHartreeFock::solve(double  convergenceCriteria,
             if(m_convergenceTest < m_convergenceCriterion) {
                 m_reachedSelfConsistency    = true;
                 m_iterationsUsed            = iteration;
+                printIterationInfo(iteration);
                 break;
             }
         }
