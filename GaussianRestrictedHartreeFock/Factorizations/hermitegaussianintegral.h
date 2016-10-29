@@ -10,7 +10,6 @@ private:
     int                         m_u;
     int                         m_v;
     int                         m_tuv;
-    int                         m_maxExponents;
     arma::vec                   m_PC;
     arma::vec                   m_nucleusPosition;
     arma::field<arma::cube>     m_coefficients;

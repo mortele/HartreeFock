@@ -6,20 +6,40 @@
 
 class RestrictedHartreeFock {
 private:
-    int                                 m_numberOfBasisFunctions;
-    int                                 m_numberOfElectrons;
-    System*                             m_system;
-    std::vector<ContractedGaussian*>    m_basis;
-    arma::vec                           m_epsilon;
-    arma::vec                           m_epsilonOld;
-    arma::mat                           m_fockMatrix;
-    arma::mat                           m_U;
-    arma::mat                           m_densityMatrix;
+    int         m_numberOfBasisFunctions;
+    int         m_numberOfElectrons;
+    int         m_maximumIterations;
+    int         m_iterationsUsed;
+    bool        m_reachedSelfConsistency;
+    double      m_convergenceCriterion;
+    double      m_hartreeFockEnergy;
+    double      m_convergenceTest;
+    System*     m_system;
+    arma::vec   m_epsilon;
+    arma::vec   m_epsilonOld;
+    arma::mat   m_fockMatrix;
+    arma::mat   m_U;
+    arma::mat   m_densityMatrix;
+    arma::mat   m_overlapMatrix;
+    arma::mat   m_oneBodyMatrixElements;
+    arma::field<arma::mat>           m_twoBodyMatrixElements;
+    std::vector<ContractedGaussian*> m_basis;
 
+    void setup();
     void computeFockMatrix();
+    void computeDensityMatrix();
+    void setupOverlapMatrix();
+    void setupTwoBodyMatrixElements();
+    void setupOneBodyMatrixElements();
+    void diagonalizeFockMatrix();
+    void selfConsistentFieldIteration();
+    void computeHartreeFockEnergy();
+    void printInitialInfo();
+    void printIterationInfo(int iteration);
+    void printFinalInfo();
 
 public:
     RestrictedHartreeFock(System* system);
-    double solve(double convergenceCriteria=1.0e-8);
+    double solve(double convergenceCriterion=1e-14, int maximumIterations=50);
 };
 

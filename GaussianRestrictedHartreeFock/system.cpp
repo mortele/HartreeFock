@@ -27,19 +27,36 @@ double System::electronElectronIntegral(int i, int j, int k, int l) {
     return m_integrator.electronElectronIntegral(m_basis.at(i), m_basis.at(j), m_basis.at(k), m_basis.at(l));
 }
 
+double System::oneBodyElements(int i, int j) {
+    ContractedGaussian* contracted1 = m_basis.at(i);
+    ContractedGaussian* contracted2 = m_basis.at(j);
+
+    double kinetic = m_integrator.kineticIntegral(contracted1, contracted2);
+    double nucleusCoulombInteraction = 0;
+    for (Atom* atom : m_atoms) {
+        nucleusCoulombInteraction -= atom->getCharge() *
+                                     m_integrator.electronNucleusIntegral(contracted1,
+                                                                          contracted2,
+                                                                          atom->getPosition());
+    }
+    return kinetic + nucleusCoulombInteraction;
+}
+
+double System::twoBodyElements(int i, int j, int k, int l) {
+    return electronElectronIntegral(i,j,k,l);
+}
+
 void System::setupBasis() {
     int numberOfBasisFunctions = 0;
-    for (int i = 0; i < m_atoms.size(); i++) {
+    for (unsigned int i = 0; i < m_atoms.size(); i++) {
         numberOfBasisFunctions += m_atoms.at(i)->getNumberOfOrbitals();
     }
     m_basis.clear();
     m_basis.reserve(numberOfBasisFunctions);
-    for (int i = 0; i < m_atoms.size(); i++) {
-        for (int j = 0; j < m_atoms.at(i)->getContractedGaussians().size(); j++) {
+    for (unsigned int i = 0; i < m_atoms.size(); i++) {
+        for (unsigned int j = 0; j < m_atoms.at(i)->getContractedGaussians().size(); j++) {
             m_basis.push_back(m_atoms.at(i)->getContractedGaussians().at(j));
         }
     }
     m_numberOfBasisFunctions = m_basis.size();
-    arma::vec x {0,1,2};
-    int i=0; int j=0;
 }

@@ -4,8 +4,8 @@
 
 
 Hydrogen_321Gplus::Hydrogen_321Gplus(arma::vec position) :
-        //             orbitals, electrons
-        Atom(position, 2,        1        ) {
+        //             orbitals, electrons, charge
+        Atom(position, 2,        1,         1) {
 
     // s orbital (2 primitives)
     GaussianPrimitive* primitive1 = new GaussianPrimitive(0, 0, 0, 5.4471780, m_position, 0.1562850);

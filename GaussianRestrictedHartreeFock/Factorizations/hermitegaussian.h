@@ -4,16 +4,15 @@
 
 class HermiteGaussian {
 private:
-    int         m_xExponent1, m_xExponent2  = 0;
-    int         m_yExponent1, m_yExponent2  = 0;
-    int         m_zExponent1, m_zExponent2  = 0;
-    double      m_exponent1,  m_exponent2   = 0;
-    double      m_exponentSum               = 0;
-    int         m_xMaximumAngularMomentum   = 0;
-    int         m_yMaximumAngularMomentum   = 0;
-    int         m_zMaximumAngularMomentum   = 0;
-    int         m_maximumAngularMomentum    = 0;
-
+    int     m_xExponent1, m_xExponent2  = 0;
+    int     m_yExponent1, m_yExponent2  = 0;
+    int     m_zExponent1, m_zExponent2  = 0;
+    double  m_exponent1,  m_exponent2   = 0;
+    double  m_exponentSum               = 0;
+    int     m_xMaximumAngularMomentum   = 0;
+    int     m_yMaximumAngularMomentum   = 0;
+    int     m_zMaximumAngularMomentum   = 0;
+    int     m_maximumAngularMomentum    = 0;
     arma::vec   m_nucleusPosition1;
     arma::vec   m_nucleusPosition2;
     arma::cube  m_coefficients[3];

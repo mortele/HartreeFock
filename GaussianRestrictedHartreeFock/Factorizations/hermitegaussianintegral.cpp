@@ -13,7 +13,6 @@ HermiteGaussianIntegral::HermiteGaussianIntegral() :
         m_t(0),
         m_u(0),
         m_v(0),
-        m_maxExponents(0),
         m_nucleusPosition(zeros<vec>(3)),
         m_boysFunction(BoysFunction()){
 }
@@ -73,33 +72,28 @@ void HermiteGaussianIntegral::setupCoefficients(int         t,
         m_coefficients(m)(0,0,0) = minusTwoPPowerM * m_boysFunction[m];
     }
 
-    for (int tuv = 1; tuv < m_tuv+1; tuv++) {
-
-        for (int n = 0; n < m_tuv+1-tuv; n++) {
-            for (int t = 0; t < m_t+1; t++) {
-                for (int u = 0; u < m_u+1; u++) {
-                    for (int v = 0; v < m_v+1; v++) {
-                        if (t + u + v != tuv || t + u + v == 0) {
-                            continue;
-                        }
-                        int tuvMax = max(t,max(u,v));
-
-                        double newCoefficient = 0;
-                        if (tuvMax == t) {
-                            newCoefficient = (t-1)    * getCoefficient(n+1,t-2,u,v) +
-                                             m_PC(0)  * getCoefficient(n+1,t-1,u,v);
-                        } else if (tuvMax == u) {
-                            newCoefficient = (u-1)    * getCoefficient(n+1,t,u-2,v) +
-                                             m_PC(1)  * getCoefficient(n+1,t,u-1,v);
-                        } else if (tuvMax == v) {
-                            newCoefficient = (v-1)    * getCoefficient(n+1,t,u,v-2) +
-                                             m_PC(2)  * getCoefficient(n+1,t,u,v-1);
-                        }
-                        m_coefficients(n)(t,u,v) = newCoefficient;
-                    }
-                }
-            }
+    for (int tuv = 1; tuv < m_tuv+1;     tuv++)
+    for (int n   = 0; n   < m_tuv+1-tuv; n  ++)
+    for (int t   = 0; t   < m_t+1;       t  ++)
+    for (int u   = 0; u   < m_u+1;       u  ++)
+    for (int v   = 0; v   < m_v+1;       v  ++) {
+        if (t + u + v != tuv  ||  t + u + v == 0) {
+            continue;
         }
+        int tuvMax = max(t, max(u, v));
+
+        double newCoefficient = 0;
+        if (tuvMax == t) {
+            newCoefficient = (t-1)    * getCoefficient(n+1,t-2,u,v) +
+                             m_PC(0)  * getCoefficient(n+1,t-1,u,v);
+        } else if (tuvMax == u) {
+            newCoefficient = (u-1)    * getCoefficient(n+1,t,u-2,v) +
+                             m_PC(1)  * getCoefficient(n+1,t,u-1,v);
+        } else if (tuvMax == v) {
+            newCoefficient = (v-1)    * getCoefficient(n+1,t,u,v-2) +
+                             m_PC(2)  * getCoefficient(n+1,t,u,v-1);
+        }
+        m_coefficients(n)(t,u,v) = newCoefficient;
     }
 }
 

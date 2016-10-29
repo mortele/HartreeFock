@@ -6,8 +6,8 @@
 
 class System {
 private:
-    int                                 m_numberOfAtoms;
-    int                                 m_numberOfBasisFunctions;
+    int     m_numberOfAtoms;
+    int     m_numberOfBasisFunctions;
     std::vector<Atom*>                  m_atoms;
     std::vector<ContractedGaussian*>    m_basis;
     ContractedIntegrator                m_integrator;
@@ -25,4 +25,7 @@ public:
     double kineticIntegral(int i, int j);
     double electronNucleusIntegral(int i, int j, arma::vec nucleusPosition);
     double electronElectronIntegral(int i, int j, int k, int l);
+
+    double oneBodyElements(int i, int j);
+    double twoBodyElements(int i, int j, int k, int l);
 };

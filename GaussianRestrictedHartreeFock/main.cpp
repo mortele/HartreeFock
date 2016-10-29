@@ -20,13 +20,15 @@ int main(int, char**) {
 
     vec nucleus1 {0, 0, 0};
     vec nucleus2 {0, 0, 1};
+    vec nucleus3 {0, 1, 0};
 
-    System system(2);
-    system.addAtom(new Hydrogen_631G(nucleus1));
-    system.addAtom(new Hydrogen_631G(nucleus2));
+    System system(3);
+    system.addAtom(new Hydrogen_321Gplus(nucleus1));
+    system.addAtom(new Hydrogen_321Gplus(nucleus2));
+    system.addAtom(new Hydrogen_321Gplus(nucleus3));
 
     RestrictedHartreeFock solver(&system);
-
+    solver.solve();
     return 0;
 }
 

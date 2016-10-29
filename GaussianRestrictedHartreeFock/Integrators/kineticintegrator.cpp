@@ -63,7 +63,8 @@ void KineticIntegrator::computeAdjustedOverlapIntegral(int dimension,
     const int i2 = m_primitive2->getExponentDimension(dimension);
     if (i2+adjustment >= 0) {
         const int i = m_primitive1->getExponentDimension(dimension);
-        m_adjustedOverlapIntegrals(dimension,j) = m_overlapIntegrator.getIntegralIndicesDimension(i,i2+adjustment,dimension);
+        m_adjustedOverlapIntegrals(dimension,j) =
+                m_overlapIntegrator.getIntegralIndicesDimension(i,i2+adjustment,dimension);
     } else {
         m_adjustedOverlapIntegrals(dimension,j) = 0;
     }
