@@ -13,7 +13,6 @@
 using arma::vec;
 
 int main(int, char**) {
-
     vec nucleus1 {0, 0, 0};
     vec nucleus2 {0, 0, 1.4};
 

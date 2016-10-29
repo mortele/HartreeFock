@@ -19,9 +19,12 @@ private:
     arma::vec   m_epsilon;
     arma::vec   m_epsilonOld;
     arma::mat   m_fockMatrix;
-    arma::mat   m_U;
+    arma::mat   m_fockMatrixTilde;
+    arma::mat   m_coefficientMatrix;
+    arma::mat   m_coefficientMatrixTilde;
     arma::mat   m_densityMatrix;
     arma::mat   m_overlapMatrix;
+    arma::mat   m_transformationMatrix;
     arma::mat   m_oneBodyMatrixElements;
     arma::field<arma::mat>           m_twoBodyMatrixElements;
     std::vector<ContractedGaussian*> m_basis;
@@ -33,6 +36,8 @@ private:
     void setupTwoBodyMatrixElements();
     void setupOneBodyMatrixElements();
     void diagonalizeFockMatrix();
+    void diagonalizeOverlapMatrix();
+    void normalizeCoefficientMatrix();
     void selfConsistentFieldIteration();
     void computeHartreeFockEnergy();
     void printInitialInfo();

@@ -15,34 +15,33 @@ RestrictedHartreeFock::RestrictedHartreeFock(System* system) :
     m_numberOfBasisFunctions    = m_system->getNumberOfBasisFunctions();
     m_numberOfElectrons         = m_system->getAtoms().size();
     m_basis                     = m_system->getBasis();
-    m_epsilon                   = zeros<vec>(m_numberOfBasisFunctions);
-    m_epsilonOld                = zeros<vec>(m_numberOfBasisFunctions);
-    m_fockMatrix                = zeros<mat>(m_numberOfBasisFunctions,
-                                             m_numberOfBasisFunctions);
-    m_U                         = zeros<mat>(m_numberOfBasisFunctions,
-                                             m_numberOfBasisFunctions);
-    m_densityMatrix             = eye<mat>  (m_numberOfBasisFunctions,
-                                             m_numberOfBasisFunctions);
-    m_overlapMatrix             = zeros<mat>(m_numberOfBasisFunctions,
-                                             m_numberOfBasisFunctions);
-    m_oneBodyMatrixElements     = zeros<mat>(m_numberOfBasisFunctions,
-                                             m_numberOfBasisFunctions);
+    m_epsilon                   = zeros(m_numberOfBasisFunctions);
+    m_epsilonOld                = zeros(m_numberOfBasisFunctions);
+    m_fockMatrix                = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_fockMatrixTilde           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_coefficientMatrix         = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_coefficientMatrixTilde    = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_densityMatrix             = eye  (m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_overlapMatrix             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_transformationMatrix      = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_oneBodyMatrixElements     = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
 
     m_twoBodyMatrixElements.set_size(m_numberOfBasisFunctions,
                                      m_numberOfBasisFunctions);
     for (int i = 0; i < m_numberOfBasisFunctions; i++) {
         for (int j = 0; j < m_numberOfBasisFunctions; j++) {
-            m_twoBodyMatrixElements(i,j) = zeros<mat>(m_numberOfBasisFunctions,
-                                                      m_numberOfBasisFunctions);
+            m_twoBodyMatrixElements(i,j) = zeros(m_numberOfBasisFunctions,
+                                                 m_numberOfBasisFunctions);
         }
     }
 }
 
-
 void RestrictedHartreeFock::setup() {
     setupOverlapMatrix();
+    diagonalizeOverlapMatrix();
     setupOneBodyMatrixElements();
     setupTwoBodyMatrixElements();
+    computeDensityMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
@@ -61,14 +60,43 @@ void RestrictedHartreeFock::computeFockMatrix() {
 }
 
 void RestrictedHartreeFock::diagonalizeFockMatrix() {
-    m_U = m_overlapMatrix * m_U;
-    arma::eig_sym(m_epsilon, m_U, m_fockMatrix);
+
+    const mat& A = m_transformationMatrix;
+    m_fockMatrixTilde = A.t() * m_fockMatrix * A;
+    bool diag = arma::eig_sym(m_epsilon, m_coefficientMatrixTilde, m_fockMatrixTilde);
+    if (! diag) {
+        cout << "Hei" << endl;
+    }
+    m_coefficientMatrix = A * m_coefficientMatrixTilde;
+    normalizeCoefficientMatrix();
+}
+
+void RestrictedHartreeFock::diagonalizeOverlapMatrix() {
+    vec s;
+    mat A;
+    arma::eig_sym(s, A, m_overlapMatrix);
+    m_transformationMatrix = A*arma::diagmat(1.0/sqrt(s));
+}
+
+void RestrictedHartreeFock::normalizeCoefficientMatrix() {
+    for (unsigned int k = 0; k < m_numberOfBasisFunctions; k++) {
+        double normalizationFactor = 0;
+        for (unsigned int p = 0; p < m_numberOfBasisFunctions; p++) {
+            for (unsigned int q = 0; q < m_numberOfBasisFunctions; q++) {
+                normalizationFactor += m_coefficientMatrix(p,k) *
+                                       m_coefficientMatrix(q,k) *
+                                       m_overlapMatrix(q,p);
+            }
+            m_coefficientMatrix.col(k) = m_coefficientMatrix.col(k) /
+                                         normalizationFactor;
+        }
+    }
 }
 
 void RestrictedHartreeFock::selfConsistentFieldIteration() {
-    computeDensityMatrix();
     computeFockMatrix();
     diagonalizeFockMatrix();
+    computeDensityMatrix();
 }
 
 void RestrictedHartreeFock::computeHartreeFockEnergy() {
@@ -85,7 +113,7 @@ void RestrictedHartreeFock::computeHartreeFockEnergy() {
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
                 rsSum += m_densityMatrix(r,s)*m_twoBodyMatrixElements(q,s)(p,r);
         }
-        m_hartreeFockEnergy -= m_U(q,i) * rsSum * m_U(p,i);
+        m_hartreeFockEnergy -= m_coefficientMatrix(q,i) * rsSum * m_coefficientMatrix(p,i);
     }
     m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
 }
@@ -94,13 +122,16 @@ void RestrictedHartreeFock::printInitialInfo() {
     printf(" ================== Starting SCF iterations ================= \n");
     printf(" => Maximum iterations:    %-10d \n", (int) m_maximumIterations);
     printf(" => Convergence criterion: %-10g \n", m_convergenceCriterion);
+    printf(" => Total basis size:      %-10d \n", (int) m_system->getBasis().size());
     printf(" => Number of atoms:       %-10d \n", (int) m_system->getAtoms().size());
+    printf("      ------------------------------------------------------- \n");
     for (Atom* atom : m_system->getAtoms()) {
-        printf("    * %-20s (%5.3f, %5.3f, %5.3f) \n", atom->getInfo().c_str(),
+        printf("      | %-20s (%5.3f, %5.3f, %5.3f)          | \n", atom->getInfo().c_str(),
                                                           atom->getPosition()(0),
                                                           atom->getPosition()(1),
                                                           atom->getPosition()(2));
     }
+    printf("      ------------------------------------------------------- \n\n");
     printf(" ============================================================ \n");
     printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
     printf(" ------------------------------------------------------------ \n");
@@ -136,7 +167,7 @@ void RestrictedHartreeFock::computeDensityMatrix() {
         for(int q = 0; q < m_numberOfBasisFunctions; q++) {
             m_densityMatrix(q,p) = 0.0;
             for(int j = 0; j < m_numberOfBasisFunctions; j++) {
-                m_densityMatrix(q,p) += 2.0 * m_U(q,j) * m_U(p,j);
+                m_densityMatrix(q,p) += 2.0 * m_coefficientMatrix(q,j) * m_coefficientMatrix(p,j);
             }
         }
     }
