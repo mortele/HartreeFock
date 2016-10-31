@@ -34,8 +34,8 @@ private:
     void computeFockMatrix();
     void computeDensityMatrix();
     void setupOverlapMatrix();
-    void setupTwoBodyMatrixElements();
     void setupOneBodyMatrixElements();
+    void setupTwoBodyMatrixElements();
     void diagonalizeFockMatrix();
     void diagonalizeOverlapMatrix();
     void normalizeCoefficientMatrix();
@@ -44,6 +44,7 @@ private:
     void printInitialInfo();
     void printIterationInfo(int iteration);
     void printFinalInfo();
+    double twoBodyMatrixElementsAntiSymmetric(int,int,int,int);
 
 public:
     RestrictedHartreeFock(System* system);

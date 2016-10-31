@@ -1,8 +1,10 @@
-//#define ARMA_MAT_PREALLOC 4
+//#define ARMA_MAT_PREALLOC 16
 //#define ARMA_EXTRA_DEBUG
+//#define ARMA_NO_DEBUG
 
 #include <iostream>
 #include <iomanip>
+#include <cassert>
 #include "system.h"
 #include "Solvers/restrictedhartreefock.h"
 #include "Atoms/Hydrogen/hydrogen_321G.h"
@@ -19,31 +21,13 @@ int main(int, char**) {
     vec nucleus2 {0, 0, 1.4};
 
     System system;
-    system.addAtom(new Hydrogen_321G(nucleus1));
-    system.addAtom(new Hydrogen_321G(nucleus2));
-
-    //for (Atom* atom : system.getAtoms()) {
-    //    for (ContractedGaussian* contracted : atom->getContractedGaussians()) {
-    //        for (GaussianPrimitive* primitive : contracted->getPrimitives()) {
-    //            cout << *primitive << endl;
-    //        }
-    //    }
-    //}
-
-    for (uint i=0; i<system.getNumberOfBasisFunctions(); i++) {
-        for (uint j=0; j<system.getNumberOfBasisFunctions(); j++) {
-            for (uint k=0; k<system.getNumberOfBasisFunctions(); k++) {
-                for (uint l=0; l<system.getNumberOfBasisFunctions(); l++) {
-                    //cout << i << "," << j << "," << k << "," << l << ": ";
-                    cout << 2*system.electronElectronIntegral(i,j,k,l)-system.electronElectronIntegral(i,j,l,k)  << endl;
-                    //cout << system.electronElectronIntegral(i,j,k,l) << endl;
-                }
-            }
-        }
-    }
+    system.addAtom(new Hydrogen_631Gss(nucleus1));
+    system.addAtom(new Hydrogen_631Gss(nucleus2));
 
     RestrictedHartreeFock solver(&system);
-    solver.solveSilently(1e-14, 2);
+    double result = solver.solve(1e-14, 1e3);
+
+    assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
 }
 
