@@ -109,3 +109,18 @@ int GaussianPrimitive::getExponentDimension(int dimension) const {
     }
 }
 
+std::ostream& operator<<(std::ostream& stream, const GaussianPrimitive& primitive) {
+    stream << primitive.getConstantTerm();
+    if (primitive.xExponent() != 0) {
+        stream << " x^" << primitive.xExponent();
+    }
+    if (primitive.yExponent() != 0) {
+        stream << " y^" << primitive.yExponent();
+    }
+    if (primitive.zExponent() != 0) {
+        stream << " z^" << primitive.zExponent();
+    }
+    stream << " exp(- " << primitive.exponent() << " r^2)";
+    return stream;
+}
+

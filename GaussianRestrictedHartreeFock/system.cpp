@@ -44,7 +44,8 @@ double System::oneBodyElements(int i, int j) {
 }
 
 double System::twoBodyElements(int i, int j, int k, int l) {
-    return electronElectronIntegral(i,j,k,l);
+    // p,q,r,s --> p,r,q,s
+    return electronElectronIntegral(i,k,j,l);
 }
 
 double System::nucleusNucleusInteractionEnergy() {

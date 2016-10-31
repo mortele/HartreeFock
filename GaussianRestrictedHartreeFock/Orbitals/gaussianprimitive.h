@@ -1,5 +1,6 @@
 #pragma once
 #include <armadillo>
+#include <iostream>
 
 
 class GaussianPrimitive {
@@ -37,6 +38,8 @@ public:
     int         zExponent()                 const { return m_zExponent; }
     int         maximumAngularMomentum()    const { return m_maximumAngularMomentum; }
     arma::vec   nucleusPosition()           const { return m_nucleusPosition; }
+
+    friend std::ostream& operator<<(std::ostream& stream, const GaussianPrimitive& primitive);
 
 };
 

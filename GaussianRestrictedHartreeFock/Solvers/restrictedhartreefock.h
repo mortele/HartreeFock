@@ -11,6 +11,7 @@ private:
     int         m_maximumIterations;
     int         m_iterationsUsed;
     bool        m_reachedSelfConsistency;
+    bool        m_silent = false;
     double      m_convergenceCriterion;
     double      m_hartreeFockEnergy;
     double      m_nucleusNucleusInteractionEnergy;
@@ -47,5 +48,6 @@ private:
 public:
     RestrictedHartreeFock(System* system);
     double solve(double convergenceCriterion=1e-14, int maximumIterations=50);
+    double solveSilently(double convergenceCriterion=1e-14, int maximumIterations=50);
 };
 

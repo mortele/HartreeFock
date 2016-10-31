@@ -27,7 +27,7 @@ SOURCES += main.cpp \
     Atoms/Hydrogen/hydrogen_321gplus.cpp \
     Atoms/Hydrogen/hydrogen_631g.cpp \
     Solvers/restrictedhartreefock.cpp \
-    Atoms/Hydrogen/hydrogen_31gss.cpp
+    Atoms/Hydrogen/hydrogen_631gss.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -47,4 +47,4 @@ HEADERS += \
     Atoms/Hydrogen/hydrogen_321gplus.h \
     Atoms/Hydrogen/hydrogen_631g.h \
     Solvers/restrictedhartreefock.h \
-    Atoms/Hydrogen/hydrogen_31gss.h
+    Atoms/Hydrogen/hydrogen_631gss.h

@@ -1,6 +1,6 @@
-#include "hydrogen_31gss.h"
+#include "hydrogen_631gss.h"
 
-Hydrogen_31Gss::Hydrogen_31Gss(arma::vec position) :
+Hydrogen_631Gss::Hydrogen_631Gss(arma::vec position) :
         //             orbitals, electrons, charge
         Atom(position, 5,        1,         1) {
 
@@ -21,9 +21,9 @@ Hydrogen_31Gss::Hydrogen_31Gss(arma::vec position) :
     m_contractedGaussians.push_back(contracted);
 
     // p orbital (1 primitive) (3 contracteds)
-    primitive1 = new GaussianPrimitive(1, 0, 0, 1.0000000, m_position, 1.0000000);
-    primitive2 = new GaussianPrimitive(0, 1, 0, 1.0000000, m_position, 1.0000000);
-    primitive3 = new GaussianPrimitive(0, 0, 1, 1.0000000, m_position, 1.0000000);
+    primitive1 = new GaussianPrimitive(1, 0, 0, 1.1000000, m_position, 1.0000000);
+    primitive2 = new GaussianPrimitive(0, 1, 0, 1.1000000, m_position, 1.0000000);
+    primitive3 = new GaussianPrimitive(0, 0, 1, 1.1000000, m_position, 1.0000000);
     contracted = new ContractedGaussian();
     contracted->addPrimitive(primitive1, primitive1->getCoefficient());
     m_contractedGaussians.push_back(contracted);

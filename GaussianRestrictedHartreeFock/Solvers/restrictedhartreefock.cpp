@@ -1,4 +1,5 @@
 #include "restrictedhartreefock.h"
+#include <cassert>
 
 using std::cout;
 using std::endl;
@@ -21,7 +22,7 @@ RestrictedHartreeFock::RestrictedHartreeFock(System* system) :
     m_fockMatrixTilde           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_coefficientMatrix         = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_coefficientMatrixTilde    = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
-    m_densityMatrix             = eye  (m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_densityMatrix             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_overlapMatrix             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_transformationMatrix      = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_oneBodyMatrixElements     = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
@@ -37,12 +38,28 @@ RestrictedHartreeFock::RestrictedHartreeFock(System* system) :
 }
 
 void RestrictedHartreeFock::setup() {
+    assert(m_numberOfElectrons > 0 && m_numberOfElectrons % 2 == 0);
+
     setupOverlapMatrix();
     diagonalizeOverlapMatrix();
     setupOneBodyMatrixElements();
     setupTwoBodyMatrixElements();
     computeDensityMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
+
+    //std::vector<int> pv;
+    //pv.reserve(m_numberOfBasisFunctions);
+    //for (int i=0; i<m_numberOfBasisFunctions; i++) {
+    //    pv.push_back(i);
+    //}
+    //
+    //for (int p : pv)
+    //for (int q : pv)
+    //for (int r : pv)
+    //for (int s : pv) {
+    //    cout << p << "," << q << "," << r << "," << s << ": ";
+    //    cout << m_twoBodyMatrixElements(p,r)(q,s) << endl;
+    //}
 }
 
 void RestrictedHartreeFock::computeFockMatrix() {
@@ -53,7 +70,7 @@ void RestrictedHartreeFock::computeFockMatrix() {
         double rsSum = 0;
         for(int r = 0; r < m_numberOfBasisFunctions; r++)
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
-            rsSum += m_densityMatrix(s,r) * m_twoBodyMatrixElements(p,r)(q,s);
+            rsSum += m_densityMatrix(s,r) * m_twoBodyMatrixElements(p,q)(r,s) * 0.5;
         }
         m_fockMatrix(p,q) += rsSum;
     }
@@ -63,11 +80,8 @@ void RestrictedHartreeFock::diagonalizeFockMatrix() {
 
     const mat& A = m_transformationMatrix;
     m_fockMatrixTilde = A.t() * m_fockMatrix * A;
-    bool diag = arma::eig_sym(m_epsilon, m_coefficientMatrixTilde, m_fockMatrixTilde);
-    if (! diag) {
-        cout << "Hei" << endl;
-    }
-    m_coefficientMatrix = A * m_coefficientMatrixTilde;
+    arma::eig_sym(m_epsilon, m_coefficientMatrixTilde, m_fockMatrixTilde);
+    m_coefficientMatrix = A * m_coefficientMatrixTilde.submat(0,0,m_numberOfBasisFunctions-1, m_numberOfElectrons/2-1);
     normalizeCoefficientMatrix();
 }
 
@@ -75,21 +89,21 @@ void RestrictedHartreeFock::diagonalizeOverlapMatrix() {
     vec s;
     mat A;
     arma::eig_sym(s, A, m_overlapMatrix);
-    m_transformationMatrix = A*arma::diagmat(1.0/sqrt(s));
+    m_transformationMatrix = A*arma::diagmat(1.0 / sqrt(s));
 }
 
 void RestrictedHartreeFock::normalizeCoefficientMatrix() {
-    for (unsigned int k = 0; k < m_numberOfBasisFunctions; k++) {
+    for (int k = 0; k < m_numberOfElectrons/2; k++) {
         double normalizationFactor = 0;
-        for (unsigned int p = 0; p < m_numberOfBasisFunctions; p++) {
-            for (unsigned int q = 0; q < m_numberOfBasisFunctions; q++) {
+        for (int p = 0; p < m_numberOfBasisFunctions; p++) {
+            for (int q = 0; q < m_numberOfBasisFunctions; q++) {
                 normalizationFactor += m_coefficientMatrix(p,k) *
                                        m_coefficientMatrix(q,k) *
-                                       m_overlapMatrix(q,p);
+                                       m_overlapMatrix(p,q);
             }
-            m_coefficientMatrix.col(k) = m_coefficientMatrix.col(k) /
-                                         normalizationFactor;
         }
+        m_coefficientMatrix.col(k) = m_coefficientMatrix.col(k) /
+                                     normalizationFactor;
     }
 }
 
@@ -102,18 +116,17 @@ void RestrictedHartreeFock::selfConsistentFieldIteration() {
 void RestrictedHartreeFock::computeHartreeFockEnergy() {
     m_hartreeFockEnergy = 0;
 
-    for(int p = 0; p < m_numberOfBasisFunctions; p++) {
-        m_hartreeFockEnergy += 2 * m_epsilon(p);
-    }
-    for(int i = 0; i < m_numberOfBasisFunctions; i++)
-    for(int p = 0; p < m_numberOfBasisFunctions; p++)
-    for(int q = 0; q < m_numberOfBasisFunctions; q++) {
-        double rsSum = 0;
-        for(int r = 0; r < m_numberOfBasisFunctions; r++)
-        for(int s = 0; s < m_numberOfBasisFunctions; s++) {
-                rsSum += m_densityMatrix(r,s)*m_twoBodyMatrixElements(q,s)(p,r);
+    for (int p = 0; p < m_numberOfBasisFunctions; p++)
+    for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+        m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q);
+
+        for (int r = 0; r < m_numberOfBasisFunctions; r++)
+        for (int s = 0; s < m_numberOfBasisFunctions; s++) {
+            m_hartreeFockEnergy += m_twoBodyMatrixElements(p,q)(r,s) *
+                                   m_densityMatrix(p,q) *
+                                   m_densityMatrix(s,r) *
+                                   0.25;
         }
-        m_hartreeFockEnergy -= m_coefficientMatrix(q,i) * rsSum * m_coefficientMatrix(p,i);
     }
     m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
 }
@@ -163,14 +176,7 @@ void RestrictedHartreeFock::printFinalInfo() {
 }
 
 void RestrictedHartreeFock::computeDensityMatrix() {
-    for(int p = 0; p < m_numberOfBasisFunctions; p++) {
-        for(int q = 0; q < m_numberOfBasisFunctions; q++) {
-            m_densityMatrix(q,p) = 0.0;
-            for(int j = 0; j < m_numberOfBasisFunctions; j++) {
-                m_densityMatrix(q,p) += 2.0 * m_coefficientMatrix(q,j) * m_coefficientMatrix(p,j);
-            }
-        }
-    }
+    m_densityMatrix = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
 }
 
 void RestrictedHartreeFock::setupOverlapMatrix() {
@@ -187,8 +193,8 @@ void RestrictedHartreeFock::setupTwoBodyMatrixElements() {
     for (int q = 0; q < m_numberOfBasisFunctions; q++)
     for (int r = p; r < m_numberOfBasisFunctions; r++)
     for (int s = q; s < m_numberOfBasisFunctions; s++) {
-        m_twoBodyMatrixElements(p,q)(r,s) =         m_system->twoBodyElements(p,q,r,s)
-                                            - 0.5 * m_system->twoBodyElements(p,q,s,r);
+        m_twoBodyMatrixElements(p,q)(r,s) = 2.0 * m_system->twoBodyElements(p,r,q,s)
+                                                * m_system->twoBodyElements(p,r,s,q);
     }
 
     for(int p = 0; p < m_numberOfBasisFunctions; p++)
@@ -221,7 +227,7 @@ double RestrictedHartreeFock::solve(double  convergenceCriteria,
     m_reachedSelfConsistency    = false;
 
     setup();
-    printInitialInfo();
+    if (! m_silent) printInitialInfo();
     for (int iteration = 1; iteration < m_maximumIterations+1; iteration++) {
         selfConsistentFieldIteration();
 
@@ -231,16 +237,22 @@ double RestrictedHartreeFock::solve(double  convergenceCriteria,
             if(m_convergenceTest < m_convergenceCriterion) {
                 m_reachedSelfConsistency    = true;
                 m_iterationsUsed            = iteration;
-                printIterationInfo(iteration);
+                if (! m_silent) printIterationInfo(iteration);
                 break;
             }
         }
         computeHartreeFockEnergy();
         m_epsilonOld = m_epsilon;
-        printIterationInfo(iteration);
+        if (! m_silent) printIterationInfo(iteration);
     }
-    printFinalInfo();
+    if (! m_silent) printFinalInfo();
     return m_reachedSelfConsistency;
+}
+
+double RestrictedHartreeFock::solveSilently(double  convergenceCriterion,
+                                            int     maximumIterations) {
+    m_silent = true;
+    return solve(convergenceCriterion, maximumIterations);
 }
 
 
