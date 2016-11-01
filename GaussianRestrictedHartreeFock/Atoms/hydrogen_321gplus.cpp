@@ -1,4 +1,4 @@
-#include "Atoms/Hydrogen/hydrogen_321Gplus.h"
+#include "Atoms/hydrogen_321Gplus.h"
 #include "Orbitals/gaussianprimitive.h"
 #include "Orbitals/contractedgaussian.h"
 

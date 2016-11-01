@@ -17,9 +17,11 @@ protected:
     std::vector<ContractedGaussian*>    m_contractedGaussians;
 
 public:
+    Atom(arma::vec position, int numberOfElectrons, double charge);
     Atom(arma::vec position, int numberOfOrbitals, int numberOfElectrons, double charge);
 
     void setInfo(std::string info);
+    void setNumberOfOrbitals(int numberOfOrbitals);
 
     void        setNumberOfElectrons(int n) { m_numberOfElectrons = n; }
     std::string getInfo()               { return m_info; }

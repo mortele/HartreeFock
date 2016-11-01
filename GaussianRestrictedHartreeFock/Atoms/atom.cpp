@@ -3,6 +3,13 @@
 
 using std::setprecision;
 
+
+Atom::Atom(arma::vec position, int numberOfElectrons, double charge) {
+    m_position = position;
+    m_numberOfElectrons = numberOfElectrons;
+    m_charge = charge;
+}
+
 Atom::Atom(arma::vec    position,
            int          numberOfOrbitals,
            int          numberOfElectrons,
@@ -18,6 +25,12 @@ Atom::Atom(arma::vec    position,
 
 void Atom::setInfo(std::string info) {
     m_info = info;
+}
+
+void Atom::setNumberOfOrbitals(int numberOfOrbitals) {
+    m_numberOfOrbitals = numberOfOrbitals;
+    m_contractedGaussians.clear();
+    m_contractedGaussians.reserve(numberOfOrbitals);
 }
 
 std::ostream& operator<<(std::ostream& stream, Atom& atom) {

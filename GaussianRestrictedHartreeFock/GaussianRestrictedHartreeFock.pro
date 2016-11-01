@@ -17,19 +17,16 @@ SOURCES += main.cpp \
     Integrators/contractedintegrator.cpp \
     Integrators/kineticintegrator.cpp \
     Integrators/overlapintegrator.cpp \
+    Integrators/electronelectronintegrator.cpp \
     Math/boysfunction.cpp \
     Orbitals/contractedgaussian.cpp \
     Orbitals/gaussianprimitive.cpp \
-    Integrators/electronelectronintegrator.cpp \
     Atoms/atom.cpp \
-    system.cpp \
-    Atoms/Hydrogen/hydrogen_321g.cpp \
-    Atoms/Hydrogen/hydrogen_321gplus.cpp \
-    Atoms/Hydrogen/hydrogen_631g.cpp \
+    Atoms/hydrogen.cpp \
     Solvers/restrictedhartreefock.cpp \
-    Atoms/Hydrogen/hydrogen_631gss.cpp \
     Parsers/basissetparser.cpp \
-    Parsers/filenameparser.cpp
+    Parsers/filenameparser.cpp \
+    system.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -38,17 +35,14 @@ HEADERS += \
     Integrators/contractedintegrator.h \
     Integrators/kineticintegrator.h \
     Integrators/overlapintegrator.h \
+    Integrators/electronelectronintegrator.h \
     Math/boysfunction.h \
+    Math/factorial.h \
     Orbitals/contractedgaussian.h \
     Orbitals/gaussianprimitive.h \
-    Integrators/electronelectronintegrator.h \
     Atoms/atom.h \
-    Math/factorial.h \
-    system.h \
-    Atoms/Hydrogen/hydrogen_321g.h \
-    Atoms/Hydrogen/hydrogen_321gplus.h \
-    Atoms/Hydrogen/hydrogen_631g.h \
+    Atoms/hydrogen.h \
     Solvers/restrictedhartreefock.h \
-    Atoms/Hydrogen/hydrogen_631gss.h \
     Parsers/basissetparser.h \
-    Parsers/filenameparser.h
+    Parsers/filenameparser.h \
+    system.h
