@@ -34,8 +34,6 @@ void Hydrogen::basis_321G() {
     m_contractedGaussians.push_back(contracted2);
 }
 
-
-
 void Hydrogen::basis_321Gpp() {
     /*   h   3-21++G
      *   *
@@ -108,10 +106,6 @@ void Hydrogen::basis_631G() {
     m_contractedGaussians.push_back(contracted2);
 }
 
-
-
-
-
 void Hydrogen::basis_631Gss() {
     /*  h   6-31G**
     *   *
@@ -160,24 +154,24 @@ void Hydrogen::basis_631Gss() {
     m_contractedGaussians.push_back(contracted);
 }
 
-
-
-
-
-
 Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
     Atom(position, 1, 1.0) {
 
-    if (basisName == "6-31G") {
+    if (basisName == "3-21G") {
         basis_321G();
     } else if (basisName == "3-21G++") {
-        basis_321Gp();
+        basis_321Gpp();
     } else if (basisName == "6-31G") {
         basis_631G();
     } else if (basisName == "6-31G**") {
         basis_631Gss();
     } else {
         cout << "Unknown basis: " << basisName << endl;
+        cout << "Currently known basis sets for Hydrogen: " << endl;
+        cout << " * 3-21G"   << endl;
+        cout << " * 3-21G++" << endl;
+        cout << " * 6-31G"   << endl;
+        cout << " * 6-31G**" << endl;
     }
 }
 

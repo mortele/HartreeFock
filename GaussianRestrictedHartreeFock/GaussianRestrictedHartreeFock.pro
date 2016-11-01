@@ -26,7 +26,9 @@ SOURCES += main.cpp \
     Solvers/restrictedhartreefock.cpp \
     Parsers/basissetparser.cpp \
     Parsers/filenameparser.cpp \
-    system.cpp
+    system.cpp \
+    Solvers/unrestrictedhartreefock.cpp \
+    Solvers/hartreefock.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -45,4 +47,6 @@ HEADERS += \
     Solvers/restrictedhartreefock.h \
     Parsers/basissetparser.h \
     Parsers/filenameparser.h \
-    system.h
+    system.h \
+    Solvers/unrestrictedhartreefock.h \
+    Solvers/hartreefock.h

@@ -7,6 +7,7 @@
 #include <cassert>
 #include "system.h"
 #include "Solvers/restrictedhartreefock.h"
+#include "Solvers/unrestrictedhartreefock.h"
 #include "Atoms/atom.h"
 #include "Atoms/hydrogen.h"
 
@@ -17,19 +18,19 @@ using std::endl;
 
 int main(int, char**) {
 
-
     vec nucleus1 {0, 0, 0};
     vec nucleus2 {0, 0, 1.4};
 
     System system;
 
-    system.addAtom(new Hydrogen("3-21G", nucleus1));
-    system.addAtom(new Hydrogen("3-21G", nucleus2));
+    system.addAtom(new Hydrogen("6-31G**", nucleus1));
+    system.addAtom(new Hydrogen("6-31G**", nucleus2));
 
     RestrictedHartreeFock solver(&system);
-    double result = solver.solve(1e-14, 1e3);
+    solver.solve(1e-14, 1e4);
+    double result = solver.solve(1e-14, 1e4);
 
-    //assert(std::fabs(-1.131284349300591 - result) < 1e-15);
+    assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
 }
 
