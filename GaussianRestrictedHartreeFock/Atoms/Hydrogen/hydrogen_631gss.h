@@ -5,6 +5,5 @@
 class Hydrogen_631Gss : public Atom {
 public:
     Hydrogen_631Gss(arma::vec position);
-    std::string getInfo() { return "Hydrogen : 6-31G**"; }
 };
 

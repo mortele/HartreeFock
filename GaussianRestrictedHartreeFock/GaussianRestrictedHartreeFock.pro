@@ -8,7 +8,7 @@ QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
 INCLUDEPATH += /usr/local/include
-LIBS += -L/usr/local/lib -larmadillo -llapack -lblas
+LIBS += -L/usr/local/lib -larmadillo -llapack -lblas -lboost_regex
 
 SOURCES += main.cpp \
     Factorizations/hermitegaussian.cpp \
@@ -27,7 +27,9 @@ SOURCES += main.cpp \
     Atoms/Hydrogen/hydrogen_321gplus.cpp \
     Atoms/Hydrogen/hydrogen_631g.cpp \
     Solvers/restrictedhartreefock.cpp \
-    Atoms/Hydrogen/hydrogen_631gss.cpp
+    Atoms/Hydrogen/hydrogen_631gss.cpp \
+    Parsers/basissetparser.cpp \
+    Parsers/filenameparser.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -47,4 +49,6 @@ HEADERS += \
     Atoms/Hydrogen/hydrogen_321gplus.h \
     Atoms/Hydrogen/hydrogen_631g.h \
     Solvers/restrictedhartreefock.h \
-    Atoms/Hydrogen/hydrogen_631gss.h
+    Atoms/Hydrogen/hydrogen_631gss.h \
+    Parsers/basissetparser.h \
+    Parsers/filenameparser.h

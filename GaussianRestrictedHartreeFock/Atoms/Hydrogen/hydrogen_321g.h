@@ -7,5 +7,4 @@
 class Hydrogen_321G : public Atom {
 public:
     Hydrogen_321G(arma::vec position);
-    std::string getInfo() { return "Hydrogen : 3-21G"; }
 };

@@ -14,7 +14,10 @@ RestrictedHartreeFock::RestrictedHartreeFock(System* system) :
         m_system(system) {
 
     m_numberOfBasisFunctions    = m_system->getNumberOfBasisFunctions();
-    m_numberOfElectrons         = m_system->getAtoms().size();
+    m_numberOfElectrons = 0;
+    for (Atom* atom : system->getAtoms()) {
+        m_numberOfElectrons += atom->getNumberOfElectrons();
+    }
     m_basis                     = m_system->getBasis();
     m_epsilon                   = zeros(m_numberOfBasisFunctions);
     m_epsilonOld                = zeros(m_numberOfBasisFunctions);

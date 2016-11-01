@@ -7,6 +7,8 @@ Hydrogen_631G::Hydrogen_631G(arma::vec position) :
         //             orbitals, electrons, charge
         Atom(position, 2,        1,         1) {
 
+    m_info = "Hydrogen : 6-31G";
+
     // s orbital (3 primitives)
     GaussianPrimitive* primitive1 = new GaussianPrimitive(0, 0, 0, 18.7311370, m_position, 0.03349460);
     GaussianPrimitive* primitive2 = new GaussianPrimitive(0, 0, 0,  2.8253937, m_position, 0.23472695);

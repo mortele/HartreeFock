@@ -1,5 +1,7 @@
 #include "atom.h"
+#include <iomanip>
 
+using std::setprecision;
 
 Atom::Atom(arma::vec    position,
            int          numberOfOrbitals,
@@ -14,6 +16,14 @@ Atom::Atom(arma::vec    position,
     m_numberOfElectrons = numberOfElectrons;
 }
 
-std::string Atom::getInfo() {
-    return "Unknown atom type.";
+void Atom::setInfo(std::string info) {
+    m_info = info;
+}
+
+std::ostream& operator<<(std::ostream& stream, Atom& atom) {
+    stream << atom.getInfo() << " at (" << setprecision(4)
+                                        << atom.m_position(0) << ", "
+                                        << atom.m_position(1) << ", "
+                                        << atom.m_position(2) << ")";
+    return stream;
 }
