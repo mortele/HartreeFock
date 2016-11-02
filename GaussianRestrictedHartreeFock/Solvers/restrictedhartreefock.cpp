@@ -57,6 +57,9 @@ void RestrictedHartreeFock::normalizeCoefficientMatrix() {
         double normalizationFactor = 0;
         for (int p = 0; p < m_numberOfBasisFunctions; p++) {
             for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+                // Since the coefficient matrix is real and symmetric, we use
+                // C(p,k) = C(k,p) here, even though in general this should be
+                // C'(k,p), where ' denotes the Hermitian conjugate.
                 normalizationFactor += m_coefficientMatrix(p,k) *
                                        m_coefficientMatrix(q,k) *
                                        m_overlapMatrix(p,q);

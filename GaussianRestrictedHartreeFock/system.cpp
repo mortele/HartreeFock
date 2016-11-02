@@ -12,6 +12,14 @@ void System::addAtom(Atom* atom) {
     setupBasis();
 }
 
+int System::getNumberOfSpinUpElectrons() {
+    return m_numberOfAtoms / 2 + m_numberOfAtoms % 2;
+}
+
+int System::getNumberOfSpinDownElectrons() {
+    return m_numberOfAtoms / 2;
+}
+
 double System::overlapIntegral(int i, int j) {
     return m_integrator.overlapIntegral(m_basis.at(i), m_basis.at(j));
 }

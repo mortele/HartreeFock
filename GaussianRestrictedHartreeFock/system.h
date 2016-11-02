@@ -20,6 +20,8 @@ public:
     std::vector<Atom*>& getAtoms() { return m_atoms; }
     std::vector<ContractedGaussian*> getBasis() { return m_basis; }
     int getNumberOfBasisFunctions() { return m_numberOfBasisFunctions; }
+    int getNumberOfSpinUpElectrons();
+    int getNumberOfSpinDownElectrons();
 
     double overlapIntegral(int i, int j);
     double kineticIntegral(int i, int j);

@@ -21,6 +21,16 @@ private:
     arma::mat   m_densityMatrixUp;
     arma::mat   m_densityMatrixDown;
 
+    void setup();
+    void computeFockMatrices();
+    void computeDensityMatrices();
+    void diagonalizeFockMatrices();
+    void normalizeCoefficientMatrices();
+    void selfConsistentFieldIteration();
+    void computeHartreeFockEnergy();
+    void storeEnergy();
+    double convergenceTest();
+
 public:
     UnrestrictedHartreeFock(System* system);
 };
