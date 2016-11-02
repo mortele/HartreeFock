@@ -23,7 +23,6 @@ Atom* BasisSetParser::newAtomFromBasisSetFile(string atomName,
     return atom;
 }
 
-
 int BasisSetParser::findNumberOfContractedOrbitals() {
     ifstream basisFile(m_fileName);
     if (! basisFile.good()) {
@@ -33,9 +32,6 @@ int BasisSetParser::findNumberOfContractedOrbitals() {
         cout << line << endl;
     }
 }
-
-
-
 
 int BasisSetParser::findChargeFromAtomName(std::string atomName) {
     if (atomName =="H") {

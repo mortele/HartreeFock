@@ -22,6 +22,7 @@ UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
     m_coefficientMatrixUp         = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
     m_coefficientMatrixTildeUp    = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
     m_densityMatrixUp             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_densityMatrixUp(0,1) = 0.1;
 
     m_epsilonDown                 = zeros(m_numberOfSpinDownElectrons);
     m_epsilonOldDown              = zeros(m_numberOfSpinDownElectrons);
@@ -37,13 +38,13 @@ void UnrestrictedHartreeFock::setup() {
     diagonalizeOverlapMatrix();
     setupOneBodyElements();
     setupTwoBodyElements();
-    computeDensityMatrices();
+    //computeDensityMatrices();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
 void UnrestrictedHartreeFock::computeFockMatrices() {
     for(int p = 0; p < m_numberOfBasisFunctions; p++)
-    for(int q = 0; q < m_numberOfBasisFunctions; q++) {
+    for(int q = p; q < m_numberOfBasisFunctions; q++) {
         m_fockMatrixUp(p,q)   = m_oneBodyMatrixElements(p,q);
         m_fockMatrixDown(p,q) = m_oneBodyMatrixElements(p,q);
 
@@ -51,11 +52,13 @@ void UnrestrictedHartreeFock::computeFockMatrices() {
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
             const double prqs = m_twoBodyMatrixElements(p,r)(q,s);
             const double prsq = m_twoBodyMatrixElements(p,r)(s,q);
-            m_fockMatrixUp(p,q)   += m_densityMatrixUp(s,r)   * (prqs-prsq)
-                                   + m_densityMatrixDown(s,r) * prqs;
-            m_fockMatrixDown(p,q) += m_densityMatrixDown(s,r) * (prqs-prsq)
-                                   + m_densityMatrixUp(s,r)   * prqs;
+            m_fockMatrixUp(p,q)   += (prqs-prsq) * m_densityMatrixUp(s,r)
+                                   +  prqs       * m_densityMatrixDown(s,r);
+            m_fockMatrixDown(p,q) += (prqs-prsq) * m_densityMatrixDown(s,r)
+                                   +  prqs       * m_densityMatrixUp(s,r);
         }
+        m_fockMatrixUp(q,p)   = m_fockMatrixUp(p,q);
+        m_fockMatrixDown(q,p) = m_fockMatrixDown(p,q);
     }
 }
 

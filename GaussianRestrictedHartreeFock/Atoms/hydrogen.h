@@ -6,9 +6,12 @@
 class Hydrogen : public Atom {
 private:
     void basis_321G();
-    void basis_321Gpp();
+    void basis_321ppG();
     void basis_631G();
     void basis_631Gss();
+    void basis_631ppGss();
+    void basis_6311ppGss();
+    void basis_6311ppG2d2p();
 
 public:
     Hydrogen(std::string basisName, arma::vec position);

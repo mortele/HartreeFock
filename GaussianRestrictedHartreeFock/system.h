@@ -8,6 +8,7 @@ class System {
 private:
     int     m_numberOfAtoms;
     int     m_numberOfBasisFunctions;
+    int     m_numberOfElectrons;
     std::vector<Atom*>                  m_atoms;
     std::vector<ContractedGaussian*>    m_basis;
     ContractedIntegrator                m_integrator;

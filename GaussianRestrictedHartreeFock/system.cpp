@@ -13,11 +13,11 @@ void System::addAtom(Atom* atom) {
 }
 
 int System::getNumberOfSpinUpElectrons() {
-    return m_numberOfAtoms / 2 + m_numberOfAtoms % 2;
+    return m_numberOfElectrons / 2 + m_numberOfElectrons % 2;
 }
 
 int System::getNumberOfSpinDownElectrons() {
-    return m_numberOfAtoms / 2;
+    return m_numberOfElectrons / 2;
 }
 
 double System::overlapIntegral(int i, int j) {
@@ -52,7 +52,6 @@ double System::oneBodyElements(int i, int j) {
 }
 
 double System::twoBodyElements(int i, int j, int k, int l) {
-    // p,q,r,s --> p,r,q,s
     return electronElectronIntegral(i,j,k,l);
 }
 
@@ -74,9 +73,11 @@ double System::nucleusNucleusInteractionEnergy() {
 }
 
 void System::setupBasis() {
+    m_numberOfElectrons = 0;
     int numberOfBasisFunctions = 0;
     for (unsigned int i = 0; i < m_atoms.size(); i++) {
         numberOfBasisFunctions += m_atoms.at(i)->getNumberOfOrbitals();
+        m_numberOfElectrons += m_atoms.at(i)->getNumberOfElectrons();
     }
     m_basis.clear();
     m_basis.reserve(numberOfBasisFunctions);

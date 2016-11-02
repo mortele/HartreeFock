@@ -16,6 +16,12 @@ protected:
     std::string                         m_info = "Unknown atom type";
     std::vector<ContractedGaussian*>    m_contractedGaussians;
 
+    ContractedGaussian* insertNewContracted();
+    ContractedGaussian* create_S1(double a, double c);
+    ContractedGaussian* create_S2(double a1, double a2, double c1, double c2);
+    ContractedGaussian* create_S3(double a1, double a2, double a3, double c1, double c2, double c3);
+    void create_P1(double a, double c);
+
 public:
     Atom(arma::vec position, int numberOfElectrons, double charge);
     Atom(arma::vec position, int numberOfOrbitals, int numberOfElectrons, double charge);

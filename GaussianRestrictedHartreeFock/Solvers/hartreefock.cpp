@@ -68,7 +68,6 @@ double HartreeFock::solveSilently(double convergenceCriterion, int maximumIterat
     return solve(convergenceCriterion, maximumIterations);
 }
 
-
 void HartreeFock::setupOneBodyElements() {
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
         for (int q = 0; q < m_numberOfBasisFunctions; q++) {
