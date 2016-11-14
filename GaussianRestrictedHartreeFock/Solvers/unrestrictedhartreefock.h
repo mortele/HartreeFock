@@ -1,6 +1,6 @@
 #pragma once
-#include "system.h"
 #include "Solvers/hartreefock.h"
+#include <string>
 
 class UnrestrictedHartreeFock : public HartreeFock {
 private:
@@ -30,8 +30,11 @@ private:
     void computeHartreeFockEnergy();
     void storeEnergy();
     double convergenceTest();
+    std::string getDateTime();
 
 public:
-    UnrestrictedHartreeFock(System* system);
+    UnrestrictedHartreeFock(class System* system);
+
+    std::string dumpBasisToFile();
 };
 

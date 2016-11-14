@@ -1,7 +1,16 @@
 #include "unrestrictedhartreefock.h"
+#include "Orbitals/contractedgaussian.h"
+#include "Orbitals/gaussianprimitive.h"
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+#include <ctime>
+#include <boost/format.hpp>
 
 using std::cout;
 using std::endl;
+using std::printf;
 using arma::eye;
 using arma::zeros;
 using arma::mat;
@@ -135,3 +144,65 @@ double UnrestrictedHartreeFock::convergenceTest() {
     double sumDown  = arma::sum(arma::abs(m_epsilonDown - m_epsilonOldDown)) / m_epsilonDown.n_elem;
     return 0.5 * (sumUp + sumDown);
 }
+
+std::string UnrestrictedHartreeFock::getDateTime() {
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d-%H.%M.%S");
+    std::string dateTime = ss.str();
+    return dateTime;
+}
+
+std::string UnrestrictedHartreeFock::dumpBasisToFile() {
+    std::string fileName = "../HartreeFockBases/basis-" + getDateTime();
+
+    std::vector<ContractedGaussian*> basis = m_system->getBasis();
+
+    std::ofstream outFile;
+    outFile.open(fileName, std::ios::out);
+
+    int basisSize = m_numberOfBasisFunctions;
+    int electrons = m_numberOfElectrons;
+    int spinUp    = m_numberOfSpinUpElectrons;
+    int spinDown  = m_numberOfSpinDownElectrons;
+    outFile << boost::format("%d %d %d %d\n") % electrons % spinUp % spinDown % basisSize;
+
+    for (ContractedGaussian* contracted : basis) {
+        int primitives = contracted->getPrimitives().size();
+        vec nucleus = contracted->getNucleusPosition();
+
+        outFile << boost::format("%d\n") % primitives;
+        outFile << boost::format("%.15f %.15f %.15f\n") % nucleus(0) % nucleus(1) % nucleus(2);
+
+        for (GaussianPrimitive* primitive : contracted->getPrimitives()) {
+            int x = primitive->xExponent();
+            int y = primitive->yExponent();
+            int z = primitive->zExponent();
+            double exponent = primitive->exponent();
+            double constant = primitive->getCoefficient();
+            outFile << boost::format("%d %d %d %.15f %.15f\n") % x % y % z % exponent % constant;
+        }
+    }
+    for (int electron = 0; electron < m_numberOfSpinUpElectrons; electron++) {
+        for (int basisFunction = 0; basisFunction < m_numberOfBasisFunctions; basisFunction++) {
+            outFile << std::setprecision(5) << m_coefficientMatrixUp(basisFunction, electron) << " ";
+        }
+        outFile << "\n";
+    }
+    for (int electron = 0; electron < m_numberOfSpinDownElectrons; electron++) {
+        for (int basisFunction = 0; basisFunction < m_numberOfBasisFunctions; basisFunction++) {
+            outFile << std::setprecision(5) << m_coefficientMatrixDown(basisFunction, electron) << " ";
+        }
+        outFile << "\n";
+    }
+
+    outFile.close();
+    return fileName;
+}
+
+
+
+
+
+

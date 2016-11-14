@@ -15,7 +15,7 @@ protected:
     double      m_hartreeFockEnergy;
     double      m_nucleusNucleusInteractionEnergy;
     double      m_convergenceTest;
-    System*     m_system;
+    class System*     m_system;
     arma::mat   m_overlapMatrix;
     arma::mat   m_transformationMatrix;
     arma::mat   m_oneBodyMatrixElements;
@@ -38,7 +38,7 @@ protected:
     virtual double  convergenceTest() = 0;
 
 public:
-    HartreeFock(System* system);
+    HartreeFock(class System* system);
 
     double solve(double convergenceCriterion=1e-14, int maximumIterations=50);
     double solveSilently(double convergenceCriterion=1e-14, int maximumIterations=50);

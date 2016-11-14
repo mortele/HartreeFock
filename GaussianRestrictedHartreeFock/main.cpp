@@ -18,17 +18,55 @@ using std::endl;
 
 int main(int, char**) {
 
-    vec nucleus1 {0, -0.2, 0};
-    vec nucleus2 {0, 0, 3.321};
+    vec nucleus1  {0, 0, 0};
+    vec nucleus2  {0, 0, 1};
+    vec nucleus3  {0, 1, 0};
+    vec nucleus4  {1, 0, 0};
+    vec nucleus5  {1, 1, 0};
+    vec nucleus6  {0, 1, 1};
+    vec nucleus7  {1, 0, 1};
+    vec nucleus8  {-1, 0, 0};
+    vec nucleus9  {0, -1, 0};
+    vec nucleus10 {0, 0, -1};
+    vec nucleus11 {-1, -1, 0};
+    vec nucleus12 {0, -1, -1};
+    vec nucleus13 {-1, 0, -1};
+    vec nucleus14 {-1, 1, 0};
+    vec nucleus15 {0, 1, -1};
+    vec nucleus16 {-1, 0, 1};
+    vec nucleus17 {1, -1, 0};
+    vec nucleus18 {0, -1, 1};
+    vec nucleus19 {1, 0, -1};
 
-    System* system = new System(1);
-    system->addAtom(new Hydrogen("6-311++G**", nucleus1));
-    system->addAtom(new Hydrogen("6-31G**", nucleus2));
+
+    System* system = new System(19);
+    system->addAtom(new Hydrogen("3-21++G", nucleus1));
+    system->addAtom(new Hydrogen("3-21++G", nucleus2));
+    system->addAtom(new Hydrogen("3-21++G", nucleus3));
+    system->addAtom(new Hydrogen("3-21++G", nucleus4));
+
+    /*system->addAtom(new Hydrogen("3-21++G", nucleus5));
+    system->addAtom(new Hydrogen("3-21++G", nucleus6));
+    system->addAtom(new Hydrogen("3-21++G", nucleus7));
+    system->addAtom(new Hydrogen("3-21++G", nucleus8));
+    system->addAtom(new Hydrogen("3-21++G", nucleus9));
+    system->addAtom(new Hydrogen("3-21++G", nucleus10));
+    system->addAtom(new Hydrogen("3-21++G", nucleus11));
+    system->addAtom(new Hydrogen("3-21++G", nucleus12));
+    system->addAtom(new Hydrogen("3-21++G", nucleus13));
+    system->addAtom(new Hydrogen("3-21++G", nucleus14));
+    system->addAtom(new Hydrogen("3-21++G", nucleus15));
+    system->addAtom(new Hydrogen("3-21++G", nucleus16));
+    system->addAtom(new Hydrogen("3-21++G", nucleus17));
+    system->addAtom(new Hydrogen("3-21++G", nucleus18));
+    system->addAtom(new Hydrogen("3-21++G", nucleus19));
+    */
 
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    double result = solver.solve(1e-14, 1e4);
+    double result = solver.solve(1e-6, 1e4);
 
+    cout << solver.dumpBasisToFile() << endl;
     //assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
 }

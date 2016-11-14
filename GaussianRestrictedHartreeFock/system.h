@@ -3,6 +3,7 @@
 #include "Orbitals/contractedgaussian.h"
 #include "Integrators/contractedintegrator.h"
 #include <vector>
+#include <string>
 
 class System {
 private:

@@ -131,6 +131,7 @@ void HartreeFock::printInitialInfo() {
     printf(" ============================================================ \n");
     printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
     printf(" ------------------------------------------------------------ \n");
+    fflush(stdout);
 }
 
 void HartreeFock::printIterationInfo(int iteration) {
@@ -138,6 +139,7 @@ void HartreeFock::printIterationInfo(int iteration) {
         printf(" ------------------------------------------------------------ \n");
         printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
         printf(" ------------------------------------------------------------ \n");
+        fflush(stdout);
     }
     printf(" %15d %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
 }

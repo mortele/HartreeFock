@@ -15,4 +15,5 @@ public:
     void createNewPrimitive(int i, int j, int k, double a, double coefficient=1);
     void addPrimitive(GaussianPrimitive* primitive, double coefficient=1);
     std::vector<GaussianPrimitive*> getPrimitives() const { return m_primitives; }
+    arma::vec getNucleusPosition() { return m_nucleusPosition; }
 };
