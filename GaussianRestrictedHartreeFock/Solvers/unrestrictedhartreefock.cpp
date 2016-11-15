@@ -166,7 +166,13 @@ std::string UnrestrictedHartreeFock::dumpBasisToFile() {
     int electrons = m_numberOfElectrons;
     int spinUp    = m_numberOfSpinUpElectrons;
     int spinDown  = m_numberOfSpinDownElectrons;
-    outFile << boost::format("%d %d %d %d\n") % electrons % spinUp % spinDown % basisSize;
+    int atoms     = m_system->getAtoms().size();
+    outFile << boost::format("%d %d %d %d %d\n") % electrons % spinUp % spinDown % basisSize % atoms;
+
+    for (Atom* atom : m_system->getAtoms()) {
+        vec position = atom->getPosition();
+        outFile << boost::format("%.15f %.15f %.15f\n") % position(0) % position(1) % position(2);
+    }
 
     for (ContractedGaussian* contracted : basis) {
         int primitives = contracted->getPrimitives().size();

@@ -39,13 +39,16 @@ int main(int, char**) {
     vec nucleus19 {1, 0, -1};
 
 
-    System* system = new System(19);
-    system->addAtom(new Hydrogen("3-21++G", nucleus1));
+    System* system = new System(1);
+    Hydrogen* Hminus = new Hydrogen("6-311++G(2d,2p)", nucleus1);
+    Hminus->setNumberOfElectrons(2);
+    system->addAtom(Hminus);
+
+    /*system->addAtom(new Hydrogen("3-21++G", nucleus2));
     system->addAtom(new Hydrogen("3-21++G", nucleus2));
     system->addAtom(new Hydrogen("3-21++G", nucleus3));
     system->addAtom(new Hydrogen("3-21++G", nucleus4));
-
-    /*system->addAtom(new Hydrogen("3-21++G", nucleus5));
+    system->addAtom(new Hydrogen("3-21++G", nucleus5));
     system->addAtom(new Hydrogen("3-21++G", nucleus6));
     system->addAtom(new Hydrogen("3-21++G", nucleus7));
     system->addAtom(new Hydrogen("3-21++G", nucleus8));
@@ -64,8 +67,7 @@ int main(int, char**) {
 
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    double result = solver.solve(1e-6, 1e4);
-
+    double result = solver.solve(1e-14, 1e4);
     cout << solver.dumpBasisToFile() << endl;
     //assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
