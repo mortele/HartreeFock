@@ -4,7 +4,7 @@
 using std::setprecision;
 
 
-ContractedGaussian*Atom::insertNewContracted() {
+ContractedGaussian* Atom::insertNewContracted() {
     ContractedGaussian* contracted = new ContractedGaussian();
     m_contractedGaussians.push_back(contracted);
     return contracted;
@@ -28,7 +28,15 @@ ContractedGaussian* Atom::create_S3(double a1, double a2, double a3, double c1, 
     return contracted;
 }
 
-void Atom::create_P1(double a, double c) {
+ContractedGaussian* Atom::create_P2(double a1, double a2, double c1, double c2) {
+    ContractedGaussian* contracted = create_P1(a1, c1);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a2,m_position,c2), c2);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a2,m_position,c2), c2);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a2,m_position,c2), c2);
+    return contracted;
+}
+
+ContractedGaussian* Atom::create_P1(double a, double c) {
     ContractedGaussian* contracted;
     contracted = insertNewContracted();
     contracted->addPrimitive(new GaussianPrimitive(1,0,0,a,m_position,c), c);
@@ -36,6 +44,7 @@ void Atom::create_P1(double a, double c) {
     contracted->addPrimitive(new GaussianPrimitive(0,1,0,a,m_position,c), c);
     contracted = insertNewContracted();
     contracted->addPrimitive(new GaussianPrimitive(0,0,1,a,m_position,c), c);
+    return contracted;
 }
 
 Atom::Atom(arma::vec position, int numberOfElectrons, double charge) {

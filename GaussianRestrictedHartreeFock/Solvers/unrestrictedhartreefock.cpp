@@ -171,7 +171,8 @@ std::string UnrestrictedHartreeFock::dumpBasisToFile() {
 
     for (Atom* atom : m_system->getAtoms()) {
         vec position = atom->getPosition();
-        outFile << boost::format("%.15f %.15f %.15f\n") % position(0) % position(1) % position(2);
+        int Z        = atom->getCharge();
+        outFile << boost::format("%d %.15f %.15f %.15f\n") % Z % position(0) % position(1) % position(2);
     }
 
     for (ContractedGaussian* contracted : basis) {

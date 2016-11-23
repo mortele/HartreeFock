@@ -7,6 +7,7 @@ CONFIG -= qt
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
+INCLUDEPATH += /usr/local/opt/gcc/lib/gcc/6
 INCLUDEPATH += /usr/local/include
 LIBS += -L/usr/local/lib -larmadillo -llapack -lblas -lboost_regex
 
@@ -28,7 +29,8 @@ SOURCES += main.cpp \
     Parsers/filenameparser.cpp \
     system.cpp \
     Solvers/unrestrictedhartreefock.cpp \
-    Solvers/hartreefock.cpp
+    Solvers/hartreefock.cpp \
+    Atoms/oxygen.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -49,4 +51,5 @@ HEADERS += \
     Parsers/filenameparser.h \
     system.h \
     Solvers/unrestrictedhartreefock.h \
-    Solvers/hartreefock.h
+    Solvers/hartreefock.h \
+    Atoms/oxygen.h

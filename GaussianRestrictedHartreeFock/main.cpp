@@ -5,11 +5,13 @@
 #include <iostream>
 #include <iomanip>
 #include <cassert>
+#include <boost/timer.hpp>
 #include "system.h"
 #include "Solvers/restrictedhartreefock.h"
 #include "Solvers/unrestrictedhartreefock.h"
 #include "Atoms/atom.h"
 #include "Atoms/hydrogen.h"
+#include "Atoms/oxygen.h"
 
 using arma::vec;
 using arma::zeros;
@@ -18,8 +20,10 @@ using std::endl;
 
 int main(int, char**) {
 
+    boost::timer t;
+
     vec nucleus1  {0, 0, 0};
-    vec nucleus2  {0, 0, 1};
+    vec nucleus2  {0, 0, 1.4};
     vec nucleus3  {0, 1, 0};
     vec nucleus4  {1, 0, 0};
     vec nucleus5  {1, 1, 0};
@@ -38,13 +42,36 @@ int main(int, char**) {
     vec nucleus18 {0, -1, 1};
     vec nucleus19 {1, 0, -1};
 
-
     System* system = new System(1);
-    Hydrogen* Hminus = new Hydrogen("6-311++G(2d,2p)", nucleus1);
-    Hminus->setNumberOfElectrons(2);
-    system->addAtom(Hminus);
+    system->addAtom(new Oxygen("3-21G", nucleus1));
+    system->addAtom(new Oxygen("3-21G", nucleus2));
+    /*system->addAtom(new Oxygen("3-21G", nucleus3));
+    system->addAtom(new Oxygen("3-21G", nucleus4));
+    system->addAtom(new Oxygen("3-21G", nucleus5));
+    system->addAtom(new Oxygen("3-21G", nucleus6));
+    system->addAtom(new Oxygen("3-21G", nucleus7));
+    system->addAtom(new Oxygen("3-21G", nucleus8));
+    system->addAtom(new Oxygen("3-21G", nucleus9));
+    system->addAtom(new Oxygen("3-21G", nucleus10));
+    system->addAtom(new Oxygen("3-21G", nucleus11));
+    system->addAtom(new Oxygen("3-21G", nucleus12));
+    system->addAtom(new Oxygen("3-21G", nucleus13));
+    system->addAtom(new Oxygen("3-21G", nucleus14));
+    system->addAtom(new Oxygen("3-21G", nucleus15));
+    system->addAtom(new Oxygen("3-21G", nucleus16));
+    system->addAtom(new Oxygen("3-21G", nucleus17));
+    system->addAtom(new Oxygen("3-21G", nucleus18));
+    system->addAtom(new Oxygen("3-21G", nucleus19));*/
 
-    /*system->addAtom(new Hydrogen("3-21++G", nucleus2));
+
+
+
+    /*System* system = new System(1);
+    //Hydrogen* Hminus = new Hydrogen("6-311++G(2d,2p)", nucleus1);
+    //Hminus->setNumberOfElectrons(2);
+    //system->addAtom(Hminus);
+
+    system->addAtom(new Hydrogen("3-21++G", nucleus1));
     system->addAtom(new Hydrogen("3-21++G", nucleus2));
     system->addAtom(new Hydrogen("3-21++G", nucleus3));
     system->addAtom(new Hydrogen("3-21++G", nucleus4));
@@ -67,8 +94,11 @@ int main(int, char**) {
 
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    double result = solver.solve(1e-14, 1e4);
+    double result = solver.solve(1e-6, 1e4);
     cout << solver.dumpBasisToFile() << endl;
+
+    double elapsedTime = t.elapsed();
+    cout << "Elapsed time: " << elapsedTime << endl;
     //assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
 }
