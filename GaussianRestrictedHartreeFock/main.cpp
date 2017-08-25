@@ -12,6 +12,13 @@
 #include "Atoms/atom.h"
 #include "Atoms/hydrogen.h"
 #include "Atoms/oxygen.h"
+#include "Atoms/helium.h"
+#include "examples.h"
+
+#include "Integrators/overlapintegrator.h"
+#include "Integrators/kineticintegrator.h"
+#include "Integrators/electronnucleusintegrator.h"
+#include "Orbitals/gaussianprimitive.h"
 
 using arma::vec;
 using arma::zeros;
@@ -19,90 +26,21 @@ using std::cout;
 using std::endl;
 
 int main(int, char**) {
+    //Examples::Hm();
+    //Examples::He();
+    //Examples::HeHp();
+    //Examples::H2();
+    //Examples::H20();
 
-    boost::timer t;
+    vec nucleus1  {0,            0,             0};
+    vec nucleus2  {0,            0,             1};
 
-    vec nucleus1  {0, 0, 0};
-    vec nucleus2  {0, 0, 1.4};
-    vec nucleus3  {0, 1, 0};
-    vec nucleus4  {1, 0, 0};
-    vec nucleus5  {1, 1, 0};
-    vec nucleus6  {0, 1, 1};
-    vec nucleus7  {1, 0, 1};
-    vec nucleus8  {-1, 0, 0};
-    vec nucleus9  {0, -1, 0};
-    vec nucleus10 {0, 0, -1};
-    vec nucleus11 {-1, -1, 0};
-    vec nucleus12 {0, -1, -1};
-    vec nucleus13 {-1, 0, -1};
-    vec nucleus14 {-1, 1, 0};
-    vec nucleus15 {0, 1, -1};
-    vec nucleus16 {-1, 0, 1};
-    vec nucleus17 {1, -1, 0};
-    vec nucleus18 {0, -1, 1};
-    vec nucleus19 {1, 0, -1};
+    System system = System(2);
+    system.addAtom(new Oxygen  ("6-311++G**", vec{0,0,0}));
+    system.addAtom(new Hydrogen("6-311++G**", vec{1.809,0,0}));
 
-    System* system = new System(1);
-    system->addAtom(new Oxygen("3-21G", nucleus1));
-    system->addAtom(new Oxygen("3-21G", nucleus2));
-    /*system->addAtom(new Oxygen("3-21G", nucleus3));
-    system->addAtom(new Oxygen("3-21G", nucleus4));
-    system->addAtom(new Oxygen("3-21G", nucleus5));
-    system->addAtom(new Oxygen("3-21G", nucleus6));
-    system->addAtom(new Oxygen("3-21G", nucleus7));
-    system->addAtom(new Oxygen("3-21G", nucleus8));
-    system->addAtom(new Oxygen("3-21G", nucleus9));
-    system->addAtom(new Oxygen("3-21G", nucleus10));
-    system->addAtom(new Oxygen("3-21G", nucleus11));
-    system->addAtom(new Oxygen("3-21G", nucleus12));
-    system->addAtom(new Oxygen("3-21G", nucleus13));
-    system->addAtom(new Oxygen("3-21G", nucleus14));
-    system->addAtom(new Oxygen("3-21G", nucleus15));
-    system->addAtom(new Oxygen("3-21G", nucleus16));
-    system->addAtom(new Oxygen("3-21G", nucleus17));
-    system->addAtom(new Oxygen("3-21G", nucleus18));
-    system->addAtom(new Oxygen("3-21G", nucleus19));*/
+    cout << system.twoBodyElements(10,21,8,26) << endl;
 
 
-
-
-    /*System* system = new System(1);
-    //Hydrogen* Hminus = new Hydrogen("6-311++G(2d,2p)", nucleus1);
-    //Hminus->setNumberOfElectrons(2);
-    //system->addAtom(Hminus);
-
-    system->addAtom(new Hydrogen("3-21++G", nucleus1));
-    system->addAtom(new Hydrogen("3-21++G", nucleus2));
-    system->addAtom(new Hydrogen("3-21++G", nucleus3));
-    system->addAtom(new Hydrogen("3-21++G", nucleus4));
-    system->addAtom(new Hydrogen("3-21++G", nucleus5));
-    system->addAtom(new Hydrogen("3-21++G", nucleus6));
-    system->addAtom(new Hydrogen("3-21++G", nucleus7));
-    system->addAtom(new Hydrogen("3-21++G", nucleus8));
-    system->addAtom(new Hydrogen("3-21++G", nucleus9));
-    system->addAtom(new Hydrogen("3-21++G", nucleus10));
-    system->addAtom(new Hydrogen("3-21++G", nucleus11));
-    system->addAtom(new Hydrogen("3-21++G", nucleus12));
-    system->addAtom(new Hydrogen("3-21++G", nucleus13));
-    system->addAtom(new Hydrogen("3-21++G", nucleus14));
-    system->addAtom(new Hydrogen("3-21++G", nucleus15));
-    system->addAtom(new Hydrogen("3-21++G", nucleus16));
-    system->addAtom(new Hydrogen("3-21++G", nucleus17));
-    system->addAtom(new Hydrogen("3-21++G", nucleus18));
-    system->addAtom(new Hydrogen("3-21++G", nucleus19));
-    */
-
-    UnrestrictedHartreeFock solver(system);
-    //RestrictedHartreeFock solver(system);
-    double result = solver.solve(1e-6, 1e4);
-    cout << solver.dumpBasisToFile() << endl;
-
-    double elapsedTime = t.elapsed();
-    cout << "Elapsed time: " << elapsedTime << endl;
-    //assert(std::fabs(-1.131284349300591 - result) < 1e-15);
     return 0;
 }
-
-// -13.25093 eV  UHF H-
-// -14.348   eV      H- (http://nist.gov/data/PDFfiles/jpcrd68.pdf)
-// -13.6     eV      H

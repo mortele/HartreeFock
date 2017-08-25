@@ -16,4 +16,5 @@ public:
     void addPrimitive(GaussianPrimitive* primitive, double coefficient=1);
     std::vector<GaussianPrimitive*> getPrimitives() const { return m_primitives; }
     arma::vec getNucleusPosition() { return m_nucleusPosition; }
+    friend std::ostream& operator<<(std::ostream& stream, const ContractedGaussian& contracted);
 };

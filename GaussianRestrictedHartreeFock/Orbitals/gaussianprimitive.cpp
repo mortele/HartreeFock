@@ -1,6 +1,7 @@
 #include "Orbitals/gaussianprimitive.h"
 #include "Math/factorial.h"
 #include <cmath>
+#include <iomanip>
 
 using std::pow;
 using std::exp;
@@ -9,6 +10,7 @@ using std::sqrt;
 using std::cout;
 using std::endl;
 using arma::vec;
+using std::setprecision;
 
 
 GaussianPrimitive::GaussianPrimitive(int    i,
@@ -110,8 +112,13 @@ int GaussianPrimitive::getExponentDimension(int dimension) const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const GaussianPrimitive& primitive) {
-    stream << primitive.getConstantTerm();
-    if (primitive.xExponent() != 0) {
+    stream << setprecision(5) << primitive.getConstantTerm();
+    stream << "(";
+    stream << primitive.xExponent() << ",";
+    stream << primitive.yExponent() << ",";
+    stream << primitive.zExponent() << ")";
+
+    /*if (primitive.xExponent() != 0) {
         stream << " x^" << primitive.xExponent();
     }
     if (primitive.yExponent() != 0) {
@@ -119,7 +126,7 @@ std::ostream& operator<<(std::ostream& stream, const GaussianPrimitive& primitiv
     }
     if (primitive.zExponent() != 0) {
         stream << " z^" << primitive.zExponent();
-    }
+    }*/
     stream << " exp(- " << primitive.exponent() << " r^2)";
     return stream;
 }

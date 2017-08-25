@@ -13,6 +13,7 @@ protected:
     bool        m_setupDone = false;
     double      m_convergenceCriterion;
     double      m_hartreeFockEnergy;
+    double      m_electronicHartreeFockEnergy;
     double      m_nucleusNucleusInteractionEnergy;
     double      m_convergenceTest;
     class System*     m_system;

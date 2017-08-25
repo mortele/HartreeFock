@@ -28,5 +28,5 @@ public:
     double  getCoefficientZ(int i, int j) const { return m_coefficients[2](i,j,0); }
     double  getCoefficientDimension(int i, int j, int dimension);
     double  getCoefficientDimension(int i, int j, int k, int dimension);
-    double  getExponentSum()              const { return m_exponentSum; }
+    double  getExponentSum() const { return m_exponentSum; }
 };

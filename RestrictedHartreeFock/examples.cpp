@@ -7,8 +7,8 @@ using std::endl;
 
 int Examples::twoDimensionalQuantumDot() {
 
-    int nrOfParticles = 20;
-    int nrOfSpinOrbitals = 20;
+    int nrOfParticles = 6;
+    int nrOfSpinOrbitals = 12;
 
     arma::vec oneBodyElements = arma::zeros<arma::vec>(nrOfSpinOrbitals/2);
 
@@ -31,9 +31,12 @@ int Examples::twoDimensionalQuantumDot() {
 
     RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
     rhf->setAnalyticOneBodyElements(oneBodyElements);
-    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/test2.dat");
+    //bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/test2.dat");
+    bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/coulomb.dat");
 
-    //cout << tableLoaded << endl;
+    cout << tableLoaded << endl;
+
+    rhf->setMaximumIterations(200);
 
     if (tableLoaded) {
         rhf->computeSolutionBySCF();
@@ -62,7 +65,7 @@ int Examples::HydrogenAtom() {
     }
 
     RestrictedHartreeFock* rhf = new RestrictedHartreeFock(nrOfParticles,nrOfSpinOrbitals);
-    rhf->setMaximumIterations(100);
+    rhf->setMaximumIterations(200);
     rhf->setAnalyticOneBodyElements(oneBodyElements);
     bool tableLoaded = rhf->setIntegralTable("../Integrator/IntegralTables/Hydrogen_3d_6.dat");
     if (tableLoaded) {

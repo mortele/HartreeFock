@@ -30,7 +30,9 @@ SOURCES += main.cpp \
     system.cpp \
     Solvers/unrestrictedhartreefock.cpp \
     Solvers/hartreefock.cpp \
-    Atoms/oxygen.cpp
+    Atoms/oxygen.cpp \
+    Atoms/helium.cpp \
+    examples.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -52,4 +54,6 @@ HEADERS += \
     system.h \
     Solvers/unrestrictedhartreefock.h \
     Solvers/hartreefock.h \
-    Atoms/oxygen.h
+    Atoms/oxygen.h \
+    Atoms/helium.h \
+    examples.h

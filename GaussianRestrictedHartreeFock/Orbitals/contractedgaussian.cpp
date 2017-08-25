@@ -36,3 +36,17 @@ void ContractedGaussian::addPrimitive(GaussianPrimitive* primitive,
     primitive->setCoefficient(coefficient);
     m_numberOfPrimitives += 1;
 }
+
+std::ostream& operator<<(std::ostream& stream, const ContractedGaussian& contracted) {
+
+    cout << "nucleus: " << "(" << contracted.m_nucleusPosition.at(0) << ","
+                               << contracted.m_nucleusPosition.at(1) << ","
+                               << contracted.m_nucleusPosition.at(2) << ")" << endl;
+
+    int i = 0;
+    for (GaussianPrimitive* primitive : contracted.m_primitives) {
+        stream << "   * primitive" << i << ": " << *primitive << endl;
+        i++;
+    }
+    return stream;
+}

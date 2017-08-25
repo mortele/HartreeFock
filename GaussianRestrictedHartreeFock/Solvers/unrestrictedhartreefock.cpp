@@ -72,8 +72,16 @@ void UnrestrictedHartreeFock::computeFockMatrices() {
 }
 
 void UnrestrictedHartreeFock::computeDensityMatrices() {
-    m_densityMatrixUp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();
-    m_densityMatrixDown = m_coefficientMatrixDown * m_coefficientMatrixDown.t();
+    if (m_smoothing) {
+        double a = m_smoothingFactor;
+        mat densityMatrixUpTmp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();;
+        mat densityMatrixDownTmp = m_coefficientMatrixDown * m_coefficientMatrixDown.t();;
+        m_densityMatrixUp   = a*densityMatrixUpTmp   * m_densityMatrixUp    + (1-a)*densityMatrixUpTmp;
+        m_densityMatrixDown = a*densityMatrixDownTmp * m_densityMatrixDown  + (1-a)*densityMatrixDownTmp;
+    } else {
+        m_densityMatrixUp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();
+        m_densityMatrixDown = m_coefficientMatrixDown * m_coefficientMatrixDown.t();
+    }
 }
 
 void UnrestrictedHartreeFock::diagonalizeFockMatrices() {
