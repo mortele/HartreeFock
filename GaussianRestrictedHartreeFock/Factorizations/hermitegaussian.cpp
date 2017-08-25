@@ -29,7 +29,7 @@ void HermiteGaussian::setupCoefficients(GaussianPrimitive* primitive1,
     m_xMaximumAngularMomentum = max(m_xExponent1, m_xExponent2);
     m_yMaximumAngularMomentum = max(m_yExponent1, m_yExponent2);
     m_zMaximumAngularMomentum = max(m_zExponent1, m_zExponent2);
-    m_maximumAngularMomentum  = max(max(max(m_xMaximumAngularMomentum,
+    m_maximumAngularMomentum  = max(1+max(max(m_xMaximumAngularMomentum,
                                             m_yMaximumAngularMomentum),
                                         m_zMaximumAngularMomentum),
                                     1);

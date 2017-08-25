@@ -32,7 +32,9 @@ SOURCES += main.cpp \
     Solvers/hartreefock.cpp \
     Atoms/oxygen.cpp \
     Atoms/helium.cpp \
-    examples.cpp
+    examples.cpp \
+    Tests/integraltester.cpp \
+    Tests/tester.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -56,4 +58,6 @@ HEADERS += \
     Solvers/hartreefock.h \
     Atoms/oxygen.h \
     Atoms/helium.h \
-    examples.h
+    examples.h \
+    Tests/integraltester.h \
+    Tests/tester.h

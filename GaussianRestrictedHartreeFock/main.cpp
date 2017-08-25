@@ -14,11 +14,7 @@
 #include "Atoms/oxygen.h"
 #include "Atoms/helium.h"
 #include "examples.h"
-
-#include "Integrators/overlapintegrator.h"
-#include "Integrators/kineticintegrator.h"
-#include "Integrators/electronnucleusintegrator.h"
-#include "Orbitals/gaussianprimitive.h"
+#include "Tests/tester.h"
 
 using arma::vec;
 using arma::zeros;
@@ -32,15 +28,8 @@ int main(int, char**) {
     //Examples::H2();
     //Examples::H20();
 
-    vec nucleus1  {0,            0,             0};
-    vec nucleus2  {0,            0,             1};
-
-    System system = System(2);
-    system.addAtom(new Oxygen  ("6-311++G**", vec{0,0,0}));
-    system.addAtom(new Hydrogen("6-311++G**", vec{1.809,0,0}));
-
-    cout << system.twoBodyElements(10,21,8,26) << endl;
-
+    Tester tests;
+    tests.runAllTests();
 
     return 0;
 }

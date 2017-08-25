@@ -19,6 +19,7 @@ private:
 
 
 public:
+    GaussianPrimitive() {}
     GaussianPrimitive(int i, int j, int k, double a, arma::vec nucleusPosition, double coefficient=1.0);
 
     void setCoefficient(double coefficient);
