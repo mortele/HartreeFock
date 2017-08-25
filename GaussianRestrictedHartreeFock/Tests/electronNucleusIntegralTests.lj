@@ -1,0 +1,43 @@
+from overlapIntegralTests import *
+import numpy as np
+from scipy.integrate import tplquad
+
+integrate3 = tplquad
+
+
+def Gxyz(i,j,k,a,Ax,Ay,Az,   x,y,z):
+	r = np.array([x,y,z])
+	A = np.array([Ax,Ay,Az])
+	rA = r - A
+	Ax = rA[0]
+	Ay = rA[1]
+	Az = rA[2]
+	rA2 = np.dot(rA,rA)
+	return Ax**i * Ay**j * Az**k * exp(-a * rA2)
+
+
+if __name__ == '__main__' :
+	for i in range(10) :
+		for j in range(10) :
+			atom = (359*i+295*j-42*i*j+120*i*i-38*i*j*i) % 9
+			atom = atom if (atom > 0) else -atom
+			
+			def product(x,y,z) :
+				r   = np.array([x,y,z])
+				nucleus = primitives[atom][4:-1]
+				rCv = r - nucleus
+				rC  = np.sqrt(np.dot(rCv,rCv))
+				return 	Gxyz(*primitives[i][:-1],x,y,z) * \
+						Gxyz(*primitives[j][:-1],x,y,z) * \
+						(1./rC)
+
+			#endPoint = np.inf
+			endPoint = 5
+
+			integral = integrate3(product, 
+								    -endPoint, 				endPoint, 
+						lambda y:   -endPoint, 	lambda y: 	endPoint,
+						lambda y,z: -endPoint, 	lambda y,z: endPoint,
+						epsabs=1.49e-01, epsrel=1.49e-01)
+			print("%d,%d " % (i,j), integral)
+
