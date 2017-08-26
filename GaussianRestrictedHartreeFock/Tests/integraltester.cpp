@@ -219,13 +219,126 @@ void IntegralTester::setupExactKineticMatrix() {
 }
 
 void IntegralTester::setupExactElectronNucleusMatrix() {
-    m_exactElectronNucleus(0,0) = 0;
+    m_exactElectronNucleus(0,0) = 3.141592653396305;
+    m_exactElectronNucleus(0,1) = 0.006074920002336657;
+    m_exactElectronNucleus(0,2) = -0.23052941394817655;
+    m_exactElectronNucleus(0,3) = 0.46132628910842943;
+    m_exactElectronNucleus(0,4) = 7.268945590080572e-7;
+    m_exactElectronNucleus(0,5) = 1.8434518400328907e-6;
+    m_exactElectronNucleus(0,6) = 0.027310496584566385;
+    m_exactElectronNucleus(0,7) = 0.0001854033428543244;
+    m_exactElectronNucleus(0,8) = 5.778111260020206e-6;
+    m_exactElectronNucleus(0,9) = -3.5809106251696886e-19;
+    m_exactElectronNucleus(1,0) = -0.013094721102328675;
+    m_exactElectronNucleus(1,1) = 0.43272621892355256;
+    m_exactElectronNucleus(1,2) = 0.0030270630807894675;
+    m_exactElectronNucleus(1,3) = 0.003442049393588565;
+    m_exactElectronNucleus(1,4) = 1.4228902001479771e-11;
+    m_exactElectronNucleus(1,5) = 0.003430101670771089;
+    m_exactElectronNucleus(1,6) = 0.0006314855924455602;
+    m_exactElectronNucleus(1,7) = -0.0001807195948772219;
+    m_exactElectronNucleus(1,8) = 0.0002691063236345793;
+    m_exactElectronNucleus(1,9) = -1.0462479019948222e-5;
+    m_exactElectronNucleus(2,0) = -0.4510728322381398;
+    m_exactElectronNucleus(2,1) = 0.010286345926581059;
+    m_exactElectronNucleus(2,2) = 5.8177641728586185;
+    m_exactElectronNucleus(2,3) = 0.04061181557716256;
+    m_exactElectronNucleus(2,4) = 0.007531157186406296;
+    m_exactElectronNucleus(2,5) = 0.00042066329652329707;
+    m_exactElectronNucleus(2,6) = 0.008868246560207824;
+    m_exactElectronNucleus(2,7) = 2.1136695773265444e-5;
+    m_exactElectronNucleus(2,8) = 7.92402055095499e-5;
+    m_exactElectronNucleus(2,9) = 0.0002839888511347502;
+    m_exactElectronNucleus(3,0) = 0.4880275464523432;
+    m_exactElectronNucleus(3,1) = 0.00264818690665339;
+    m_exactElectronNucleus(3,2) = -0.07678460604402675;
+    m_exactElectronNucleus(3,3) = 0.5166079677373133;
+    m_exactElectronNucleus(3,4) = -0.0006552403098904724;
+    m_exactElectronNucleus(3,5) = 3.9867724278037694e-5;
+    m_exactElectronNucleus(3,6) = 0.017774616398394436;
+    m_exactElectronNucleus(3,7) = 0.0003086285665016171;
+    m_exactElectronNucleus(3,8) = 5.559844717322346e-7;
+    m_exactElectronNucleus(3,9) = 0.0003565006556826383;
+    m_exactElectronNucleus(4,0) = 4.2500164887987364e-7;
+    m_exactElectronNucleus(4,1) = 2.4927755071505254e-11;
+    m_exactElectronNucleus(4,2) = 0.0049094042160749895;
+    m_exactElectronNucleus(4,3) = -0.000502308838378577;
+    m_exactElectronNucleus(4,4) = 0.0034477120078254845;
+    m_exactElectronNucleus(4,5) = 1.5371142804860259e-24;
+    m_exactElectronNucleus(4,6) = 4.924473721312616e-12;
+    m_exactElectronNucleus(4,7) = 6.905163622343064e-20;
+    m_exactElectronNucleus(4,8) = 8.30656406158157e-25;
+    m_exactElectronNucleus(4,9) = 7.22099108679538e-14;
+    m_exactElectronNucleus(5,0) = 0.0003964642966433137;
+    m_exactElectronNucleus(5,1) = 0.003430101670771089;
+    m_exactElectronNucleus(5,2) = 0.0008455744801229993;
+    m_exactElectronNucleus(5,3) = 7.705198457410324e-6;
+    m_exactElectronNucleus(5,4) = 2.4101085105907703e-24;
+    m_exactElectronNucleus(5,5) = 0.00410220639105157;
+    m_exactElectronNucleus(5,6) = 1.2630206441032246e-7;
+    m_exactElectronNucleus(5,7) = 5.6014767862038486e-6;
+    m_exactElectronNucleus(5,8) = 0.0008258291632664241;
+    m_exactElectronNucleus(5,9) = -4.5500202831399375e-8;
+    m_exactElectronNucleus(6,0) = 0.015936503246800314;
+    m_exactElectronNucleus(6,1) = 0.0007350481705785905;
+    m_exactElectronNucleus(6,2) = 0.009144848083587178;
+    m_exactElectronNucleus(6,3) = 0.0328212556384292;
+    m_exactElectronNucleus(6,4) = 1.3542259817811092e-12;
+    m_exactElectronNucleus(6,5) = 7.016619072036424e-7;
+    m_exactElectronNucleus(6,6) = 0.004711749527433483;
+    m_exactElectronNucleus(6,7) = -4.7548817289418276e-6;
+    m_exactElectronNucleus(6,8) = 3.1773271156945297e-9;
+    m_exactElectronNucleus(6,9) = 4.6975115505053096e-5;
+    m_exactElectronNucleus(7,0) = 0.000596978685186941;
+    m_exactElectronNucleus(7,1) = -0.0012490246665673745;
+    m_exactElectronNucleus(7,2) = 2.113669577326513e-5;
+    m_exactElectronNucleus(7,3) = 7.57677376794402e-5;
+    m_exactElectronNucleus(7,4) = 1.3633871200785802e-20;
+    m_exactElectronNucleus(7,5) = -9.637059171293783e-6;
+    m_exactElectronNucleus(7,6) = 8.967568581016109e-6;
+    m_exactElectronNucleus(7,7) = 0.00020903847764887004;
+    m_exactElectronNucleus(7,8) = -2.2328866337784158e-7;
+    m_exactElectronNucleus(7,9) = 1.1471361708965405e-5;
+    m_exactElectronNucleus(8,0) = 3.2917663138879515e-6;
+    m_exactElectronNucleus(8,1) = 0.0003935800968818937;
+    m_exactElectronNucleus(8,2) = -4.76367292089517e-5;
+    m_exactElectronNucleus(8,3) = 1.3192670999483967e-6;
+    m_exactElectronNucleus(8,4) = 2.0079402780434024e-24;
+    m_exactElectronNucleus(8,5) = 0.00014134480259141638;
+    m_exactElectronNucleus(8,6) = 7.0381882787075285e-9;
+    m_exactElectronNucleus(8,7) = -9.807157201988673e-8;
+    m_exactElectronNucleus(8,8) = 0.01717006262007232;
+    m_exactElectronNucleus(8,9) = 1.3478816243453474e-10;
+    m_exactElectronNucleus(9,0) = -3.910106601604258e-19;
+    m_exactElectronNucleus(9,1) = -6.593276157701992e-5;
+    m_exactElectronNucleus(9,2) = 0.000191339205906294;
+    m_exactElectronNucleus(9,3) = 0.0005111756784408499;
+    m_exactElectronNucleus(9,4) = 7.220991086795381e-14;
+    m_exactElectronNucleus(9,5) = -8.051653540594755e-8;
+    m_exactElectronNucleus(9,6) = 1.8301571728799462e-5;
+    m_exactElectronNucleus(9,7) = 2.6909848608678254e-5;
+    m_exactElectronNucleus(9,8) = 7.015232035588952e-12;
+    m_exactElectronNucleus(9,9) = 0.00034822804501452684;
+}
+
+void IntegralTester::setupExactElectronElectronVector() {
+    m_exactElectronElectron(0) = 0;
+    m_exactElectronElectron(1) = 0.007166604041009602861;
+    m_exactElectronElectron(2) = 0.022124581472837051566;
+    m_exactElectronElectron(3) = 0.000138581030067768200;
+    m_exactElectronElectron(4) = -6.8145328932903488e-08;
+    m_exactElectronElectron(5) = 0.162484829269840000000;
+    m_exactElectronElectron(6) = 0.266743478582807400000;
+    m_exactElectronElectron(7) = 0.268120672073877200000;
+    m_exactElectronElectron(8) = 0.526687299519774400000;
+    m_exactElectronElectron(9) = -0.12730451834369380000;
 }
 
 IntegralTester::IntegralTester() {
     setupExactOverlapMatrix();
     setupExactKineticMatrix();
     setupExactElectronNucleusMatrix();
+    setupExactElectronElectronVector();
     m_overlapIntegrator             = new OverlapIntegrator();
     m_kineticIntegrator             = new KineticIntegrator();
     m_electronNucleusIntegrator     = new ElectronNucleusIntegrator();
@@ -244,22 +357,23 @@ IntegralTester::IntegralTester() {
     m_primitives.push_back(GaussianPrimitive(1,0,1,     4.3,    vec{ 0.9,  0.4,  1.2}));
 }
 
-bool IntegralTester::runAllTests() {
+bool IntegralTester::runAllTests(bool silent) {
     bool passed = true;
-    passed = runOverlapTests()          && passed;
-    passed = runKineticTests()          && passed;
-    passed = runElectronNucleusTests()  && passed;
-    passed = runElectronElectronTests() && passed;
+    passed = runOverlapTests(silent)          && passed;
+    passed = runKineticTests(silent)          && passed;
+    passed = runElectronNucleusTests(silent)  && passed;
+    passed = runElectronElectronTests(silent) && passed;
 
     if (passed) {
-        cout << "   All integral tests PASSED." << endl;
+        if (!silent) cout << "   All integral tests PASSED." << endl;
     } else {
-        cout << "   At least one integral test FAILED." << endl;
+        if (!silent) cout << "   At least one integral test FAILED." << endl;
     }
+    return passed;
 }
 
-bool IntegralTester::runOverlapTests() {
-    cout << "   Running overlap integral tests..." << endl;
+bool IntegralTester::runOverlapTests(bool silent) {
+    if (!silent) cout << "   Running overlap integral tests..." << endl;
     int failedTests = 0;
     int totalTests  = 100;
 
@@ -269,22 +383,22 @@ bool IntegralTester::runOverlapTests() {
             double difference = fabs(integral - m_exactOverlap(i,j));
             if (difference > m_tollerance) {
                 failedTests++;
-                cout << " Overlap integral test (" << i << "," << j << ") failed. Value: "
-                     << integral << ", exact value: " << m_exactOverlap(i,j) << ", abs. difference: "
-                     << difference << endl;
+                if (!silent) cout << " Overlap integral test (" << i << "," << j << ") failed. Value: "
+                                  << integral << ", exact value: " << m_exactOverlap(i,j) << ", abs. difference: "
+                                  << difference << endl;
             }
         }
     }
     if (failedTests == 0) {
-        cout << "      All 100 overlap integral tests PASSED." << endl;
+        if (!silent) cout << "      All 100 overlap integral tests PASSED." << endl;
     } else {
-        cout << "      " << failedTests << " kinetic integral tests failed out of " << totalTests << "." << endl;
+        if (!silent) cout << "      " << failedTests << " kinetic integral tests failed out of " << totalTests << "." << endl;
     }
     return (failedTests == 0 ? true : false);
 }
 
-bool IntegralTester::runKineticTests() {
-    cout << "   Running kinetic integral tests..." << endl;
+bool IntegralTester::runKineticTests(bool silent) {
+    if (!silent) cout << "   Running kinetic integral tests..." << endl;
     int failedTests = 0;
     int totalTests  = 100;
 
@@ -294,22 +408,22 @@ bool IntegralTester::runKineticTests() {
             double difference = fabs(integral - m_exactKinetic(i,j));
             if (difference > m_tollerance) {
                 failedTests++;
-                cout << "      Kinetic integral test (" << i << "," << j << ") failed. Value: "
-                     << integral << ", exact value: " << m_exactKinetic(i,j) << ", abs. difference: "
-                     << difference << endl;
+                if (!silent) cout << "      Kinetic integral test (" << i << "," << j << ") failed. Value: "
+                                  << integral << ", exact value: " << m_exactKinetic(i,j) << ", abs. difference: "
+                                  << difference << endl;
             }
         }
     }
     if (failedTests == 0) {
-        cout << "      All 100 kinetic integral tests PASSED." << endl;
+        if (!silent) cout << "      All 100 kinetic integral tests PASSED." << endl;
     } else {
-        cout << "      " << failedTests << " kinetic integral tests failed out of " << totalTests << "." << endl;
+        if (!silent) cout << "      " << failedTests << " kinetic integral tests failed out of " << totalTests << "." << endl;
     }
     return (failedTests == 0 ? true : false);
 }
 
-bool IntegralTester::runElectronNucleusTests() {
-    cout << "   Running electron-nucleus integral tests..." << endl;
+bool IntegralTester::runElectronNucleusTests(bool silent) {
+    if (!silent) cout << "   Running electron-nucleus integral tests..." << endl;
     int failedTests = 0;
     int totalTests  = 100;
 
@@ -320,44 +434,198 @@ bool IntegralTester::runElectronNucleusTests() {
             vec nucleus = m_primitives[atom].nucleusPosition();
             double integral = m_electronNucleusIntegrator->computeIntegral(&m_primitives[i], &m_primitives[j], nucleus);
             double difference = fabs(integral - m_exactElectronNucleus(i,j));
-            if (difference > m_tollerance) {
+            if (difference > m_tolleranceNumerical) {
                 failedTests++;
-                cout << "      Electron-nucleus integral test (" << i << "," << j << ") failed. Value: "
-                     << integral << ", exact value: " << m_exactElectronNucleus(i,j) << ", abs. difference: "
-                     << difference << endl;
+                if (!silent) cout << "      Electron-nucleus integral test (" << i << "," << j << ") failed. Value: "
+                                  << integral << ", exact value: " << m_exactElectronNucleus(i,j) << ", abs. difference: "
+                                  << difference << endl;
             }
         }
     }
     if (failedTests == 0) {
-        cout << "      All 100 electron-nucleus integral tests PASSED." << endl;
+        if (!silent) cout << "      All 100 electron-nucleus integral tests PASSED." << endl;
     } else {
-        cout << "      " << failedTests << " electron-nucleus integral tests failed out of " << totalTests << "." << endl;
+        if (!silent) cout << "      " << failedTests << " electron-nucleus integral tests failed out of " << totalTests << "." << endl;
     }
     return (failedTests == 0 ? true : false);
 }
 
-bool IntegralTester::runElectronElectronTests() {
-    cout << "   Running electron-electron integral tests..." << endl;
+bool IntegralTester::runElectronElectronTests(bool silent) {
+    if (!silent) cout << "   Running electron-electron integral tests..." << endl;
     int failedTests = 0;
-    int totalTests  = 100;
+    int totalTests  = 9;
 
-    /*
-    for (int i=0; i<10; i++) {
-        for (int j=0; j<10; j++) {
-            double integral = m_electronElectronIntegrator->computeIntegral(&m_primitives[i], &m_primitives[j]);
-            double difference = fabs(integral - m_exactElectronNucleus(i,j));
-            if (difference > m_tollerance) {
-                failedTests++;
-                cout << "      Electron-nucleus integral test (" << i << "," << j << ") failed. Value: "
-                     << integral << ", exact value: " << m_exactElectronNucleus(i,j) << ", abs. difference: "
-                     << difference << endl;
-            }
+    for (int testIndex = 1; testIndex< 10; testIndex++) {
+        double integral   = 0;
+        double difference = 0;
+        vec posA;
+        vec posB;
+        vec posC;
+        vec posD;
+        double a;
+        double b;
+        double c;
+        double d;
+        GaussianPrimitive primitiveA;
+        GaussianPrimitive primitiveB;
+        GaussianPrimitive primitiveC;
+        GaussianPrimitive primitiveD;
+
+        switch(testIndex) {
+            case 1:
+                posA = {-0.5, 0, 0};
+                posB = {-0.5, 0, 0};
+                posC = {-0.5, 0, 0};
+                posD = {-0.5, 0, 0};
+                a = 13.0077;
+                b = 13.0077;
+                c = 13.0077;
+                d = 13.0077;
+                primitiveA = GaussianPrimitive(0,0,0,a,posA);
+                primitiveB = GaussianPrimitive(0,0,0,b,posB);
+                primitiveC = GaussianPrimitive(0,0,0,c,posC);
+                primitiveD = GaussianPrimitive(0,0,0,d,posD);
+                break;
+
+            case 2:
+                posA = {0.5, 0, 0};
+                posB = {-0.5, 0, 0};
+                posC = {-0.5, 0, 0};
+                posD = {0.5, 0, 0};
+                a = 13.0077;
+                b = 0.121949;
+                c = 0.444529;
+                d = 13.0077;
+                primitiveA = GaussianPrimitive(0, 0, 0, a, posA);
+                primitiveB = GaussianPrimitive(0, 0, 0, b, posB);
+                primitiveC = GaussianPrimitive(0, 0, 0, c, posC);
+                primitiveD = GaussianPrimitive(0, 0, 0, d, posD);
+                break;
+
+            case 3:
+                posA = {0.5, 0, 0};
+                posB = {-0.5, 0, 0};
+                posC = {-0.5, 0, 0};
+                posD = {0.5, 0, 0};
+                a = 13.0077;
+                b = 0.121949;
+                c = 0.444529;
+                d = 13.0077;
+                primitiveA = GaussianPrimitive(0, 0 ,0, a, posA);
+                primitiveB = GaussianPrimitive(0, 1 ,0, b, posB);
+                primitiveC = GaussianPrimitive(0, 1 ,0, c, posC);
+                primitiveD = GaussianPrimitive(0, 0 ,0, d, posD);
+                break;
+
+            case 4:
+                posA = {0.55, 1, 3};
+                posB = {-0.52, 5, 6};
+                posC = {-0.53, 1, 2};
+                posD = {0.45, 2, 4};
+                a = 13.0077;
+                b = 0.121949;
+                c = 0.444529;
+                d = 10.0077;
+                primitiveA = GaussianPrimitive(1,0,0, a, posA);
+                primitiveB = GaussianPrimitive(0,1,0, b, posB);
+                primitiveC = GaussianPrimitive(0,1,0, c, posC);
+                primitiveD = GaussianPrimitive(0,1,0, d, posD);
+                break;
+
+            case 5:
+                posA = {1.2,2.3,3.4};
+                posB = {-1.3,1.4,-2.4};
+                posC = {2.3,0.9,3.2};
+                posD = {5.0,1.9,1.2};
+                a = 0.2;
+                b = 0.3;
+                c = 0.4;
+                d = 0.1;
+                primitiveA = GaussianPrimitive(0,0,0, a, posA);
+                primitiveB = GaussianPrimitive(0,0,0, b, posB);
+                primitiveC = GaussianPrimitive(0,0,0, c, posC);
+                primitiveD = GaussianPrimitive(0,0,0, d, posD);
+                break;
+
+            case 6:
+                posA = {1.2,2.3,3.4};
+                posB = {-1.3,1.4,-2.4};
+                posC = {2.3,0.9,3.2};
+                posD = {5.0,1.9,1.2};
+                a = 0.2;
+                b = 0.3;
+                c = 0.4;
+                d = 0.1;
+                primitiveA = GaussianPrimitive(0,0,0, a, posA);
+                primitiveB = GaussianPrimitive(1,0,0, b, posB);
+                primitiveC = GaussianPrimitive(0,0,0, c, posC);
+                primitiveD = GaussianPrimitive(0,0,1, d, posD);
+                break;
+
+            case 7:
+                posA = {1.2,2.3,3.4};
+                posB = {-1.3,1.4,-2.4};
+                posC = {2.3,0.9,3.2};
+                posD = {5.0,1.9,1.2};
+                a = 0.2;
+                b = 0.3;
+                c = 0.4;
+                d = 0.1;
+                primitiveA = GaussianPrimitive(0,0,0, a, posA);
+                primitiveB = GaussianPrimitive(1,0,0, b, posB);
+                primitiveC = GaussianPrimitive(0,2,0, c, posC);
+                primitiveD = GaussianPrimitive(0,0,1, d, posD);
+                break;
+
+            case 8:
+                posA = {1.2,2.3,3.4};
+                posB = {-1.3,1.4,-2.4};
+                posC = {2.3,0.9,3.2};
+                posD = {5.0,1.9,1.2};
+                a = 0.2;
+                b = 0.3;
+                c = 0.4;
+                d = 0.1;
+                primitiveA = GaussianPrimitive(1,1,0, a, posA);
+                primitiveB = GaussianPrimitive(2,0,0, b, posB);
+                primitiveC = GaussianPrimitive(2,0,0, c, posC);
+                primitiveD = GaussianPrimitive(2,0,0, d, posD);
+                break;
+
+            case 9:
+                posA = {1.2,2.3,3.4};
+                posB = {-1.3,1.4,-2.4};
+                posC = {2.3,0.9,3.2};
+                posD = {5.0,1.9,1.2};
+                a = 0.2;
+                b = 0.3;
+                c = 0.4;
+                d = 0.1;
+                primitiveA = GaussianPrimitive(1,1,0, a, posA);
+                primitiveB = GaussianPrimitive(0,2,0, b, posB);
+                primitiveC = GaussianPrimitive(0,2,0, c, posC);
+                primitiveD = GaussianPrimitive(2,0,0, d, posD);
+                break;
+
+            default:
+                break;
         }
-    }*/
+
+        integral = m_electronElectronIntegrator->computeIntegral(&primitiveA,&primitiveB,&primitiveC,&primitiveD);
+        difference = fabs(integral - m_exactElectronElectron(testIndex));
+        if (difference > m_tollerance) {
+            failedTests++;
+            if (!silent) cout << "      Electron-nucleus integral test (" << testIndex << ") failed. Value: "
+                              << integral << ", exact value: " << m_exactElectronElectron(testIndex) << ", abs. difference: "
+                              << difference << endl;
+        }
+
+    }
+
     if (failedTests == 0) {
-        cout << "      All 100 electron-nucleus integral tests PASSED." << endl;
+        if (!silent) cout << "      All 9 electron-electron integral tests PASSED." << endl;
     } else {
-        cout << "      " << failedTests << " electron-nucleus integral tests failed out of " << totalTests << "." << endl;
+        if (!silent) cout << "      " << failedTests << " electron-electron integral tests failed out of " << totalTests << "." << endl;
     }
     return (failedTests == 0 ? true : false);
 }

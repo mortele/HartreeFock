@@ -5,10 +5,9 @@ class Tester {
 private:
     IntegralTester* m_integralTester;
 
-
 public:
     Tester();
 
-    bool runAllTests();
-    bool runAllIntegralTests();
+    bool runAllTests(bool silent=false);
+    bool runAllIntegralTests(bool silent=false);
 };
