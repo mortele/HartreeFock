@@ -69,7 +69,7 @@ void Hydrogen::basis_631Gss() {
     *       1.1000000              1.0000000
     */
     m_info = "Hydrogen : 6-31G**";
-    setNumberOfOrbitals(5);
+    setNumberOfOrbitals(3);
 
     create_S3(18.7311370, 2.8253937, 0.6401217, 0.03349460, 0.23472695, 0.81375733);
     create_S1(0.1612778, 1.0000000);
@@ -91,7 +91,7 @@ void Hydrogen::basis_631ppGss() {
     *       1.1000000              1.0000000
     */
     m_info = "Hydrogen : 6-31++G**";
-    setNumberOfOrbitals(6);
+    setNumberOfOrbitals(4);
 
     create_S3(18.7311370, 2.8253937, 0.6401217, 0.03349460, 0.23472695, 0.81375733);
     create_S1(0.1612778, 1.0000000);
@@ -116,7 +116,7 @@ void Hydrogen::basis_6311ppGss() {
     *       0.7500000              1.0000000
     */
     m_info = "Hydrogen : 6-311++G**";
-    setNumberOfOrbitals(7);
+    setNumberOfOrbitals(5);
 
     create_S3(33.8650000, 5.0947900, 1.1587900, 0.0254938, 0.1903730, 0.8521610);
     create_S1(0.3258400, 1.0000000);
@@ -144,7 +144,7 @@ void Hydrogen::basis_6311ppG2d2p() {
     *       0.3750000              1.0000000
     */
     m_info = "Hydrogen : 6-311++G(2d,2p)";
-    setNumberOfOrbitals(10);
+    setNumberOfOrbitals(6);
 
     create_S3(33.8650000, 5.0947900, 1.1587900, 0.0254938, 0.1903730, 0.8521610);
     create_S1(0.3258400, 1.0000000);

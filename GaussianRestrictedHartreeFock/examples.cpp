@@ -88,22 +88,32 @@ void Examples::H2() {
 
 void Examples::H20() {
     boost::timer t;
-    double r        = 1.809;
-    double theta    = 1.824;
 
-    vec nucleus1  {0,            0,             0};
-    vec nucleus2  {r,            0,             0};
-    vec nucleus3  {r*cos(theta), r*sin(theta),  0};
+    vec nucleus1 { 0.000, 0.000, 0.000};
+    vec nucleus2 {-1.430, 1.108, 0.000};
+    vec nucleus3 { 1.430, 1.108, 0.000};
 
     System* system = new System(3);
-    system->addAtom(new Oxygen  ("6-311++G**", nucleus1));
-    system->addAtom(new Hydrogen("6-311++G**", nucleus2));
-    system->addAtom(new Hydrogen("6-311++G**", nucleus3));
+    //system->addAtom(new Oxygen  ("6-311++G**", nucleus1));
+    //system->addAtom(new Hydrogen("6-311++G**", nucleus2));
+    //system->addAtom(new Hydrogen("6-311++G**", nucleus3));
+    system->addAtom(new Oxygen   ("6-311++G**", nucleus1));
+    system->addAtom(new Hydrogen ("6-31G**", nucleus2));
+    system->addAtom(new Hydrogen ("6-31G**", nucleus3));
+
+    /*cout << *system->getBasis().at(32) << endl;
+    cout << *system->getBasis().at(17) << endl;
+    cout << *system->getBasis().at(29) << endl;
+    cout << *system->getBasis().at(22) << endl;
+    exit(1);*/
+
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    solver.solve(1e-7, 1);
+    solver.solve(1e-8, 1e3);
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
+
+
 
     /*for (ContractedGaussian* contracted: system->getBasis()) {
         cout << *contracted << endl;

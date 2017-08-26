@@ -7,6 +7,9 @@
 
 class RestrictedHartreeFock : public HartreeFock {
 private:
+    bool        m_smoothing         = true;
+    bool        m_firstSetup        = true;
+    double      m_smoothingFactor   = 0.5;
     arma::vec   m_epsilon;
     arma::vec   m_epsilonOld;
     arma::mat   m_fockMatrix;

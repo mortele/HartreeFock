@@ -5,7 +5,8 @@
 class UnrestrictedHartreeFock : public HartreeFock {
 private:
     bool        m_smoothing         = true;
-    double      m_smoothingFactor   = 0.03;
+    bool        m_firstSetup        = true;
+    double      m_smoothingFactor   = 0.5;
     int         m_numberOfSpinUpElectrons;
     int         m_numberOfSpinDownElectrons;
     arma::vec   m_epsilonUp;

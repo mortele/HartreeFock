@@ -13,6 +13,7 @@ bool Tester::runAllTests(bool silent) {
     if (!silent) cout << "┃ Running  all tests ┃" << endl;
     if (!silent) cout << "┗━━━━━━━━━━━━┛" << endl;
     bool integralTests = runAllIntegralTests(silent);
+    return integralTests;
 }
 
 bool Tester::runAllIntegralTests(bool silent) {

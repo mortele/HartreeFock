@@ -11,11 +11,13 @@
 using std::cout;
 using std::endl;
 using std::printf;
+using std::sqrt;
 using arma::eye;
 using arma::zeros;
 using arma::mat;
 using arma::vec;
 using arma::field;
+using arma::randu;
 
 
 UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
@@ -32,6 +34,8 @@ UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
     m_coefficientMatrixTildeUp    = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
     m_densityMatrixUp             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_densityMatrixUp(0,1) = 0.1;
+    m_densityMatrixUp.randu();
+    m_densityMatrixDown.randu();
 
     m_epsilonDown                 = zeros(m_numberOfSpinDownElectrons);
     m_epsilonOldDown              = zeros(m_numberOfSpinDownElectrons);
@@ -53,7 +57,9 @@ void UnrestrictedHartreeFock::setup() {
 
 void UnrestrictedHartreeFock::computeFockMatrices() {
     for(int p = 0; p < m_numberOfBasisFunctions; p++)
-    for(int q = p; q < m_numberOfBasisFunctions; q++) {
+    for(int q = 0; q < m_numberOfBasisFunctions; q++) {
+    //for(int q = p; q < m_numberOfBasisFunctions; q++) {
+
         m_fockMatrixUp(p,q)   = m_oneBodyMatrixElements(p,q);
         m_fockMatrixDown(p,q) = m_oneBodyMatrixElements(p,q);
 
@@ -66,13 +72,30 @@ void UnrestrictedHartreeFock::computeFockMatrices() {
             m_fockMatrixDown(p,q) += (prqs-prsq) * m_densityMatrixDown(s,r)
                                    +  prqs       * m_densityMatrixUp(s,r);
         }
-        m_fockMatrixUp(q,p)   = m_fockMatrixUp(p,q);
-        m_fockMatrixDown(q,p) = m_fockMatrixDown(p,q);
+        //m_fockMatrixUp(q,p)   = m_fockMatrixUp(p,q);
+        //m_fockMatrixDown(q,p) = m_fockMatrixDown(p,q);
     }
+
+
+    /*if (m_iteration==50){
+        int n = m_numberOfBasisFunctions;
+        cout << n << endl;
+        for (int p = 0; p < n; p++) {
+            int q = (p/2+1) % n; q = (q<0 ? -q : q);
+            int r = (2*p+2) % n; r = (r<0 ? -r : r);
+            int s = (3*p) %   n; s = (s<0 ? -s : s);
+            //printf("%2d %2d %2d %2d %20.15g %20.15g \n", p,q,r,s,m_fockMatrixUp(p,q), m_fockMatrixDown(r,s));
+            printf("%2d %2d %2d %2d %20.15g %20.15g \n", p,q,r,s,m_densityMatrixUp(p,q), m_densityMatrixDown(r,s));
+            cout << m_densityMatrixUp << endl;
+        }
+        fflush(stdout);
+        exit(0);
+    }*/
 }
 
 void UnrestrictedHartreeFock::computeDensityMatrices() {
-    if (m_smoothing) {
+    if (m_smoothing && !m_firstSetup) {
+        m_firstSetup = false;
         double a = m_smoothingFactor;
         mat densityMatrixUpTmp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();;
         mat densityMatrixDownTmp = m_coefficientMatrixDown * m_coefficientMatrixDown.t();;
@@ -105,6 +128,7 @@ void UnrestrictedHartreeFock::normalizeCoefficientMatrices() {
                                        m_overlapMatrix(p,q);
             }
         }
+        normalizationFactor = sqrt(normalizationFactor);
         m_coefficientMatrixUp.col(k) = m_coefficientMatrixUp.col(k) /
                                        normalizationFactor;
     }
@@ -117,6 +141,7 @@ void UnrestrictedHartreeFock::normalizeCoefficientMatrices() {
                                        m_overlapMatrix(p,q);
             }
         }
+        normalizationFactor = sqrt(normalizationFactor);
         m_coefficientMatrixDown.col(k) = m_coefficientMatrixDown.col(k) /
                                        normalizationFactor;
     }

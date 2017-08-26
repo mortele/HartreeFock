@@ -3,6 +3,7 @@
 
 using std::cout;
 using std::endl;
+using std::sqrt;
 using arma::eye;
 using arma::zeros;
 using arma::mat;
@@ -28,7 +29,7 @@ void RestrictedHartreeFock::setup() {
     diagonalizeOverlapMatrix();
     setupOneBodyElements();
     setupTwoBodyElements();
-    computeDensityMatrix();
+    //computeDensityMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
@@ -65,6 +66,7 @@ void RestrictedHartreeFock::normalizeCoefficientMatrix() {
                                        m_overlapMatrix(p,q);
             }
         }
+        normalizationFactor = sqrt(normalizationFactor);
         m_coefficientMatrix.col(k) = m_coefficientMatrix.col(k) /
                                      normalizationFactor;
     }
@@ -111,7 +113,15 @@ double RestrictedHartreeFock::convergenceTest() {
 }
 
 void RestrictedHartreeFock::computeDensityMatrix() {
-    m_densityMatrix = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+    if (m_smoothing && !m_firstSetup) {
+        m_firstSetup = false;
+        double a = m_smoothingFactor;
+        mat densityMatrixTmp    = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+        m_densityMatrix         = a*densityMatrixTmp * m_densityMatrix + (1-a)*densityMatrixTmp;
+
+    } else {
+        m_densityMatrix = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+    }
 }
 
 

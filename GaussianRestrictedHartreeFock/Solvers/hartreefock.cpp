@@ -43,22 +43,22 @@ double HartreeFock::solve(double convergenceCriterion, int maximumIterations) {
         m_setupDone = true;
     }
     if (! m_silent) printInitialInfo();
-    for (int iteration = 1; iteration < m_maximumIterations+1; iteration++) {
+    for (m_iteration = 0; m_iteration < m_maximumIterations+1; m_iteration++) {
         selfConsistentFieldIteration();
 
-        if (iteration != 0) {
+        if (m_iteration != 0) {
             m_convergenceTest = convergenceTest();
             if(m_convergenceTest < m_convergenceCriterion) {
                 m_reachedSelfConsistency    = true;
-                m_iterationsUsed            = iteration;
-                if (! m_silent) printIterationInfo(iteration);
+                m_iterationsUsed            = m_iteration;
+                if (! m_silent) printIterationInfo(m_iteration);
                 break;
             }
         }
         computeHartreeFockEnergy();
         m_electronicHartreeFockEnergy = m_hartreeFockEnergy - m_nucleusNucleusInteractionEnergy;
         storeEnergy();
-        if (! m_silent) printIterationInfo(iteration);
+        if (! m_silent) printIterationInfo(m_iteration);
     }
     if (! m_silent) printFinalInfo();
     return m_hartreeFockEnergy;
@@ -122,14 +122,14 @@ void HartreeFock::printInitialInfo() {
     printf(" => Total basis size:      %-10d \n", (int) m_system->getBasis().size());
     printf(" => Number of atoms:       %-10d \n", (int) m_system->getAtoms().size());
     printf(" => Number of electrons:   %-10d \n", (int) m_system->getNumberOfSpinUpElectrons()+m_system->getNumberOfSpinDownElectrons());
-    printf("      ------------------------------------------------------- \n");
+    printf("   ------------------------------------------------------- \n");
     for (Atom* atom : m_system->getAtoms()) {
-        printf("      | %-20s (%5.3f, %5.3f, %5.3f)          | \n", atom->getInfo().c_str(),
+        printf("   | %-25s (%6.3f, %6.3f, %6.3f)  | \n", atom->getInfo().c_str(),
                                                           atom->getPosition()(0),
                                                           atom->getPosition()(1),
                                                           atom->getPosition()(2));
     }
-    printf("      ------------------------------------------------------- \n\n");
+    printf("   ------------------------------------------------------- \n\n");
     printf(" ============================================================ \n");
     printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
     printf(" ------------------------------------------------------------ \n");
@@ -137,7 +137,7 @@ void HartreeFock::printInitialInfo() {
 }
 
 void HartreeFock::printIterationInfo(int iteration) {
-    if (iteration != 1 && iteration % 20 == 0) {
+    if (iteration != 0 && iteration % 20 == 0) {
         printf(" ------------------------------------------------------------ \n");
         printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
         printf(" ------------------------------------------------------------ \n");
@@ -153,17 +153,18 @@ void HartreeFock::printFinalInfo() {
         printf(" => Iterations used:         %30d   \n",  m_iterationsUsed);
         printf(" => Final convergence test:  %30.16g \n", m_convergenceTest);
         printf(" => Final electronic energy: %30.16g  \n", m_electronicHartreeFockEnergy);
-        printf(" => Final energy (eV)        %30.16g \n", m_hartreeFockEnergy*27.21139);
+        printf(" => Final energy (eV):       %30.16g \n", m_hartreeFockEnergy*27.21139);
         printf(" => Final energy:            %30.16g \n", m_hartreeFockEnergy);
     } else {
         printf("\n Self consistency -> NOT <- reached. \n\n");
         printf(" => Iterations used:         %30d    \n",   m_iterationsUsed);
         printf(" => Final convergence test:  %30.16g  \n",   m_convergenceTest);
         printf(" => Final electronic energy: %30.16g  \n", m_electronicHartreeFockEnergy);
-        printf(" => Final energy (eV)        %30.16g \n", m_hartreeFockEnergy*27.21139);
+        printf(" => Final energy (eV):       %30.16g \n", m_hartreeFockEnergy*27.21139);
         printf(" => Final energy:            %30.16g  \n", m_hartreeFockEnergy);
     }
     printf(" ============================================================ \n");
+    cout << m_hartreeFockEnergy-m_electronicHartreeFockEnergy << endl;
 }
 
 

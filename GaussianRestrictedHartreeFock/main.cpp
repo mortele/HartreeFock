@@ -26,10 +26,10 @@ int main(int, char**) {
     //Examples::He();
     //Examples::HeHp();
     //Examples::H2();
-    //Examples::H20();
+    Examples::H20();
 
     Tester tests;
-    tests.runAllTests();
-
+    bool test = tests.runAllTests(true);
+    if (!test) cout << "Some tests FAILED." << endl;
     return 0;
 }

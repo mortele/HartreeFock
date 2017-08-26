@@ -6,6 +6,7 @@ class HartreeFock {
 protected:
     int         m_numberOfBasisFunctions;
     int         m_numberOfElectrons;
+    int         m_iteration;
     int         m_maximumIterations;
     int         m_iterationsUsed;
     bool        m_reachedSelfConsistency;
