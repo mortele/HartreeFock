@@ -32,10 +32,9 @@ UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
     m_fockMatrixTildeUp           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_coefficientMatrixUp         = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
     m_coefficientMatrixTildeUp    = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
-    m_densityMatrixUp             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    //m_densityMatrixUp             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_densityMatrixUp             = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();
     m_densityMatrixUp(0,1) = 0.1;
-    m_densityMatrixUp.randu();
-    m_densityMatrixDown.randu();
 
     m_epsilonDown                 = zeros(m_numberOfSpinDownElectrons);
     m_epsilonOldDown              = zeros(m_numberOfSpinDownElectrons);
@@ -43,7 +42,8 @@ UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
     m_fockMatrixTildeDown         = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_coefficientMatrixDown       = zeros(m_numberOfBasisFunctions, m_numberOfSpinDownElectrons);
     m_coefficientMatrixTildeDown  = zeros(m_numberOfBasisFunctions, m_numberOfSpinDownElectrons);
-    m_densityMatrixDown           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    //m_densityMatrixDown           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
+    m_densityMatrixDown           = m_coefficientMatrixDown * m_coefficientMatrixDown.t();
 }
 
 void UnrestrictedHartreeFock::setup() {
@@ -51,7 +51,7 @@ void UnrestrictedHartreeFock::setup() {
     diagonalizeOverlapMatrix();
     setupOneBodyElements();
     setupTwoBodyElements();
-    //computeDensityMatrices();
+    computeDensityMatrices();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
@@ -72,35 +72,16 @@ void UnrestrictedHartreeFock::computeFockMatrices() {
             m_fockMatrixDown(p,q) += (prqs-prsq) * m_densityMatrixDown(s,r)
                                    +  prqs       * m_densityMatrixUp(s,r);
         }
-        //m_fockMatrixUp(q,p)   = m_fockMatrixUp(p,q);
-        //m_fockMatrixDown(q,p) = m_fockMatrixDown(p,q);
     }
-
-
-    /*if (m_iteration==50){
-        int n = m_numberOfBasisFunctions;
-        cout << n << endl;
-        for (int p = 0; p < n; p++) {
-            int q = (p/2+1) % n; q = (q<0 ? -q : q);
-            int r = (2*p+2) % n; r = (r<0 ? -r : r);
-            int s = (3*p) %   n; s = (s<0 ? -s : s);
-            //printf("%2d %2d %2d %2d %20.15g %20.15g \n", p,q,r,s,m_fockMatrixUp(p,q), m_fockMatrixDown(r,s));
-            printf("%2d %2d %2d %2d %20.15g %20.15g \n", p,q,r,s,m_densityMatrixUp(p,q), m_densityMatrixDown(r,s));
-            cout << m_densityMatrixUp << endl;
-        }
-        fflush(stdout);
-        exit(0);
-    }*/
 }
 
 void UnrestrictedHartreeFock::computeDensityMatrices() {
-    if (m_smoothing && !m_firstSetup) {
-        m_firstSetup = false;
+    if (m_smoothing) {
         double a = m_smoothingFactor;
         mat densityMatrixUpTmp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();;
         mat densityMatrixDownTmp = m_coefficientMatrixDown * m_coefficientMatrixDown.t();;
-        m_densityMatrixUp   = a*densityMatrixUpTmp   * m_densityMatrixUp    + (1-a)*densityMatrixUpTmp;
-        m_densityMatrixDown = a*densityMatrixDownTmp * m_densityMatrixDown  + (1-a)*densityMatrixDownTmp;
+        m_densityMatrixUp   = a*m_densityMatrixUp    + (1-a)*densityMatrixUpTmp;
+        m_densityMatrixDown = a*m_densityMatrixDown  + (1-a)*densityMatrixDownTmp;
     } else {
         m_densityMatrixUp   = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();
         m_densityMatrixDown = m_coefficientMatrixDown * m_coefficientMatrixDown.t();

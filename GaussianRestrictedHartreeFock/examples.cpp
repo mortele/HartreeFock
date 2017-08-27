@@ -114,8 +114,8 @@ void Examples::H20() {
     cout << *system->getBasis().at(22) << endl;
     exit(1);*/
 
-    //UnrestrictedHartreeFock solver(system);
-    RestrictedHartreeFock solver(system);
+    UnrestrictedHartreeFock solver(system);
+    //RestrictedHartreeFock solver(system);
     solver.solve(1e-12, 1e3);
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;

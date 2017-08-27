@@ -30,7 +30,7 @@ void RestrictedHartreeFock::setup() {
     diagonalizeOverlapMatrix();
     setupOneBodyElements();
     setupTwoBodyElements();
-    computeDensityMatrix();  // No reason to compute this, since coeff.mat is zeros still.
+    computeDensityMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
@@ -77,14 +77,6 @@ void RestrictedHartreeFock::selfConsistentFieldIteration() {
     computeFockMatrix();
     diagonalizeFockMatrix();
     computeDensityMatrix();
-    /*if (m_iterationsUsed == 0) {
-        cout << "HEI" << endl << endl;
-        cout << m_densityMatrix << endl;
-        exit(1);
-    } else if (m_iterationsUsed == 1) {
-        cout << m_fockMatrix << endl;
-        exit(1);
-    }*/
 }
 
 void RestrictedHartreeFock::computeHartreeFockEnergy() {
