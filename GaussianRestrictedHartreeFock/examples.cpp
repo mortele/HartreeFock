@@ -92,14 +92,21 @@ void Examples::H20() {
     vec nucleus1 { 0.000, 0.000, 0.000};
     vec nucleus2 {-1.430, 1.108, 0.000};
     vec nucleus3 { 1.430, 1.108, 0.000};
+    vec nucleus4 { 1.430, 1.108, 1.500};
+    vec nucleus5 { 1.430, 1.108, -1.500};
+    vec nucleus6 { 1.430, -1.108, -1.500};
 
     System* system = new System(3);
-    //system->addAtom(new Oxygen  ("6-311++G**", nucleus1));
-    //system->addAtom(new Hydrogen("6-311++G**", nucleus2));
-    //system->addAtom(new Hydrogen("6-311++G**", nucleus3));
-    system->addAtom(new Oxygen   ("6-311++G**", nucleus1));
-    system->addAtom(new Hydrogen ("6-31G**", nucleus2));
-    system->addAtom(new Hydrogen ("6-31G**", nucleus3));
+    system->addAtom(new Oxygen  ("6-311++G**", nucleus1));
+    system->addAtom(new Hydrogen("6-311++G**", nucleus2));
+    system->addAtom(new Hydrogen("6-311++G**", nucleus3));
+    //system->addAtom(new Oxygen   ("3-21G", nucleus1));
+    //system->addAtom(new Hydrogen ("3-21++G", nucleus2));
+    //system->addAtom(new Hydrogen ("3-21++G",  nucleus3));
+
+    //system->addAtom(new Hydrogen ("6-31G", nucleus4));
+    //system->addAtom(new Hydrogen ("6-31G", nucleus5));
+    //system->addAtom(new Hydrogen ("6-31G", nucleus6));
 
     /*cout << *system->getBasis().at(32) << endl;
     cout << *system->getBasis().at(17) << endl;
@@ -107,9 +114,9 @@ void Examples::H20() {
     cout << *system->getBasis().at(22) << endl;
     exit(1);*/
 
-    UnrestrictedHartreeFock solver(system);
-    //RestrictedHartreeFock solver(system);
-    solver.solve(1e-8, 1e3);
+    //UnrestrictedHartreeFock solver(system);
+    RestrictedHartreeFock solver(system);
+    solver.solve(1e-12, 1e3);
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 

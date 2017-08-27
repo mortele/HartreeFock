@@ -12,6 +12,7 @@ private:
     void basis_631ppGss();
     void basis_6311ppGss();
     void basis_6311ppG2d2p();
+    void test();
 
 public:
     Hydrogen(std::string basisName, arma::vec position);

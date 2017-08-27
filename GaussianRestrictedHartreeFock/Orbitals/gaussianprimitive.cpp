@@ -78,18 +78,28 @@ GaussianPrimitive GaussianPrimitive::product(GaussianPrimitive& primitive1,
 
 void GaussianPrimitive::adjustExponentX(int increment) {
     m_xExponent += increment;
-    m_maximumAngularMomentum = max(m_xExponent, m_maximumAngularMomentum);
+    if (increment < 0) {
+        m_maximumAngularMomentum = max(max(m_xExponent, m_yExponent),m_zExponent);
+    } else {
+        m_maximumAngularMomentum = max(m_xExponent, m_maximumAngularMomentum);
+    }
 }
 
 void GaussianPrimitive::adjustExponentY(int increment) {
     m_yExponent += increment;
-    m_maximumAngularMomentum = max(m_yExponent, m_maximumAngularMomentum);
-}
+    if (increment < 0) {
+        m_maximumAngularMomentum = max(max(m_xExponent, m_yExponent),m_zExponent);
+    } else {
+        m_maximumAngularMomentum = max(m_yExponent, m_maximumAngularMomentum);
+    }}
 
 void GaussianPrimitive::adjustExponentZ(int increment) {
     m_zExponent += increment;
-    m_maximumAngularMomentum = max(m_zExponent, m_maximumAngularMomentum);
-}
+    if (increment < 0) {
+        m_maximumAngularMomentum = max(max(m_xExponent, m_yExponent),m_zExponent);
+    } else {
+        m_maximumAngularMomentum = max(m_zExponent, m_maximumAngularMomentum);
+    }}
 
 void GaussianPrimitive::adjustExponentDimension(int increment, int dimension) {
     if (dimension==0) {

@@ -22,7 +22,7 @@ void Oxygen::basis_321G() {
     *       1  p
     *         0.3736840              1.0000000
     */
-    m_info = "Oxygen : 3-21G";
+    m_info = "Oxygen   : 3-21G";
     setNumberOfOrbitals(5);
 
     create_S3(322.0370000, 48.4308000, 10.4206000, 0.0592394, 0.3515000, 0.7076580);

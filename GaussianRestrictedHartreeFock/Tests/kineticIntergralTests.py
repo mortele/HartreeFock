@@ -11,4 +11,3 @@ if __name__ == '__main__' :
 						(y, -oo, oo)), 
 						(z, -oo, oo)))
 			print("%d,%d " % (i,j), -0.5*integral)		
-

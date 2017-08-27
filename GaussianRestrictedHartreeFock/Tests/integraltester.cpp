@@ -344,17 +344,18 @@ IntegralTester::IntegralTester() {
     m_electronNucleusIntegrator     = new ElectronNucleusIntegrator();
     m_electronElectronIntegrator    = new ElectronElectronIntegrator();
 
-    m_primitives.reserve(10);
-    m_primitives.push_back(GaussianPrimitive(0,0,0,     1.0,    vec{ 0.0, -1.5,  1.2}));
-    m_primitives.push_back(GaussianPrimitive(1,0,0,     1.1,    vec{ 0.1, -1.2,  2.5}));
-    m_primitives.push_back(GaussianPrimitive(0,1,0,     0.3,    vec{ 0.2, -1.0, -0.3}));
-    m_primitives.push_back(GaussianPrimitive(0,0,1,     0.9,    vec{ 0.3, -0.8,  0.1}));
-    m_primitives.push_back(GaussianPrimitive(0,0,2,     2.2,    vec{ 0.4, -0.6, -3.1}));
-    m_primitives.push_back(GaussianPrimitive(0,2,0,     2.4,    vec{ 0.5, -0.4,  3.8}));
-    m_primitives.push_back(GaussianPrimitive(2,0,0,     3.1,    vec{ 0.6, -0.2,  1.3}));
-    m_primitives.push_back(GaussianPrimitive(1,1,0,     3.7,    vec{ 0.7,  0.0,  2.4}));
-    m_primitives.push_back(GaussianPrimitive(0,1,1,     1.3,    vec{ 0.8,  0.2,  5.3}));
-    m_primitives.push_back(GaussianPrimitive(1,0,1,     4.3,    vec{ 0.9,  0.4,  1.2}));
+    m_primitives.reserve(11);
+    m_primitives.push_back(GaussianPrimitive(0,0,0,     1.00,    vec{ 0.0, -1.5,  1.2}));
+    m_primitives.push_back(GaussianPrimitive(1,0,0,     1.10,    vec{ 0.1, -1.2,  2.5}));
+    m_primitives.push_back(GaussianPrimitive(0,1,0,     0.30,    vec{ 0.2, -1.0, -0.3}));
+    m_primitives.push_back(GaussianPrimitive(0,0,1,     0.90,    vec{ 0.3, -0.8,  0.1}));
+    m_primitives.push_back(GaussianPrimitive(0,0,2,     2.20,    vec{ 0.4, -0.6, -3.1}));
+    m_primitives.push_back(GaussianPrimitive(0,2,0,     2.40,    vec{ 0.5, -0.4,  3.8}));
+    m_primitives.push_back(GaussianPrimitive(2,0,0,     3.10,    vec{ 0.6, -0.2,  1.3}));
+    m_primitives.push_back(GaussianPrimitive(1,1,0,     3.70,    vec{ 0.7,  0.0,  2.4}));
+    m_primitives.push_back(GaussianPrimitive(0,1,1,     1.30,    vec{ 0.8,  0.2,  5.3}));
+    m_primitives.push_back(GaussianPrimitive(1,0,1,     4.30,    vec{ 0.9,  0.4,  1.2}));
+    m_primitives.push_back(GaussianPrimitive(0,0,0,     0.03,    vec{ 0.0, -1.5,  1.2}));
 }
 
 bool IntegralTester::runAllTests(bool silent) {

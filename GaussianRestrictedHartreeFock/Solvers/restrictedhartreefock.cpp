@@ -8,6 +8,7 @@ using arma::eye;
 using arma::zeros;
 using arma::mat;
 using arma::vec;
+using arma::randu;
 using arma::field;
 
 
@@ -29,7 +30,7 @@ void RestrictedHartreeFock::setup() {
     diagonalizeOverlapMatrix();
     setupOneBodyElements();
     setupTwoBodyElements();
-    //computeDensityMatrix();
+    computeDensityMatrix();  // No reason to compute this, since coeff.mat is zeros still.
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 }
 
@@ -76,6 +77,14 @@ void RestrictedHartreeFock::selfConsistentFieldIteration() {
     computeFockMatrix();
     diagonalizeFockMatrix();
     computeDensityMatrix();
+    /*if (m_iterationsUsed == 0) {
+        cout << "HEI" << endl << endl;
+        cout << m_densityMatrix << endl;
+        exit(1);
+    } else if (m_iterationsUsed == 1) {
+        cout << m_fockMatrix << endl;
+        exit(1);
+    }*/
 }
 
 void RestrictedHartreeFock::computeHartreeFockEnergy() {
@@ -113,17 +122,14 @@ double RestrictedHartreeFock::convergenceTest() {
 }
 
 void RestrictedHartreeFock::computeDensityMatrix() {
-    if (m_smoothing && !m_firstSetup) {
-        m_firstSetup = false;
+    if (m_smoothing) {
         double a = m_smoothingFactor;
-        mat densityMatrixTmp    = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
-        m_densityMatrix         = a*densityMatrixTmp * m_densityMatrix + (1-a)*densityMatrixTmp;
-
+        mat densityMatrixTmp = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+        m_densityMatrix      = a * m_densityMatrix + (1.0 - a) * densityMatrixTmp;
     } else {
         m_densityMatrix = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
     }
 }
-
 
 
 

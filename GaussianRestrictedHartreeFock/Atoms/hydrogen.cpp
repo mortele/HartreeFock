@@ -154,6 +154,23 @@ void Hydrogen::basis_6311ppG2d2p() {
     create_P1(0.3750000, 1.0000000);
 }
 
+void Hydrogen::test() {
+    /*   h   3-21G
+     *   *
+     *      2  s
+     *        5.4471780              0.1562850
+     *        0.8245470              0.9046910
+     *      1  s
+     *        0.1831920              1.0000000
+     */
+    m_info = "Hydrogen : test";
+    setNumberOfOrbitals(2);
+
+    create_S2(5.4471780, 0.8245470, 0.1562850, 0.9046910);
+    create_S1(0.1831920, 1.0000000);
+    create_S1(0.0360000, 1.0000000);
+}
+
 Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
     Atom(position, 1, 1.0) {
 
@@ -171,6 +188,8 @@ Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
         basis_6311ppGss();
     } else if (basisName == "6-311++G(2d,2p)") {
         basis_6311ppG2d2p();
+    } else if (basisName == "test") {
+        test();
     } else {
         cout << "Unknown basis: " << basisName << endl;
         cout << "Currently known basis sets for Hydrogen: " << endl;
