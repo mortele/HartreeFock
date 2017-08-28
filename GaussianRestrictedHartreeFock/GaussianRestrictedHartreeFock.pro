@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     Atoms/helium.cpp \
     examples.cpp \
     Tests/integraltester.cpp \
-    Tests/tester.cpp
+    Tests/tester.cpp \
+    Atoms/lithium.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -60,4 +61,5 @@ HEADERS += \
     Atoms/helium.h \
     examples.h \
     Tests/integraltester.h \
-    Tests/tester.h
+    Tests/tester.h \
+    Atoms/lithium.h
