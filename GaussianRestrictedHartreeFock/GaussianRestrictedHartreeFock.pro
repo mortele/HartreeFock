@@ -35,7 +35,13 @@ SOURCES += main.cpp \
     examples.cpp \
     Tests/integraltester.cpp \
     Tests/tester.cpp \
-    Atoms/lithium.cpp
+    Atoms/lithium.cpp \
+    Atoms/beryllium.cpp \
+    Atoms/boron.cpp \
+    Atoms/carbon.cpp \
+    Atoms/nitrogen.cpp \
+    Atoms/fluorine.cpp \
+    Atoms/neon.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -62,4 +68,10 @@ HEADERS += \
     examples.h \
     Tests/integraltester.h \
     Tests/tester.h \
-    Atoms/lithium.h
+    Atoms/lithium.h \
+    Atoms/beryllium.h \
+    Atoms/boron.h \
+    Atoms/carbon.h \
+    Atoms/nitrogen.h \
+    Atoms/fluorine.h \
+    Atoms/neon.h

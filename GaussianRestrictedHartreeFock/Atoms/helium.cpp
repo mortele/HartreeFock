@@ -19,6 +19,7 @@ Helium::Helium(std::string basisName, arma::vec position) :
         cout << " * 3-21G"              << endl;
         cout << " * 6-311+G**"          << endl;
         cout << " * 6-311G(2df,2pd)"    << endl;
+        exit(1);
     }
 }
 

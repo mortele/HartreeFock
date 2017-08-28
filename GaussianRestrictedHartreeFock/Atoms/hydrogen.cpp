@@ -200,6 +200,7 @@ Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
         cout << " * 6-31++G**"          << endl;
         cout << " * 6-311++G**"         << endl;
         cout << " * 6-311++G(2d,2p)"    << endl;
+        exit(1);
     }
 }
 

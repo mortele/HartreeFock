@@ -134,5 +134,6 @@ Oxygen::Oxygen(std::string basisName, arma::vec position) :
         cout << "Currently known basis sets for Oxygen: " << endl;
         cout << " * 3-21G"              << endl;
         cout << " * 6-311++G**"         << endl;
+        exit(1);
     }
 }

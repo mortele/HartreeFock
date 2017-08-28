@@ -52,3 +52,13 @@ public:
     friend std::ostream& operator<<(std::ostream& stream, Atom& atom);
 };
 
+#include "Atoms/hydrogen.h"
+#include "Atoms/helium.h"
+#include "Atoms/lithium.h"
+#include "Atoms/beryllium.h"
+#include "Atoms/boron.h"
+#include "Atoms/carbon.h"
+#include "Atoms/nitrogen.h"
+#include "Atoms/oxygen.h"
+#include "Atoms/fluorine.h"
+#include "Atoms/neon.h"

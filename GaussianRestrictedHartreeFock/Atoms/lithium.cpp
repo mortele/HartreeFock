@@ -1,5 +1,8 @@
 #include "Atoms/lithium.h"
+#include <iostream>
 
+using std::cout;
+using std::endl;
 
 void Lithium::basis_321G() {
    /*    li   3-21G
@@ -21,7 +24,7 @@ void Lithium::basis_321G() {
     *    *
     */
     m_info = "Lithium : 3-21G";
-    m_numberOfOrbitals(5);
+    setNumberOfOrbitals(5);
     create_S3(36.8382000, 5.4817200, 1.1132700, 0.0696686, 0.3813460, 0.6817020);
     create_S2(0.5402050, 0.1022550, -0.2631270, 1.1433900);
     create_S1(0.0285650, 1.0);
@@ -63,7 +66,7 @@ void Lithium::basis_6311ppGss() {
     *         0.2000000              1.0000000
     */
     m_info = "Lithium : 6-311++G**";
-    m_numberOfOrbitals = 10;
+    setNumberOfOrbitals(10);
     create_S6(900.4600000, 134.4330000, 30.4365000, 8.6263900, 2.4833200, 0.3031790, 0.00228704, 0.0176350 , 0.0873434 , 0.2809770 , 0.6587410 , 0.1187120);
     create_S3(4.8689000, 0.8569240, 0.2432270, 0.0933293 , 0.9430450 , -0.00279827);
     create_S1(0.0635070, 1.0);
@@ -80,8 +83,11 @@ Lithium::Lithium(std::string basisName, arma::vec position) :
         Atom(position, 3, 3.0) {
     if (basisName == "3-21G") {
         basis_321G();
+    } else if (basisName == "6-311++Gss") {
+        basis_6311ppGss();
     } else {
-
+        cout << "Could not find basis " << basisName << " for Lithium." << endl;
+        exit(1);
     }
 
 }

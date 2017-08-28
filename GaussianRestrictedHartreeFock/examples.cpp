@@ -6,10 +6,8 @@
 #include "system.h"
 #include "Solvers/restrictedhartreefock.h"
 #include "Solvers/unrestrictedhartreefock.h"
-#include "Atoms/atom.h"
-#include "Atoms/hydrogen.h"
-#include "Atoms/oxygen.h"
-#include "Atoms/helium.h"
+#include "Atoms/atom.h" // Includes all the specific atoms currently available.
+
 
 
 using arma::vec;
