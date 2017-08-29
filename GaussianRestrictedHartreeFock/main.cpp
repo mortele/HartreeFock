@@ -10,9 +10,6 @@
 #include "Solvers/restrictedhartreefock.h"
 #include "Solvers/unrestrictedhartreefock.h"
 #include "Atoms/atom.h"
-#include "Atoms/hydrogen.h"
-#include "Atoms/oxygen.h"
-#include "Atoms/helium.h"
 #include "examples.h"
 #include "Tests/tester.h"
 
@@ -26,7 +23,8 @@ int main(int, char**) {
     //Examples::He();
     //Examples::HeHp();
     //Examples::H2();
-    Examples::H20();
+    //Examples::H20();
+    Examples::ValidationTable();
 
     Tester tests;
     bool test = tests.runAllTests(true);

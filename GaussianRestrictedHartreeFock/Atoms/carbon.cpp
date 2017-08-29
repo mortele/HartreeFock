@@ -31,7 +31,7 @@ Carbon::Carbon(std::string basisName, arma::vec position) :
     if (basisName == "3-21G") {
         basis_321G();
     } else if(basisName == "6-311++G**") {
-        basis_631ppGss();
+        basis_6311ppGss();
     } else {
         std::cout << "Could not find basis " << basisName << " for Carbon." << std::endl;
         exit(1);

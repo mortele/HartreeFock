@@ -5,7 +5,6 @@
 class UnrestrictedHartreeFock : public HartreeFock {
 private:
     bool        m_smoothing         = true;
-    bool        m_firstSetup        = true;
     double      m_smoothingFactor   = 0.5;
     int         m_numberOfSpinUpElectrons;
     int         m_numberOfSpinDownElectrons;

@@ -7,5 +7,6 @@ public:
     static void HeHp();
     static void H2();
     static void H20();
+    static void ValidationTable();
 };
 

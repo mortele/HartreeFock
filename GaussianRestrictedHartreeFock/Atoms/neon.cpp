@@ -25,7 +25,7 @@ void Neon::basis_631ppGss() {
     create_D1(2.304,1.0);
 }
 
-Neon::Beryllium(std::string basisName, arma::vec position) :
+Neon::Neon(std::string basisName, arma::vec position) :
     Atom(position, 10, 10.0) {
 
     if (basisName == "3-21G") {
@@ -36,5 +36,4 @@ Neon::Beryllium(std::string basisName, arma::vec position) :
         std::cout << "Could not find basis " << basisName << " for Neon." << std::endl;
         exit(1);
     }
-
 }

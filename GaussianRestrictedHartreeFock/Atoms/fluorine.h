@@ -12,4 +12,3 @@ public:
     Fluorine(std::string basisName, arma::vec position);
 };
 
-#endif // FLUORINE_H

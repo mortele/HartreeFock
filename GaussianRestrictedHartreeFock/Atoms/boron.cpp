@@ -31,9 +31,9 @@ Boron::Boron(std::string basisName, arma::vec position) :
     if (basisName == "3-21G") {
         basis_321G();
     } else if(basisName == "6-311++G**") {
-        basis_631ppGss();
+        basis_6311ppGss();
     } else {
-        cout << "Could not find basis " << basisName << " for Boron." << endl;
+        std::cout << "Could not find basis " << basisName << " for Boron." << std::endl;
         exit(1);
     }
 }
