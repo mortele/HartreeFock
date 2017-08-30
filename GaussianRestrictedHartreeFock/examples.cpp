@@ -369,9 +369,9 @@ void Examples::ValidationH2plus() {
     boost::timer t;
 
 
-    int     n  = 500;
-    double L0  = 1.;
-    double L1  = 7.;
+    int     n  = 100;
+    double L0  = 1.9;
+    double L1  = 2.1;
     double dx  = (L1-L0)/n;
 
     for (int i=0; i<n; i++) {
@@ -384,8 +384,8 @@ void Examples::ValidationH2plus() {
         //Hydrogen* Hm = new Hydrogen("6-311++G**", nucleus1);
         //Hydrogen* Hm = new Hydrogen("3-21G", nucleus1);
         //Hydrogen* Hm = new Hydrogen("6-31G", nucleus1);
-        //Hydrogen* Hm = new Hydrogen("3-21++G", nucleus1);
-        Hydrogen* Hm = new Hydrogen("6-31G**", nucleus1);
+        Hydrogen* Hm = new Hydrogen("3-21++G", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("6-31G**", nucleus1);
         Hm->setNumberOfElectrons(0);
         system->addAtom(Hm);
         //system->addAtom(new Hydrogen("6-311++G(2d,2p)", nucleus2));
@@ -395,7 +395,7 @@ void Examples::ValidationH2plus() {
         system->addAtom(new Hydrogen("6-31G**", nucleus2));
         UnrestrictedHartreeFock solver(system);
         double E = solver.solveSilently(1e-10, 1e4);
-        printf("%15.10g %15.10g; \n", x, E);
+        printf("%20.15g %20.15g; \n", x, E);
         if (i % 10 == 0) {
             fflush(stdout);
         }
@@ -404,6 +404,36 @@ void Examples::ValidationH2plus() {
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 }
+
+void Examples::removeMe() {
+    vec nucleus1  {0, 0, 0};
+    vec nucleus2  {2.0032, 0, 0};
+
+    System* system = new System(2);
+    Hydrogen* Hm = new Hydrogen("3-21G", nucleus1);
+    Hm->setNumberOfElectrons(0);
+    system->addAtom(Hm);
+    system->addAtom(new Hydrogen("test", nucleus2));
+    UnrestrictedHartreeFock solver(system);
+    double E = solver.solve(1e-10, 1e4);
+    //printf("%20.15g %20.15g; \n", 2.0032, E);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

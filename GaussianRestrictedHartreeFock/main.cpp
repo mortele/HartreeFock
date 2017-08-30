@@ -2,23 +2,21 @@
 //#define ARMA_EXTRA_DEBUG
 #define ARMA_NO_DEBUG
 
+#include <fenv.h>
+
+
 #include <iostream>
 #include <iomanip>
-#include <cassert>
-#include <boost/timer.hpp>
-#include "system.h"
-#include "Solvers/restrictedhartreefock.h"
-#include "Solvers/unrestrictedhartreefock.h"
-#include "Atoms/atom.h"
 #include "examples.h"
 #include "Tests/tester.h"
 
-using arma::vec;
-using arma::zeros;
 using std::cout;
 using std::endl;
 
 int main(int, char**) {
+
+    feenableexcept(FE_INVALID | FE_OVERFLOW);
+
     //Examples::Hm();
     //Examples::He();
     //Examples::HeHp();
@@ -26,7 +24,9 @@ int main(int, char**) {
     //Examples::H20();
     //Examples::ValidationTable();
     //Examples::ValidationTableDissociation();
-    Examples::ValidationH2plus();
+    //Examples::ValidationH2plus();
+
+    Examples::removeMe();
 
     Tester tests;
     bool test = tests.runAllTests(true);

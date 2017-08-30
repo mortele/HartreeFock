@@ -173,6 +173,12 @@ void Hydrogen::basis_augccpVQZ() {
     create_F1(0.36,1.0);
 }
 
+void Hydrogen::basis_test() {
+    m_info = "Hydrogen : test(1f)";
+    setNumberOfOrbitals(1);
+    create_F1(1.,1.);
+}
+
 
 
 Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
@@ -194,6 +200,8 @@ Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
         basis_6311ppG2d2p();
     } else if (basisName == "aug-cc-pVQZ") {
         basis_augccpVQZ();
+    } else if (basisName == "test") {
+        basis_test();
     } else {
         cout << "Unknown basis: " << basisName << endl;
         cout << "Currently known basis sets for Hydrogen: " << endl;
