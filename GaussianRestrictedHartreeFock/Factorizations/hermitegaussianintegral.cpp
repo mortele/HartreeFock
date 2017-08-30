@@ -54,7 +54,7 @@ void HermiteGaussianIntegral::setupCoefficients(int         t,
     m_u          = u;
     m_v          = v;
     m_tuv        = m_t + m_u + m_v;
-    int maxIndex = m_tuv + 2;
+    int maxIndex = m_tuv + 1;
     m_coefficients.set_size(maxIndex);
     for (int i=0; i<maxIndex; i++) {
         m_coefficients(i) = zeros<cube>(maxIndex+1, maxIndex+1, maxIndex+1);

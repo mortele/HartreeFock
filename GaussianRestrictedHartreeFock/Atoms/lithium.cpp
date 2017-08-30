@@ -83,7 +83,7 @@ Lithium::Lithium(std::string basisName, arma::vec position) :
         Atom(position, 3, 3.0) {
     if (basisName == "3-21G") {
         basis_321G();
-    } else if (basisName == "6-311++Gss") {
+    } else if (basisName == "6-311++G**") {
         basis_6311ppGss();
     } else {
         cout << "Could not find basis " << basisName << " for Lithium." << endl;

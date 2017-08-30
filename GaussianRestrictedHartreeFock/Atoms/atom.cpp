@@ -81,6 +81,35 @@ ContractedGaussian* Atom::create_D1(double a, double c) {
     return contracted;
 }
 
+ContractedGaussian*Atom::create_F1(double a, double c) {
+    ContractedGaussian* contracted;
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(3,0,0,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,3,0,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,0,3,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(2,1,0,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(2,0,1,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(1,2,0,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,2,1,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(1,2,0,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(1,0,2,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,1,2,a,m_position,c), c);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(1,1,1,a,m_position,c), c);
+    return contracted;
+}
+
+
+
 ContractedGaussian* Atom::create_P1(double a, double c) {
     ContractedGaussian* contracted;
     contracted = insertNewContracted();

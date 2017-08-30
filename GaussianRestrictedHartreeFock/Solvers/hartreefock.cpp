@@ -164,7 +164,6 @@ void HartreeFock::printFinalInfo() {
         printf(" => Final energy:            %30.16g  \n", m_hartreeFockEnergy);
     }
     printf(" ============================================================ \n");
-    cout << m_hartreeFockEnergy-m_electronicHartreeFockEnergy << endl;
 }
 
 

@@ -109,7 +109,7 @@ void Examples::H20() {
     cout << "Elapsed time: " << elapsedTime << endl;
 }
 
-void Examples::ValidationTable() {
+void Examples::ValidationTableEnergy() {
     boost::timer t;
 
     // H2
@@ -321,6 +321,85 @@ void Examples::ValidationTable() {
            re_HF_big,
            un_HF_big,
            HF_lim_HF); fflush(stdout);
+
+    double elapsedTime = t.elapsed();
+    cout << "Elapsed time: " << elapsedTime << endl;
+}
+
+
+
+
+void Examples::ValidationTableDissociation() {
+    boost::timer t;
+
+    // LiF
+    // ========================================================================
+    vec LiF_nucleus1 {0, 0, 0};
+    vec LiF_nucleus2 {2.955,0,0};
+    System* system   = new System(2);
+    system->  addAtom(new Fluorine("6-311++G**", LiF_nucleus1));
+    system->  addAtom(new Lithium ("6-311++G**", LiF_nucleus2));
+    UnrestrictedHartreeFock* solver = new UnrestrictedHartreeFock(system);
+    double un_LiF = solver->solve(1e-10,1e4);
+
+
+    // Li
+    vec Li_nucleus {0, 0, 0};
+    system = new System(1);
+    system->addAtom(new Lithium ("6-311++G**", Li_nucleus));
+    solver = new UnrestrictedHartreeFock(system);
+    double un_Li = solver->solve(1e-10,1e4);
+
+    // F
+    vec F_nucleus {0, 0, 0};
+    system = new System(1);
+    system->addAtom(new Fluorine("6-311++G**", F_nucleus));
+    solver = new UnrestrictedHartreeFock(system);
+    double un_F = solver->solve(1e-10,1e4);
+
+    printf("Li: %10.6g \nF: %10.6g \nLi+F: %10.6g \nLiF: %10.6g \nLiF-(Li+F): %10.6g\n",
+           un_Li, un_F, un_Li+un_F,un_LiF, un_LiF-(un_Li+un_F));
+    fflush(stdout);
+
+    double elapsedTime = t.elapsed();
+    cout << "Elapsed time: " << elapsedTime << endl;
+}
+
+void Examples::ValidationH2plus() {
+    boost::timer t;
+
+
+    int     n  = 500;
+    double L0  = 1.;
+    double L1  = 7.;
+    double dx  = (L1-L0)/n;
+
+    for (int i=0; i<n; i++) {
+        double x = L0 + dx*i;
+        vec nucleus1  {0, 0, 0};
+        vec nucleus2  {x, 0, 0};
+
+        System* system = new System(2);
+        //Hydrogen* Hm = new Hydrogen("6-311++G(2d,2p)", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("6-311++G**", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("3-21G", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("6-31G", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("3-21++G", nucleus1);
+        Hydrogen* Hm = new Hydrogen("6-31G**", nucleus1);
+        Hm->setNumberOfElectrons(0);
+        system->addAtom(Hm);
+        //system->addAtom(new Hydrogen("6-311++G(2d,2p)", nucleus2));
+        //system->addAtom(new Hydrogen("6-311++G**", nucleus2));
+        //system->addAtom(new Hydrogen("3-21G", nucleus2));
+        //system->addAtom(new Hydrogen("6-31G", nucleus2));
+        system->addAtom(new Hydrogen("6-31G**", nucleus2));
+        UnrestrictedHartreeFock solver(system);
+        double E = solver.solveSilently(1e-10, 1e4);
+        printf("%15.10g %15.10g; \n", x, E);
+        if (i % 10 == 0) {
+            fflush(stdout);
+        }
+    }
 
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;

@@ -1,6 +1,6 @@
 //#define ARMA_MAT_PREALLOC 16
 //#define ARMA_EXTRA_DEBUG
-//#define ARMA_NO_DEBUG
+#define ARMA_NO_DEBUG
 
 #include <iostream>
 #include <iomanip>
@@ -24,10 +24,13 @@ int main(int, char**) {
     //Examples::HeHp();
     //Examples::H2();
     //Examples::H20();
-    Examples::ValidationTable();
+    //Examples::ValidationTable();
+    //Examples::ValidationTableDissociation();
+    Examples::ValidationH2plus();
 
     Tester tests;
     bool test = tests.runAllTests(true);
     if (!test) cout << "Some tests FAILED." << endl;
     return 0;
 }
+

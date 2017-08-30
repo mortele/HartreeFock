@@ -34,6 +34,9 @@ protected:
     // D orbitals.
     ContractedGaussian* create_D1(double a, double c);
 
+    // F orbitals.
+    ContractedGaussian* create_F1(double a, double c);
+
 public:
     Atom(arma::vec position, int numberOfElectrons, double charge);
     Atom(arma::vec position, int numberOfOrbitals, int numberOfElectrons, double charge);

@@ -7,6 +7,8 @@ public:
     static void HeHp();
     static void H2();
     static void H20();
-    static void ValidationTable();
+    static void ValidationTableEnergy();
+    static void ValidationTableDissociation();
+    static void ValidationH2plus();
 };
 
