@@ -78,11 +78,13 @@ void HartreeFock::setupOneBodyElements() {
 }
 
 void HartreeFock::setupTwoBodyElements() {
-    for (int p = 0; p < m_numberOfBasisFunctions; p++)
-    for (int q = 0; q < m_numberOfBasisFunctions; q++)
-    for (int r = p; r < m_numberOfBasisFunctions; r++)
-    for (int s = q; s < m_numberOfBasisFunctions; s++) {
-        m_twoBodyMatrixElements(p,q)(r,s) = m_system->twoBodyElements(p,r,q,s);
+    for (int p = 0; p < m_numberOfBasisFunctions; p++) {
+        //cout << p/((double) m_numberOfBasisFunctions) << endl;
+        for (int q = 0; q < m_numberOfBasisFunctions; q++)
+        for (int r = p; r < m_numberOfBasisFunctions; r++)
+        for (int s = q; s < m_numberOfBasisFunctions; s++) {
+            m_twoBodyMatrixElements(p,q)(r,s) = m_system->twoBodyElements(p,r,q,s);
+        }
     }
 
     for(int p = 0; p < m_numberOfBasisFunctions; p++)
@@ -112,7 +114,7 @@ void HartreeFock::diagonalizeOverlapMatrix() {
     vec s;
     mat A;
     arma::eig_sym(s, A, m_overlapMatrix);
-    m_transformationMatrix = A * arma::diagmat(1.0 / sqrt(s));
+    m_transformationMatrix = A * arma::diagmat(1.0 / sqrt(arma::abs(s)));
 }
 
 void HartreeFock::printInitialInfo() {

@@ -100,8 +100,6 @@ void UnrestrictedHartreeFock::diagonalizeFockMatrices() {
 }
 
 void UnrestrictedHartreeFock::normalizeCoefficientMatrices() {
-    cout << m_densityMatrixUp << endl;
-    cout << "hei" << endl;
     for (int k = 0; k < m_numberOfSpinUpElectrons; k++) {
         double normalizationFactor = 0;
         for (int p = 0; p < m_numberOfBasisFunctions; p++) {

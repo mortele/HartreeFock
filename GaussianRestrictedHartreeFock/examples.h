@@ -10,7 +10,5 @@ public:
     static void ValidationTableEnergy();
     static void ValidationTableDissociation();
     static void ValidationH2plus();
-
-    static void removeMe();
 };
 

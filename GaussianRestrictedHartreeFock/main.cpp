@@ -1,9 +1,6 @@
 //#define ARMA_MAT_PREALLOC 16
 //#define ARMA_EXTRA_DEBUG
-#define ARMA_NO_DEBUG
-
-#include <fenv.h>
-
+//#define ARMA_NO_DEBUG
 
 #include <iostream>
 #include <iomanip>
@@ -14,9 +11,6 @@ using std::cout;
 using std::endl;
 
 int main(int, char**) {
-
-    feenableexcept(FE_INVALID | FE_OVERFLOW);
-
     //Examples::Hm();
     //Examples::He();
     //Examples::HeHp();
@@ -24,9 +18,7 @@ int main(int, char**) {
     //Examples::H20();
     //Examples::ValidationTable();
     //Examples::ValidationTableDissociation();
-    //Examples::ValidationH2plus();
-
-    Examples::removeMe();
+    Examples::ValidationH2plus();
 
     Tester tests;
     bool test = tests.runAllTests(true);
