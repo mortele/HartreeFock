@@ -81,9 +81,11 @@ void Examples::H2() {
     System* system = new System(2);
     system->addAtom(new Hydrogen("6-311++G**", nucleus1));
     system->addAtom(new Hydrogen("6-311++G**", nucleus2));
+    //system->addAtom(new Hydrogen("cc-pVQZ", nucleus1));
+    //system->addAtom(new Hydrogen("cc-pVQZ", nucleus2));
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    solver.solve(1e-5, 1e4);
+    solver.solve(1e-10, 1e4);
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 }

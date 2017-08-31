@@ -15,6 +15,7 @@ private:
     void basis_6311ppG2d2p();
     void basis_augccpVQZ();
     void basis_ccpVTZ();
+    void basis_ccpVQZ();
     void basis_test();
 
 public:

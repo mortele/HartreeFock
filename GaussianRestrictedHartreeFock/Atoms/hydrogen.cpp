@@ -184,6 +184,20 @@ void Hydrogen::basis_ccpVTZ() {
     create_D1(1.057,1.0);
 }
 
+void Hydrogen::basis_ccpVQZ() {
+    m_info = "Hydrogen : cc-pVQZ";
+    setNumberOfOrbitals(9);
+    create_S3(82.64,12.41,2.824,0.002006,0.015343,0.075579);
+    create_S1(0.7977,1.0);
+    create_S1(0.2581,1.0);
+    create_S1(0.08989,1.0);
+    create_P1(2.292,1.0);
+    create_P1(0.838,1.0);
+    create_P1(0.292,1.0);
+    create_D1(2.062,1.0);
+    create_D1(0.662,1.0);
+}
+
 void Hydrogen::basis_test() {
     m_info = "Hydrogen : test(1f)";
     setNumberOfOrbitals(1);
@@ -213,6 +227,8 @@ Hydrogen::Hydrogen(std::string basisName, arma::vec position) :
         basis_augccpVQZ();
     } else if (basisName == "cc-pVTZ") {
         basis_ccpVTZ();
+    } else if (basisName == "cc-pVQZ") {
+        basis_ccpVQZ();
     } else if (basisName == "test") {
         basis_test();
     } else {

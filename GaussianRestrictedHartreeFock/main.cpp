@@ -14,11 +14,11 @@ int main(int, char**) {
     //Examples::Hm();
     //Examples::He();
     //Examples::HeHp();
-    //Examples::H2();
+    Examples::H2();
     //Examples::H20();
     //Examples::ValidationTable();
     //Examples::ValidationTableDissociation();
-    Examples::ValidationH2plus();
+    //Examples::ValidationH2plus();
 
     Tester tests;
     bool test = tests.runAllTests(true);
