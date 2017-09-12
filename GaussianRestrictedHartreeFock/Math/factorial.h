@@ -7,3 +7,11 @@ inline double factorial(int n) {
     }
     return result;
 }
+
+inline double doubleFactorial(int n) {
+    double result = 1.0;
+    for (int m = n; m > 0; m-=2) {
+        result *= m;
+    }
+    return result;
+}

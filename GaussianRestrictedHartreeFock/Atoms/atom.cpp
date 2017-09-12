@@ -64,6 +64,32 @@ ContractedGaussian* Atom::create_P3(double a1, double a2, double a3, double c1, 
     return contracted;
 }
 
+ContractedGaussian*Atom::create_P6(double a1, double a2, double a3, double a4, double a5, double a6, double c1, double c2, double c3, double c4, double c5, double c6) {
+    ContractedGaussian* contracted;
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a1,m_position,c1), c1);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a2,m_position,c2), c2);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a3,m_position,c3), c3);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a4,m_position,c4), c4);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a5,m_position,c5), c5);
+    contracted->addPrimitive(new GaussianPrimitive(1,0,0,a6,m_position,c6), c6);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a1,m_position,c1), c1);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a2,m_position,c2), c2);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a3,m_position,c3), c3);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a4,m_position,c4), c4);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a5,m_position,c5), c5);
+    contracted->addPrimitive(new GaussianPrimitive(0,1,0,a6,m_position,c6), c6);
+    contracted = insertNewContracted();
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a1,m_position,c1), c1);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a2,m_position,c2), c2);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a3,m_position,c3), c3);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a4,m_position,c4), c4);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a5,m_position,c5), c5);
+    contracted->addPrimitive(new GaussianPrimitive(0,0,1,a6,m_position,c6), c6);
+    return contracted;
+}
+
 ContractedGaussian* Atom::create_D1(double a, double c) {
     ContractedGaussian* contracted;
     contracted = insertNewContracted();

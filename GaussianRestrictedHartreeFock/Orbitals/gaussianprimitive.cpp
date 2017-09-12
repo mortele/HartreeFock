@@ -28,10 +28,15 @@ GaussianPrimitive::GaussianPrimitive(int    i,
         m_nucleusPosition       (nucleusPosition),
         m_coefficient           (coefficient) {
 
-    m_constantTerm = coefficient
+    /*m_constantTerm = coefficient
                      * pow(2*a/M_PI, 3.0/4.0)
                      * sqrt( pow(8*a, i+j+k) * factorial(i) * factorial(j) * factorial(k)
-                             / ( factorial(2*i) * factorial(2*j) * factorial(2*k) ) );
+                             / ( factorial(2*i) * factorial(2*j) * factorial(2*k) ) );*/
+    m_constantTerm = coefficient
+                     * pow(2*a/M_PI, 3.0/4.0)
+                     * sqrt(pow(4*a,i+j+k)  /
+                        (doubleFactorial(2*i-1) * doubleFactorial(2*j-1) * doubleFactorial(2*k-1)));
+    // (2*a/Pi)^(3/4)*(4*a)^((i+j+k)/2)/Sqrt[(2i-1)!!(2j-1)!!(2k-1)!!]
 }
 
 

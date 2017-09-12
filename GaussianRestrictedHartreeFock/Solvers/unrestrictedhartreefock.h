@@ -37,6 +37,6 @@ private:
 public:
     UnrestrictedHartreeFock(class System* system);
 
-    std::string dumpBasisToFile();
+    std::string dumpBasisToFile(std::__1::string fileName="");
 };
 

@@ -30,6 +30,7 @@ protected:
     ContractedGaussian* create_P1(double a, double c);
     ContractedGaussian* create_P2(double a1, double a2, double c1, double c2);
     ContractedGaussian* create_P3(double a1, double a2, double a3, double c1, double c2, double c3);
+    ContractedGaussian* create_P6(double a1, double a2, double a3, double a4, double a5, double a6, double c1, double c2, double c3, double c4, double c5, double c6);
 
     // D orbitals.
     ContractedGaussian* create_D1(double a, double c);

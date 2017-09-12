@@ -7,7 +7,6 @@ class Hydrogen : public Atom {
 private:
     void basis_321G();
     void basis_6311ppGss();
-
     void basis_321ppG();
     void basis_631G();
     void basis_631Gss();

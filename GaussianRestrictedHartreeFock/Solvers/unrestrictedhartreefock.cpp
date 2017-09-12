@@ -170,8 +170,13 @@ std::string UnrestrictedHartreeFock::getDateTime() {
     return dateTime;
 }
 
-std::string UnrestrictedHartreeFock::dumpBasisToFile() {
-    std::string fileName = "../HartreeFockBases/basis-" + getDateTime();
+std::string UnrestrictedHartreeFock::dumpBasisToFile(std::string fileNameIn) {
+    std::string fileName;
+    if (fileNameIn=="") {
+        fileName = "../HartreeFockBases/basis-" + getDateTime();
+    } else {
+        fileName = "../HartreeFockBases/" + fileNameIn;
+    }
 
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
 
@@ -221,6 +226,7 @@ std::string UnrestrictedHartreeFock::dumpBasisToFile() {
     }
 
     outFile.close();
+    std::cout << "Dumped HF basis to file: " << fileName << std::endl;
     return fileName;
 }
 

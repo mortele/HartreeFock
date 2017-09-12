@@ -79,6 +79,8 @@ void Examples::H2() {
     vec nucleus2  {0, 0, 1.4};
 
     System* system = new System(2);
+    //system->addAtom(new Hydrogen("3-21G", nucleus1));
+    //system->addAtom(new Hydrogen("3-21G", nucleus2));
     system->addAtom(new Hydrogen("6-311++G**", nucleus1));
     system->addAtom(new Hydrogen("6-311++G**", nucleus2));
     //system->addAtom(new Hydrogen("cc-pVQZ", nucleus1));
@@ -86,6 +88,7 @@ void Examples::H2() {
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
     solver.solve(1e-10, 1e4);
+    solver.dumpBasisToFile();
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 }
@@ -341,7 +344,7 @@ void Examples::ValidationTableDissociation() {
     System* system   = new System(2);
     system->  addAtom(new Fluorine("6-311++G**", LiF_nucleus1));
     system->  addAtom(new Lithium ("6-311++G**", LiF_nucleus2));
-    UnrestrictedHartreeFock* solver = new UnrestrictedHartreeFock(system);
+    RestrictedHartreeFock* solver = new RestrictedHartreeFock(system);
     double un_LiF = solver->solve(1e-10,1e4);
 
 
@@ -349,15 +352,15 @@ void Examples::ValidationTableDissociation() {
     vec Li_nucleus {0, 0, 0};
     system = new System(1);
     system->addAtom(new Lithium ("6-311++G**", Li_nucleus));
-    solver = new UnrestrictedHartreeFock(system);
-    double un_Li = solver->solve(1e-10,1e4);
+    UnrestrictedHartreeFock* unsolver = new UnrestrictedHartreeFock(system);
+    double un_Li = unsolver->solve(1e-10,1e4);
 
     // F
     vec F_nucleus {0, 0, 0};
     system = new System(1);
     system->addAtom(new Fluorine("6-311++G**", F_nucleus));
-    solver = new UnrestrictedHartreeFock(system);
-    double un_F = solver->solve(1e-10,1e4);
+    unsolver = new UnrestrictedHartreeFock(system);
+    double un_F = unsolver->solve(1e-10,1e4);
 
     printf("Li: %10.6g \nF: %10.6g \nLi+F: %10.6g \nLiF: %10.6g \nLiF-(Li+F): %10.6g\n",
            un_Li, un_F, un_Li+un_F,un_LiF, un_LiF-(un_Li+un_F));
@@ -370,7 +373,7 @@ void Examples::ValidationTableDissociation() {
 void Examples::ValidationH2plus() {
     boost::timer t;
 
-    int     n  = 100;
+    int     n  = 1;
     double L0  = 1.;
     double L1  = 7.;
     double dx  = (L1-L0)/n;
@@ -381,23 +384,23 @@ void Examples::ValidationH2plus() {
         vec nucleus2  {x, 0, 0};
 
         System* system = new System(2);
-        Hydrogen* Hm = new Hydrogen("cc-pVTZ", nucleus1);
-        //Hydrogen* Hm = new Hydrogen("6-311++G(2d,2p)", nucleus1);
+        //Hydrogen* Hm = new Hydrogen("cc-pVTZ", nucleus1);
+        Hydrogen* Hm = new Hydrogen("6-311++G(2d,2p)", nucleus1);
         //Hydrogen* Hm = new Hydrogen("6-311++G**", nucleus1);
         //Hydrogen* Hm = new Hydrogen("3-21G", nucleus1);
         //Hydrogen* Hm = new Hydrogen("6-31G", nucleus1);
         //Hydrogen* Hm = new Hydrogen("3-21++G", nucleus1);
         //Hydrogen* Hm = new Hydrogen("6-31G**", nucleus1);
-        Hm->setNumberOfElectrons(0);
+        //Hm->setNumberOfElectrons(0);
         system->addAtom(Hm);
-        system->addAtom(new Hydrogen("cc-pVTZ", nucleus2));
+        //system->addAtom(new Hydrogen("cc-pVTZ", nucleus2));
         //system->addAtom(new Hydrogen("6-311++G(2d,2p)", nucleus2));
         //system->addAtom(new Hydrogen("6-311++G**", nucleus2));
         //system->addAtom(new Hydrogen("3-21G", nucleus2));
         //system->addAtom(new Hydrogen("6-31G", nucleus2));
         //system->addAtom(new Hydrogen("6-31G**", nucleus2));
         UnrestrictedHartreeFock solver(system);
-        double E = solver.solveSilently(1e-10, 1e4);
+        double E = solver.solve(1e-14, 1e4);
         printf("%20.15g %20.15g; \n", x, E);
         if (i % 10 == 0) {
             fflush(stdout);
@@ -407,6 +410,66 @@ void Examples::ValidationH2plus() {
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 }
+
+
+
+void Examples::SingleAtom(int Z,
+                          std::string basis,
+                          int electrons,
+                          int maxIterations,
+                          double tollerance,
+                          std::string basisFileName) {
+    boost::timer t;
+    vec nucleus {0, 0, 0};
+    System* system   = new System(1);
+    Atom* atom;
+    switch (Z) {
+        case 1:
+            atom = new Hydrogen(basis, nucleus);
+            break;
+        case 2:
+            atom = new Helium(basis, nucleus);
+            break;
+        case 3:
+            atom = new Lithium(basis, nucleus);
+            break;
+        case 4:
+            atom = new Beryllium(basis, nucleus);
+            break;
+        case 5:
+            atom = new Boron(basis, nucleus);
+            break;
+        case 6:
+            atom = new Carbon(basis, nucleus);
+            break;
+        case 7:
+            atom = new Nitrogen(basis, nucleus);
+            break;
+        case 8:
+            atom = new Oxygen(basis, nucleus);
+            break;
+        case 9:
+            atom = new Fluorine(basis, nucleus);
+            break;
+        case 10:
+            atom = new Neon(basis, nucleus);
+            break;
+        default:
+            std::cout << "Z = " << Z << " atom not yet implemented." << std::endl;
+    }
+
+    if (electrons==-1) electrons = Z;
+    atom->setNumberOfElectrons(electrons);
+    system->addAtom(atom);
+    UnrestrictedHartreeFock* solver = new UnrestrictedHartreeFock(system);
+    double E = solver->solve(tollerance,maxIterations);
+    double elapsedTime = t.elapsed();
+    if (! (basisFileName=="")) {
+        solver->dumpBasisToFile(basisFileName);
+    }
+    cout << "Elapsed time: " << elapsedTime << endl;
+}
+
 
 
 
