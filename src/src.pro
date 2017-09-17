@@ -41,7 +41,8 @@ SOURCES +=  \
     Atoms/carbon.cpp \
     Atoms/nitrogen.cpp \
     Atoms/fluorine.cpp \
-    Atoms/neon.cpp
+    Atoms/neon.cpp \
+    Solvers/restricteddft.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -72,4 +73,5 @@ HEADERS += \
     Atoms/carbon.h \
     Atoms/nitrogen.h \
     Atoms/fluorine.h \
-    Atoms/neon.h
+    Atoms/neon.h \
+    Solvers/restricteddft.h

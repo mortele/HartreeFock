@@ -7,12 +7,22 @@
 #include <armadillo>
 #include "examples.h"
 
+#include "system.h"
+#include "Solvers/restricteddft.h"
+#include "Atoms/helium.h"
+
 using std::cout;
 using std::endl;
 
 int main(int, char**) {
-    //                  (Z,     basis,               nElectrons,  maxIterations,  tollerance, outBasisFileName);
-    Examples::SingleAtom(2,     "6-311G(2df,2pd)",    2,          1e4,            1e-10);
+
+    System*         system = new System(2);
+    RestrictedDFT*  solver = new RestrictedDFT(system);
+    Helium*         helium = new Helium("3-21G", arma::vec{0,0,0});
+
+    system->addAtom(helium);
+    solver->solve(1e-10,100);
+
     return 0;
 }
 
