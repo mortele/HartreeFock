@@ -1,17 +1,19 @@
-TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG -= qt
+include(../defaults.pri)
+
+CONFIG   += console c++11
+CONFIG   -= app_bundle
+CONFIG   -= qt
+
+TEMPLATE = lib
+
+TARGET = HF
 
 
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
-INCLUDEPATH += /usr/local/opt/gcc/lib/gcc/6
-INCLUDEPATH += /usr/local/include
-LIBS += -L/usr/local/lib -larmadillo -llapack -lblas -lboost_regex
 
-SOURCES += main.cpp \
+SOURCES +=  \
     Factorizations/hermitegaussian.cpp \
     Factorizations/hermitegaussianintegral.cpp \
     Integrators/electronnucleusintegrator.cpp \
@@ -33,8 +35,6 @@ SOURCES += main.cpp \
     Atoms/oxygen.cpp \
     Atoms/helium.cpp \
     examples.cpp \
-    Tests/integraltester.cpp \
-    Tests/tester.cpp \
     Atoms/lithium.cpp \
     Atoms/beryllium.cpp \
     Atoms/boron.cpp \
@@ -66,8 +66,6 @@ HEADERS += \
     Atoms/oxygen.h \
     Atoms/helium.h \
     examples.h \
-    Tests/integraltester.h \
-    Tests/tester.h \
     Atoms/lithium.h \
     Atoms/beryllium.h \
     Atoms/boron.h \
