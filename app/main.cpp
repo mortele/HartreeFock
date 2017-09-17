@@ -17,10 +17,10 @@ using std::endl;
 int main(int, char**) {
 
     System*         system = new System(2);
-    RestrictedDFT*  solver = new RestrictedDFT(system);
     Helium*         helium = new Helium("3-21G", arma::vec{0,0,0});
-
     system->addAtom(helium);
+
+    RestrictedDFT*  solver = new RestrictedDFT(system);
     solver->solve(1e-10,100);
 
     return 0;

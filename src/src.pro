@@ -42,7 +42,9 @@ SOURCES +=  \
     Atoms/nitrogen.cpp \
     Atoms/fluorine.cpp \
     Atoms/neon.cpp \
-    Solvers/restricteddft.cpp
+    Solvers/restricteddft.cpp \
+    Integrators/numericalintegrator.cpp \
+    Integrators/grid.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -74,4 +76,6 @@ HEADERS += \
     Atoms/nitrogen.h \
     Atoms/fluorine.h \
     Atoms/neon.h \
-    Solvers/restricteddft.h
+    Solvers/restricteddft.h \
+    Integrators/numericalintegrator.h \
+    Integrators/grid.h
