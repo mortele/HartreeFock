@@ -1,8 +1,10 @@
 #include "grid.h"
 #include <cmath>
+#include <numgrid.h>
 #include "system.h"
 #include "Orbitals/gaussianprimitive.h"
 #include "Orbitals/contractedgaussian.h"
+
 
 using arma::vec;
 using arma::mat;
@@ -86,3 +88,22 @@ void Grid::createSimpleOneAtomGrid(int radialPoints,
         }
     }
 }
+
+void Grid::beckeGrid(int minimumAngularPoints, int maximumAngularPoints) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

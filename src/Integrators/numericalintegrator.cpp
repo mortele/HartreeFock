@@ -17,7 +17,7 @@ NumericalIntegrator::NumericalIntegrator(System* system) {
 }
 
 double NumericalIntegrator::testIntegral() {
-    m_grid->createSimpleOneAtomGrid(1000,150,5);
+    m_grid->createSimpleOneAtomGrid(100,150,5);
 
     const vec& w = m_grid->getWeights();
     const mat& p = m_grid->getPoints();
