@@ -8,5 +8,6 @@ private:
 public:
     NumericalIntegrator(class System* system);
     double testIntegral();
+    double testBecke();
 };
 
