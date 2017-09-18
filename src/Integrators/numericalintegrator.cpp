@@ -21,24 +21,36 @@ NumericalIntegrator::NumericalIntegrator(System* system) {
     m_grid   = new Grid(system);
 }
 
-double NumericalIntegrator::testIntegral() {
-    m_grid->createSimpleOneAtomGrid(100,150,5);
+double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
+    m_grid->createSimpleOneAtomGrid(100,50,10);
 
-    const vec& w = m_grid->getWeights();
-    const mat& p = m_grid->getPoints();
+    const vec& weights = m_grid->getWeights();
+    const mat& points = m_grid->getPoints();
+
+    std::vector<ContractedGaussian*> basis = m_system->getBasis();
+    int basisSize = basis.size();
 
     double integral = 0;
-    for (int i = 0; i < w.n_elem; i++) {
-        const double x = p(i,0);
-        const double y = p(i,1);
-        const double z = p(i,2);
-        const double r = sqrt(x*x + y*y + z*z);
-        integral += exp(-r)*w(i);
+    for (int i = 0; i < weights.n_elem; i++) {
+        const double x = points(i,0);
+        const double y = points(i,1);
+        const double z = points(i,2);
+        const double w = weights(i);
+        double tmp = 0;
+        for (int p = 0; p < basisSize; p++) {
+            ContractedGaussian* pPhi = basis.at(p);
+            for (int q = 0; q < basisSize; q++) {
+                ContractedGaussian* qPhi = basis.at(q);
+                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+            }
+        }
+        integral += w * tmp;
     }
     return integral;
 }
 
 int NumericalIntegrator::generateBeckeGrid() {
+    //double radialPrecision = 1e-12;
     double radialPrecision = 1e-12;
     int maximumRadialPoints = 302;
     int minimumRadialPoints = 86;
@@ -89,23 +101,26 @@ int NumericalIntegrator::generateBeckeGrid() {
             index++;
         }
     }
+    int     numberOfOuterAtoms = 0;
+    int*    outerAtomSize = NULL;
+    double* outerAtomCoordinates = NULL;
 
     m_context = numgrid_new_context();
-    int error = numgrid_generate_grid(m_context,
-                                      radialPrecision,
-                                      minimumRadialPoints,
-                                      maximumRadialPoints,
-                                      numberOfAtoms,
-                                      atomCoordinates,
-                                      basisCenters,
-                                      0,
-                                      NULL,
-                                      NULL,
-                                      numberOfBasisFunctions,
-                                      basisCenters,
-                                      basisAngularMomentum,
-                                      basisNumberOfPrimitives,
-                                      primitiveExponents);
+    int error = numgrid_generate_grid(m_context,                   //  context,
+                                      radialPrecision,             //  radial_precision,
+                                      minimumRadialPoints,         //  min_num_angular_points,
+                                      maximumRadialPoints,         //  max_num_angular_points,
+                                      numberOfAtoms,               //  num_centers,
+                                      atomCoordinates,             //  center_coordinates,
+                                      atomSize,                    //  center_elements,
+                                      numberOfOuterAtoms,          //  num_outer_centers,
+                                      outerAtomCoordinates,        //  outer_center_coordinates,
+                                      outerAtomSize,               //  outer_center_elements,
+                                      numberOfBasisFunctions,      //  num_shells,
+                                      basisCenters,                //  shell_centers,
+                                      basisAngularMomentum,        //  shell_l_quantum_numbers,
+                                      basisNumberOfPrimitives,     //  shell_num_primitives,
+                                      primitiveExponents);         //  primitive_exponents);
     return error;
 }
 
@@ -117,6 +132,7 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
     int basisSize = basis.size();
 
+    cout << "GRID SIZE: " << numberOfGridPoints << endl;
     double integral = 0;
     for (int i = 0; i < numberOfGridPoints; i+=4) {
         const double x = grid[i+0];
@@ -129,7 +145,6 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-
                 tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }

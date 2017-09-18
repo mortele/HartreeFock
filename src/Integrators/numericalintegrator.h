@@ -15,6 +15,6 @@ public:
     int generateBeckeGrid();
     double integrateDensity(const arma::mat& densityMatrix);
 
-    double testIntegral();
+    double testIntegral(const arma::mat& densityMatrix);
 };
 

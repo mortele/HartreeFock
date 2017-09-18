@@ -29,7 +29,7 @@ void Grid::createSimpleOneAtomGrid(int radialPoints,
                                    int angularPoints,
                                    double maxRadius) {
 
-    const double cutoffValue    = 1e-5;
+    const double cutoffValue    = 1e-10;
     double maximumRadius;
     if (maxRadius < 0) {
         double lowestPrimitiveExponent = 10000;
