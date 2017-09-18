@@ -1,0 +1,3 @@
+[submodule "lib/numgrid"]
+	path = lib/numgrid
+	url = git@github.com:mortele/numgrid.git
