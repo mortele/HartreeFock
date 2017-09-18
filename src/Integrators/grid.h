@@ -11,8 +11,8 @@ private:
 public:
     Grid(class System* system);
 
-    void createSimpleOneAtomGrid(int radialPoints, int angularPoints, double maxRadius);
-    double getPoints(int i, int j) { return m_points(i,j); }
-    double getWeights(int i)       { return m_weights(i); }
+    void createSimpleOneAtomGrid(int radialPoints=200, int angularPoints=200, double maxRadius=-1);
+    arma::mat getPoints()  { return m_points; }
+    arma::vec getWeights() { return m_weights; }
 };
 

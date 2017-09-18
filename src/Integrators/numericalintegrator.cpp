@@ -17,16 +17,18 @@ NumericalIntegrator::NumericalIntegrator(System* system) {
 }
 
 double NumericalIntegrator::testIntegral() {
-    m_grid->createSimpleOneAtomGrid(30,20,-1);
-    cout << m_grid->getPoints(0,0) << endl;
+    m_grid->createSimpleOneAtomGrid(1000,150,5);
+
+    const vec& w = m_grid->getWeights();
+    const mat& p = m_grid->getPoints();
 
     double integral = 0;
-    for (int i = 0; i < 30; i++) {
-        const double x = m_grid->getPoints(i,0);
-        const double y = m_grid->getPoints(i,1);
-        const double z = m_grid->getPoints(i,2);
+    for (int i = 0; i < w.n_elem; i++) {
+        const double x = p(i,0);
+        const double y = p(i,1);
+        const double z = p(i,2);
         const double r = sqrt(x*x + y*y + z*z);
-        integral += exp(-r)*m_grid->getWeights(i);
+        integral += exp(-r)*w(i);
     }
     return integral;
 }

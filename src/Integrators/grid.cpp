@@ -7,6 +7,7 @@
 using arma::vec;
 using arma::mat;
 using arma::linspace;
+using arma::logspace;
 using arma::zeros;
 using std::cout;
 using std::endl;
@@ -15,6 +16,7 @@ using std::cos;
 using std::sin;
 using std::acos;
 using std::log;
+using std::log10;
 
 
 Grid::Grid(System* system) {
@@ -43,11 +45,12 @@ void Grid::createSimpleOneAtomGrid(int radialPoints,
     }
     const double pi = acos(-1.0);
 
-    mat m_points  = zeros<mat>(radialPoints*angularPoints*angularPoints, 3);
-    vec m_weights = zeros<vec>(radialPoints*angularPoints*angularPoints);
+    m_points  = zeros<mat>(radialPoints*angularPoints*angularPoints, 3);
+    m_weights = zeros<vec>(radialPoints*angularPoints*angularPoints);
+    //vec radius  = logspace(log10(cutoffValue), log10(maximumRadius),  radialPoints);
     vec radius  = linspace(cutoffValue, maximumRadius,  radialPoints);
-    vec theta   = linspace(0,           pi,             angularPoints);
-    vec phi     = linspace(0,           2*pi,           angularPoints);
+    vec theta   = linspace(0,   pi*(1 - 1./angularPoints),  angularPoints);
+    vec phi     = linspace(0, 2*pi*(1 - 1./angularPoints),  angularPoints);
 
     int index = 0;
     for (int i = 0; i < radialPoints; i++) {
@@ -58,11 +61,16 @@ void Grid::createSimpleOneAtomGrid(int radialPoints,
                 const double sinPhi         = sin(phi[k]);
                 const double cosPhi         = cos(phi[k]);
                 const double r              = radius[i];
-                const double volumeElement  = sin(theta[j])*r*r;
+                const double dr             = (i != radialPoints-1 ? radius[i+1] - radius[i] : radius[i] - radius[i-1]);
+                const double dtheta         =   pi / angularPoints;
+                const double dphi           = 2*pi / angularPoints;
+                const double volumeElement  = sin(theta[j])*r*r*dr*dtheta*dphi;
                 m_weights(index)      = volumeElement;
                 m_points (index,0)    = r * sinTheta * cosPhi;
                 m_points (index,1)    = r * sinTheta * sinPhi;
                 m_points (index,2)    = r * cosTheta;
+                //cout << sin(theta[j]) << ", " << r*r << ", " << dr << "," << dtheta << "," << dphi << ":::   ";
+                //cout << "ind: " << index << ", (r,th,ph): (" << r << "," << theta[j] << "," << phi[k] << ") --> w: " << m_weights(index) << endl;
                 index++;
             }
         }
