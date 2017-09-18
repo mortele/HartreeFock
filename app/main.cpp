@@ -20,11 +20,11 @@ int main(int, char**) {
     Helium*         helium = new Helium("3-21G", arma::vec{0,0,0});
     system->addAtom(helium);
     NumericalIntegrator* integrator = new NumericalIntegrator(system);
-    //const double I = integrator->testIntegral();
-    const double I = integrator->testBecke();
-    return 0;
     RestrictedDFT*  solver = new RestrictedDFT(system);
-    solver->solve(1e-10,100);
+    solver->solveSilently(1e-10,100);
+    //const double I = integrator->testIntegral();
+    const double I = integrator->integrateDensity(solver->m_densityMatrix);
+    cout << I << endl;
 
     return 0;
 }

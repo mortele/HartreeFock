@@ -16,6 +16,16 @@ double ContractedGaussian::evaluate(vec& r) {
     return functionValue;
 }
 
+double ContractedGaussian::evaluate(double x, double y, double z) {
+    double functionValue = 0;
+    for (int i=0; i<m_numberOfPrimitives; i++) {
+        double coefficient = m_coefficients.at(i);
+        functionValue += coefficient * m_primitives.at(i)->evaluate(x,y,z);
+    }
+    return functionValue;
+
+}
+
 void ContractedGaussian::createNewPrimitive(int     i,
                                             int     j,
                                             int     k,

@@ -24,6 +24,7 @@ public:
 
     void setCoefficient(double coefficient);
     double evaluate(arma::vec& r);
+    double evaluate(double x, double y, double z);
     static GaussianPrimitive product(GaussianPrimitive& primitive1, GaussianPrimitive& primitive2);
     void adjustExponentX(int increment);
     void adjustExponentY(int increment);

@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <sstream>
 #include <fstream>
+#include "Solvers/hartreefock.h"
 
 using std::cout;
 using std::endl;
@@ -96,4 +97,8 @@ void System::setupBasis() {
         }
     }
     m_numberOfBasisFunctions = m_basis.size();
+}
+
+void System::setSolver(HartreeFock* solver) {
+    m_solver = solver;
 }

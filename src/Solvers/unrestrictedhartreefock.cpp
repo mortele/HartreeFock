@@ -7,6 +7,7 @@
 #include <chrono>
 #include <ctime>
 #include <boost/format.hpp>
+#include "system.h"
 
 using std::cout;
 using std::endl;

@@ -54,7 +54,19 @@ double GaussianPrimitive::evaluate(vec& r) {
            pow(x,m_xExponent) *
            pow(y,m_yExponent) *
            pow(z,m_zExponent) *
-           exp(-m_exponent * rNormSquared);
+            exp(-m_exponent * rNormSquared);
+}
+
+double GaussianPrimitive::evaluate(double x, double y, double z) {
+    x = x - m_nucleusPosition(0);
+    y = y - m_nucleusPosition(1);
+    z = z - m_nucleusPosition(2);
+    const double rNormSquared   = x*x + y*y + z*z;
+    return m_constantTerm *
+           pow(x,m_xExponent) *
+           pow(y,m_yExponent) *
+           pow(z,m_zExponent) *
+            exp(-m_exponent * rNormSquared);
 }
 
 GaussianPrimitive GaussianPrimitive::product(GaussianPrimitive& primitive1,

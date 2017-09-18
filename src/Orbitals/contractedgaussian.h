@@ -12,6 +12,7 @@ private:
 
 public:
     double evaluate(arma::vec &r);
+    double evaluate(double x, double y, double z);
     void createNewPrimitive(int i, int j, int k, double a, double coefficient=1);
     void addPrimitive(GaussianPrimitive* primitive, double coefficient=1);
     std::vector<GaussianPrimitive*> getPrimitives() const { return m_primitives; }

@@ -1,5 +1,4 @@
 #pragma once
-#include "system.h"
 #include <armadillo>
 
 class HartreeFock {
@@ -22,7 +21,7 @@ protected:
     arma::mat   m_transformationMatrix;
     arma::mat   m_oneBodyMatrixElements;
     arma::field<arma::mat>           m_twoBodyMatrixElements;
-    std::vector<ContractedGaussian*> m_basis;
+    std::vector<class ContractedGaussian*> m_basis;
 
     void setupOneBodyElements();
     void setupTwoBodyElements();

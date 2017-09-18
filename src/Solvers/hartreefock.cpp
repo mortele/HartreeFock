@@ -1,5 +1,7 @@
 #include "hartreefock.h"
 #include "Atoms/atom.h"
+#include "system.h"
+#include "Orbitals/contractedgaussian.h"
 
 using std::cout;
 using std::endl;
@@ -12,6 +14,7 @@ using arma::field;
 
 HartreeFock::HartreeFock(System* system) :
         m_system(system) {
+    m_system->setSolver(this);
 
     m_numberOfBasisFunctions    = m_system->getNumberOfBasisFunctions();
     m_numberOfElectrons = 0;

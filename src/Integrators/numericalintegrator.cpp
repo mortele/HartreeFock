@@ -2,10 +2,10 @@
 #include "system.h"
 #include "Integrators/grid.h"
 #include <cmath>
-#include <numgrid.h>
 #include "Atoms/atom.h"
 #include "Orbitals/contractedgaussian.h"
 #include "Orbitals/gaussianprimitive.h"
+#include "Solvers/hartreefock.h"
 
 
 using arma::vec;
@@ -38,7 +38,7 @@ double NumericalIntegrator::testIntegral() {
     return integral;
 }
 
-double NumericalIntegrator::testBecke() {
+int NumericalIntegrator::generateBeckeGrid() {
     double radialPrecision = 1e-12;
     int maximumRadialPoints = 302;
     int minimumRadialPoints = 86;
@@ -90,7 +90,7 @@ double NumericalIntegrator::testBecke() {
         }
     }
 
-    context_t* m_context = numgrid_new_context();
+    m_context = numgrid_new_context();
     int error = numgrid_generate_grid(m_context,
                                       radialPrecision,
                                       minimumRadialPoints,
@@ -106,13 +106,43 @@ double NumericalIntegrator::testBecke() {
                                       basisAngularMomentum,
                                       basisNumberOfPrimitives,
                                       primitiveExponents);
-
-
-
-
-
-
-
-
-
+    return error;
 }
+
+double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
+    generateBeckeGrid();
+    int             numberOfGridPoints  = numgrid_get_num_points(m_context);
+    const double*   grid                = numgrid_get_grid      (m_context);
+
+    std::vector<ContractedGaussian*> basis = m_system->getBasis();
+    int basisSize = basis.size();
+
+    double integral = 0;
+    for (int i = 0; i < numberOfGridPoints; i+=4) {
+        const double x = grid[i+0];
+        const double y = grid[i+1];
+        const double z = grid[i+2];
+        const double w = grid[i+3];
+
+        double tmp = 0;
+        for (int p = 0; p < basisSize; p++) {
+            ContractedGaussian* pPhi = basis.at(p);
+            for (int q = 0; q < basisSize; q++) {
+                ContractedGaussian* qPhi = basis.at(q);
+
+                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+            }
+        }
+        integral += w * tmp;
+    }
+    return integral;
+}
+
+
+
+
+
+
+
+
+

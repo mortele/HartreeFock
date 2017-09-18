@@ -6,6 +6,9 @@
 #include <string>
 
 class System {
+    friend class HartreeFock;
+    friend class NumericalIntegrator;
+
 private:
     int     m_numberOfAtoms;
     int     m_numberOfBasisFunctions;
@@ -13,8 +16,12 @@ private:
     std::vector<Atom*>                  m_atoms;
     std::vector<ContractedGaussian*>    m_basis;
     ContractedIntegrator                m_integrator;
-
+    class HartreeFock*                  m_solver;
     void setupBasis();
+
+protected:
+    void setSolver(class HartreeFock* solver);
+    class HartreeFock* getSolver() { return m_solver; }
 
 public:
     System(int numberOfAtoms=2);
