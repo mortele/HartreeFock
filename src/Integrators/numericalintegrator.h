@@ -7,5 +7,6 @@ private:
 
 public:
     NumericalIntegrator(class System* system);
+    double testIntegral();
 };
 

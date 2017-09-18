@@ -21,20 +21,27 @@ Grid::Grid(System* system) {
     m_system = system;
 }
 
-void Grid::createSimpleOneAtomGrid(int radialPoints, int angularPoints) {
+void Grid::createSimpleOneAtomGrid(int radialPoints,
+                                   int angularPoints,
+                                   double maxRadius) {
 
-    double lowestPrimitiveExponent = 10000;
-    for (ContractedGaussian* contracted : m_system->getBasis()) {
-        for (GaussianPrimitive* primitive : contracted->getPrimitives()) {
-            const double exponent = primitive->exponent();
-            if (exponent < lowestPrimitiveExponent) {
-                lowestPrimitiveExponent = exponent;
+    const double cutoffValue    = 1e-5;
+    double maximumRadius;
+    if (maxRadius < 0) {
+        double lowestPrimitiveExponent = 10000;
+        for (ContractedGaussian* contracted : m_system->getBasis()) {
+            for (GaussianPrimitive* primitive : contracted->getPrimitives()) {
+                const double exponent = primitive->exponent();
+                if (exponent < lowestPrimitiveExponent) {
+                    lowestPrimitiveExponent = exponent;
+                }
             }
         }
+        maximumRadius = sqrt(log(cutoffValue)/(-lowestPrimitiveExponent));
+    } else {
+        maximumRadius = maxRadius;
     }
-    const double cutoffValue    = 1e-5;
-    const double maximumRadius  = sqrt(log(cutoffValue)/(-lowestPrimitiveExponent));
-    const double pi             = acos(-1.0);
+    const double pi = acos(-1.0);
 
     mat m_points  = zeros<mat>(radialPoints*angularPoints*angularPoints, 3);
     vec m_weights = zeros<vec>(radialPoints*angularPoints*angularPoints);
