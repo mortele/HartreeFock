@@ -14,7 +14,6 @@ private:
     arma::vec   m_epsilonOld;
     arma::mat   m_fockMatrix;
     arma::mat   m_fockMatrixTilde;
-    arma::mat   m_coefficientMatrix;
     arma::mat   m_coefficientMatrixTilde;
 
     void setup();
@@ -32,6 +31,7 @@ private:
 public:
     RestrictedDFT(System* system);
 
+    arma::mat   m_coefficientMatrix;
     arma::mat   m_densityMatrix;
 };
 

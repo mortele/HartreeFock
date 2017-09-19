@@ -37,13 +37,33 @@ int main(int, char**) {
     solver->solve(1e-10,100);
     NumericalIntegrator* integrator = new NumericalIntegrator(system);
 
-    cout << solver->m_densityMatrix << endl;
-    //const double I = integrator->testIntegral(solver->m_densityMatrix);
-    //const double I = integrator->integrateDensity(solver->m_densityMatrix);
 
-    //const double I = integrator->testIntegral(arma::eye(2,2));
-    const double I = integrator->integrateDensity(arma::eye(6,6));
-    cout << I << endl;
+    const arma::mat& C = solver->m_coefficientMatrix;
+    const arma::mat& S = solver->m_overlapMatrix;
+    cout << C << endl;
+    cout << S << endl;
+    cout << C.t() * S * C << endl;
+
+
+    arma::mat D = arma::zeros<arma::mat>(2,2);
+
+    D(0,0) = C(0,0);
+    D(0,1) = C(0,0);
+    D(1,0) = C(1,0);
+    D(1,1) = C(1,0);
+
+    D = 2*D*D.t();
+    cout << D<< endl;
+    cout << arma::trace(D) << endl;
+
+    cout << integrator->integrateDensity(D)   << endl;
+
+    //cout << integrator->testIntegral(solver->m_densityMatrix)       << endl;
+    //cout << integrator->integrateDensity(solver->m_densityMatrix)   << endl;
+
+    //cout << integrator->testIntegral(arma::eye(2,2)) << endl;
+    //cout << integrator->integrateDensity(arma::eye(2,2)) << endl;
+    //cout << I << endl;
 
     return 0;
 }

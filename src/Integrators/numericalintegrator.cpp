@@ -51,9 +51,11 @@ double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
 
 int NumericalIntegrator::generateBeckeGrid() {
     //double radialPrecision = 1e-12;
-    double radialPrecision = 1e-12;
-    int maximumRadialPoints = 302;
-    int minimumRadialPoints = 86;
+    //int maximumRadialPoints = 302;
+    //int minimumRadialPoints = 86;
+    double radialPrecision = 1e-20;
+    int maximumRadialPoints = 2000;
+    int minimumRadialPoints = 1000;
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];
@@ -94,12 +96,6 @@ int NumericalIntegrator::generateBeckeGrid() {
         basisNumberOfPrimitives[i] = m_system->getBasis().at(i)->getPrimitives().size();
         totalNumberOfPrimitives += basisNumberOfPrimitives[i];
     }
-    cout << "TOTAL PRIMITIVES" << endl;
-    cout << totalNumberOfPrimitives << endl;
-    for (int i = 0; i < numberOfBasisFunctions; i++) {
-        cout << basisNumberOfPrimitives[i] << "  " << basisCenters[i] << endl;
-    }
-    cout << "----" << endl;
 
     double primitiveExponents[totalNumberOfPrimitives];
     int index = 0;
@@ -144,11 +140,15 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
 
     cout << "GRID SIZE: " << numberOfGridPoints << endl;
     double integral = 0;
-    for (int i = 0; i < numberOfGridPoints; i+=4) {
+    for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
         const double x = grid[i+0];
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
+
+        /*if (i%40==0) {
+            printf("%15.10f %15.10f %15.10f %15.8g \n",x,y,z,w);
+        }*/
 
         double tmp = 0;
         for (int p = 0; p < basisSize; p++) {
