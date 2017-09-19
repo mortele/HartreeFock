@@ -22,7 +22,7 @@ NumericalIntegrator::NumericalIntegrator(System* system) {
 }
 
 double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
-    m_grid->createSimpleOneAtomGrid(100,50,10);
+    m_grid->createSimpleOneAtomGrid(200,30);
 
     const vec& weights = m_grid->getWeights();
     const mat& points = m_grid->getPoints();
@@ -79,17 +79,27 @@ int NumericalIntegrator::generateBeckeGrid() {
                                   primitive->zExponent();
 
         const vec& center = primitive->nucleusPosition();
-        for (int j = 0; j < numberOfAtoms; j++) {
-            const vec& position = m_system->getAtoms().at(j)->getPosition();
-            if ((fabs(position(0) - center(0)) < 1e-5) &&
-                (fabs(position(1) - center(1)) < 1e-5) &&
-                (fabs(position(2) - center(2)) < 1e-5)) {
-                basisCenters[i] = j;
+        if (numberOfAtoms==1) {
+            basisCenters[i] = 1;
+        } else {
+            for (int j = 0; j < numberOfAtoms; j++) {
+                const vec& position = m_system->getAtoms().at(j)->getPosition();
+                if ((fabs(position(0) - center(0)) < 1e-5) &&
+                    (fabs(position(1) - center(1)) < 1e-5) &&
+                    (fabs(position(2) - center(2)) < 1e-5)) {
+                    basisCenters[i] = j+1;
+                }
             }
         }
         basisNumberOfPrimitives[i] = m_system->getBasis().at(i)->getPrimitives().size();
         totalNumberOfPrimitives += basisNumberOfPrimitives[i];
     }
+    cout << "TOTAL PRIMITIVES" << endl;
+    cout << totalNumberOfPrimitives << endl;
+    for (int i = 0; i < numberOfBasisFunctions; i++) {
+        cout << basisNumberOfPrimitives[i] << "  " << basisCenters[i] << endl;
+    }
+    cout << "----" << endl;
 
     double primitiveExponents[totalNumberOfPrimitives];
     int index = 0;

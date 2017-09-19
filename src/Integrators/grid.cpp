@@ -89,9 +89,6 @@ void Grid::createSimpleOneAtomGrid(int radialPoints,
     }
 }
 
-void Grid::beckeGrid(int minimumAngularPoints, int maximumAngularPoints) {
-
-}
 
 
 
