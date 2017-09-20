@@ -43,7 +43,9 @@ SOURCES +=  \
     Atoms/neon.cpp \
     Solvers/restricteddft.cpp \
     Integrators/numericalintegrator.cpp \
-    Integrators/grid.cpp
+    Integrators/grid.cpp \
+    ExchangeCorrelationFunctionals/exchangecorrelationfunctional.cpp \
+    ExchangeCorrelationFunctionals/localdensityapproximation.cpp
 
 HEADERS += \
     Factorizations/hermitegaussian.h \
@@ -77,4 +79,6 @@ HEADERS += \
     Atoms/neon.h \
     Solvers/restricteddft.h \
     Integrators/numericalintegrator.h \
-    Integrators/grid.h
+    Integrators/grid.h \
+    ExchangeCorrelationFunctionals/exchangecorrelationfunctional.h \
+    ExchangeCorrelationFunctionals/localdensityapproximation.h

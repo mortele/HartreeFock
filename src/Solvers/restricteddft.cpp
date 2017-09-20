@@ -1,4 +1,5 @@
 #include "restricteddft.h"
+#include "Integrators/numericalintegrator.h"
 #include <cassert>
 
 using std::cout;
@@ -20,6 +21,11 @@ RestrictedDFT::RestrictedDFT(System* system) :
     m_coefficientMatrix         = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
     m_coefficientMatrixTilde    = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
     m_densityMatrix             = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+    m_numericalIntegrator       = new NumericalIntegrator(system);
+}
+
+void RestrictedDFT::setFunctional(ExchangeCorrelationFunctional* functional) {
+    m_xcFunctional = functional;
 }
 
 
@@ -33,6 +39,7 @@ void RestrictedDFT::setup() {
     setupTwoBodyElements();
     computeDensityMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
+
 }
 
 void RestrictedDFT::computeFockMatrix() {
@@ -42,7 +49,8 @@ void RestrictedDFT::computeFockMatrix() {
 
         for(int r = 0; r < m_numberOfBasisFunctions; r++)
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
-            m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * twoBodyMatrixElementsAntiSymmetric(p,q,r,s);
+            //m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * twoBodyMatrixElementsAntiSymmetric(p,q,r,s);
+            m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * (2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q));
         }
     }
 }
@@ -99,10 +107,14 @@ void RestrictedDFT::computeHartreeFockEnergy() {
 
         for (int r = 0; r < m_numberOfBasisFunctions; r++)
         for (int s = 0; s < m_numberOfBasisFunctions; s++) {
-            m_hartreeFockEnergy += twoBodyMatrixElementsAntiSymmetric(p,q,r,s) *
+            /*m_hartreeFockEnergy += twoBodyMatrixElementsAntiSymmetric(p,q,r,s) *
                                    m_densityMatrix(p,q) *
                                    m_densityMatrix(s,r) *
-                                   0.25;
+                                   0.25;*/
+            m_hartreeFockEnergy += (2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q)) *
+                                               m_densityMatrix(p,q) *
+                                               m_densityMatrix(s,r) *
+                                               0.25;
         }
     }
     m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
@@ -110,6 +122,13 @@ void RestrictedDFT::computeHartreeFockEnergy() {
 
 void RestrictedDFT::storeEnergy() {
     m_epsilonOld = m_epsilon;
+}
+
+double RestrictedDFT::twoBodyMatrixElements(int p,
+                                            int q,
+                                            int r,
+                                            int s) {
+    return m_twoBodyMatrixElements(p,q)(r,s);
 }
 
 double RestrictedDFT::twoBodyMatrixElementsAntiSymmetric(int p,

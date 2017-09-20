@@ -26,6 +26,10 @@ double ContractedGaussian::evaluate(double x, double y, double z) {
 
 }
 
+double ContractedGaussian::operator()(double x, double y, double z) {
+    return evaluate(x,y,z);
+}
+
 void ContractedGaussian::createNewPrimitive(int     i,
                                             int     j,
                                             int     k,

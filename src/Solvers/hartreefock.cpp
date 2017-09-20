@@ -82,17 +82,15 @@ void HartreeFock::setupOneBodyElements() {
 
 void HartreeFock::setupTwoBodyElements() {
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
-        //cout << p/((double) m_numberOfBasisFunctions) << endl;
-        for (int q = 0; q < m_numberOfBasisFunctions; q++)
-        for (int r = p; r < m_numberOfBasisFunctions; r++)
-        for (int s = q; s < m_numberOfBasisFunctions; s++) {
+    for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+    for (int r = p; r < m_numberOfBasisFunctions; r++) {
+    for (int s = q; s < m_numberOfBasisFunctions; s++) {
             m_twoBodyMatrixElements(p,q)(r,s) = m_system->twoBodyElements(p,r,q,s);
-        }
-    }
+    }}}}
 
-    for(int p = 0; p < m_numberOfBasisFunctions; p++)
-    for(int q = 0; q < m_numberOfBasisFunctions; q++)
-    for(int r = p; r < m_numberOfBasisFunctions; r++)
+    for(int p = 0; p < m_numberOfBasisFunctions; p++) {
+    for(int q = 0; q < m_numberOfBasisFunctions; q++) {
+    for(int r = p; r < m_numberOfBasisFunctions; r++) {
     for(int s = q; s < m_numberOfBasisFunctions; s++) {
         double pqrs = m_twoBodyMatrixElements(p,q)(r,s);
         m_twoBodyMatrixElements(r,s)(p,q) = pqrs;
@@ -102,7 +100,7 @@ void HartreeFock::setupTwoBodyElements() {
         m_twoBodyMatrixElements(s,p)(q,r) = pqrs;
         m_twoBodyMatrixElements(q,r)(s,p) = pqrs;
         m_twoBodyMatrixElements(s,r)(q,p) = pqrs;
-    }
+    }}}}
 }
 
 void HartreeFock::setupOverlapMatrix() {
