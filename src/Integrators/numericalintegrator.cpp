@@ -182,10 +182,10 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                //tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
-        tmp = phi->evaluate(x,y,z);
+        //tmp = phi->evaluate(x,y,z);
         integral += w * tmp;
     }
     return integral;

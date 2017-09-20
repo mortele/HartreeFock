@@ -24,13 +24,13 @@ int main(int, char**) {
     Helium*         helium      = new Helium    ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
-    Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
+    Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{1,0,0});
     Carbon*         carbon      = new Carbon    ("3-21G", arma::vec{0,0,0});
 
     system->addAtom(helium);
     //system->addAtom(hydrogen1);
     //system->addAtom(hydrogen2);
-    //system->addAtom(beryllium);
+    system->addAtom(beryllium);
     //system->addAtom(carbon);
 
     RestrictedDFT*  solver = new RestrictedDFT(system);
@@ -71,7 +71,7 @@ int main(int, char**) {
     cout << D2 << endl;
     //D2 = A * D2 * A.t();
     cout << "D2 transform:" << endl;
-    D2 = 2*A.t()*C2*A*A.t()*C2.t()*A*A.t()*S*A;
+    D2 = 2*C*C.t();
     cout << D2 << endl;
 
     cout << "TRACE:" << endl;
@@ -82,7 +82,8 @@ int main(int, char**) {
 
     cout << "INTEGRAL" << endl;
     cout << integrator->testIntegral(D2)       << endl;
-    //cout << integrator->integrateDensity(D2)   << endl;
+    cout << "INTEGRAL NIGGA" << endl;
+    cout << integrator->integrateDensity(D2)   << endl;
 
     //cout << integrator->testIntegral(arma::eye(2,2)) << endl;
     //cout << integrator->integrateDensity(arma::eye(2,2)) << endl;
