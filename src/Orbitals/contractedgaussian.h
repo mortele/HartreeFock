@@ -5,12 +5,15 @@
 
 class ContractedGaussian {
 private:
+    double      m_coefficient           = 1;
     int         m_numberOfPrimitives    = 0;
     arma::vec   m_nucleusPosition       = arma::zeros<arma::vec>(3);
     std::vector<double>             m_coefficients;
     std::vector<GaussianPrimitive*> m_primitives;
 
 public:
+    void setCoefficient(double coefficient) { m_coefficient = coefficient; }
+    double getCoefficients(int i) { return m_coefficients.at(i); }
     double evaluate(arma::vec &r);
     double evaluate(double x, double y, double z);
     void createNewPrimitive(int i, int j, int k, double a, double coefficient=1);

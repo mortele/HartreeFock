@@ -27,10 +27,10 @@ int main(int, char**) {
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
     Carbon*         carbon      = new Carbon    ("3-21G", arma::vec{0,0,0});
 
-    //system->addAtom(helium);
+    system->addAtom(helium);
     //system->addAtom(hydrogen1);
     //system->addAtom(hydrogen2);
-    system->addAtom(beryllium);
+    //system->addAtom(beryllium);
     //system->addAtom(carbon);
 
     RestrictedDFT*  solver = new RestrictedDFT(system);
@@ -41,6 +41,7 @@ int main(int, char**) {
     const arma::mat& C = solver->m_coefficientMatrix;
     const arma::mat& S = solver->m_overlapMatrix;
     const arma::mat& D = solver->m_densityMatrix;
+    const arma::mat& A = solver->m_transformationMatrix;
 
     int n = system->getNumberOfSpinUpElectrons()*2;
     int b = system->getBasis().size();
@@ -65,7 +66,12 @@ int main(int, char**) {
     cout << D << endl;
 
     cout << "D2:" << endl;
-    D2 = D*S;
+    //D2 = D*S;
+    D2 = C2*C2.t()*S;
+    cout << D2 << endl;
+    //D2 = A * D2 * A.t();
+    cout << "D2 transform:" << endl;
+    D2 = 2*A.t()*C2*A*A.t()*C2.t()*A*A.t()*S*A;
     cout << D2 << endl;
 
     cout << "TRACE:" << endl;
@@ -74,8 +80,9 @@ int main(int, char**) {
 
     //cout << integrator->integrateDensity(D)   << endl;
 
+    cout << "INTEGRAL" << endl;
     cout << integrator->testIntegral(D2)       << endl;
-    cout << integrator->integrateDensity(D2)   << endl;
+    //cout << integrator->integrateDensity(D2)   << endl;
 
     //cout << integrator->testIntegral(arma::eye(2,2)) << endl;
     //cout << integrator->integrateDensity(arma::eye(2,2)) << endl;

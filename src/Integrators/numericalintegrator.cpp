@@ -6,6 +6,7 @@
 #include "Orbitals/contractedgaussian.h"
 #include "Orbitals/gaussianprimitive.h"
 #include "Solvers/hartreefock.h"
+#include "Integrators/overlapintegrator.h"
 
 
 using arma::vec;
@@ -22,13 +23,34 @@ NumericalIntegrator::NumericalIntegrator(System* system) {
 }
 
 double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
-    m_grid->createSimpleOneAtomGrid(200,30);
+    m_grid->createSimpleOneAtomGrid(300,50);
 
     const vec& weights = m_grid->getWeights();
     const mat& points = m_grid->getPoints();
 
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
     int basisSize = basis.size();
+
+    ContractedGaussian* phi = basis.at(0);
+    OverlapIntegrator integrator;
+    double coeff = 0;
+    for (int i = 0; i < phi->getPrimitives().size(); i++) {
+        for (int j = 0; j < phi->getPrimitives().size(); j++) {
+            GaussianPrimitive* pi = phi->getPrimitives().at(i);
+            GaussianPrimitive* pj = phi->getPrimitives().at(j);
+            double ij = integrator.computeIntegral(pi,pj);
+            double ci = phi->getCoefficients(i);
+            double cj = phi->getCoefficients(j);
+            cout << i << "," << j << ": " << ij / (pi->getCoefficient()*pj->getCoefficient())<< endl;
+            ij *= ci*cj;
+            coeff += ij;
+        }
+    }
+    cout << "COEFF " << coeff << endl;
+    //phi->setCoefficient(coeff);
+
+
+    GaussianPrimitive* pri = basis.at(0)->getPrimitives().at(0);
 
     double integral = 0;
     for (int i = 0; i < weights.n_elem; i++) {
@@ -41,9 +63,12 @@ double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+                //tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
+        double II = phi->evaluate(x,y,z);
+        //double II = pri->evaluate(x,y,z)/pri->getCoefficient();
+        tmp = II*II;
         integral += w * tmp;
     }
     return integral;
@@ -150,14 +175,17 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             printf("%15.10f %15.10f %15.10f %15.8g \n",x,y,z,w);
         }*/
 
+        ContractedGaussian* phi = basis.at(0);
+
         double tmp = 0;
         for (int p = 0; p < basisSize; p++) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+                //tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
+        tmp = phi->evaluate(x,y,z);
         integral += w * tmp;
     }
     return integral;
