@@ -27,10 +27,10 @@ int main(int, char**) {
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
     Carbon*         carbon      = new Carbon    ("3-21G", arma::vec{0,0,0});
 
-    system->addAtom(helium);
+    //system->addAtom(helium);
     //system->addAtom(hydrogen1);
     //system->addAtom(hydrogen2);
-    //system->addAtom(beryllium);
+    system->addAtom(beryllium);
     //system->addAtom(carbon);
 
     RestrictedDFT*  solver = new RestrictedDFT(system);
@@ -40,26 +40,42 @@ int main(int, char**) {
 
     const arma::mat& C = solver->m_coefficientMatrix;
     const arma::mat& S = solver->m_overlapMatrix;
+    const arma::mat& D = solver->m_densityMatrix;
+
+    int n = system->getNumberOfSpinUpElectrons()*2;
+    int b = system->getBasis().size();
+
+    arma::mat C2 = arma::zeros<arma::mat>(b,n);
+    arma::mat D2 = arma::zeros<arma::mat>(n,n);
+
+    cout << "C:" << endl;
     cout << C << endl;
+    for (int i = 0; i < n; i+=2) {
+        int j = i/2;
+        C2.col(i)   = C.col(j);
+        C2.col(i+1) = C.col(j);
+    }
+    cout << "C2:" << endl;
+    cout << C2 << endl;
+
+    cout << "S:" << endl;
     cout << S << endl;
-    cout << C.t() * S * C << endl;
 
+    cout << "D:" << endl;
+    cout << D << endl;
 
-    arma::mat D = arma::zeros<arma::mat>(2,2);
+    cout << "D2:" << endl;
+    D2 = D*S;
+    cout << D2 << endl;
 
-    D(0,0) = C(0,0);
-    D(0,1) = C(0,0);
-    D(1,0) = C(1,0);
-    D(1,1) = C(1,0);
+    cout << "TRACE:" << endl;
 
-    D = 2*D*D.t();
-    cout << D<< endl;
-    cout << arma::trace(D) << endl;
+    cout << arma::trace(D2) << endl;
 
-    cout << integrator->integrateDensity(D)   << endl;
+    //cout << integrator->integrateDensity(D)   << endl;
 
-    //cout << integrator->testIntegral(solver->m_densityMatrix)       << endl;
-    //cout << integrator->integrateDensity(solver->m_densityMatrix)   << endl;
+    cout << integrator->testIntegral(D2)       << endl;
+    cout << integrator->integrateDensity(D2)   << endl;
 
     //cout << integrator->testIntegral(arma::eye(2,2)) << endl;
     //cout << integrator->integrateDensity(arma::eye(2,2)) << endl;
