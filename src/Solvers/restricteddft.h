@@ -4,6 +4,7 @@
 #include "Orbitals/contractedgaussian.h"
 #include <vector>
 #include <armadillo>
+#include <string>
 
 
 class RestrictedDFT : public HartreeFock {
@@ -33,11 +34,12 @@ private:
     void storeEnergy();
     double twoBodyMatrixElements(int,int,int,int);
     double twoBodyMatrixElementsAntiSymmetric(int,int,int,int);
+    double Vxc(int,int);
     double convergenceTest();
 
 
 public:
     RestrictedDFT(System* system);
-    void setFunctional(class ExchangeCorrelationFunctional* functional);
+    void setFunctional(std::string name);
 };
 

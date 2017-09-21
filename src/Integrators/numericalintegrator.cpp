@@ -18,8 +18,9 @@ using std::cout;
 using std::endl;
 
 
-NumericalIntegrator::NumericalIntegrator(System* system) {
+NumericalIntegrator::NumericalIntegrator(System* system, arma::mat* densityMatrix) {
     m_system = system;
+    m_densityMatrix = densityMatrix;
 }
 
 double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
@@ -137,7 +138,10 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
     if (! m_gridGenerated) {
         generateBeckeGrid();
     }
-
+    if (! m_xcFunctionalSet) {
+        std::cout << "No exchange-correlation functional set." << endl;
+        exit(1);
+    }
     int             numberOfGridPoints  = numgrid_get_num_points(m_context);
     const double*   grid                = numgrid_get_grid      (m_context);
 
@@ -156,12 +160,52 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+                double XC = m_xcFunctional->evaluate(x,y,z,p,q);
+                tmp += XC * densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
         integral += w * tmp;
     }
     return integral;
+}
+
+double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
+                                                                  ContractedGaussian* Gp,
+                                                                  ContractedGaussian* Gq,
+                                                                  int p,
+                                                                  int q) {
+    if (! m_gridGenerated) {
+        generateBeckeGrid();
+    }
+    if (! m_xcFunctionalSet) {
+        std::cout << "No exchange-correlation functional set." << endl;
+        exit(1);
+    }
+    int             numberOfGridPoints  = numgrid_get_num_points(m_context);
+    const double*   grid                = numgrid_get_grid      (m_context);
+
+    double integral = 0;
+    for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
+        const double x = grid[i+0];
+        const double y = grid[i+1];
+        const double z = grid[i+2];
+        const double w = grid[i+3];
+        double XC = m_xcFunctional->evaluate(x,y,z,p,q);
+        integral += w * XC * Ppq * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);
+    }
+    return integral;
+}
+
+double NumericalIntegrator::integrateExchangeCorrelationPotential(int p, int q) {
+    ContractedGaussian* Gp = m_system->getBasis().at(p);
+    ContractedGaussian* Gq = m_system->getBasis().at(q);
+    double Ppq = (*m_densityMatrix)(p,q);
+    return integrateExchangeCorrelationPotential(Ppq,Gp,Gq,p,q);
+}
+
+void NumericalIntegrator::setFunctional(ExchangeCorrelationFunctional* functional) {
+    m_xcFunctional = functional;
+    m_xcFunctionalSet = true;
 }
 
 

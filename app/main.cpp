@@ -34,8 +34,8 @@ int main(int, char**) {
     //system->addAtom(carbon);
 
     RestrictedDFT*  solver = new RestrictedDFT(system);
+    solver->setFunctional("LDA");
     solver->solve(1e-10,100);
-    cout << setprecision(15) << (3.0/4.0)*pow((3.0/M_PI),1.0/3.0) << endl;
     return 0;
 }
 
