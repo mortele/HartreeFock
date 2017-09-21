@@ -24,6 +24,7 @@ RestrictedDFT::RestrictedDFT(System* system) :
     m_coefficientMatrix         = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
     m_coefficientMatrixTilde    = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
     m_densityMatrix             = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
+    m_xcMatrix                  = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_numericalIntegrator       = new NumericalIntegrator(system, &m_densityMatrix);
 }
 
@@ -51,10 +52,23 @@ void RestrictedDFT::setup() {
 
 }
 
+void RestrictedDFT::computeXcMatrix() {
+    m_densityMatrix = m_densityMatrix*m_overlapMatrix;
+    for(int p = 0; p < m_numberOfBasisFunctions; p++) {
+        for(int q = p; q < m_numberOfBasisFunctions; q++) {
+            m_xcMatrix(p,q) = Vxc(p,q);
+            if (p != q) {
+                m_xcMatrix(q,p) = m_xcMatrix(p,q);
+            }
+        }
+    }
+    m_densityMatrix = m_densityMatrix*inv(m_overlapMatrix);
+}
+
 void RestrictedDFT::computeFockMatrix() {
     for(int p = 0; p < m_numberOfBasisFunctions; p++)
     for(int q = 0; q < m_numberOfBasisFunctions; q++) {
-        m_fockMatrix(p,q) = m_oneBodyMatrixElements(p,q) + Vxc(p,q);
+        m_fockMatrix(p,q) = m_oneBodyMatrixElements(p,q) + m_xcMatrix(p,q);
         //const double vxc = Vxc(p,q);
         for(int r = 0; r < m_numberOfBasisFunctions; r++)
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
@@ -102,6 +116,7 @@ void RestrictedDFT::normalizeCoefficientMatrix() {
 }
 
 void RestrictedDFT::selfConsistentFieldIteration() {
+    computeXcMatrix();
     computeFockMatrix();
     diagonalizeFockMatrix();
     computeDensityMatrix();
@@ -112,7 +127,7 @@ void RestrictedDFT::computeHartreeFockEnergy() {
 
     for (int p = 0; p < m_numberOfBasisFunctions; p++)
     for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-        m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q) + Vxc(p,q);
+        m_hartreeFockEnergy += m_densityMatrix(p,q) * (m_oneBodyMatrixElements(p,q) + m_xcMatrix(p,q));
         //const double vxc = Vxc(p,q);
         for (int r = 0; r < m_numberOfBasisFunctions; r++)
         for (int s = 0; s < m_numberOfBasisFunctions; s++) {
@@ -144,6 +159,11 @@ double RestrictedDFT::twoBodyMatrixElementsAntiSymmetric(int p,
 }
 
 double RestrictedDFT::Vxc(int p, int q) {
+    return m_numericalIntegrator->integrateExchangeCorrelationPotential(p,q);
+}
+
+double RestrictedDFT::Exc(int p, int q) {
+    //return m_numericalIntegrator->integrateExchangeCorrelationEnergy(p,q);
     return m_numericalIntegrator->integrateExchangeCorrelationPotential(p,q);
 }
 

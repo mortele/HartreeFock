@@ -56,9 +56,9 @@ int NumericalIntegrator::generateBeckeGrid() {
     double radialPrecision = 1e-6;
     int maximumRadialPoints = 302;
     int minimumRadialPoints = 86;
-    //double radialPrecision = 1e-20;
-    //int maximumRadialPoints = 2000;
-    //int minimumRadialPoints = 1000;
+    /*double radialPrecision = 1e-12;
+    int maximumRadialPoints = 2000;
+    int minimumRadialPoints = 1000;*/
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];
@@ -191,7 +191,7 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
         const double z = grid[i+2];
         const double w = grid[i+3];
         double XC = m_xcFunctional->evaluate(x,y,z,p,q);
-        integral += w * XC * Ppq * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);
+        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);// * Ppq;
     }
     return integral;
 }
@@ -201,6 +201,37 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(int p, int q) 
     ContractedGaussian* Gq = m_system->getBasis().at(q);
     double Ppq = (*m_densityMatrix)(p,q);
     return integrateExchangeCorrelationPotential(Ppq,Gp,Gq,p,q);
+}
+
+double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq, ContractedGaussian* Gp, ContractedGaussian* Gq, int p, int q) {
+    if (! m_gridGenerated) {
+        generateBeckeGrid();
+    }
+    if (! m_xcFunctionalSet) {
+        std::cout << "No exchange-correlation functional set." << endl;
+        exit(1);
+    }
+    int             numberOfGridPoints  = numgrid_get_num_points(m_context);
+    const double*   grid                = numgrid_get_grid      (m_context);
+
+    double integral = 0;
+    for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
+        const double x = grid[i+0];
+        const double y = grid[i+1];
+        const double z = grid[i+2];
+        const double w = grid[i+3];
+        double XC = m_xcFunctional->evaluate(x,y,z,p,q);
+        integral += w * XC;
+    }
+    return integral;
+
+}
+
+double NumericalIntegrator::integrateExchangeCorrelationEnergy(int p, int q) {
+    ContractedGaussian* Gp = m_system->getBasis().at(p);
+    ContractedGaussian* Gq = m_system->getBasis().at(q);
+    double Ppq = (*m_densityMatrix)(p,q);
+    return integrateExchangeCorrelationEnergy(Ppq,Gp,Gq,p,q);
 }
 
 void NumericalIntegrator::setFunctional(ExchangeCorrelationFunctional* functional) {

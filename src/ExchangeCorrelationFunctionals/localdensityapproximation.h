@@ -19,8 +19,10 @@ public:
     double evaluate(double x, double y, double z, int p, int q);
 
     double X(double x) { return x*x + m_b*x + m_c; }
-    double epsilonc(double rs);
-    double epsilonx(double rs);
+    double epsilonC(double rs);
+    double dEpsilonC(double rs);
+    double epsilonX(double rs);
+    double dEpsilonX(double rs);
     inline constexpr double Cx();
 };
 

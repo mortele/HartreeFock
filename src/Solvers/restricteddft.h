@@ -21,10 +21,12 @@ private:
     arma::mat   m_coefficientMatrixTilde;
     arma::mat   m_coefficientMatrix;
     arma::mat   m_densityMatrix;
+    arma::mat   m_xcMatrix;
     class NumericalIntegrator*              m_numericalIntegrator;
     class ExchangeCorrelationFunctional*    m_xcFunctional;
 
     void setup();
+    void computeXcMatrix();
     void computeFockMatrix();
     void computeDensityMatrix();
     void diagonalizeFockMatrix();
@@ -35,6 +37,7 @@ private:
     double twoBodyMatrixElements(int,int,int,int);
     double twoBodyMatrixElementsAntiSymmetric(int,int,int,int);
     double Vxc(int,int);
+    double Exc(int,int);
     double convergenceTest();
 
 

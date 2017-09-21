@@ -147,6 +147,7 @@ void HartreeFock::printIterationInfo(int iteration) {
         fflush(stdout);
     }
     printf(" %15d %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
+    fflush(stdout);
 }
 
 void HartreeFock::printFinalInfo() {

@@ -21,7 +21,8 @@ using std::setprecision;
 int main(int, char**) {
     System*         system = new System();
 
-    Helium*         helium      = new Helium    ("3-21G", arma::vec{0,0,0});
+    //Helium*         helium      = new Helium    ("3-21G", arma::vec{0,0,0});
+    Helium*         helium      = new Helium    ("6-311+G**", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
@@ -35,7 +36,7 @@ int main(int, char**) {
 
     RestrictedDFT*  solver = new RestrictedDFT(system);
     solver->setFunctional("LDA");
-    solver->solve(1e-10,100);
+    solver->solve(1e-8,200);
     return 0;
 }
 

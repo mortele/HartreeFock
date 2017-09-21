@@ -20,6 +20,8 @@ public:
     double integrateDensity(const arma::mat& densityMatrix);
     double integrateExchangeCorrelationPotential(double Ppq, class ContractedGaussian* Gp, class ContractedGaussian* Gq, int p, int q);
     double integrateExchangeCorrelationPotential(int,int);
+    double integrateExchangeCorrelationEnergy(double Ppq, class ContractedGaussian* Gp, class ContractedGaussian* Gq, int p, int q);
+    double integrateExchangeCorrelationEnergy(int,int);
     void setFunctional(class ExchangeCorrelationFunctional* functional);
 
     double testIntegral(const arma::mat& densityMatrix);
