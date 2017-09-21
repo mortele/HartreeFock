@@ -6,6 +6,7 @@ protected:
 
 public:
     ExchangeCorrelationFunctional(class System* system);
-    virtual double evaluate(double,double,double,int,int) = 0;
+    virtual double evaluateEnergy(double,double,double,int,int) = 0;
+    virtual double evaluatePotential(double,double,double,int,int) = 0;
 };
 

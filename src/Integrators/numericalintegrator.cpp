@@ -160,7 +160,7 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                double XC = m_xcFunctional->evaluate(x,y,z,p,q);
+                double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
                 tmp += XC * densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
@@ -190,8 +190,8 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluate(x,y,z,p,q);
-        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);// * Ppq;
+        double XC = m_xcFunctional->evaluatePotential(x,y,z,p,q);
+        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
     }
     return integral;
 }
@@ -220,8 +220,8 @@ double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq, Contr
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluate(x,y,z,p,q);
-        integral += w * XC;
+        double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
+        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
     }
     return integral;
 

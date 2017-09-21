@@ -16,7 +16,8 @@ private:
 
 public:
     LocalDensityApproximation(class System* system, arma::mat* densityMatrix);
-    double evaluate(double x, double y, double z, int p, int q);
+    double evaluateEnergy(double x, double y, double z, int p, int q);
+    double evaluatePotential(double x, double y, double z, int p, int q);
 
     double X(double x) { return x*x + m_b*x + m_c; }
     double epsilonC(double rs);
