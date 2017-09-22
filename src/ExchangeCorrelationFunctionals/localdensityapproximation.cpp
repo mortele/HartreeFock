@@ -50,6 +50,7 @@ double LocalDensityApproximation::evaluatePotential(double x, double y, double z
     const double rho = P(p,q) * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);
     const double rs  = pow(3.0/(4*m_pi*rho), 1.0/3.0);
     return (rho<1e-20 ? 0 : epsilonX(rs) + epsilonC(rs) + rho*(dEpsilonC(rs) + dEpsilonX(rs)));
+    //return (rho<1e-20 ? 0 : epsilonX(rs) + epsilonC(rs));
 }
 
 double LocalDensityApproximation::epsilonX(double rs) {

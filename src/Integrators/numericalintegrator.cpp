@@ -53,8 +53,11 @@ double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
 }
 
 int NumericalIntegrator::generateBeckeGrid() {
-    double radialPrecision = 1e-6;
-    int maximumRadialPoints = 302;
+    /*double radialPrecision = 1e-8;
+    int maximumRadialPoints = 500;
+    int minimumRadialPoints = 300;*/
+    double radialPrecision = 1e-4;
+    int maximumRadialPoints = 200;
     int minimumRadialPoints = 86;
     /*double radialPrecision = 1e-12;
     int maximumRadialPoints = 2000;
@@ -160,8 +163,8 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
-                tmp += XC * densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+                //double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
+                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z); // * XC
             }
         }
         integral += w * tmp;
@@ -203,7 +206,11 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(int p, int q) 
     return integrateExchangeCorrelationPotential(Ppq,Gp,Gq,p,q);
 }
 
-double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq, ContractedGaussian* Gp, ContractedGaussian* Gq, int p, int q) {
+double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq,
+                                                               ContractedGaussian* Gp,
+                                                               ContractedGaussian* Gq,
+                                                               int p,
+                                                               int q) {
     if (! m_gridGenerated) {
         generateBeckeGrid();
     }
@@ -224,7 +231,6 @@ double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq, Contr
         integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
     }
     return integral;
-
 }
 
 double NumericalIntegrator::integrateExchangeCorrelationEnergy(int p, int q) {

@@ -125,19 +125,20 @@ void RestrictedDFT::selfConsistentFieldIteration() {
 void RestrictedDFT::computeHartreeFockEnergy() {
     m_hartreeFockEnergy = 0;
 
-    for (int p = 0; p < m_numberOfBasisFunctions; p++)
-    for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-        m_hartreeFockEnergy += m_densityMatrix(p,q) * (m_oneBodyMatrixElements(p,q) + Exc(p,q));
-        //const double vxc = Vxc(p,q);
-        for (int r = 0; r < m_numberOfBasisFunctions; r++)
-        for (int s = 0; s < m_numberOfBasisFunctions; s++) {
-            //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q);
-            //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - vxc;
-            double pqrs = 2*twoBodyMatrixElements(p,r,q,s);
-            m_hartreeFockEnergy += pqrs * m_densityMatrix(p,q) * m_densityMatrix(s,r) * 0.25;
+    for (int p = 0; p < m_numberOfBasisFunctions; p++) {
+        for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+            m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q) + Exc(p,q);
+            //const double vxc = Vxc(p,q);
+            for (int r = 0; r < m_numberOfBasisFunctions; r++)
+                for (int s = 0; s < m_numberOfBasisFunctions; s++) {
+                    //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q);
+                    //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - vxc;
+                    double pqrs = 0.5*twoBodyMatrixElements(p,r,q,s);
+                    m_hartreeFockEnergy += pqrs * m_densityMatrix(s,r) * m_densityMatrix(p,q);
+                }
         }
+        m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
     }
-    m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
 }
 
 void RestrictedDFT::storeEnergy() {
