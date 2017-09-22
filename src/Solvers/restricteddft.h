@@ -11,7 +11,7 @@ class RestrictedDFT : public HartreeFock {
     friend class NumericalIntegrator;
     friend class ExchangeCorrelationFunctional;
 
-private:
+public:
     bool        m_smoothing         = true;
     double      m_smoothingFactor   = 0.5;
     arma::vec   m_epsilon;

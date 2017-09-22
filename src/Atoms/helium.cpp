@@ -14,8 +14,9 @@ Helium::Helium(std::string basisName, arma::vec position) :
         basis_6311G2df2pd();
     } else if (basisName == "STO-6G") {
         basis_STO6G();
-    }
-    else {
+    } else if (basisName == "toy") {
+        basis_toy();
+    } else {
         cout << "Unknown basis: " << basisName << endl;
         cout << "Currently known basis sets for Helium: " << endl;
         cout << " * 3-21G"              << endl;
@@ -99,4 +100,11 @@ void Helium::basis_STO6G() {
     m_info = "Helium : STO-6G";
     setNumberOfOrbitals(1);
     create_S6(65.98456824,12.09819836,3.384639924,1.162715163,0.451516322,0.185959356,0.00916359628,0.04936149294,0.1685383049,0.3705627997,0.4164915298,0.1303340841);
+}
+
+void Helium::basis_toy() {
+    m_info = "Toy example";
+    setNumberOfOrbitals(2);
+    create_S1(3.8, 1.0);
+    create_S1(0.5, 1.0);
 }

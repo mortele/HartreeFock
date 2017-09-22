@@ -20,10 +20,10 @@ public:
     double evaluatePotential(double x, double y, double z, int p, int q);
 
     double X(double x) { return x*x + m_b*x + m_c; }
-    double epsilonC(double rs);
+    double  epsilonC(double rs, double rho);
     double dEpsilonC(double rs, double rho);
-    double epsilonX(double rs);
-    double dEpsilonX(double rs);
+    double  epsilonX(double rs, double rho);
+    double dEpsilonX(double rs, double rho);
     inline constexpr double Cx();
 };
 

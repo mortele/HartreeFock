@@ -9,6 +9,7 @@
 
 #include "system.h"
 #include "Solvers/restricteddft.h"
+#include "Solvers/restrictedhartreefock.h"
 #include "Atoms/hydrogen.h"
 #include "Atoms/helium.h"
 #include "Atoms/beryllium.h"
@@ -25,7 +26,8 @@ int main(int, char**) {
 
     //Helium*         helium      = new Helium    ("3-21G", arma::vec{0,0,0});
     //Helium*         helium      = new Helium    ("6-311+G**", arma::vec{0,0,0});
-    Helium*         helium      = new Helium    ("6-311G(2df,2pd)", arma::vec{0,0,0});
+    //Helium*         helium      = new Helium    ("6-311G(2df,2pd)", arma::vec{0,0,0});
+    Helium*         helium      = new Helium    ("toy", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
@@ -34,13 +36,21 @@ int main(int, char**) {
 
     //system->addAtom(hydrogen1);
     //system->addAtom(hydrogen2);
-    //system->addAtom(helium);
-    system->addAtom(beryllium);
+    system->addAtom(helium);
+    //system->addAtom(beryllium);
     //system->addAtom(carbon);
 
-    RestrictedDFT*  solver = new RestrictedDFT(system);
-    solver->setFunctional("LDA");
-    solver->solve(1e-8,200);
+    RestrictedHartreeFock*  rhf     = new RestrictedHartreeFock(system);
+    RestrictedDFT*          rdft    = new RestrictedDFT(system);
+    rdft->setFunctional("LDA");
+    rdft->solve(1e-8,20);
+
+    cout << rdft->m_coefficientMatrix << endl;
+    rdft->m_coefficientMatrix(0,0) = 0.295500;
+    rdft->m_coefficientMatrix(1,0) = 0.815618;
+
+    //rhf->solve();
+
     return 0;
 }
 
