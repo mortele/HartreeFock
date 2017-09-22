@@ -127,7 +127,7 @@ void RestrictedDFT::computeHartreeFockEnergy() {
 
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
         for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-            m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q) + Exc(p,q);
+            m_hartreeFockEnergy += m_densityMatrix(p,q) * (m_oneBodyMatrixElements(p,q)) + Exc(p,q);
             //const double vxc = Vxc(p,q);
             for (int r = 0; r < m_numberOfBasisFunctions; r++)
                 for (int s = 0; s < m_numberOfBasisFunctions; s++) {

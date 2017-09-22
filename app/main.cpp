@@ -28,8 +28,8 @@ int main(int, char**) {
     Helium*         helium      = new Helium    ("6-311G(2df,2pd)", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
-    //Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
-    Beryllium*      beryllium   = new Beryllium ("6-311++G**", arma::vec{0,0,0});
+    Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
+    //Beryllium*      beryllium   = new Beryllium ("6-311++G**", arma::vec{0,0,0});
     Carbon*         carbon      = new Carbon    ("3-21G", arma::vec{0,0,0});
 
     //system->addAtom(hydrogen1);

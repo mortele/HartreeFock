@@ -194,7 +194,7 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
         const double z = grid[i+2];
         const double w = grid[i+3];
         double XC = m_xcFunctional->evaluatePotential(x,y,z,p,q);
-        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
+        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);// * Ppq;
     }
     return integral;
 }

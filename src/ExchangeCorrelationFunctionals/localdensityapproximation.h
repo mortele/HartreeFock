@@ -21,7 +21,7 @@ public:
 
     double X(double x) { return x*x + m_b*x + m_c; }
     double epsilonC(double rs);
-    double dEpsilonC(double rs);
+    double dEpsilonC(double rs, double rho);
     double epsilonX(double rs);
     double dEpsilonX(double rs);
     inline constexpr double Cx();
