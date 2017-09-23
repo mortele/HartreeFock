@@ -9,7 +9,7 @@ class System {
     friend class HartreeFock;
     friend class NumericalIntegrator;
 
-private:
+public:
     int     m_numberOfAtoms;
     int     m_numberOfBasisFunctions;
     int     m_numberOfElectrons;

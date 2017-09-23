@@ -25,6 +25,8 @@ public:
     class NumericalIntegrator*              m_numericalIntegrator;
     class ExchangeCorrelationFunctional*    m_xcFunctional;
 
+    double computeEnergyX();
+
     void setup();
     void computeXcMatrix();
     void computeFockMatrix();

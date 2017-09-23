@@ -7,7 +7,7 @@ class GaussianPrimitive {
     friend class ContractedGaussian;
     friend class GaussianPrimitiveProduct;
 
-private:
+public:
     int         m_xExponent                 = 0;
     int         m_yExponent                 = 0;
     int         m_zExponent                 = 0;

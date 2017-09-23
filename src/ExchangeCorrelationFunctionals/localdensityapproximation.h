@@ -5,13 +5,6 @@
 
 class LocalDensityApproximation : public ExchangeCorrelationFunctional {
 private:
-    double m_A   ;
-    double m_x0  ;
-    double m_b   ;
-    double m_c   ;
-    double m_Q   ;
-    double m_Xx0 ;
-    double m_pi  ;
     arma::mat* m_densityMatrix;
 
 public:
@@ -19,7 +12,7 @@ public:
     double evaluateEnergy(double x, double y, double z, int p, int q);
     double evaluatePotential(double x, double y, double z, int p, int q);
 
-    double X(double x) { return x*x + m_b*x + m_c; }
+    //double X(double x) { return x*x + m_b*x + m_c; }
     double  epsilonC(double rs, double rho);
     double dEpsilonC(double rs, double rho);
     double  epsilonX(double rs, double rho);

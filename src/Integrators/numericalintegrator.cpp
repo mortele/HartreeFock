@@ -56,12 +56,12 @@ int NumericalIntegrator::generateBeckeGrid() {
     /*double radialPrecision = 1e-8;
     int maximumRadialPoints = 500;
     int minimumRadialPoints = 300;*/
-    double radialPrecision = 1e-4;
+    /*double radialPrecision = 1e-4;
     int maximumRadialPoints = 200;
-    int minimumRadialPoints = 86;
-    /*double radialPrecision = 1e-12;
+    int minimumRadialPoints = 86;*/
+    double radialPrecision = 1e-12;
     int maximumRadialPoints = 2000;
-    int minimumRadialPoints = 1000;*/
+    int minimumRadialPoints = 1000;
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];
@@ -137,7 +137,7 @@ int NumericalIntegrator::generateBeckeGrid() {
     return error;
 }
 
-double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
+double NumericalIntegrator::testIntegral() {
     if (! m_gridGenerated) {
         generateBeckeGrid();
     }
@@ -151,6 +151,8 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
     int basisSize = basis.size();
 
+    arma::mat& P = *m_densityMatrix;
+
     double integral = 0;
     for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
         const double x = grid[i+0];
@@ -163,8 +165,9 @@ double NumericalIntegrator::integrateDensity(const mat& densityMatrix) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                //double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
-                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z); // * XC
+                double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
+                tmp += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z) * XC;
+                //tmp += XC;
             }
         }
         integral += w * tmp;

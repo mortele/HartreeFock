@@ -40,6 +40,20 @@ void RestrictedDFT::setFunctional(std::string name) {
 
 
 
+double RestrictedDFT::computeEnergyX() {
+    mat& P = m_densityMatrix;
+
+    double Ex = 0;
+    for (int p = 0; p < m_numberOfBasisFunctions; p++) {
+        for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+            double tmp = m_numericalIntegrator->integrateExchangeCorrelationEnergy(p,q);
+            cout << "(" << p << "," << q << "): " << tmp << endl;
+            Ex += tmp;
+        }
+    }
+    return Ex;
+}
+
 void RestrictedDFT::setup() {
     assert(m_numberOfElectrons > 0 && m_numberOfElectrons % 2 == 0);
 

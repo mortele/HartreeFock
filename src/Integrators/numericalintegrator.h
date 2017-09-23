@@ -17,7 +17,7 @@ private:
 public:
     NumericalIntegrator(class System* system, arma::mat* densityMatrix);
     int generateBeckeGrid();
-    double integrateDensity(const arma::mat& densityMatrix);
+    double testIntegral();
     double integrateExchangeCorrelationPotential(double Ppq, class ContractedGaussian* Gp, class ContractedGaussian* Gq, int p, int q);
     double integrateExchangeCorrelationPotential(int,int);
     double integrateExchangeCorrelationEnergy(double Ppq, class ContractedGaussian* Gp, class ContractedGaussian* Gq, int p, int q);

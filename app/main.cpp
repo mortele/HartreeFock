@@ -10,10 +10,13 @@
 #include "system.h"
 #include "Solvers/restricteddft.h"
 #include "Solvers/restrictedhartreefock.h"
+#include "Orbitals/gaussianprimitive.h"
+#include "Orbitals/contractedgaussian.h"
 #include "Atoms/hydrogen.h"
 #include "Atoms/helium.h"
 #include "Atoms/beryllium.h"
 #include "Atoms/carbon.h"
+#include "Integrators/numericalintegrator.h"
 
 using std::cout;
 using std::endl;
@@ -43,11 +46,24 @@ int main(int, char**) {
     RestrictedHartreeFock*  rhf     = new RestrictedHartreeFock(system);
     RestrictedDFT*          rdft    = new RestrictedDFT(system);
     rdft->setFunctional("LDA");
-    rdft->solve(1e-8,20);
+    rdft->solve(1e-8,0);
 
-    cout << rdft->m_coefficientMatrix << endl;
     rdft->m_coefficientMatrix(0,0) = 0.295500;
     rdft->m_coefficientMatrix(1,0) = 0.815618;
+    //rdft->m_coefficientMatrix(0,0) = 0.300859;
+    //rdft->m_coefficientMatrix(1,0) = 0.811650;
+    rdft->m_smoothing = false;
+    rdft->computeDensityMatrix();
+    arma::mat& S = rdft->m_overlapMatrix;
+    arma::mat& P = rdft->m_densityMatrix;
+    arma::mat& C = rdft->m_coefficientMatrix;
+
+    GaussianPrimitive* pr1 = system->getBasis().at(0)->getPrimitives().at(0);
+    GaussianPrimitive* pr2 = system->getBasis().at(1)->getPrimitives().at(0);
+    //cout << *pr1 << endl;
+    //cout << *pr2 << endl;
+
+    cout << setprecision(10) << rdft->m_numericalIntegrator->testIntegral() << endl;
 
     //rhf->solve();
 
