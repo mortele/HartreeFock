@@ -48,16 +48,20 @@ int main(int, char**) {
     rdft->setFunctional("LDA");
     rdft->solve(1e-8,0);
 
+    // HF
+    rdft->m_coefficientMatrix(0,0) = 0.300859;
+    rdft->m_coefficientMatrix(1,0) = 0.811650;
+
+    // DFT
     rdft->m_coefficientMatrix(0,0) = 0.295500;
     rdft->m_coefficientMatrix(1,0) = 0.815618;
-    //rdft->m_coefficientMatrix(0,0) = 0.300859;
-    //rdft->m_coefficientMatrix(1,0) = 0.811650;
+
     rdft->m_smoothing = false;
     rdft->computeDensityMatrix();
     arma::mat& S = rdft->m_overlapMatrix;
     arma::mat& P = rdft->m_densityMatrix;
     arma::mat& C = rdft->m_coefficientMatrix;
-
+    rdft->m_densityMatrix = 2*C*C.t();
     GaussianPrimitive* pr1 = system->getBasis().at(0)->getPrimitives().at(0);
     GaussianPrimitive* pr2 = system->getBasis().at(1)->getPrimitives().at(0);
     //cout << *pr1 << endl;

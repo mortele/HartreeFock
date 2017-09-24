@@ -43,7 +43,8 @@ double LocalDensityApproximation::epsilonX(double rs, double rho) {
     //double pi  = 3.1415926535897932384;
     //return -3.0*pow(9.0/(32*pi*pi),1.0/3.0) * (1.0/rs);
     //return - 0.4582 / rs;
-    return -0.7385587663820223 * pow(rho, 1.0/3.0);
+    //return - 0.7385587663820223 * pow(rho, 1.0/3.0);
+    return - pow(rho / (3.0/3.1415926535897932384), 1.0/3.0);
     //return pow(rho, 4.0/3.0);
 }
 
