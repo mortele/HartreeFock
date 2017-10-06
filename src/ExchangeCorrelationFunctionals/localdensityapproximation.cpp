@@ -1,6 +1,7 @@
 #include "localdensityapproximation.h"
 #include "system.h"
 #include "Orbitals/contractedgaussian.h"
+#include "Orbitals/gaussianprimitive.h"
 #include <iostream>
 
 using arma::mat;
@@ -11,29 +12,17 @@ LocalDensityApproximation::LocalDensityApproximation(System*    system,
     m_densityMatrix = densityMatrix;
 }
 
-double LocalDensityApproximation::evaluateEnergy(double x, double y, double z, int p, int q) {
-
-    const arma::mat& P = *m_densityMatrix;
-    ContractedGaussian* Gp = m_system->getBasis().at(p);
-    ContractedGaussian* Gq = m_system->getBasis().at(q);
-
-    const double rho = P(p,q) * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);
-
-    //const double rs  = pow(3.0/(4*m_pi*rho), 1.0/3.0);
+double LocalDensityApproximation::evaluateEnergy(double rho) {
+    const double rs  = pow(3.0/(4.0*3.1415926535897932384*rho), 1.0/3.0);
 
     //return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho));
-    return epsilonX(1, rho);
+    return epsilonX(rs, rho);
 }
 
-double LocalDensityApproximation::evaluatePotential(double x, double y, double z, int p, int q) {
+double LocalDensityApproximation::evaluatePotential(double rho) {
 
     double pi  = 3.1415926535897932384;
 
-
-    const arma::mat& P = *m_densityMatrix;
-    ContractedGaussian* Gp = m_system->getBasis().at(p);
-    ContractedGaussian* Gq = m_system->getBasis().at(q);
-    const double rho = P(p,q) * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);
     const double rs  = pow(3.0/(4*pi*rho), 1.0/3.0);
     //return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho) + rho*(dEpsilonC(rs,rho) + dEpsilonX(rs,rho)));
     return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho));
@@ -44,8 +33,12 @@ double LocalDensityApproximation::epsilonX(double rs, double rho) {
     //return -3.0*pow(9.0/(32*pi*pi),1.0/3.0) * (1.0/rs);
     //return - 0.4582 / rs;
     //return - 0.7385587663820223 * pow(rho, 1.0/3.0);
-    return - pow(rho / (3.0/3.1415926535897932384), 1.0/3.0);
-    //return pow(rho, 4.0/3.0);
+    //return - pow(rho / (3.0/3.1415926535897932384), 1.0/3.0);
+
+    double cx = -(3.0/4.0)*pow(3.0/3.1415926535897932384, 1.0/3.0);
+    //double cx = -(3.0/4.0)*pow(3.0/3.1415926535897932384, 1.0/3.0);
+    //double cx = -pow(3.0/3.1415926535897932384, 1.0/3.0);
+    return cx * pow(rho, 1.0/3.0);
 }
 
 double LocalDensityApproximation::epsilonC(double rs, double rho) {

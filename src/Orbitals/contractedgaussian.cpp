@@ -23,7 +23,6 @@ double ContractedGaussian::evaluate(double x, double y, double z) {
         functionValue += m_primitives.at(i)->evaluate(x,y,z);
     }
     return m_coefficient * functionValue;
-
 }
 
 double ContractedGaussian::operator()(double x, double y, double z) {

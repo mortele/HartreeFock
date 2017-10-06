@@ -174,15 +174,19 @@ std::string UnrestrictedHartreeFock::getDateTime() {
 std::string UnrestrictedHartreeFock::dumpBasisToFile(std::string fileNameIn) {
     std::string fileName;
     if (fileNameIn=="") {
-        fileName = "../HartreeFockBases/basis-" + getDateTime();
+        fileName = "../../HartreeFock/data/HartreeFockBases/basis-" + getDateTime();
     } else {
-        fileName = "../HartreeFockBases/" + fileNameIn;
+        fileName = "../../HartreeFock/data/HartreeFockBases/" + fileNameIn;
     }
 
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
 
     std::ofstream outFile;
     outFile.open(fileName, std::ios::out);
+    if (! outFile.is_open()) {
+        std::cout << "Could not open <" << fileName << ">. Exiting." << std::endl;
+        exit(1);
+    }
 
     int basisSize = m_numberOfBasisFunctions;
     int electrons = m_numberOfElectrons;

@@ -154,17 +154,15 @@ double NumericalIntegrator::testIntegral() {
         const double z = grid[i+2];
         const double w = grid[i+3];
 
-        double tmp = 0;
+        double rho = 0;
         for (int p = 0; p < basisSize; p++) {
             ContractedGaussian* pPhi = basis.at(p);
             for (int q = 0; q < basisSize; q++) {
                 ContractedGaussian* qPhi = basis.at(q);
-                double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
-                tmp += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z) * XC;
-                //tmp += XC;
+                rho += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
-        integral += w * tmp;
+        integral += w * rho * m_xcFunctional->evaluateEnergy(rho);
     }
     return integral;
 }
@@ -190,7 +188,7 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluatePotential(x,y,z,p,q);
+        double XC = m_xcFunctional->evaluatePotential(1);
         integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);// * Ppq;
     }
     return integral;
@@ -224,7 +222,7 @@ double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq,
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluateEnergy(x,y,z,p,q);
+        double XC = m_xcFunctional->evaluateEnergy(1);
         integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
     }
     return integral;

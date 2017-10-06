@@ -76,7 +76,8 @@ void Examples::HeHp() {
 void Examples::H2() {
     boost::timer t;
     vec nucleus1  {0, 0, 0};
-    vec nucleus2  {0, 0, 1.4};
+    //vec nucleus2  {0, 0, 1.4};
+    vec nucleus2  {0.5, 0, 0};
 
     System* system = new System(2);
     //system->addAtom(new Hydrogen("3-21G", nucleus1));
@@ -87,8 +88,8 @@ void Examples::H2() {
     //system->addAtom(new Hydrogen("cc-pVQZ", nucleus2));
     UnrestrictedHartreeFock solver(system);
     //RestrictedHartreeFock solver(system);
-    solver.solve(1e-10, 1e4);
-    solver.dumpBasisToFile();
+    solver.solve(1e-7, 1e4);
+    solver.dumpBasisToFile("cuspTest");
     double elapsedTime = t.elapsed();
     cout << "Elapsed time: " << elapsedTime << endl;
 }
