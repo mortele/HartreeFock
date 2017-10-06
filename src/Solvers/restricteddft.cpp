@@ -41,17 +41,7 @@ void RestrictedDFT::setFunctional(std::string name) {
 
 
 double RestrictedDFT::computeEnergyX() {
-    mat& P = m_densityMatrix;
-
-    double Ex = 0;
-    for (int p = 0; p < m_numberOfBasisFunctions; p++) {
-        for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-            double tmp = m_numericalIntegrator->integrateExchangeCorrelationEnergy(p,q);
-            cout << "(" << p << "," << q << "): " << tmp << endl;
-            Ex += tmp;
-        }
-    }
-    return Ex;
+    return m_numericalIntegrator->integrateExchangeCorrelationEnergy();
 }
 
 void RestrictedDFT::setup() {
@@ -138,10 +128,11 @@ void RestrictedDFT::selfConsistentFieldIteration() {
 
 void RestrictedDFT::computeHartreeFockEnergy() {
     m_hartreeFockEnergy = 0;
-
+    m_xcEnergy = m_numericalIntegrator->integrateExchangeCorrelationEnergy();
+    m_hartreeFockEnergy += m_xcEnergy;
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
         for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-            m_hartreeFockEnergy += m_densityMatrix(p,q) * (m_oneBodyMatrixElements(p,q)) + Exc(p,q);
+            m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q);
             //const double vxc = Vxc(p,q);
             for (int r = 0; r < m_numberOfBasisFunctions; r++)
                 for (int s = 0; s < m_numberOfBasisFunctions; s++) {
@@ -178,7 +169,7 @@ double RestrictedDFT::Vxc(int p, int q) {
 }
 
 double RestrictedDFT::Exc(int p, int q) {
-    return m_numericalIntegrator->integrateExchangeCorrelationEnergy(p,q);
+    //return m_numericalIntegrator->integrateExchangeCorrelationEnergy(p,q);
     //return m_numericalIntegrator->integrateExchangeCorrelationPotential(p,q);
 }
 

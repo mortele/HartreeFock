@@ -14,16 +14,11 @@ LocalDensityApproximation::LocalDensityApproximation(System*    system,
 
 double LocalDensityApproximation::evaluateEnergy(double rho) {
     const double rs  = pow(3.0/(4.0*3.1415926535897932384*rho), 1.0/3.0);
-
-    //return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho));
-    return epsilonX(rs, rho);
+    return epsilonX(rs, rho) + epsilonC(rs, rho);
 }
 
 double LocalDensityApproximation::evaluatePotential(double rho) {
-
-    double pi  = 3.1415926535897932384;
-
-    const double rs  = pow(3.0/(4*pi*rho), 1.0/3.0);
+    const double rs  = pow(3.0/(4*3.1415926535897932384*rho), 1.0/3.0);
     //return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho) + rho*(dEpsilonC(rs,rho) + dEpsilonX(rs,rho)));
     return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho));
 }
@@ -50,15 +45,31 @@ double LocalDensityApproximation::epsilonC(double rs, double rho) {
     //m_Q   = sqrt(4*m_c - m_b*m_b);
     //m_Xx0 = m_x0*m_x0 + m_b*m_x0 + m_c;
 
+    ////
+    //// http://theory.rutgers.edu/~giese/notes/DFT.pdf
+    ////
+
     //double x  = sqrt(rs);
     //double Xx = X(x);
     //return  m_A/2.0 * ( log(x/Xx) + (2*m_b/m_Q)*atan(m_Q/(2*x+m_b)) -m_b*m_x0/m_Xx0
     //                    *(log((x-m_x0)*(x-m_x0)/Xx) + 2*(m_b + 2*m_x0)/m_Q * atan(m_Q/(2*x+m_b))));
-    double x = sqrt(rs);
+    /*double x = sqrt(rs);
     return      18.10330000 * atan(0.0224499 / (-6.536 + x))
             +    2.41869000 * atan(0.0224499 / ( 6.536 + x))
             +    0.03109070 * log (x / (42.7198+x*(13.072+x)))
             +    0.00443137 * log ((0.409286+x)*(0.409286+x) / (42.7198+x*(13.072+x)));
+    */
+    double x  = sqrt(rs);
+
+    double A  =  0.0621814 / 2.0;
+    double xi = -0.10498;
+    double bi =  3.72744;
+    double ci = 12.9352;
+    double Qi = sqrt(4*ci - bi*bi);
+    double Xi = xi*xi + bi*xi + ci;
+    double X  = x * x + bi*x  + ci;
+
+    return A * (   log(x*x/X) + 2*bi/Qi*atan(Qi/(2*x+bi)) - bi*xi/Xi * (  log((x-xi)*(x-xi)/X) + 2*(bi+2*xi)/Qi*atan(Qi/(2*x+bi))    )   );
 }
 
 double LocalDensityApproximation::dEpsilonC(double rs, double rho) {

@@ -52,8 +52,8 @@ int main(int, char**) {
     rdft->solve(1e-8,0);
 
     // HF
-    rdft->m_coefficientMatrix(0,0) = 0.300859;
-    rdft->m_coefficientMatrix(1,0) = 0.811650;
+    //rdft->m_coefficientMatrix(0,0) = 0.300859;
+    //rdft->m_coefficientMatrix(1,0) = 0.811650;
 
     // DFT
     rdft->m_coefficientMatrix(0,0) = 0.295500;
@@ -85,11 +85,8 @@ int main(int, char**) {
     //// !!!!!!!
     //// !!!!!!!
 
-    cout << rdft->m_densityMatrix<< endl;
-
-    cout << setprecision(10) << rdft->m_numericalIntegrator->testIntegral() << endl;
-
-    //rhf->solve();
+    rdft->computeHartreeFockEnergy();
+    cout << rdft->m_hartreeFockEnergy << endl;
 
     return 0;
 }

@@ -2,7 +2,7 @@
 #include <armadillo>
 
 class HartreeFock {
-protected:
+public:
     int         m_numberOfBasisFunctions;
     int         m_numberOfElectrons;
     int         m_iteration;

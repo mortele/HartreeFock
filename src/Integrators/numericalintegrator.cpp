@@ -201,11 +201,7 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(int p, int q) 
     return integrateExchangeCorrelationPotential(Ppq,Gp,Gq,p,q);
 }
 
-double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq,
-                                                               ContractedGaussian* Gp,
-                                                               ContractedGaussian* Gq,
-                                                               int p,
-                                                               int q) {
+double NumericalIntegrator::integrateExchangeCorrelationEnergy() {
     if (! m_gridGenerated) {
         generateBeckeGrid();
     }
@@ -216,23 +212,30 @@ double NumericalIntegrator::integrateExchangeCorrelationEnergy(double Ppq,
     int             numberOfGridPoints  = numgrid_get_num_points(m_context);
     const double*   grid                = numgrid_get_grid      (m_context);
 
+    std::vector<ContractedGaussian*> basis = m_system->getBasis();
+    int basisSize = basis.size();
+
+    arma::mat& P = *m_densityMatrix;
+
     double integral = 0;
     for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
         const double x = grid[i+0];
         const double y = grid[i+1];
         const double z = grid[i+2];
         const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluateEnergy(1);
-        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z) * Ppq;
+
+        double rho = 0;
+        for (int p = 0; p < basisSize; p++) {
+            ContractedGaussian* pPhi = basis.at(p);
+            for (int q = 0; q < basisSize; q++) {
+                ContractedGaussian* qPhi = basis.at(q);
+                rho += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
+            }
+        }
+        integral += w * rho * m_xcFunctional->evaluateEnergy(rho);
     }
     return integral;
-}
 
-double NumericalIntegrator::integrateExchangeCorrelationEnergy(int p, int q) {
-    ContractedGaussian* Gp = m_system->getBasis().at(p);
-    ContractedGaussian* Gq = m_system->getBasis().at(q);
-    double Ppq = (*m_densityMatrix)(p,q);
-    return integrateExchangeCorrelationEnergy(Ppq,Gp,Gq,p,q);
 }
 
 void NumericalIntegrator::setFunctional(ExchangeCorrelationFunctional* functional) {
