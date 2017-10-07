@@ -14,51 +14,48 @@ LocalDensityApproximation::LocalDensityApproximation(System*    system,
 
 double LocalDensityApproximation::evaluateEnergy(double rho) {
     const double rs  = pow(3.0/(4.0*3.1415926535897932384*rho), 1.0/3.0);
-    return epsilonX(rs, rho) + epsilonC(rs, rho);
+    return (rho < 1e-20) ? 0 : epsilonX(rs, rho) + epsilonC(rs, rho);
 }
 
 double LocalDensityApproximation::evaluatePotential(double rho) {
     const double rs  = pow(3.0/(4*3.1415926535897932384*rho), 1.0/3.0);
-    //return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho) + rho*(dEpsilonC(rs,rho) + dEpsilonX(rs,rho)));
-    return (rho<1e-20 ? 0 : epsilonX(rs,rho) + epsilonC(rs,rho));
+    return  (rho < 1e-20) ? 0 : vX(rs, rho) + vC(rs, rho);
 }
 
 double LocalDensityApproximation::epsilonX(double rs, double rho) {
-    //double pi  = 3.1415926535897932384;
-    //return -3.0*pow(9.0/(32*pi*pi),1.0/3.0) * (1.0/rs);
-    //return - 0.4582 / rs;
-    //return - 0.7385587663820223 * pow(rho, 1.0/3.0);
-    //return - pow(rho / (3.0/3.1415926535897932384), 1.0/3.0);
-
     double cx = -(3.0/4.0)*pow(3.0/3.1415926535897932384, 1.0/3.0);
-    //double cx = -(3.0/4.0)*pow(3.0/3.1415926535897932384, 1.0/3.0);
-    //double cx = -pow(3.0/3.1415926535897932384, 1.0/3.0);
     return cx * pow(rho, 1.0/3.0);
 }
 
-double LocalDensityApproximation::epsilonC(double rs, double rho) {
-    //m_A   =  0.0621814;
-    //m_x0  = -0.409286;
-    //m_b   = 13.0720;
-    //m_c   = 42.7198;
-    //m_pi  = 3.1415926535897932384;
-    //m_Q   = sqrt(4*m_c - m_b*m_b);
-    //m_Xx0 = m_x0*m_x0 + m_b*m_x0 + m_c;
+double LocalDensityApproximation::vX(double rs, double rho) {
+    double cx = -(3.0/4.0)*pow(3.0/3.1415926535897932384, 1.0/3.0);
+    return (4.0/3.0) * cx * pow(rho, 1.0/3.0);
+}
 
+double LocalDensityApproximation::vC(double rs, double rho) {
+    const double x  = sqrt(rs);
+    const double Ai  =  0.0621814 / 2.0;
+    const double xi = -0.10498;
+    const double bi =  3.72744;
+    const double ci = 12.9352;
+    const double Qi = sqrt(4*ci - bi*bi);
+    const double Xi = xi*xi + bi*xi + ci;
+    const double X  = x * x + bi*x  + ci;
+
+    const double eps =  Ai * (log(x*x/X) + 2*bi/Qi*atan(Qi/(2*x+bi)) - bi*xi/Xi * (  log((x-xi)*(x-xi)/X) + 2*(bi+2*xi)/Qi*atan(Qi/(2*x+bi))));
+    const double drs_drho_timesRho = - 1.0/3.0 * rs;
+    const double dx_drs = 1.0 / (2*x);
+    const double dX_dx = bi + 2*x;
+    const double deps_dX = Ai/Xi * (bi*xi / Xi - 1);
+    const double deps_dx = 2*Ai / x - 4*Ai*bi / (bi*bi + Qi*Qi + 4*x*(bi + x))- Ai*bi*xi/Xi * (2/(x-xi)) - 4*(bi+2*xi)/(bi*bi + Qi*Qi + 4*x*(bi + x));
+    const double deps_drs = dx_drs * deps_dx + deps_dX * dX_dx * dx_drs;
+    return eps + drs_drho_timesRho * (deps_drs);
+}
+
+double LocalDensityApproximation::epsilonC(double rs, double rho) {
     ////
     //// http://theory.rutgers.edu/~giese/notes/DFT.pdf
     ////
-
-    //double x  = sqrt(rs);
-    //double Xx = X(x);
-    //return  m_A/2.0 * ( log(x/Xx) + (2*m_b/m_Q)*atan(m_Q/(2*x+m_b)) -m_b*m_x0/m_Xx0
-    //                    *(log((x-m_x0)*(x-m_x0)/Xx) + 2*(m_b + 2*m_x0)/m_Q * atan(m_Q/(2*x+m_b))));
-    /*double x = sqrt(rs);
-    return      18.10330000 * atan(0.0224499 / (-6.536 + x))
-            +    2.41869000 * atan(0.0224499 / ( 6.536 + x))
-            +    0.03109070 * log (x / (42.7198+x*(13.072+x)))
-            +    0.00443137 * log ((0.409286+x)*(0.409286+x) / (42.7198+x*(13.072+x)));
-    */
     double x  = sqrt(rs);
 
     double A  =  0.0621814 / 2.0;
@@ -111,11 +108,31 @@ double LocalDensityApproximation::dEpsilonC(double rs, double rho) {
     //
     // //std::cout << std::fabs(firstTerm-mathFirst) << std::endl;
     //return mathematica;
-    double x     = sqrt(rs);
+    /*double x     = sqrt(rs);
     double rho43 = pow(rho, 4.0/3.0);
     return      (-0.982717+x*(-4.80211+x*(-4.12098+x*(4.47538+x*(0.51543+(0.00263132+0.00321452*x)*x)))))
             /   (x*(0.409286+x)*(0.409286+x)*(1824.98*x-85.4376*x*x*x + x*x*x*x*x)*rho43);
+    */
+    //3.1415926535897932384
+    double x  = sqrt(rs);
 
+    double A  =  0.0621814 / 2.0;
+    double xi = -0.10498;
+    double bi =  3.72744;
+    double ci = 12.9352;
+    double Qi = sqrt(4*ci - bi*bi);
+    double Xi = xi*xi + bi*xi + ci;
+    double X  = x * x + bi*x  + ci;
+
+    double dcdx =  -A*(bi*x*xi*((Qi*Qi + (bi + 2*x)*(bi + 2*x))*(2*bi*x + 2*ci + 2*x*x -
+                    (bi + 2*x)*(x - xi)) - 4*(bi + 2*xi)*(x - xi)*(bi*x + ci + x*x))
+                    + 4*bi*x*(x - xi)*(bi*x + ci + x*x)*(bi*xi + ci + xi*xi) - (Qi*Qi
+                    + (bi + 2*x)*(bi + 2*x))*(x - xi)*(bi*xi + ci + xi*xi)*(2*bi*x + 2*ci +
+                    2*x*x - x*(bi + 2*x)))/(x*(Qi*Qi + (bi + 2*x)*(bi + 2*x))*(x - xi)*(bi*x
+                    + ci + x*x)*(bi*xi + ci + xi*xi));
+    double dxdrs = 1/(2*sqrt(rs));
+    double drsdrho = -pow(6.0, 1.0/3.0)*pow(1.0/rho,1.0/3.0)/(6*pow(3.1415926535897932384,1.0/3.0)*rho);
+    return dcdx * dxdrs * drsdrho;
 }
 
 double LocalDensityApproximation::dEpsilonX(double rs, double rho) {

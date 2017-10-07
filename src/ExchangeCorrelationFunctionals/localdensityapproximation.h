@@ -16,6 +16,8 @@ public:
     double  epsilonC(double rs, double rho);
     double dEpsilonC(double rs, double rho);
     double  epsilonX(double rs, double rho);
+    double  vX(double rs, double rho);
+    double  vC(double rs, double rho);
     double dEpsilonX(double rs, double rho);
     inline constexpr double Cx();
 };

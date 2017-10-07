@@ -31,9 +31,9 @@ int main(int, char**) {
     System*         system = new System();
 
     //Helium*         helium      = new Helium    ("3-21G", arma::vec{0,0,0});
-    //Helium*         helium      = new Helium    ("6-311+G**", arma::vec{0,0,0});
+    Helium*         helium      = new Helium    ("6-311+G**", arma::vec{0,0,0});
     //Helium*         helium      = new Helium    ("6-311G(2df,2pd)", arma::vec{0,0,0});
-    Helium*         helium      = new Helium    ("toy", arma::vec{0,0,0});
+    //Helium*         helium      = new Helium    ("toy", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
@@ -49,15 +49,15 @@ int main(int, char**) {
     RestrictedHartreeFock*  rhf     = new RestrictedHartreeFock(system);
     RestrictedDFT*          rdft    = new RestrictedDFT(system);
     rdft->setFunctional("LDA");
-    rdft->solve(1e-8,0);
+    rdft->solve(1e-8,100);
 
     // HF
     //rdft->m_coefficientMatrix(0,0) = 0.300859;
     //rdft->m_coefficientMatrix(1,0) = 0.811650;
 
     // DFT
-    rdft->m_coefficientMatrix(0,0) = 0.295500;
-    rdft->m_coefficientMatrix(1,0) = 0.815618;
+    //rdft->m_coefficientMatrix(0,0) = 0.295500;
+    //rdft->m_coefficientMatrix(1,0) = 0.815618;
 
     // 3-21G
     //rdft->m_coefficientMatrix(0,0) = 0.44176629832108;
@@ -72,6 +72,7 @@ int main(int, char**) {
     arma::mat& S = rdft->m_overlapMatrix;
     arma::mat& P = rdft->m_densityMatrix;
     arma::mat& C = rdft->m_coefficientMatrix;
+    cout << C << endl;
     arma::mat& A = rdft->m_transformationMatrix;
     rdft->m_densityMatrix = 2*C*C.t();
     GaussianPrimitive* pr1 = system->getBasis().at(0)->getPrimitives().at(0);
@@ -85,8 +86,8 @@ int main(int, char**) {
     //// !!!!!!!
     //// !!!!!!!
 
-    rdft->computeHartreeFockEnergy();
-    cout << rdft->m_hartreeFockEnergy << endl;
+    //rdft->computeHartreeFockEnergy();
+    //cout << rdft->m_hartreeFockEnergy << endl;
 
     return 0;
 }

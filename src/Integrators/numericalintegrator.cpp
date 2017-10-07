@@ -53,9 +53,9 @@ double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
 }
 
 int NumericalIntegrator::generateBeckeGrid() {
-    double radialPrecision = 1e-20;int maximumRadialPoints = 2000;int minimumRadialPoints = 1500;
+    //double radialPrecision = 1e-20;int maximumRadialPoints = 2000;int minimumRadialPoints = 1500;
     //double radialPrecision = 1e-8;int maximumRadialPoints = 500;int minimumRadialPoints = 300;
-    //double radialPrecision = 1e-4;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
+    double radialPrecision = 1e-4;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];
@@ -167,8 +167,7 @@ double NumericalIntegrator::testIntegral() {
     return integral;
 }
 
-double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
-                                                                  ContractedGaussian* Gp,
+double NumericalIntegrator::integrateExchangeCorrelationPotential(ContractedGaussian* Gp,
                                                                   ContractedGaussian* Gq,
                                                                   int p,
                                                                   int q) {
@@ -182,14 +181,30 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
     int             numberOfGridPoints  = numgrid_get_num_points(m_context);
     const double*   grid                = numgrid_get_grid      (m_context);
 
+    std::vector<ContractedGaussian*> basis = m_system->getBasis();
+    int basisSize = basis.size();
+
+    arma::mat& P = *m_densityMatrix;
+
     double integral = 0;
-    for (int i = 0; i < 4*numberOfGridPoints; i+=4) {
-        const double x = grid[i+0];
-        const double y = grid[i+1];
-        const double z = grid[i+2];
-        const double w = grid[i+3];
-        double XC = m_xcFunctional->evaluatePotential(1);
-        integral += w * XC * Gp->evaluate(x,y,z) * Gq->evaluate(x,y,z);// * Ppq;
+    for (int k = 0; k < 4*numberOfGridPoints; k+=4) {
+        const double x = grid[k+0];
+        const double y = grid[k+1];
+        const double z = grid[k+2];
+        const double w = grid[k+3];
+
+        const double pPhi = Gp->evaluate(x,y,z);
+        const double qPhi = Gq->evaluate(x,y,z);
+
+        double rho = 0;
+        for (int i = 0; i < basisSize; i++) {
+            ContractedGaussian* iPhi = basis.at(i);
+            for (int j = 0; j < basisSize; j++) {
+                ContractedGaussian* jPhi = basis.at(j);
+                rho += P(i,j) * iPhi->evaluate(x,y,z) * jPhi->evaluate(x,y,z);
+            }
+        }
+        integral += w * m_xcFunctional->evaluatePotential(rho) * pPhi * qPhi;
     }
     return integral;
 }
@@ -197,8 +212,7 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(double Ppq,
 double NumericalIntegrator::integrateExchangeCorrelationPotential(int p, int q) {
     ContractedGaussian* Gp = m_system->getBasis().at(p);
     ContractedGaussian* Gq = m_system->getBasis().at(q);
-    double Ppq = (*m_densityMatrix)(p,q);
-    return integrateExchangeCorrelationPotential(Ppq,Gp,Gq,p,q);
+    return integrateExchangeCorrelationPotential(Gp,Gq,p,q);
 }
 
 double NumericalIntegrator::integrateExchangeCorrelationEnergy() {

@@ -21,8 +21,8 @@ RestrictedDFT::RestrictedDFT(System* system) :
     m_epsilonOld                = zeros(m_numberOfBasisFunctions);
     m_fockMatrix                = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_fockMatrixTilde           = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
-    m_coefficientMatrix         = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
-    m_coefficientMatrixTilde    = zeros(m_numberOfBasisFunctions, m_numberOfElectrons/2);
+    m_coefficientMatrix         = eye(m_numberOfBasisFunctions, m_numberOfElectrons/2);
+    m_coefficientMatrixTilde    = eye(m_numberOfBasisFunctions, m_numberOfElectrons/2);
     m_densityMatrix             = 2 * m_coefficientMatrix * m_coefficientMatrix.t();
     m_xcMatrix                  = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_numericalIntegrator       = new NumericalIntegrator(system, &m_densityMatrix);
@@ -127,22 +127,20 @@ void RestrictedDFT::selfConsistentFieldIteration() {
 }
 
 void RestrictedDFT::computeHartreeFockEnergy() {
-    m_hartreeFockEnergy = 0;
-    m_xcEnergy = m_numericalIntegrator->integrateExchangeCorrelationEnergy();
+    m_xcEnergy           = m_numericalIntegrator->integrateExchangeCorrelationEnergy();
+    m_hartreeFockEnergy  = 0;
     m_hartreeFockEnergy += m_xcEnergy;
+    m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
         for (int q = 0; q < m_numberOfBasisFunctions; q++) {
             m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q);
-            //const double vxc = Vxc(p,q);
-            for (int r = 0; r < m_numberOfBasisFunctions; r++)
+            for (int r = 0; r < m_numberOfBasisFunctions; r++) {
                 for (int s = 0; s < m_numberOfBasisFunctions; s++) {
-                    //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q);
-                    //double pqrs = 2*twoBodyMatrixElements(p,r,q,s) - vxc;
                     double pqrs = 0.5*twoBodyMatrixElements(p,r,q,s);
                     m_hartreeFockEnergy += pqrs * m_densityMatrix(s,r) * m_densityMatrix(p,q);
                 }
+            }
         }
-        m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
     }
 }
 
