@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <armadillo>
+#include <xc.h>
 #include "examples.h"
 
 #include "system.h"
@@ -25,22 +26,22 @@ using std::setprecision;
 
 
 int main(int, char**) {
-    /*
+
     System* system = new System();
     system->addAtom(new Helium("toy", arma::vec{0,0,0}));
     RestrictedDFT* DFT = new RestrictedDFT(system);
     DFT->setFunctional("LDA");
     DFT->solve(1e-5,1);
     LocalDensityApproximation LDA(system, &DFT->m_densityMatrix);
-    double rho = 1.52708108890903;
+    double rho_ = 1.52708108890903;
     double ans = -1.29877680133385;
     double ans2 = -0.11477000207871;
     double ans3 = -1.41354680341256;
-    double mine =  rho * LDA.evaluateEnergy(rho);
+    double mine =  rho_ * LDA.evaluateEnergy(rho_);
     //cout << setprecision(14) << mine << endl;
     //cout << fabs(mine-ans3) << endl;
 
-    rho = 0.98333768675191;
+    rho_ = 0.98333768675191;
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             ContractedGaussian* Gi = system->getBasis().at(i);
@@ -51,14 +52,44 @@ int main(int, char**) {
             double iPhi = Gi->evaluate(x,y,z);
             double jPhi = Gj->evaluate(x,y,z);
 
-            cout << setprecision(14) << iPhi * jPhi * LDA.evaluatePotential(rho) << " ";
+            cout << setprecision(14) << iPhi * jPhi * LDA.evaluatePotential(rho_) << " ";
         }
         cout << endl;
     }
 
-    return 0;
-    */
+    xc_func_type c;
+    xc_func_type x;
+    double rho[5] = {0.1, 0.2, 0.3, 0.4, 0.5};
+    double sigma[5] = {0,0,0,0,0};
+    double ex[5];
+    double ec[5];
+    double exc[5];
+    int i, vmajor, vminor, vmicro, func_id = 1;
 
+    xc_func_init(&x, XC_LDA_X,          XC_UNPOLARIZED);
+    xc_func_init(&c, XC_LDA_C_VWN_RPA,  XC_UNPOLARIZED);
+
+    xc_lda_vxc(&x, 5, rho, ex);
+    xc_lda_vxc(&c, 5, rho, ec);
+
+    double exc_homemade[5];
+    for (int i = 0; i < 5; i++) {
+        exc[i] = ex[i] + ec[i];
+        exc_homemade[i] = LDA.evaluatePotential(rho[i]);
+    }
+
+    for(i=0; i<5; i+=1) {
+        printf("%20.15f %20.15f %20.15f %20.15g\n", rho[i], exc[i], exc_homemade[i], fabs(exc[i]-exc_homemade[i]));
+    }
+
+    xc_func_end(&x);
+    xc_func_end(&c);
+
+
+
+    return 0;
+
+    /*
     //Examples::SingleAtom(4,"STO-6G",4,1e4,1e-8,"cuspTest");
     //Examples::H2();
     //return 0;
@@ -134,6 +165,6 @@ int main(int, char**) {
     rdft->printFinalInfo();
 
     return 0;
-
+    */
 }
 

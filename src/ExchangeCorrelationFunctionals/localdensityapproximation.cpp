@@ -24,6 +24,7 @@ double LocalDensityApproximation::evaluatePotential(double rho) {
     const double rs  = pow(3.0/(4*3.1415926535897932384*rho), 1.0/3.0);
     return  (rho < 1e-20) ? 0 : vX(rs, rho) + vC(rs, rho);
     //return vC(rs,rho);
+    //return vC(rs,rho);
 }
 
 double LocalDensityApproximation::epsilonX(double rs, double rho) {
