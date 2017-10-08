@@ -8,9 +8,13 @@ public:
     int         m_iteration;
     int         m_maximumIterations;
     int         m_iterationsUsed;
+    bool        m_dft = false;
     bool        m_reachedSelfConsistency;
     bool        m_silent = false;
     bool        m_setupDone = false;
+    double      m_xcEnergy;
+    double      m_oneElectronEnergy;
+    double      m_twoElectronEnergy;
     double      m_convergenceCriterion;
     double      m_hartreeFockEnergy;
     double      m_electronicHartreeFockEnergy;

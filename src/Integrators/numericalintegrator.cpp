@@ -54,8 +54,8 @@ double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
 
 int NumericalIntegrator::generateBeckeGrid() {
     //double radialPrecision = 1e-20;int maximumRadialPoints = 2000;int minimumRadialPoints = 1500;
-    //double radialPrecision = 1e-8;int maximumRadialPoints = 500;int minimumRadialPoints = 300;
-    double radialPrecision = 1e-4;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
+    double radialPrecision = 1e-8;int maximumRadialPoints = 500;int minimumRadialPoints = 300;
+    //double radialPrecision = 1e-4;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];

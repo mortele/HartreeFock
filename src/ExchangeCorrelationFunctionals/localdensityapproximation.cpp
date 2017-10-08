@@ -3,6 +3,7 @@
 #include "Orbitals/contractedgaussian.h"
 #include "Orbitals/gaussianprimitive.h"
 #include <iostream>
+#include <iomanip>
 
 using arma::mat;
 
@@ -14,12 +15,15 @@ LocalDensityApproximation::LocalDensityApproximation(System*    system,
 
 double LocalDensityApproximation::evaluateEnergy(double rho) {
     const double rs  = pow(3.0/(4.0*3.1415926535897932384*rho), 1.0/3.0);
-    return (rho < 1e-20) ? 0 : epsilonX(rs, rho) + epsilonC(rs, rho);
+    return (rho < 1e-15) ? 0 : epsilonX(rs, rho) + epsilonC(rs, rho);
+    //return epsilonX(rs,rho);
+    //return epsilonC(rs,rho);
 }
 
 double LocalDensityApproximation::evaluatePotential(double rho) {
     const double rs  = pow(3.0/(4*3.1415926535897932384*rho), 1.0/3.0);
     return  (rho < 1e-20) ? 0 : vX(rs, rho) + vC(rs, rho);
+    //return vC(rs,rho);
 }
 
 double LocalDensityApproximation::epsilonX(double rs, double rho) {
@@ -34,7 +38,7 @@ double LocalDensityApproximation::vX(double rs, double rho) {
 
 double LocalDensityApproximation::vC(double rs, double rho) {
     const double x  = sqrt(rs);
-    const double Ai  =  0.0621814 / 2.0;
+    double       Ai  =  0.0621814 / 2.0;
     const double xi = -0.10498;
     const double bi =  3.72744;
     const double ci = 12.9352;
@@ -43,13 +47,12 @@ double LocalDensityApproximation::vC(double rs, double rho) {
     const double X  = x * x + bi*x  + ci;
 
     const double eps =  Ai * (log(x*x/X) + 2*bi/Qi*atan(Qi/(2*x+bi)) - bi*xi/Xi * (  log((x-xi)*(x-xi)/X) + 2*(bi+2*xi)/Qi*atan(Qi/(2*x+bi))));
-    const double drs_drho_timesRho = - 1.0/3.0 * rs;
-    const double dx_drs = 1.0 / (2*x);
-    const double dX_dx = bi + 2*x;
-    const double deps_dX = Ai/Xi * (bi*xi / Xi - 1);
-    const double deps_dx = 2*Ai / x - 4*Ai*bi / (bi*bi + Qi*Qi + 4*x*(bi + x))- Ai*bi*xi/Xi * (2/(x-xi)) - 4*(bi+2*xi)/(bi*bi + Qi*Qi + 4*x*(bi + x));
-    const double deps_drs = dx_drs * deps_dx + deps_dX * dX_dx * dx_drs;
-    return eps + drs_drho_timesRho * (deps_drs);
+    const double deps_drho = -Ai*rs/(6*x) * (   (2*ci+bi*x)/(x*(ci+x*(bi+x)))
+                                             -(4*bi)/(Qi*Qi+(bi+2*x)*(bi+2*x))
+                                             -(bi*xi)/(ci+xi*(bi+xi)) * (-(bi+2*x) / (ci+x*(bi+x))
+                                                                         +2/(x-xi)
+                                                                         -4*(bi+2*xi)/(Qi*Qi + (bi+2*x)*(bi+2*x))));
+    return eps + deps_drho;
 }
 
 double LocalDensityApproximation::epsilonC(double rs, double rho) {

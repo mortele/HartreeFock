@@ -13,7 +13,7 @@ using arma::field;
 
 
 HartreeFock::HartreeFock(System* system) :
-        m_system(system) {
+    m_system(system) {
     m_system->setSolver(this);
 
     m_numberOfBasisFunctions    = m_system->getNumberOfBasisFunctions();
@@ -82,25 +82,25 @@ void HartreeFock::setupOneBodyElements() {
 
 void HartreeFock::setupTwoBodyElements() {
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
-    for (int q = 0; q < m_numberOfBasisFunctions; q++) {
-    for (int r = p; r < m_numberOfBasisFunctions; r++) {
-    for (int s = q; s < m_numberOfBasisFunctions; s++) {
-            m_twoBodyMatrixElements(p,q)(r,s) = m_system->twoBodyElements(p,r,q,s);
-    }}}}
+        for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+            for (int r = p; r < m_numberOfBasisFunctions; r++) {
+                for (int s = q; s < m_numberOfBasisFunctions; s++) {
+                    m_twoBodyMatrixElements(p,q)(r,s) = m_system->twoBodyElements(p,r,q,s);
+                }}}}
 
     for(int p = 0; p < m_numberOfBasisFunctions; p++) {
-    for(int q = 0; q < m_numberOfBasisFunctions; q++) {
-    for(int r = p; r < m_numberOfBasisFunctions; r++) {
-    for(int s = q; s < m_numberOfBasisFunctions; s++) {
-        double pqrs = m_twoBodyMatrixElements(p,q)(r,s);
-        m_twoBodyMatrixElements(r,s)(p,q) = pqrs;
-        m_twoBodyMatrixElements(r,q)(p,s) = pqrs;
-        m_twoBodyMatrixElements(p,s)(r,q) = pqrs;
-        m_twoBodyMatrixElements(q,p)(s,r) = pqrs;
-        m_twoBodyMatrixElements(s,p)(q,r) = pqrs;
-        m_twoBodyMatrixElements(q,r)(s,p) = pqrs;
-        m_twoBodyMatrixElements(s,r)(q,p) = pqrs;
-    }}}}
+        for(int q = 0; q < m_numberOfBasisFunctions; q++) {
+            for(int r = p; r < m_numberOfBasisFunctions; r++) {
+                for(int s = q; s < m_numberOfBasisFunctions; s++) {
+                    double pqrs = m_twoBodyMatrixElements(p,q)(r,s);
+                    m_twoBodyMatrixElements(r,s)(p,q) = pqrs;
+                    m_twoBodyMatrixElements(r,q)(p,s) = pqrs;
+                    m_twoBodyMatrixElements(p,s)(r,q) = pqrs;
+                    m_twoBodyMatrixElements(q,p)(s,r) = pqrs;
+                    m_twoBodyMatrixElements(s,p)(q,r) = pqrs;
+                    m_twoBodyMatrixElements(q,r)(s,p) = pqrs;
+                    m_twoBodyMatrixElements(s,r)(q,p) = pqrs;
+                }}}}
 }
 
 void HartreeFock::setupOverlapMatrix() {
@@ -128,9 +128,9 @@ void HartreeFock::printInitialInfo() {
     printf("   ------------------------------------------------------- \n");
     for (Atom* atom : m_system->getAtoms()) {
         printf("   | %-25s (%6.3f, %6.3f, %6.3f)  | \n", atom->getInfo().c_str(),
-                                                          atom->getPosition()(0),
-                                                          atom->getPosition()(1),
-                                                          atom->getPosition()(2));
+               atom->getPosition()(0),
+               atom->getPosition()(1),
+               atom->getPosition()(2));
     }
     printf("   ------------------------------------------------------- \n\n");
     printf(" ============================================================ \n");
@@ -154,19 +154,20 @@ void HartreeFock::printFinalInfo() {
     printf(" ============================================================ \n");
     if (m_reachedSelfConsistency) {
         printf("\n Self consistency SUCCESFULLY reached. \n\n");
-        printf(" => Iterations used:         %30d   \n",  m_iterationsUsed);
-        printf(" => Final convergence test:  %30.16g \n", m_convergenceTest);
-        printf(" => Final electronic energy: %30.16g  \n", m_electronicHartreeFockEnergy);
-        printf(" => Final energy (eV):       %30.16g \n", m_hartreeFockEnergy*27.21139);
-        printf(" => Final energy:            %30.16g \n", m_hartreeFockEnergy);
     } else {
         printf("\n Self consistency -> NOT <- reached. \n\n");
-        printf(" => Iterations used:         %30d    \n",   m_iterationsUsed);
-        printf(" => Final convergence test:  %30.16g  \n",   m_convergenceTest);
-        printf(" => Final electronic energy: %30.16g  \n", m_electronicHartreeFockEnergy);
-        printf(" => Final energy (eV):       %30.16g \n", m_hartreeFockEnergy*27.21139);
-        printf(" => Final energy:            %30.16g  \n", m_hartreeFockEnergy);
     }
+    printf(" => Iterations used:            %30d   \n",  m_iterationsUsed);
+    printf(" => Final convergence test:     %30.16g \n", m_convergenceTest);
+    printf("\n");
+    printf(" => Final electronic energy:    %30.16g  \n", m_electronicHartreeFockEnergy);
+    printf(" => Final nuclear int. energy:  %30.16g  \n", m_nucleusNucleusInteractionEnergy);
+    if (m_dft) printf(" => Final exchange-correlation: %30.16g  \n", m_xcEnergy);
+    printf(" => Final one-electron energy:  %30.16g  \n", m_oneElectronEnergy);
+    printf(" => Final two-electron energy:  %30.16g  \n", m_twoElectronEnergy);
+    printf(" => Final energy (eV):          %30.16g \n", m_hartreeFockEnergy*27.21139);
+    printf("\n");
+    printf(" => Final energy:               %30.16g \n", m_hartreeFockEnergy);
     printf(" ============================================================ \n");
 }
 

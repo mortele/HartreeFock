@@ -17,6 +17,8 @@ using arma::field;
 
 RestrictedDFT::RestrictedDFT(System* system) :
         HartreeFock(system) {
+    m_dft = true;
+
     m_epsilon                   = zeros(m_numberOfBasisFunctions);
     m_epsilonOld                = zeros(m_numberOfBasisFunctions);
     m_fockMatrix                = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
@@ -52,6 +54,7 @@ void RestrictedDFT::setup() {
     setupOneBodyElements();
     setupTwoBodyElements();
     computeDensityMatrix();
+    computeXcMatrix();
     m_nucleusNucleusInteractionEnergy = m_system->nucleusNucleusInteractionEnergy();
 
 }
@@ -77,7 +80,7 @@ void RestrictedDFT::computeFockMatrix() {
         for(int r = 0; r < m_numberOfBasisFunctions; r++)
         for(int s = 0; s < m_numberOfBasisFunctions; s++) {
             //m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * (2*twoBodyMatrixElements(p,r,q,s) - twoBodyMatrixElements(p,r,s,q));
-            m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * (2*twoBodyMatrixElements(p,r,q,s));
+            m_fockMatrix(p,q) += 0.5 * m_densityMatrix(s,r) * (2*twoBodyMatrixElements(p,q,r,s));
         }
     }
 }
@@ -131,13 +134,19 @@ void RestrictedDFT::computeHartreeFockEnergy() {
     m_hartreeFockEnergy  = 0;
     m_hartreeFockEnergy += m_xcEnergy;
     m_hartreeFockEnergy += m_nucleusNucleusInteractionEnergy;
+
+    m_oneElectronEnergy = 0;
+    m_twoElectronEnergy = 0;
+
     for (int p = 0; p < m_numberOfBasisFunctions; p++) {
         for (int q = 0; q < m_numberOfBasisFunctions; q++) {
+            m_oneElectronEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q);
             m_hartreeFockEnergy += m_densityMatrix(p,q) * m_oneBodyMatrixElements(p,q);
             for (int r = 0; r < m_numberOfBasisFunctions; r++) {
                 for (int s = 0; s < m_numberOfBasisFunctions; s++) {
-                    double pqrs = 0.5*twoBodyMatrixElements(p,r,q,s);
+                    double pqrs = 0.5*twoBodyMatrixElements(p,q,r,s);
                     m_hartreeFockEnergy += pqrs * m_densityMatrix(s,r) * m_densityMatrix(p,q);
+                    m_twoElectronEnergy += pqrs * m_densityMatrix(s,r) * m_densityMatrix(p,q);
                 }
             }
         }

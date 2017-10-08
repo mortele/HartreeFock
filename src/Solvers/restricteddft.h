@@ -14,7 +14,7 @@ class RestrictedDFT : public HartreeFock {
 public:
     bool        m_smoothing         = true;
     double      m_smoothingFactor   = 0.5;
-    double      m_xcEnergy;
+    //double      m_xcEnergy;
     arma::vec   m_epsilon;
     arma::vec   m_epsilonOld;
     arma::mat   m_fockMatrix;
