@@ -10,7 +10,7 @@ using boost::regex_replace;
 
 string FileNameParser::findBasisFile(string atom, string basis) {
     string path = m_path + atom + "/";
-
+    /*
     // Replace [ * ] --> s
     basis = regex_replace(basis, regex("\\*"), "s");
     // Replace [ + ] --> p
@@ -21,6 +21,6 @@ string FileNameParser::findBasisFile(string atom, string basis) {
     basis = regex_replace(basis, regex("\\)"), "_");
     // Replace [ whitespace ] --> _
     basis = regex_replace(basis, regex(" "),   "_");
-
+    */
     return path + basis;
 }

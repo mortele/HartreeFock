@@ -17,12 +17,12 @@ private:
 public:
     NumericalIntegrator(class System* system, arma::mat* densityMatrix);
     int generateBeckeGrid();
-    double testIntegral();
+    double integrateDensity();
     double integrateExchangeCorrelationPotential(class ContractedGaussian* Gp, class ContractedGaussian* Gq, int p, int q);
     double integrateExchangeCorrelationPotential(int,int);
     double integrateExchangeCorrelationEnergy();
     void setFunctional(class ExchangeCorrelationFunctional* functional);
 
-    double testIntegral(const arma::mat& densityMatrix);
+    double testIntegral(int p);
 };
 

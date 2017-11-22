@@ -37,6 +37,7 @@ public:
     void selfConsistentFieldIteration();
     void computeHartreeFockEnergy();
     void storeEnergy();
+    void computeDensityIntegral();
     double twoBodyMatrixElements(int,int,int,int);
     double twoBodyMatrixElementsAntiSymmetric(int,int,int,int);
     double Vxc(int,int);

@@ -13,6 +13,7 @@ public:
     bool        m_silent = false;
     bool        m_setupDone = false;
     double      m_xcEnergy;
+    double      m_densityIntegral;
     double      m_oneElectronEnergy;
     double      m_twoElectronEnergy;
     double      m_convergenceCriterion;
@@ -38,6 +39,7 @@ public:
     virtual void    selfConsistentFieldIteration() = 0;
     virtual void    computeHartreeFockEnergy() = 0;
     virtual void    storeEnergy() = 0;
+    virtual void    computeDensityIntegral() {}
     virtual double  convergenceTest() = 0;
 
 public:
@@ -45,6 +47,6 @@ public:
     arma::mat   m_overlapMatrix;
     arma::mat   m_transformationMatrix;
 
-    double solve(double convergenceCriterion=1e-14, int maximumIterations=50);
-    double solveSilently(double convergenceCriterion=1e-14, int maximumIterations=50);
+    double solve(double convergenceCriterion=1e-8, int maximumIterations=50);
+    double solveSilently(double convergenceCriterion=1e-8, int maximumIterations=50);
 };

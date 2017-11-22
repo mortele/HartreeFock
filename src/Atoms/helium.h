@@ -10,6 +10,7 @@ private:
     void basis_6311G2df2pd();
     void basis_STO6G();
     void basis_toy();
+    void basis_thijssen();
 
 public:
     Helium(std::string basisName, arma::vec position);

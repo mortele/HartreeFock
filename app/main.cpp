@@ -26,7 +26,11 @@ using std::setprecision;
 
 
 int main(int, char**) {
+    Examples::firstExample();
+    return 0;
 
+
+    /*
     System* system = new System();
     system->addAtom(new Helium("toy", arma::vec{0,0,0}));
     RestrictedDFT* DFT = new RestrictedDFT(system);
@@ -67,15 +71,16 @@ int main(int, char**) {
     int i, vmajor, vminor, vmicro, func_id = 1;
 
     xc_func_init(&x, XC_LDA_X,          XC_UNPOLARIZED);
-    xc_func_init(&c, XC_LDA_C_VWN_RPA,  XC_UNPOLARIZED);
+    xc_func_init(&c, XC_LDA_C_VWN_4,  XC_UNPOLARIZED);
 
-    xc_lda_vxc(&x, 5, rho, ex);
-    xc_lda_vxc(&c, 5, rho, ec);
+    xc_lda_exc(&x, 5, rho, ex);
+    xc_lda_exc(&c, 5, rho, ec);
 
     double exc_homemade[5];
     for (int i = 0; i < 5; i++) {
         exc[i] = ex[i] + ec[i];
-        exc_homemade[i] = LDA.evaluatePotential(rho[i]);
+        //exc_homemade[i] = LDA.evaluatePotential(rho[i]);
+        exc_homemade[i] = LDA.evaluateEnergy(rho[i]);
     }
 
     for(i=0; i<5; i+=1) {
@@ -89,7 +94,7 @@ int main(int, char**) {
 
     return 0;
 
-    /*
+    */
     //Examples::SingleAtom(4,"STO-6G",4,1e4,1e-8,"cuspTest");
     //Examples::H2();
     //return 0;
@@ -114,10 +119,12 @@ int main(int, char**) {
     RestrictedHartreeFock*  rhf     = new RestrictedHartreeFock(system);
     RestrictedDFT*          rdft    = new RestrictedDFT(system);
     rdft->setFunctional("LDA");
-    rdft->solve(1e-10,1e4);
-    cout << setprecision(15) << "" << rdft->m_coefficientMatrix(0,0) << endl;
-    cout << setprecision(15) << "" << rdft->m_coefficientMatrix(1,0) << endl;
-
+    rdft->solve(1e-8,1);
+    for (int i = 0; i < system->getNumberOfBasisFunctions(); i++) {
+        cout << setprecision(15) << fabs(rdft->m_numericalIntegrator->testIntegral(i)-1) << endl;
+    }
+    //cout << setprecision(15) << "" << rdft->m_coefficientMatrix(0,0) << endl;
+    //cout << setprecision(15) << "" << rdft->m_coefficientMatrix(1,0) << endl;
 
     // HF
     //rdft->m_coefficientMatrix(0,0) = 0.300859;
@@ -144,9 +151,9 @@ int main(int, char**) {
     arma::mat& S = rdft->m_overlapMatrix;
     arma::mat& P = rdft->m_densityMatrix;
     arma::mat& C = rdft->m_coefficientMatrix;
-    cout << C << endl;
+    //cout << C << endl;
     arma::mat& A = rdft->m_transformationMatrix;
-    rdft->m_densityMatrix = 2*C*C.t();
+    //rdft->m_densityMatrix = 2*C*C.t();
     GaussianPrimitive* pr1 = system->getBasis().at(0)->getPrimitives().at(0);
     GaussianPrimitive* pr2 = system->getBasis().at(1)->getPrimitives().at(0);
     //cout << *pr1 << endl;
@@ -158,13 +165,7 @@ int main(int, char**) {
     //// !!!!!!!
     //// !!!!!!!
 
-    rdft->computeHartreeFockEnergy();
-    //cout << std::setprecision(15) << rdft->m_hartreeFockEnergy << endl;
-    rdft->m_twoElectronEnergy += (2.0194127878861483 - 2.019606553216973);
-    rdft->m_hartreeFockEnergy += (2.0194127878861483 - 2.019606553216973);
-    rdft->printFinalInfo();
-
     return 0;
-    */
+
 }
 

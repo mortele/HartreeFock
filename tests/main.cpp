@@ -21,7 +21,8 @@ TEST_CASE("Simple grid integral", "[Numerical integration]") {
     NumericalIntegrator* integrator  = new NumericalIntegrator(system, &P);
     const double rMax   = 5;
     const double pi     = acos(-1.0);
-    const double I      = integrator->testIntegral(arma::ones<mat>(2,2));
+    //const double I      = integrator->testIntegral(arma::ones<mat>(2,2));
+    const double I = 0;
     cout << "I " <<  I << endl;
     REQUIRE( I == Approx(4*pi*(2-(rMax*(rMax+2)+2)*exp(-rMax))) );
 }

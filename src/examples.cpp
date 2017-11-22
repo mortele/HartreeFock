@@ -19,6 +19,15 @@ using std::sin;
 
 
 
+void Examples::firstExample() {
+    System He;
+    //He.addAtom(new Helium("STO-6G", vec{0,0,0}));
+    He.addAtom(new Helium("6-311G(2df,2pd)", vec{0,0,0}));
+    //He.addAtom(new Helium("thijssen", vec{0,0,0}));
+    RestrictedHartreeFock  solver(&He);
+    solver.solve();
+}
+
 void Examples::Hm() {
     boost::timer t;
     vec nucleus1  {0, 0, 0};

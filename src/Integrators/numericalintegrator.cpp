@@ -23,39 +23,38 @@ NumericalIntegrator::NumericalIntegrator(System* system, arma::mat* densityMatri
     m_densityMatrix = densityMatrix;
 }
 
-double NumericalIntegrator::testIntegral(const arma::mat& densityMatrix) {
-    m_grid   = new Grid(m_system);
-    m_grid->createSimpleOneAtomGrid(300,50);
+double NumericalIntegrator::testIntegral(int p) {
+    if (! m_gridGenerated) {
+        generateBeckeGrid();
+    }
 
-    const vec& weights = m_grid->getWeights();
-    const mat& points = m_grid->getPoints();
+    int             numberOfGridPoints  = numgrid_get_num_points(m_context);
+    const double*   grid                = numgrid_get_grid      (m_context);
 
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
     int basisSize = basis.size();
+    ContractedGaussian* pPhi = basis.at(p);
+
+    arma::mat& P = *m_densityMatrix;
 
     double integral = 0;
-    for (int i = 0; i < weights.n_elem; i++) {
-        const double x = points(i,0);
-        const double y = points(i,1);
-        const double z = points(i,2);
-        const double w = weights(i);
-        double tmp = 0;
-        for (int p = 0; p < basisSize; p++) {
-            ContractedGaussian* pPhi = basis.at(p);
-            for (int q = 0; q < basisSize; q++) {
-                ContractedGaussian* qPhi = basis.at(q);
-                tmp += densityMatrix(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
-            }
-        }
-        integral += w * tmp;
+    for (int k = 0; k < 4*numberOfGridPoints; k+=4) {
+        const double x = grid[k+0];
+        const double y = grid[k+1];
+        const double z = grid[k+2];
+        const double w = grid[k+3];
+
+
+        const double value = pPhi->evaluate(x,y,z);
+        integral += w * value*value;
     }
     return integral;
 }
 
 int NumericalIntegrator::generateBeckeGrid() {
     //double radialPrecision = 1e-20;int maximumRadialPoints = 2000;int minimumRadialPoints = 1500;
-    double radialPrecision = 1e-8;int maximumRadialPoints = 500;int minimumRadialPoints = 300;
-    //double radialPrecision = 1e-4;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
+    //double radialPrecision = 1e-8;int maximumRadialPoints = 500;int minimumRadialPoints = 300;
+    double radialPrecision = 1e-10;int maximumRadialPoints = 200;int minimumRadialPoints = 86;
 
     int numberOfAtoms = m_system->getAtoms().size();
     double atomCoordinates[numberOfAtoms*3];
@@ -131,7 +130,7 @@ int NumericalIntegrator::generateBeckeGrid() {
     return error;
 }
 
-double NumericalIntegrator::testIntegral() {
+double NumericalIntegrator::integrateDensity() {
     if (! m_gridGenerated) {
         generateBeckeGrid();
     }
@@ -162,7 +161,7 @@ double NumericalIntegrator::testIntegral() {
                 rho += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
-        integral += w * rho * m_xcFunctional->evaluateEnergy(rho);
+        integral += w * rho;
     }
     return integral;
 }

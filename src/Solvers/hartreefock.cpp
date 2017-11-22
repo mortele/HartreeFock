@@ -132,21 +132,40 @@ void HartreeFock::printInitialInfo() {
                atom->getPosition()(1),
                atom->getPosition()(2));
     }
-    printf("   ------------------------------------------------------- \n\n");
-    printf(" ============================================================ \n");
-    printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
-    printf(" ------------------------------------------------------------ \n");
+    if (! m_dft) {
+        printf("   ------------------------------------------------------- \n\n");
+        printf(" ============================================================ \n");
+        printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
+        printf(" ------------------------------------------------------------ \n");
+    } else {
+        printf("   --------------------------------------------------------------------------- \n\n");
+        printf(" ================================================================================ \n");
+        printf(" %15s %20s %20s %20s\n", "Iteration", "Energy", "Convergence", "Density integral");
+        printf(" -------------------------------------------------------------------------------- \n");
+    }
     fflush(stdout);
 }
 
 void HartreeFock::printIterationInfo(int iteration) {
     if (iteration != 0 && iteration % 20 == 0) {
-        printf(" ------------------------------------------------------------ \n");
-        printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
-        printf(" ------------------------------------------------------------ \n");
-        fflush(stdout);
+        if (! m_dft) {
+            printf(" ------------------------------------------------------------ \n");
+            printf(" %15s %20s %20s \n", "Iteration", "Energy", "Convergence");
+            printf(" ------------------------------------------------------------ \n");
+            fflush(stdout);
+        } else {
+            printf(" -------------------------------------------------------------------------------- \n");
+            printf(" %15s %20s %20s %20s\n", "Iteration", "Energy", "Convergence", "Density integral");
+            printf(" -------------------------------------------------------------------------------- \n");
+            fflush(stdout);
+        }
     }
-    printf(" %15d %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
+    if (! m_dft) {
+        printf(" %15d %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest);
+    } else {
+        computeDensityIntegral();
+        printf(" %15d %20.9g %20.9g %20.9g \n", iteration, m_hartreeFockEnergy, m_convergenceTest, m_densityIntegral);
+    }
     fflush(stdout);
 }
 
@@ -160,6 +179,9 @@ void HartreeFock::printFinalInfo() {
     printf(" => Iterations used:            %30d   \n",  m_iterationsUsed);
     printf(" => Final convergence test:     %30.16g \n", m_convergenceTest);
     printf("\n");
+    if (m_dft) computeDensityIntegral();
+    if (m_dft) printf(" => Final density integral:     %30.16g  \n", m_densityIntegral);
+    if (m_dft) printf("\n");
     printf(" => Final electronic energy:    %30.16g  \n", m_electronicHartreeFockEnergy);
     printf(" => Final nuclear int. energy:  %30.16g  \n", m_nucleusNucleusInteractionEnergy);
     if (m_dft) printf(" => Final exchange-correlation: %30.16g  \n", m_xcEnergy);
