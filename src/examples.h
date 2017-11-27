@@ -3,6 +3,9 @@
 
 class Examples {
 public:
+    static void firstExample();
+    static void secondExample();
+
     static void Hm();
     static void He();
     static void HeHp();

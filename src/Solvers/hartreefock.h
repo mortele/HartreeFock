@@ -42,6 +42,6 @@ protected:
 public:
     HartreeFock(class System* system);
 
-    double solve(double convergenceCriterion=1e-14, int maximumIterations=50);
-    double solveSilently(double convergenceCriterion=1e-14, int maximumIterations=50);
+    double solve(double convergenceCriterion=1e-8, int maximumIterations=50);
+    double solveSilently(double convergenceCriterion=1e-8, int maximumIterations=50);
 };

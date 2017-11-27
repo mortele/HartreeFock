@@ -11,6 +11,11 @@ using std::cout;
 using std::endl;
 
 int main(int, char**) {
+    //Examples::firstExample();
+    Examples::secondExample();
+    return 0;
+
+
     //                  (Z,     basis,               nElectrons,  maxIterations,  tollerance, outBasisFileName);
     Examples::SingleAtom(2,     "6-311G(2df,2pd)",    2,          1e4,            1e-10);
     return 0;

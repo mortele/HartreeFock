@@ -19,6 +19,27 @@ using std::sin;
 
 
 
+void Examples::firstExample() {
+    System He;
+    He.addAtom(new Helium("3-21G", vec{0,0,0}));
+    RestrictedHartreeFock solver(&He);
+    solver.solve();
+}
+
+void Examples::secondExample() {
+    vec O  { 0.000, 0.000, 0.000};
+    vec H1 {-1.430, 1.108, 0.000};
+    vec H2 { 1.430, 1.108, 0.000};
+
+    System H2O;
+    H2O.addAtom(new Oxygen  ("6-311++G**", O));
+    H2O.addAtom(new Hydrogen("6-311++G**", H1));
+    H2O.addAtom(new Hydrogen("6-311++G**", H2));
+
+    UnrestrictedHartreeFock solver(&H2O);
+    solver.solve();
+}
+
 void Examples::Hm() {
     boost::timer t;
     vec nucleus1  {0, 0, 0};
