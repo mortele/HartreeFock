@@ -40,6 +40,38 @@ void Examples::secondExample() {
     solver.solve();
 }
 
+void Examples::methane() {
+    // CH4
+    // ========================================================================
+    vec CH4_nucleus1  {0,            0,             0};
+    vec CH4_nucleus2  { 1.67381799,  0.        , -1.18356805};
+    vec CH4_nucleus3  {-1.67381799,  0.        , -1.18356805};
+    vec CH4_nucleus4  { 0.        ,  1.67381799,  1.18356805};
+    vec CH4_nucleus5  { 0.        , -1.67381799,  1.18356805};
+    System* system_CH4_big   = new System(5);
+    system_CH4_big->  addAtom(new Carbon  ("6-311++G**", CH4_nucleus1));
+    system_CH4_big->  addAtom(new Hydrogen("6-311++G**", CH4_nucleus2));
+    system_CH4_big->  addAtom(new Hydrogen("6-311++G**", CH4_nucleus3));
+    system_CH4_big->  addAtom(new Hydrogen("6-311++G**", CH4_nucleus4));
+    system_CH4_big->  addAtom(new Hydrogen("6-311++G**", CH4_nucleus5));
+    UnrestrictedHartreeFock un_solver_CH4_big  (system_CH4_big);
+
+    double un_CH4_big    = un_solver_CH4_big.  solve(1e-10,1e4);
+    un_solver_CH4_big.dumpBasisToFile("methane");
+}
+
+void Examples::diberyllium() {
+    vec n1  { 0.000, 0.000, 0.000};
+    vec n2  { 4.630, 0.000, 0.000};
+
+    System Be2;
+    Be2.addAtom(new Beryllium("6-311++G**", n1));
+    Be2.addAtom(new Beryllium("6-311++G**", n2));
+
+    UnrestrictedHartreeFock solver(&Be2);
+    solver.solve();
+}
+
 void Examples::Hm() {
     boost::timer t;
     vec nucleus1  {0, 0, 0};

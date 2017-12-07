@@ -13,7 +13,6 @@ private:
     arma::vec   m_epsilonOld;
     arma::mat   m_fockMatrix;
     arma::mat   m_fockMatrixTilde;
-    arma::mat   m_coefficientMatrix;
     arma::mat   m_coefficientMatrixTilde;
     arma::mat   m_densityMatrix;
 
@@ -29,6 +28,7 @@ private:
     double convergenceTest();
 
 public:
+    arma::mat   m_coefficientMatrix;
     RestrictedHartreeFock(System* system);
 };
 

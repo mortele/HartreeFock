@@ -40,16 +40,14 @@ double ElectronNucleusIntegrator::computeIntegral(GaussianPrimitive* primitive1,
     const int    vLimit = z1 + z2 + 1;
 
     double integral = 0;
-    for (int t = 0; t < tLimit; t++) {
-        for (int u = 0; u < uLimit; u++) {
-            for (int v = 0; v < vLimit; v++) {
-                double Eproduct = 1;
-                Eproduct *= m_hermiteGaussian.getCoefficientDimension(x1,x2,t,0);
-                Eproduct *= m_hermiteGaussian.getCoefficientDimension(y1,y2,u,1);
-                Eproduct *= m_hermiteGaussian.getCoefficientDimension(z1,z2,v,2);
-                integral += Eproduct * m_hermiteGaussianIntegral.getCoefficient(0,t,u,v);
-            }
-        }
+    for (int t = 0; t < tLimit; t++)
+    for (int u = 0; u < uLimit; u++)
+    for (int v = 0; v < vLimit; v++) {
+        double Eproduct = 1;
+        Eproduct *= m_hermiteGaussian.getCoefficientDimension(x1,x2,t,0);
+        Eproduct *= m_hermiteGaussian.getCoefficientDimension(y1,y2,u,1);
+        Eproduct *= m_hermiteGaussian.getCoefficientDimension(z1,z2,v,2);
+        integral += Eproduct * m_hermiteGaussianIntegral.getCoefficient(0,t,u,v);
     }
     return integral * 2*M_PI / p;
 }

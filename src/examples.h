@@ -5,6 +5,8 @@ class Examples {
 public:
     static void firstExample();
     static void secondExample();
+    static void methane();
+    static void diberyllium();
 
     static void Hm();
     static void He();

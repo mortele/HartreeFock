@@ -45,9 +45,9 @@ double System::electronElectronIntegral(int i, int j, int k, int l) {
     return m_integrator.electronElectronIntegral(m_basis.at(i), m_basis.at(j), m_basis.at(k), m_basis.at(l));
 }
 
-double System::oneBodyElements(int i, int j) {
-    ContractedGaussian* contracted1 = m_basis.at(i);
-    ContractedGaussian* contracted2 = m_basis.at(j);
+double System::oneBodyElements(int p, int q) {
+    ContractedGaussian* contracted1 = m_basis.at(p);
+    ContractedGaussian* contracted2 = m_basis.at(q);
 
     double kinetic = m_integrator.kineticIntegral(contracted1, contracted2);
     double nucleusCoulombInteraction = 0;

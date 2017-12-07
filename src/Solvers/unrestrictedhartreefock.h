@@ -16,8 +16,6 @@ private:
     arma::mat   m_fockMatrixDown;
     arma::mat   m_fockMatrixTildeUp;
     arma::mat   m_fockMatrixTildeDown;
-    arma::mat   m_coefficientMatrixUp;
-    arma::mat   m_coefficientMatrixDown;
     arma::mat   m_coefficientMatrixTildeUp;
     arma::mat   m_coefficientMatrixTildeDown;
     arma::mat   m_densityMatrixUp;
@@ -37,6 +35,8 @@ private:
 public:
     UnrestrictedHartreeFock(class System* system);
 
+    arma::mat   m_coefficientMatrixUp;
+    arma::mat   m_coefficientMatrixDown;
     std::string dumpBasisToFile(std::__1::string fileName="");
 };
 

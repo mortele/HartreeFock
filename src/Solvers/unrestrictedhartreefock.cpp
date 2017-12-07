@@ -34,7 +34,7 @@ UnrestrictedHartreeFock::UnrestrictedHartreeFock(System* system) :
     m_coefficientMatrixTildeUp    = zeros(m_numberOfBasisFunctions, m_numberOfSpinUpElectrons);
     //m_densityMatrixUp             = zeros(m_numberOfBasisFunctions, m_numberOfBasisFunctions);
     m_densityMatrixUp             = m_coefficientMatrixUp   * m_coefficientMatrixUp.t();
-    m_densityMatrixUp(0,1) = 0.1;
+    if (m_numberOfSpinUpElectrons > 1) m_densityMatrixUp(0,1) = 0.1;
 
     m_epsilonDown                 = zeros(m_numberOfSpinDownElectrons);
     m_epsilonOldDown              = zeros(m_numberOfSpinDownElectrons);
@@ -173,15 +173,28 @@ std::string UnrestrictedHartreeFock::getDateTime() {
 std::string UnrestrictedHartreeFock::dumpBasisToFile(std::string fileNameIn) {
     std::string fileName;
     if (fileNameIn=="") {
-        fileName = "../HartreeFockBases/basis-" + getDateTime();
+        //fileName = "../HartreeFockBases/basis-" + getDateTime();
+        fileName = "../../HartreeFock/data/HartreeFockBases/basis-" + getDateTime();
     } else {
-        fileName = "../HartreeFockBases/" + fileNameIn;
+        //fileName = "../HartreeFockBases/" + fileNameIn;
+        fileName = "../../HartreeFock/data/HartreeFockBases/" + fileNameIn;
     }
 
     std::vector<ContractedGaussian*> basis = m_system->getBasis();
 
     std::ofstream outFile;
     outFile.open(fileName, std::ios::out);
+    bool good = false;
+    if (outFile.is_open()) {
+        if (outFile.good()) {
+            cout << "Successfully opened: " << fileName << endl;
+            good = true;
+        }
+    }
+    if (!good) {
+        cout << "Could not open file: " << fileName << endl;
+        return fileName;
+    }
 
     int basisSize = m_numberOfBasisFunctions;
     int electrons = m_numberOfElectrons;

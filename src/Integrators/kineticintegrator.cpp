@@ -36,10 +36,10 @@ double KineticIntegrator::computeIntegral(GaussianPrimitive* primitive1,
     primitive2->adjustExponentX(-2);
     primitive2->adjustExponentY(-2);
     primitive2->adjustExponentZ(-2);
-
-    m_overlapIntegrals(0) = m_overlapIntegrator.getIntegralIndicesDimension(ix,jx,0);
-    m_overlapIntegrals(1) = m_overlapIntegrator.getIntegralIndicesDimension(iy,jy,1);
-    m_overlapIntegrals(2) = m_overlapIntegrator.getIntegralIndicesDimension(iz,jz,2);
+    vec& S = m_overlapIntegrals;
+    S(0) = m_overlapIntegrator.getIntegralIndicesDimension(ix,jx,0);
+    S(1) = m_overlapIntegrator.getIntegralIndicesDimension(iy,jy,1);
+    S(2) = m_overlapIntegrator.getIntegralIndicesDimension(iz,jz,2);
 
     for (int dimension = 0; dimension < 3; dimension++) {
         for (int adjustment = -2; adjustment <= 4; adjustment+=4) {
@@ -50,10 +50,9 @@ double KineticIntegrator::computeIntegral(GaussianPrimitive* primitive1,
         computeT(dimension);
     }
 
-    return - 0.5 * (
-           m_T(0)                * m_overlapIntegrals(1) * m_overlapIntegrals(2) +
-           m_overlapIntegrals(0) * m_T(1)                * m_overlapIntegrals(2) +
-           m_overlapIntegrals(0) * m_overlapIntegrals(1) * m_T(2));
+    return - 0.5 * (m_T(0) * S  (1)  * S  (2) +
+                    S  (0) * m_T(1)  * S  (2) +
+                    S  (0) * S  (1)  * m_T(2));
 }
 
 void KineticIntegrator::computeAdjustedOverlapIntegral(int dimension,

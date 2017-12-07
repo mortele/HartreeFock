@@ -12,12 +12,13 @@ using std::endl;
 
 int main(int, char**) {
     //Examples::firstExample();
-    Examples::secondExample();
-    return 0;
-
+    //Examples::secondExample();
+    //Examples::methane();
+    //Examples::diberyllium();
+    //Examples::H2();
 
     //                  (Z,     basis,               nElectrons,  maxIterations,  tollerance, outBasisFileName);
-    Examples::SingleAtom(2,     "6-311G(2df,2pd)",    2,          1e4,            1e-10);
+    Examples::SingleAtom(10,     "3-21G",        10,           1e4,            1e-10);//,      "He-STO-6G-HF");
     return 0;
 }
 

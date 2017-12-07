@@ -14,6 +14,8 @@ Helium::Helium(std::string basisName, arma::vec position) :
         basis_6311G2df2pd();
     } else if (basisName == "STO-6G") {
         basis_STO6G();
+    } else if (basisName == "STO-6G-alt") {
+        basis_STO6G_d();
     }
     else {
         cout << "Unknown basis: " << basisName << endl;
@@ -99,4 +101,15 @@ void Helium::basis_STO6G() {
     m_info = "Helium : STO-6G";
     setNumberOfOrbitals(1);
     create_S6(65.98456824,12.09819836,3.384639924,1.162715163,0.451516322,0.185959356,0.00916359628,0.04936149294,0.1685383049,0.3705627997,0.4164915298,0.1303340841);
+}
+
+void Helium::basis_STO6G_d() {
+    m_info = "Helium : STO-6G decontracted";
+    setNumberOfOrbitals(6);
+    create_S1(   233.304073 ,  1.0);
+    create_S1(  27.47586064 ,  1.0);
+    create_S1(  5.494186309 ,  1.0);
+    create_S1(  1.390503359 ,  1.0);
+    create_S1( 0.3990010449 ,  1.0);
+    create_S1(  234.0898557 ,  1.0);
 }

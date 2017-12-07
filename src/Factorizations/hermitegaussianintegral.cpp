@@ -56,12 +56,14 @@ void HermiteGaussianIntegral::setupCoefficients(int         t,
     m_tuv        = m_t + m_u + m_v;
     int maxIndex = m_tuv+1;
     m_coefficients.set_size(maxIndex);
+    arma::field<arma::cube>& R = m_coefficients;
+    BoysFunction& F = m_boysFunction;
     for (int i=0; i<maxIndex; i++) {
         m_coefficients(i) = zeros<cube>(maxIndex+1, maxIndex+1, maxIndex+1);
     }
 
     double x = p * arma::dot(m_PC, m_PC);
-    m_coefficients(0)(0,0,0) = m_boysFunction.computeAndApplyDownwardRecurrence(x, m_tuv+1);
+    m_coefficients(0)(0,0,0) = F.computeAndApplyDownwardRecurrence(x, m_tuv+1);
 
     //          n                        n          n
     // Set all R    values according to R    = (-2p)  F (p CP*CP)
@@ -69,7 +71,7 @@ void HermiteGaussianIntegral::setupCoefficients(int         t,
     double minusTwoPPowerM = 1;
     for (int m = 1; m < m_tuv+1; m++) {
         minusTwoPPowerM *= (-2*p);
-        m_coefficients(m)(0,0,0) = minusTwoPPowerM * m_boysFunction[m];
+        m_coefficients(m)(0,0,0) = minusTwoPPowerM * F[m];
     }
 
     for (int tuv = 1; tuv < m_tuv+1;     tuv++)
