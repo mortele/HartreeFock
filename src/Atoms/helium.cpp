@@ -12,6 +12,10 @@ Helium::Helium(std::string basisName, arma::vec position) :
         basis_6311pGss();
     } else if (basisName == "6-311G(2df,2pd)") {
         basis_6311G2df2pd();
+    } else if (basisName == "STO-2G") {
+        basis_STO2G();
+    } else if (basisName == "STO-3G") {
+        basis_STO3G();
     } else if (basisName == "STO-6G") {
         basis_STO6G();
     } else if (basisName == "toy") {
@@ -99,6 +103,18 @@ void Helium::basis_6311G2df2pd() {
     create_D1(2.0000000, 1.0000000);
 }
 
+void Helium::basis_STO2G() {
+    m_info = "Helium : STO-2G";
+    setNumberOfOrbitals(1);
+    create_S2(2.4328790, 0.4330510, 0.4301280, 0.6789140);
+}
+
+void Helium::basis_STO3G() {
+    m_info = "Helium : STO-3G";
+    setNumberOfOrbitals(1);
+    create_S3(6.36242139, 1.15892300, 0.31364979, 0.15432897, 0.53532814,0.44463454);
+}
+
 void Helium::basis_STO6G() {
     m_info = "Helium : STO-6G";
     setNumberOfOrbitals(1);
@@ -110,7 +126,8 @@ void Helium::basis_toy() {
     setNumberOfOrbitals(2);
     //create_S1(3.8, 1.0);
     create_S1(0.5, 1.0);
-    create_P2(98.1243000, 3.3188300, 0.0287452, 0.8376350);
+    create_S1(3.8, 1.0);
+    //create_S2(98.1243000, 3.3188300, 0.0287452, 0.8376350);
 
 }
 

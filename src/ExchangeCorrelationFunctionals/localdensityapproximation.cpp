@@ -5,6 +5,8 @@
 #include <iostream>
 #include <iomanip>
 
+
+
 using arma::mat;
 
 LocalDensityApproximation::LocalDensityApproximation(System*    system,

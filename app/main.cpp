@@ -26,9 +26,6 @@ using std::setprecision;
 
 
 int main(int, char**) {
-    Examples::firstExample();
-    return 0;
-
 
     /*
     System* system = new System();
@@ -70,7 +67,7 @@ int main(int, char**) {
     double exc[5];
     int i, vmajor, vminor, vmicro, func_id = 1;
 
-    xc_func_init(&x, XC_LDA_X,          XC_UNPOLARIZED);
+    xc_func_init(&x, XC_LDA_X,        XC_UNPOLARIZED);
     xc_func_init(&c, XC_LDA_C_VWN_4,  XC_UNPOLARIZED);
 
     xc_lda_exc(&x, 5, rho, ex);
@@ -104,6 +101,7 @@ int main(int, char**) {
     //Helium*         helium      = new Helium    ("6-311+G**", arma::vec{0,0,0});
     //Helium*         helium      = new Helium    ("6-311G(2df,2pd)", arma::vec{0,0,0});
     Helium*         helium      = new Helium    ("toy", arma::vec{0,0,0});
+    //Helium*         helium      = new Helium    ("STO-2G", arma::vec{0,0,0});
     Hydrogen*       hydrogen1   = new Hydrogen  ("3-21G", arma::vec{0,0,0});
     Hydrogen*       hydrogen2   = new Hydrogen  ("3-21G", arma::vec{0,0,1.4});
     Beryllium*      beryllium   = new Beryllium ("3-21G", arma::vec{0,0,0});
@@ -119,12 +117,12 @@ int main(int, char**) {
     RestrictedHartreeFock*  rhf     = new RestrictedHartreeFock(system);
     RestrictedDFT*          rdft    = new RestrictedDFT(system);
     rdft->setFunctional("LDA");
-    rdft->solve(1e-8,1);
+    rdft->solve(1e-8,200);
     for (int i = 0; i < system->getNumberOfBasisFunctions(); i++) {
-        cout << setprecision(15) << fabs(rdft->m_numericalIntegrator->testIntegral(i)-1) << endl;
+        //cout << setprecision(15) << fabs(rdft->m_numericalIntegrator->testIntegral(i)-1) << endl;
     }
-    //cout << setprecision(15) << "" << rdft->m_coefficientMatrix(0,0) << endl;
-    //cout << setprecision(15) << "" << rdft->m_coefficientMatrix(1,0) << endl;
+    cout << setprecision(15) << "" << rdft->m_coefficientMatrix(0,0) << endl;
+    cout << setprecision(15) << "" << rdft->m_coefficientMatrix(1,0) << endl;
 
     // HF
     //rdft->m_coefficientMatrix(0,0) = 0.300859;
@@ -139,8 +137,9 @@ int main(int, char**) {
     //rdft->m_coefficientMatrix(1,0) = 0.67192440307208;
 
     // Toy basis @psi4
-    rdft->m_coefficientMatrix(0,0) = -0.29548391472761;
-    rdft->m_coefficientMatrix(1,0) = -0.81563000823352;
+    //rdft->m_coefficientMatrix(0,0) = 0.29573987763495; //-0.29548391472761;
+    //rdft->m_coefficientMatrix(1,0) = 0.81544100061619; //-0.81563000823352;
+
 
     // 3-21G test psi4
     //rdft->m_coefficientMatrix(0,0) =  0.44741355811568;

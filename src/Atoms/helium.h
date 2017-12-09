@@ -8,6 +8,8 @@ private:
     void basis_321G();
     void basis_6311pGss();
     void basis_6311G2df2pd();
+    void basis_STO2G();
+    void basis_STO3G();
     void basis_STO6G();
     void basis_toy();
     void basis_thijssen();

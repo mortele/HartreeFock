@@ -1,6 +1,7 @@
 #pragma once
 #include <numgrid.h>
 #include <armadillo>
+#include <xc.h>
 
 
 
@@ -13,6 +14,10 @@ private:
     class   ExchangeCorrelationFunctional*  m_xcFunctional;
     context_t*  m_context;
     arma::mat*  m_densityMatrix;
+    xc_func_type m_c;
+    xc_func_type m_x;
+
+
 
 public:
     NumericalIntegrator(class System* system, arma::mat* densityMatrix);

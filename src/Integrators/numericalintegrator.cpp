@@ -2,6 +2,7 @@
 #include "system.h"
 #include "Integrators/grid.h"
 #include <cmath>
+#include <xc.h>
 #include "Atoms/atom.h"
 #include "Orbitals/contractedgaussian.h"
 #include "Orbitals/gaussianprimitive.h"
@@ -21,6 +22,9 @@ using std::endl;
 NumericalIntegrator::NumericalIntegrator(System* system, arma::mat* densityMatrix) {
     m_system = system;
     m_densityMatrix = densityMatrix;
+
+    xc_func_init(&m_x, XC_LDA_X,         XC_UNPOLARIZED);
+    xc_func_init(&m_c, XC_LDA_C_VWN_RPA, XC_UNPOLARIZED);
 }
 
 double NumericalIntegrator::testIntegral(int p) {
@@ -203,7 +207,23 @@ double NumericalIntegrator::integrateExchangeCorrelationPotential(ContractedGaus
                 rho += P(i,j) * iPhi->evaluate(x,y,z) * jPhi->evaluate(x,y,z);
             }
         }
-        integral += w * m_xcFunctional->evaluatePotential(rho) * pPhi * qPhi;
+        //_________________________________________________________________________
+        //=========================================================================
+        //-------------------------------------------------------------------------
+        double rhoo[1];
+        double vxx[1];
+        double vcc[1];
+        rhoo[0]=rho;
+        xc_lda_vxc(&m_x, 1, rhoo, vxx);
+        xc_lda_vxc(&m_c, 1, rhoo, vcc);
+        double vx = vxx[0];
+        double vc = vcc[0];
+        //_________________________________________________________________________
+        //=========================================================================
+        //-------------------------------------------------------------------------
+
+        integral += w * (vx + vc) * pPhi * qPhi;
+        //integral += w * m_xcFunctional->evaluatePotential(rho) * pPhi * qPhi;
     }
     return integral;
 }
@@ -245,10 +265,25 @@ double NumericalIntegrator::integrateExchangeCorrelationEnergy() {
                 rho += P(p,q) * pPhi->evaluate(x,y,z) * qPhi->evaluate(x,y,z);
             }
         }
-        integral += w * rho * m_xcFunctional->evaluateEnergy(rho);
+        //_________________________________________________________________________
+        //=========================================================================
+        //-------------------------------------------------------------------------
+        double rhoo[1];
+        double exx[1];
+        double ecc[1];
+        rhoo[0]=rho;
+        xc_lda_exc(&m_x, 1, rhoo, exx);
+        xc_lda_exc(&m_c, 1, rhoo, ecc);
+        double ex = exx[0];
+        double ec = ecc[0];
+        //_________________________________________________________________________
+        //=========================================================================
+        //-------------------------------------------------------------------------
+
+        integral += w * rho * (ex+ec);
+        //integral += w * rho * m_xcFunctional->evaluateEnergy(rho);
     }
     return integral;
-
 }
 
 void NumericalIntegrator::setFunctional(ExchangeCorrelationFunctional* functional) {
