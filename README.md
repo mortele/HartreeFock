@@ -9,7 +9,7 @@ A number of [Pople family basis sets](https://aip.scitation.org/doi/abs/10.1063/
 
 A simple DFT implementation is located in the DFT branch. This code has not been properly tested and should be considered unstable currently.
 
-## Building
+## Building and running
 
 1. Download and install Qt Creator from http://www.qt.io/download-open-source/.
 2. Clone the git repository: git@github.com:mortele/HartreeFock.git. 
@@ -17,4 +17,4 @@ A simple DFT implementation is located in the DFT branch. This code has not been
 4. Select an appropriate compiler for your system when prompted.
 5. Press Run to compile and run.
 
-Please note that this has never been tested on Windows machines, but it *might* work. Anyway, if anything breaks you get to keep all the parts.
+Please note that this has never been tested on Windows machines, but it *might* work. Anyway, if anything breaks you get to keep all the pieces.
